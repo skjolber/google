@@ -1,5 +1,4 @@
-
-  agger: "2.0"
+  swagger: "2.0"
 info:
   title: Google Proximity Beacon
   description: Registers, manages, indexes, and searches beacons.
