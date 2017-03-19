@@ -1,0 +1,601 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google Cloud Pub/Sub",
+		"description": "Provides reliable, many-to-many, asynchronous messaging between applications.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "pubsub.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/{name}": {
+			"put": {
+				"summary": "Create Topic",
+				"description": "Creates the given topic with the given name",
+				"operationId": "pubsub.projects.topics.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The name of the topic"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Topic"]
+			}
+		},
+		"/v1/{project}/subscriptions": {
+			"get": {
+				"summary": "List Matching Subscription",
+				"description": "Lists matching subscriptions",
+				"operationId": "pubsub.projects.subscriptions.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Maximum number of subscriptions to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The value returned by the last `ListSubscriptionsResponse`; indicates thatnthis is a continuation of a prior `ListSubscriptions` call, and that thensystem should return the next page of data"
+				},
+				{
+					"in": "path",
+					"name": "project",
+					"description": "The name of the cloud project that subscriptions belong to"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			}
+		},
+		"/v1/{project}/topics": {
+			"get": {
+				"summary": "List Matching Topics",
+				"description": "Lists matching topics",
+				"operationId": "pubsub.projects.topics.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Maximum number of topics to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The value returned by the last `ListTopicsResponse`; indicates that this isna continuation of a prior `ListTopics` call, and that the system shouldnreturn the next page of data"
+				},
+				{
+					"in": "path",
+					"name": "project",
+					"description": "The name of the cloud project that topics belong to"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Topic"]
+			}
+		},
+		"/v1/{resource}:getIamPolicy": {
+			"get": {
+				"summary": "Get IAM Policy",
+				"description": "Gets the access control policy for a resource",
+				"operationId": "pubsub.projects.topics.getIamPolicy",
+				"parameters": [{
+					"in": "path",
+					"name": "resource",
+					"description": "REQUIRED: The resource for which the policy is being requested"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["IAM"]
+			}
+		},
+		"/v1/{resource}:setIamPolicy": {
+			"post": {
+				"summary": "Set IAM Policy",
+				"description": "Sets the access control policy on the specified resource",
+				"operationId": "pubsub.projects.topics.setIamPolicy",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "resource",
+					"description": "REQUIRED: The resource for which the policy is being specified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["IAM"]
+			}
+		},
+		"/v1/{resource}:testIamPermissions": {
+			"post": {
+				"summary": "Test IAM Permission",
+				"description": "Returns permissions that a caller has on the specified resource",
+				"operationId": "pubsub.projects.topics.testIamPermissions",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "resource",
+					"description": "REQUIRED: The resource for which the policy detail is being requested"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["IAM"]
+			}
+		},
+		"/v1/{subscription}": {
+			"delete": {
+				"summary": "Delete Subscription",
+				"description": "Deletes an existing subscription",
+				"operationId": "pubsub.projects.subscriptions.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "subscription",
+					"description": "The subscription to delete"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			},
+			"get": {
+				"summary": "Get Subscription",
+				"description": "Gets the configuration details of a subscription",
+				"operationId": "pubsub.projects.subscriptions.get",
+				"parameters": [{
+					"in": "path",
+					"name": "subscription",
+					"description": "The name of the subscription to get"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			}
+		},
+		"/v1/{subscription}:acknowledge": {
+			"post": {
+				"summary": "Acknowledge Subscription",
+				"description": "Acknowledges the messages associated with the `ack_ids` in then`AcknowledgeRequest`",
+				"operationId": "pubsub.projects.subscriptions.acknowledge",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "subscription",
+					"description": "The subscription whose message is being acknowledged"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			}
+		},
+		"/v1/{subscription}:modifyAckDeadline": {
+			"post": {
+				"summary": "Modify ACK Deadline",
+				"description": "Modifies the ack deadline for a specific message",
+				"operationId": "pubsub.projects.subscriptions.modifyAckDeadline",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "subscription",
+					"description": "The name of the subscription"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["ACK Deadline"]
+			}
+		},
+		"/v1/{subscription}:modifyPushConfig": {
+			"post": {
+				"summary": "Modify Push Configuration",
+				"description": "Modifies the `PushConfig` for a specified subscription",
+				"operationId": "pubsub.projects.subscriptions.modifyPushConfig",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "subscription",
+					"description": "The name of the subscription"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [" Push Configuration"]
+			}
+		},
+		"/v1/{subscription}:pull": {
+			"post": {
+				"summary": "Pull Message",
+				"description": "Pulls messages from the server",
+				"operationId": "pubsub.projects.subscriptions.pull",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "subscription",
+					"description": "The subscription from which messages should be pulled"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Message"]
+			}
+		},
+		"/v1/{topic}": {
+			"delete": {
+				"summary": "Delete Topic",
+				"description": "Deletes the topic with the given name",
+				"operationId": "pubsub.projects.topics.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "topic",
+					"description": "Name of the topic to delete"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Topic"]
+			},
+			"get": {
+				"summary": "Get Topic Configuration",
+				"description": "Gets the configuration of a topic",
+				"operationId": "pubsub.projects.topics.get",
+				"parameters": [{
+					"in": "path",
+					"name": "topic",
+					"description": "The name of the topic to get"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Topic"]
+			}
+		},
+		"/v1/{topic}/subscriptions": {
+			"get": {
+				"summary": "Get Topic Subscription",
+				"description": "Lists the name of the subscriptions for this topic",
+				"operationId": "pubsub.projects.topics.subscriptions.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Maximum number of subscription names to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The value returned by the last `ListTopicSubscriptionsResponse`; indicatesnthat this is a continuation of a prior `ListTopicSubscriptions` call, andnthat the system should return the next page of data"
+				},
+				{
+					"in": "path",
+					"name": "topic",
+					"description": "The name of the topic that subscriptions are attached to"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Topic"]
+			}
+		},
+		"/v1/{topic}:publish": {
+			"post": {
+				"summary": "Publish Topic",
+				"description": "Adds one or more messages to the topic",
+				"operationId": "pubsub.projects.topics.publish",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "topic",
+					"description": "The messages in the request will be published on this topic"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Topic"]
+			}
+		}
+	},
+	"definitions": {
+		"AcknowledgeRequest": {
+			"properties": {
+				"ackIds": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Binding": {
+			"properties": {
+				"members": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"role": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Empty": {
+			"properties": []
+		},
+		"ListSubscriptionsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"subscriptions": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListTopicSubscriptionsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"subscriptions": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListTopicsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"topics": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ModifyAckDeadlineRequest": {
+			"properties": {
+				"ackDeadlineSeconds": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"ackIds": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ModifyPushConfigRequest": {
+			"properties": []
+		},
+		"Policy": {
+			"properties": {
+				"bindings": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"PublishRequest": {
+			"properties": {
+				"messages": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"PublishResponse": {
+			"properties": {
+				"messageIds": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"PubsubMessage": {
+			"properties": {
+				"attributes": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"data": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"messageId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"publishTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"PullRequest": {
+			"properties": {
+				"maxMessages": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"returnImmediately": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"PullResponse": {
+			"properties": {
+				"receivedMessages": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"PushConfig": {
+			"properties": {
+				"attributes": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"pushEndpoint": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ReceivedMessage": {
+			"properties": {
+				"ackId": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"SetIamPolicyRequest": {
+			"properties": []
+		},
+		"Subscription": {
+			"properties": {
+				"ackDeadlineSeconds": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"topic": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"TestIamPermissionsRequest": {
+			"properties": {
+				"permissions": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"TestIamPermissionsResponse": {
+			"properties": {
+				"permissions": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Topic": {
+			"properties": {
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		}
+	}
+}
