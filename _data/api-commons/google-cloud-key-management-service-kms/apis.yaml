@@ -1,0 +1,35 @@
+name: Google Cloud Key Management Service (KMS)
+description: Cloud KMS is a cloud-hosted key management service that lets you manage
+  encryption for your cloud services the same way you do on-premises. You can generate,
+  use, rotate and destroy AES256 encryption keys. Cloud KMS is integrated with IAM
+  and Cloud Audit Logging so that you can manage permissions on individual keys, and
+  monitor how these are used. Use Cloud KMS to protect secrets and other sensitive
+  data which you need to store in Google Cloud Platform.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/kms-lead.png
+tags:
+- Management
+- Google APIs
+- Authentication
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-key-management-service-kms/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Cloud Key Management Service API
+  description: Cloud KMS is a cloud-hosted key management service that lets you manage
+    encryption for your cloud services the same way you do on-premises
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/kms-lead.png
+  humanURL: https://cloud.google.com/kms/
+  baseURL: https://cloud.google.com/kms/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-key-management-service-kms/google-cloud-key-management-service-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://cloud.google.com/kms/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
