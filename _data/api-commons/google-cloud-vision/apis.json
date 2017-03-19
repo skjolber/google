@@ -1,0 +1,37 @@
+{
+	"name": "Google Cloud Vision",
+	"description": "Google Cloud Vision API enables developers to understand the content of an image by encapsulating powerful machine learning models in an easy to use REST API. It quickly classifies images into thousands of categories (e.g., sailboat, lion, Eiffel Tower), detects individual objects and faces within images, and finds and reads printed words contained within images. You can build metadata on your image catalog, moderate offensive content, or enable new marketing scenarios through image sentiment analysis. Analyze images uploaded in the request or integrate with your image storage on Google Cloud Storage.",
+	"image": "",
+	"tags": ["Text Recognition",
+	"Photos",
+	"Object Recognition",
+	"Images",
+	"Google APIs",
+	"Facial Recognition"],
+	"created": "2017-03-18",
+	"modified": "2017-03-18",
+	"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-vision/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [{
+		"name": "Google Cloud Vision API",
+		"description": "Google Cloud Vision API enables developers to understand the content of an image by encapsulating powerful machine learning models in an easy to use REST API",
+		"image": "",
+		"humanURL": "https://cloud.google.com/vision/",
+		"baseURL": "https://cloud.google.com/vision/",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-vision/google-cloud-vision-api-openapi-spec.json"
+		}]
+	}],
+	"x-common": [{
+		"type": "x-website",
+		"url": "https://cloud.google.com/vision/"
+	}],
+	"include": [],
+	"maintainers": [{
+		"FN": "Kin Lane",
+		"x-twitter": "apievangelist",
+		"email": "info@apievangelist.com"
+	}]
+}
