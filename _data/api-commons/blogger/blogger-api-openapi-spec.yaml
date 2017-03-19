@@ -1,537 +1,1151 @@
-"\r\n  {\n\t\"swagger\": \"2.0\",\n\t\"info\": {\n\t\t\"title\": \"Blogger\",\n\t\t\"description\":
-  \"API for access to the data within Blogger.\",\n\t\t\"contact\": {\n\t\t\t\"name\":
-  \"Google\",\n\t\t\t\"url\": \"https://google.com\"\n\t\t},\n\t\t\"version\": \"v3\"\n\t},\n\t\"host\":
-  \"www.googleapis.com\",\n\t\"basePath\": \"/blogger/v3\",\n\t\"schemes\": [\"http\"],\n\t\"produces\":
-  [\"application/json\"],\n\t\"consumes\": [\"application/json\"],\n\t\"paths\": {\n\t\t\"/blogs/byurl\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get Blog by URL\",\n\t\t\t\t\"description\":
-  \"Retrieve a Blog by URL\",\n\t\t\t\t\"operationId\": \"blogger.blogs.getByUrl\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\": \"url\",\n\t\t\t\t\t\"description\":
-  \"The URL of the blog to retrieve\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"view\",\n\t\t\t\t\t\"description\": \"Access level with which to view the blog\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}\": {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\":
-  \"Get Blog\",\n\t\t\t\t\"description\": \"Gets one blog by ID\",\n\t\t\t\t\"operationId\":
-  \"blogger.blogs.get\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"The ID of the blog to get\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxPosts\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of posts to pull back with the blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"view\",\n\t\t\t\t\t\"description\": \"Access level
-  with which to view the blog\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\":
-  {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/comments\": {\n\t\t\t\"get\":
-  {\n\t\t\t\t\"summary\": \"Get Blog Comments\",\n\t\t\t\t\"description\": \"Retrieves
-  the comments for a blog, across all posts, possibly filtered\",\n\t\t\t\t\"operationId\":
-  \"blogger.comments.listByBlog\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\": \"ID of the
-  blog to fetch comments from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"endDate\",\n\t\t\t\t\t\"description\": \"Latest date of comment to fetch, a date-time
-  with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"fetchBodies\",\n\t\t\t\t\t\"description\": \"Whether the body content of the comments
-  is included\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"maxResults\",\n\t\t\t\t\t\"description\": \"Maximum number of comments to include
-  in the result\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"pageToken\",\n\t\t\t\t\t\"description\": \"Continuation token if request is paged\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"startDate\",\n\t\t\t\t\t\"description\": \"Earliest
-  date of comment to fetch, a date-time with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"status\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Comment\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/pages\": {\n\t\t\t\"get\":
-  {\n\t\t\t\t\"summary\": \"Get Blog Pages\",\n\t\t\t\t\"description\": \"Retrieves
-  the pages for a blog, optionally including non-LIVE statuses\",\n\t\t\t\t\"operationId\":
-  \"blogger.pages.list\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"ID of the blog to fetch Pages from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBodies\",\n\t\t\t\t\t\"description\": \"Whether
-  to retrieve the Page bodies\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"maxResults\",\n\t\t\t\t\t\"description\": \"Maximum number of Pages to fetch\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"pageToken\",\n\t\t\t\t\t\"description\": \"Continuation
-  token if the request is paged\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"status\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"view\",\n\t\t\t\t\t\"description\": \"Access level with which to view the returned
-  result\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Page\"]\n\t\t\t},\n\t\t\t\"post\":
-  {\n\t\t\t\t\"summary\": \"Add Blog Page\",\n\t\t\t\t\"description\": \"Add a page\",\n\t\t\t\t\"operationId\":
-  \"blogger.pages.insert\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"ID of the blog to add the page to\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"body\",\n\t\t\t\t\t\"name\": \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\":
-  \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"isDraft\",\n\t\t\t\t\t\"description\": \"Whether
-  to create the page as a draft (default: false)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Page\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/pages/{pageId}\": {\n\t\t\t\"delete\":
-  {\n\t\t\t\t\"summary\": \"Delete Blog Page\",\n\t\t\t\t\"description\": \"Delete
-  a page by ID\",\n\t\t\t\t\"operationId\": \"blogger.pages.delete\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"pageId\",\n\t\t\t\t\t\"description\": \"The ID of the Page\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Page\"]\n\t\t\t},\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get Blog Page\",\n\t\t\t\t\"description\":
-  \"Gets one blog page by ID\",\n\t\t\t\t\"operationId\": \"blogger.pages.get\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog containing the page\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"pageId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the page to get\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"view\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Page\"]\n\t\t\t},\n\t\t\t\"patch\":
-  {\n\t\t\t\t\"summary\": \"Update Blog Page\",\n\t\t\t\t\"description\": \"Update
-  a page\",\n\t\t\t\t\"operationId\": \"blogger.pages.patch\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"body\",\n\t\t\t\t\t\"name\":
-  \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\": \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"pageId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Page\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"publish\",\n\t\t\t\t\t\"description\": \"Whether a publish action should be performed
-  when the page is updated (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"revert\",\n\t\t\t\t\t\"description\": \"Whether
-  a revert action should be performed when the page is updated (default: false)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Page\"]\n\t\t\t},\n\t\t\t\"put\": {\n\t\t\t\t\"summary\": \"Update Blog Page\",\n\t\t\t\t\"description\":
-  \"Update a page\",\n\t\t\t\t\"operationId\": \"blogger.pages.update\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"body\",\n\t\t\t\t\t\"name\":
-  \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\": \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"pageId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Page\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"publish\",\n\t\t\t\t\t\"description\": \"Whether a publish action should be performed
-  when the page is updated (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"revert\",\n\t\t\t\t\t\"description\": \"Whether
-  a revert action should be performed when the page is updated (default: false)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Page\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/pages/{pageId}/publish\": {\n\t\t\t\"post\":
-  {\n\t\t\t\t\"summary\": \"Publish Blog Page\",\n\t\t\t\t\"description\": \"Publishes
-  a draft page\",\n\t\t\t\t\"operationId\": \"blogger.pages.publish\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"pageId\",\n\t\t\t\t\t\"description\": \"The ID of the page\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Page\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/pages/{pageId}/revert\": {\n\t\t\t\"post\":
-  {\n\t\t\t\t\"summary\": \"Revert Blog Page\",\n\t\t\t\t\"description\": \"Revert
-  a published or scheduled page to draft state\",\n\t\t\t\t\"operationId\": \"blogger.pages.revert\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"pageId\",\n\t\t\t\t\t\"description\": \"The ID of the page\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Page\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/pageviews\": {\n\t\t\t\"get\":
-  {\n\t\t\t\t\"summary\": \"Get Blog Page Views\",\n\t\t\t\t\"description\": \"Retrieve
-  pageview stats for a Blog\",\n\t\t\t\t\"operationId\": \"blogger.pageViews.get\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the blog to get\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"range\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Page Views\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get Blog Posts\",\n\t\t\t\t\"description\":
-  \"Retrieves a list of posts, possibly filtered\",\n\t\t\t\t\"operationId\": \"blogger.posts.list\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog to fetch posts from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"endDate\",\n\t\t\t\t\t\"description\": \"Latest
-  post date to fetch, a date-time with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBodies\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of posts is included (default: true)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchImages\",\n\t\t\t\t\t\"description\": \"Whether
-  image URL metadata for each post is included\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"labels\",\n\t\t\t\t\t\"description\": \"Comma-separated
-  list of labels to search for\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"maxResults\",\n\t\t\t\t\t\"description\": \"Maximum number of posts to fetch\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"orderBy\",\n\t\t\t\t\t\"description\": \"Sort
-  search results\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"pageToken\",\n\t\t\t\t\t\"description\": \"Continuation token if the request is
-  paged\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"startDate\",\n\t\t\t\t\t\"description\": \"Earliest post date to fetch, a date-time
-  with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"status\",\n\t\t\t\t\t\"description\": \"Statuses to include in the results\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"view\",\n\t\t\t\t\t\"description\": \"Access level
-  with which to view the returned result\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\":
-  {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Post\"]\n\t\t\t},\n\t\t\t\"post\": {\n\t\t\t\t\"summary\": \"Add Blog Post\",\n\t\t\t\t\"description\":
-  \"Add a post\",\n\t\t\t\t\"operationId\": \"blogger.posts.insert\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog to add the post to\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"body\",\n\t\t\t\t\t\"name\": \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\":
-  \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBody\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of the post is included with the result (default: true)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchImages\",\n\t\t\t\t\t\"description\": \"Whether
-  image URL metadata for each post is included in the returned result (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"isDraft\",\n\t\t\t\t\t\"description\": \"Whether
-  to create the post as a draft (default: false)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Post\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/bypath\": {\n\t\t\t\"get\":
-  {\n\t\t\t\t\"summary\": \"Get Blog Post by Path\",\n\t\t\t\t\"description\": \"Retrieve
-  a Post by Path\",\n\t\t\t\t\"operationId\": \"blogger.posts.getByPath\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog to fetch the post from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxComments\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of comments to pull back on a post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"path\",\n\t\t\t\t\t\"description\": \"Path of
-  the Post to retrieve\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"view\",\n\t\t\t\t\t\"description\": \"Access level with which to view the returned
-  result\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Blog Post\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/search\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Search Blog Post\",\n\t\t\t\t\"description\":
-  \"Search for a post\",\n\t\t\t\t\"operationId\": \"blogger.posts.search\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog to fetch the post from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBodies\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of posts is included (default: true)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"orderBy\",\n\t\t\t\t\t\"description\": \"Sort
-  search results\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"q\",\n\t\t\t\t\t\"description\": \"Query terms to search this blog for matching
-  posts\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Blog Search\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}\":
-  {\n\t\t\t\"delete\": {\n\t\t\t\t\"summary\": \"Delete Blog Post\",\n\t\t\t\t\"description\":
-  \"Delete a post by ID\",\n\t\t\t\t\"operationId\": \"blogger.posts.delete\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"postId\",\n\t\t\t\t\t\"description\": \"The ID of the Post\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Post\"]\n\t\t\t},\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get Blog Post\",\n\t\t\t\t\"description\":
-  \"Get a post by ID\",\n\t\t\t\t\"operationId\": \"blogger.posts.get\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog to fetch the post from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBody\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of the post is included (default: true)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchImages\",\n\t\t\t\t\t\"description\": \"Whether
-  image URL metadata for each post is included (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxComments\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of comments to pull back on a post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"view\",\n\t\t\t\t\t\"description\": \"Access level with which to view the returned
-  result\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Blog Post\"]\n\t\t\t},\n\t\t\t\"patch\":
-  {\n\t\t\t\t\"summary\": \"Update Blog Post\",\n\t\t\t\t\"description\": \"Update
-  a post\",\n\t\t\t\t\"operationId\": \"blogger.posts.patch\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"body\",\n\t\t\t\t\t\"name\":
-  \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\": \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBody\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of the post is included with the result (default: true)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchImages\",\n\t\t\t\t\t\"description\": \"Whether
-  image URL metadata for each post is included in the returned result (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxComments\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of comments to retrieve with the returned post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"publish\",\n\t\t\t\t\t\"description\": \"Whether a publish action should be performed
-  when the post is updated (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"revert\",\n\t\t\t\t\t\"description\": \"Whether
-  a revert action should be performed when the post is updated (default: false)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Post\"]\n\t\t\t},\n\t\t\t\"put\": {\n\t\t\t\t\"summary\": \"Update Blog
-  Post\",\n\t\t\t\t\"description\": \"Update a post\",\n\t\t\t\t\"operationId\": \"blogger.posts.update\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"body\",\n\t\t\t\t\t\"name\":
-  \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\": \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBody\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of the post is included with the result (default: true)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchImages\",\n\t\t\t\t\t\"description\": \"Whether
-  image URL metadata for each post is included in the returned result (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxComments\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of comments to retrieve with the returned post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"publish\",\n\t\t\t\t\t\"description\": \"Whether a publish action should be performed
-  when the post is updated (default: false)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"revert\",\n\t\t\t\t\t\"description\": \"Whether
-  a revert action should be performed when the post is updated (default: false)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Post\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/comments\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get Blog Post Comments\",\n\t\t\t\t\"description\":
-  \"Retrieves the comments for a post, possibly filtered\",\n\t\t\t\t\"operationId\":
-  \"blogger.comments.list\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"ID of the blog to fetch comments from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"endDate\",\n\t\t\t\t\t\"description\": \"Latest
-  date of comment to fetch, a date-time with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBodies\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of the comments is included\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxResults\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of comments to include in the result\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"pageToken\",\n\t\t\t\t\t\"description\": \"Continuation
-  token if request is paged\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"postId\",\n\t\t\t\t\t\"description\": \"ID of the post to fetch posts from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"startDate\",\n\t\t\t\t\t\"description\": \"Earliest
-  date of comment to fetch, a date-time with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"status\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"view\",\n\t\t\t\t\t\"description\": \"Access level
-  with which to view the returned result\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\":
-  {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Comments\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/comments/{commentId}\":
-  {\n\t\t\t\"delete\": {\n\t\t\t\t\"summary\": \"Delete Blog Post Comments\",\n\t\t\t\t\"description\":
-  \"Delete a comment by ID\",\n\t\t\t\t\"operationId\": \"blogger.comments.delete\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"commentId\",\n\t\t\t\t\t\"description\": \"The ID of the comment to delete\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Post\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Comments\"]\n\t\t\t},\n\t\t\t\"get\":
-  {\n\t\t\t\t\"summary\": \"Get Blog Post Comment\",\n\t\t\t\t\"description\": \"Gets
-  one comment by ID\",\n\t\t\t\t\"operationId\": \"blogger.comments.get\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"ID of the blog to containing the comment\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"commentId\",\n\t\t\t\t\t\"description\": \"The
-  ID of the comment to get\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"postId\",\n\t\t\t\t\t\"description\": \"ID of the post to fetch posts from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"view\",\n\t\t\t\t\t\"description\": \"Access level
-  for the requested comment (default: READER)\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Comments\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve\":
-  {\n\t\t\t\"post\": {\n\t\t\t\t\"summary\": \"Update Blog Post Comment\",\n\t\t\t\t\"description\":
-  \"Marks a comment as not spam\",\n\t\t\t\t\"operationId\": \"blogger.comments.approve\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"commentId\",\n\t\t\t\t\t\"description\": \"The ID of the comment to mark as not
-  spam\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"postId\",\n\t\t\t\t\t\"description\": \"The ID of the Post\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Comments\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent\":
-  {\n\t\t\t\"post\": {\n\t\t\t\t\"summary\": \"Update Blog Post Comment\",\n\t\t\t\t\"description\":
-  \"Removes the content of a comment\",\n\t\t\t\t\"operationId\": \"blogger.comments.removeContent\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"commentId\",\n\t\t\t\t\t\"description\": \"The ID of the comment to delete content
-  from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"postId\",\n\t\t\t\t\t\"description\": \"The ID of the Post\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Comments\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam\":
-  {\n\t\t\t\"post\": {\n\t\t\t\t\"summary\": \"Update Blog Post Comment SPAM\",\n\t\t\t\t\"description\":
-  \"Marks a comment as spam\",\n\t\t\t\t\"operationId\": \"blogger.comments.markAsSpam\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"commentId\",\n\t\t\t\t\t\"description\": \"The ID of the comment to mark as spam\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Post\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Comments\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/publish\":
-  {\n\t\t\t\"post\": {\n\t\t\t\t\"summary\": \"Publish Blog Post\",\n\t\t\t\t\"description\":
-  \"Publishes a draft post, optionally at the specific time of the given publishDate
-  parameter\",\n\t\t\t\t\"operationId\": \"blogger.posts.publish\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"postId\",\n\t\t\t\t\t\"description\": \"The ID of the Post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"publishDate\",\n\t\t\t\t\t\"description\": \"Optional
-  date and time to schedule the publishing of the Blog\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"Blog Post\"]\n\t\t\t}\n\t\t},\n\t\t\"/blogs/{blogId}/posts/{postId}/revert\":
-  {\n\t\t\t\"post\": {\n\t\t\t\t\"summary\": \"Revert Blog Post\",\n\t\t\t\t\"description\":
-  \"Revert a published or scheduled post to draft state\",\n\t\t\t\t\"operationId\":
-  \"blogger.posts.revert\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"The ID of the Blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the Post\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"Blog Post\"]\n\t\t\t}\n\t\t},\n\t\t\"/users/{userId}\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get User\",\n\t\t\t\t\"description\":
-  \"Gets one user by ID\",\n\t\t\t\t\"operationId\": \"blogger.users.get\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"userId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the user to get\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\":
-  {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"User\"]\n\t\t\t}\n\t\t},\n\t\t\"/users/{userId}/blogs\": {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\":
-  \"Get User Blogs\",\n\t\t\t\t\"description\": \"Retrieves a list of blogs, possibly
-  filtered\",\n\t\t\t\t\"operationId\": \"blogger.blogs.listByUser\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\": \"fetchUserInfo\",\n\t\t\t\t\t\"description\":
-  \"Whether the response is a list of blogs with per-user information instead of just
-  blogs\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"role\",\n\t\t\t\t\t\"description\": \"User access types for blogs to include in
-  the results, e\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"status\",\n\t\t\t\t\t\"description\": \"Blog statuses to include in the result
-  (default: Live blogs only)\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"userId\",\n\t\t\t\t\t\"description\": \"ID of the user whose blogs are to be fetched\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"view\",\n\t\t\t\t\t\"description\": \"Access level
-  with which to view the blogs\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\":
-  {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"User\"]\n\t\t\t}\n\t\t},\n\t\t\"/users/{userId}/blogs/{blogId}\": {\n\t\t\t\"get\":
-  {\n\t\t\t\t\"summary\": \"Get User Blog\",\n\t\t\t\t\"description\": \"Gets one
-  blog and user info pair by blogId and userId\",\n\t\t\t\t\"operationId\": \"blogger.blogUserInfos.get\",\n\t\t\t\t\"parameters\":
-  [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\": \"blogId\",\n\t\t\t\t\t\"description\":
-  \"The ID of the blog to get\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"maxPosts\",\n\t\t\t\t\t\"description\": \"Maximum number of posts to pull back
-  with the blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"userId\",\n\t\t\t\t\t\"description\": \"ID of the user whose blogs are to be fetched\"\n\t\t\t\t}],\n\t\t\t\t\"responses\":
-  {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
-  [\"User Blogs\"]\n\t\t\t}\n\t\t},\n\t\t\"/users/{userId}/blogs/{blogId}/posts\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get User Blog Posts\",\n\t\t\t\t\"description\":
-  \"Retrieves a list of post and post user info pairs, possibly filtered\",\n\t\t\t\t\"operationId\":
-  \"blogger.postUserInfos.list\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"ID of the blog to fetch posts from\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"endDate\",\n\t\t\t\t\t\"description\": \"Latest
-  post date to fetch, a date-time with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"fetchBodies\",\n\t\t\t\t\t\"description\": \"Whether
-  the body content of posts is included\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"labels\",\n\t\t\t\t\t\"description\": \"Comma-separated
-  list of labels to search for\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"maxResults\",\n\t\t\t\t\t\"description\": \"Maximum number of posts to fetch\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"orderBy\",\n\t\t\t\t\t\"description\": \"Sort
-  order applied to search results\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"pageToken\",\n\t\t\t\t\t\"description\": \"Continuation token if the request is
-  paged\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"startDate\",\n\t\t\t\t\t\"description\": \"Earliest post date to fetch, a date-time
-  with RFC 3339 formatting\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"status\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"userId\",\n\t\t\t\t\t\"description\": \"ID of the user for the per-user information
-  to be fetched\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"query\",\n\t\t\t\t\t\"name\":
-  \"view\",\n\t\t\t\t\t\"description\": \"Access level with which to view the returned
-  result\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"User Blog Posts\"]\n\t\t\t}\n\t\t},\n\t\t\"/users/{userId}/blogs/{blogId}/posts/{postId}\":
-  {\n\t\t\t\"get\": {\n\t\t\t\t\"summary\": \"Get User Blog Post\",\n\t\t\t\t\"description\":
-  \"Gets one post and user info pair, by post ID and user ID\",\n\t\t\t\t\"operationId\":
-  \"blogger.postUserInfos.get\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"blogId\",\n\t\t\t\t\t\"description\": \"The ID of the blog\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"query\",\n\t\t\t\t\t\"name\": \"maxComments\",\n\t\t\t\t\t\"description\": \"Maximum
-  number of comments to pull back on a post\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\":
-  \"path\",\n\t\t\t\t\t\"name\": \"postId\",\n\t\t\t\t\t\"description\": \"The ID
-  of the post to get\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"in\": \"path\",\n\t\t\t\t\t\"name\":
-  \"userId\",\n\t\t\t\t\t\"description\": \"ID of the user for the per-user information
-  to be fetched\"\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\": {\n\t\t\t\t\t\t\"description\":
-  \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\": [\"User Blog Posts\"]\n\t\t\t}\n\t\t}\n\t},\n\t\"definitions\":
-  {\n\t\t\"Blog\": {\n\t\t\t\"properties\": {\n\t\t\t\t\"customMetaData\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"description\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"id\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"locale\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"name\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"pages\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"posts\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"published\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"selfLink\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"status\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"updated\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"url\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"BlogList\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"blogUserInfos\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"items\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"BlogPerUserInfo\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"blogId\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"hasAdminAccess\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"photosAlbumKey\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"role\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"userId\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"BlogUserInfo\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"Comment\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"author\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"blog\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"content\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"id\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"inReplyTo\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"post\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"published\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"selfLink\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"status\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"updated\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"CommentList\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"etag\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"nextPageToken\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"prevPageToken\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"Page\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"author\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"blog\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"content\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"etag\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"id\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"published\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"selfLink\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"status\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"title\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"updated\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"url\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"PageList\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"etag\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"items\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"nextPageToken\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"Pageviews\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"blogId\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"counts\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"Post\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"author\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"blog\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"content\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"customMetaData\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"etag\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"id\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"images\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"labels\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"location\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"published\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"readerComments\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"replies\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"selfLink\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"status\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"title\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"titleLink\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"updated\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"url\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"PostList\": {\n\t\t\t\"properties\":
-  {\n\t\t\t\t\"etag\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"nextPageToken\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"PostPerUserInfo\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"blogId\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"hasEditAccess\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"postId\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"userId\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"PostUserInfo\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"kind\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"PostUserInfosList\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"items\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"nextPageToken\": {\n\t\t\t\t\t\"description\":
-  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"User\":
-  {\n\t\t\t\"properties\": {\n\t\t\t\t\"about\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"blogs\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"created\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"displayName\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"id\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"kind\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"locale\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"selfLink\":
-  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
-  \"parameters\"\n\t\t\t\t},\n\t\t\t\t\"url\": {\n\t\t\t\t\t\"description\": \"This
-  is a default description.\",\n\t\t\t\t\t\"type\": \"parameters\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+swagger: "2.0"
+info:
+  title: Blogger
+  description: API for access to the data within Blogger.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v3
+host: www.googleapis.com
+basePath: /blogger/v3
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /blogs/byurl:
+    get:
+      summary: Get Blog by URL
+      description: Retrieve a Blog by URL
+      operationId: blogger.blogs.getByUrl
+      parameters:
+      - in: query
+        name: url
+        description: The URL of the blog to retrieve
+      - in: query
+        name: view
+        description: Access level with which to view the blog
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog
+  /blogs/{blogId}:
+    get:
+      summary: Get Blog
+      description: Gets one blog by ID
+      operationId: blogger.blogs.get
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the blog to get
+      - in: query
+        name: maxPosts
+        description: Maximum number of posts to pull back with the blog
+      - in: query
+        name: view
+        description: Access level with which to view the blog
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog
+  /blogs/{blogId}/comments:
+    get:
+      summary: Get Blog Comments
+      description: Retrieves the comments for a blog, across all posts, possibly filtered
+      operationId: blogger.comments.listByBlog
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch comments from
+      - in: query
+        name: endDate
+        description: Latest date of comment to fetch, a date-time with RFC 3339 formatting
+      - in: query
+        name: fetchBodies
+        description: Whether the body content of the comments is included
+      - in: query
+        name: maxResults
+        description: Maximum number of comments to include in the result
+      - in: query
+        name: pageToken
+        description: Continuation token if request is paged
+      - in: query
+        name: startDate
+        description: Earliest date of comment to fetch, a date-time with RFC 3339
+          formatting
+      - in: query
+        name: status
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Comment
+  /blogs/{blogId}/pages:
+    get:
+      summary: Get Blog Pages
+      description: Retrieves the pages for a blog, optionally including non-LIVE statuses
+      operationId: blogger.pages.list
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch Pages from
+      - in: query
+        name: fetchBodies
+        description: Whether to retrieve the Page bodies
+      - in: query
+        name: maxResults
+        description: Maximum number of Pages to fetch
+      - in: query
+        name: pageToken
+        description: Continuation token if the request is paged
+      - in: query
+        name: status
+      - in: query
+        name: view
+        description: Access level with which to view the returned result
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+    post:
+      summary: Add Blog Page
+      description: Add a page
+      operationId: blogger.pages.insert
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to add the page to
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: isDraft
+        description: 'Whether to create the page as a draft (default: false)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+  /blogs/{blogId}/pages/{pageId}:
+    delete:
+      summary: Delete Blog Page
+      description: Delete a page by ID
+      operationId: blogger.pages.delete
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: pageId
+        description: The ID of the Page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+    get:
+      summary: Get Blog Page
+      description: Gets one blog page by ID
+      operationId: blogger.pages.get
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog containing the page
+      - in: path
+        name: pageId
+        description: The ID of the page to get
+      - in: query
+        name: view
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+    patch:
+      summary: Update Blog Page
+      description: Update a page
+      operationId: blogger.pages.patch
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: pageId
+        description: The ID of the Page
+      - in: query
+        name: publish
+        description: 'Whether a publish action should be performed when the page is
+          updated (default: false)'
+      - in: query
+        name: revert
+        description: 'Whether a revert action should be performed when the page is
+          updated (default: false)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+    put:
+      summary: Update Blog Page
+      description: Update a page
+      operationId: blogger.pages.update
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: pageId
+        description: The ID of the Page
+      - in: query
+        name: publish
+        description: 'Whether a publish action should be performed when the page is
+          updated (default: false)'
+      - in: query
+        name: revert
+        description: 'Whether a revert action should be performed when the page is
+          updated (default: false)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+  /blogs/{blogId}/pages/{pageId}/publish:
+    post:
+      summary: Publish Blog Page
+      description: Publishes a draft page
+      operationId: blogger.pages.publish
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the blog
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+  /blogs/{blogId}/pages/{pageId}/revert:
+    post:
+      summary: Revert Blog Page
+      description: Revert a published or scheduled page to draft state
+      operationId: blogger.pages.revert
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the blog
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page
+  /blogs/{blogId}/pageviews:
+    get:
+      summary: Get Blog Page Views
+      description: Retrieve pageview stats for a Blog
+      operationId: blogger.pageViews.get
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the blog to get
+      - in: query
+        name: range
+      responses:
+        200:
+          description: OK
+      tags:
+      - Page Views
+  /blogs/{blogId}/posts:
+    get:
+      summary: Get Blog Posts
+      description: Retrieves a list of posts, possibly filtered
+      operationId: blogger.posts.list
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch posts from
+      - in: query
+        name: endDate
+        description: Latest post date to fetch, a date-time with RFC 3339 formatting
+      - in: query
+        name: fetchBodies
+        description: 'Whether the body content of posts is included (default: true)'
+      - in: query
+        name: fetchImages
+        description: Whether image URL metadata for each post is included
+      - in: query
+        name: labels
+        description: Comma-separated list of labels to search for
+      - in: query
+        name: maxResults
+        description: Maximum number of posts to fetch
+      - in: query
+        name: orderBy
+        description: Sort search results
+      - in: query
+        name: pageToken
+        description: Continuation token if the request is paged
+      - in: query
+        name: startDate
+        description: Earliest post date to fetch, a date-time with RFC 3339 formatting
+      - in: query
+        name: status
+        description: Statuses to include in the results
+      - in: query
+        name: view
+        description: Access level with which to view the returned result
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+    post:
+      summary: Add Blog Post
+      description: Add a post
+      operationId: blogger.posts.insert
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to add the post to
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: fetchBody
+        description: 'Whether the body content of the post is included with the result
+          (default: true)'
+      - in: query
+        name: fetchImages
+        description: 'Whether image URL metadata for each post is included in the
+          returned result (default: false)'
+      - in: query
+        name: isDraft
+        description: 'Whether to create the post as a draft (default: false)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+  /blogs/{blogId}/posts/bypath:
+    get:
+      summary: Get Blog Post by Path
+      description: Retrieve a Post by Path
+      operationId: blogger.posts.getByPath
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch the post from
+      - in: query
+        name: maxComments
+        description: Maximum number of comments to pull back on a post
+      - in: query
+        name: path
+        description: Path of the Post to retrieve
+      - in: query
+        name: view
+        description: Access level with which to view the returned result
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+  /blogs/{blogId}/posts/search:
+    get:
+      summary: Search Blog Post
+      description: Search for a post
+      operationId: blogger.posts.search
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch the post from
+      - in: query
+        name: fetchBodies
+        description: 'Whether the body content of posts is included (default: true)'
+      - in: query
+        name: orderBy
+        description: Sort search results
+      - in: query
+        name: q
+        description: Query terms to search this blog for matching posts
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Search
+  /blogs/{blogId}/posts/{postId}:
+    delete:
+      summary: Delete Blog Post
+      description: Delete a post by ID
+      operationId: blogger.posts.delete
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: postId
+        description: The ID of the Post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+    get:
+      summary: Get Blog Post
+      description: Get a post by ID
+      operationId: blogger.posts.get
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch the post from
+      - in: query
+        name: fetchBody
+        description: 'Whether the body content of the post is included (default: true)'
+      - in: query
+        name: fetchImages
+        description: 'Whether image URL metadata for each post is included (default:
+          false)'
+      - in: query
+        name: maxComments
+        description: Maximum number of comments to pull back on a post
+      - in: path
+        name: postId
+        description: The ID of the post
+      - in: query
+        name: view
+        description: Access level with which to view the returned result
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+    patch:
+      summary: Update Blog Post
+      description: Update a post
+      operationId: blogger.posts.patch
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: fetchBody
+        description: 'Whether the body content of the post is included with the result
+          (default: true)'
+      - in: query
+        name: fetchImages
+        description: 'Whether image URL metadata for each post is included in the
+          returned result (default: false)'
+      - in: query
+        name: maxComments
+        description: Maximum number of comments to retrieve with the returned post
+      - in: path
+        name: postId
+        description: The ID of the Post
+      - in: query
+        name: publish
+        description: 'Whether a publish action should be performed when the post is
+          updated (default: false)'
+      - in: query
+        name: revert
+        description: 'Whether a revert action should be performed when the post is
+          updated (default: false)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+    put:
+      summary: Update Blog Post
+      description: Update a post
+      operationId: blogger.posts.update
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: fetchBody
+        description: 'Whether the body content of the post is included with the result
+          (default: true)'
+      - in: query
+        name: fetchImages
+        description: 'Whether image URL metadata for each post is included in the
+          returned result (default: false)'
+      - in: query
+        name: maxComments
+        description: Maximum number of comments to retrieve with the returned post
+      - in: path
+        name: postId
+        description: The ID of the Post
+      - in: query
+        name: publish
+        description: 'Whether a publish action should be performed when the post is
+          updated (default: false)'
+      - in: query
+        name: revert
+        description: 'Whether a revert action should be performed when the post is
+          updated (default: false)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+  /blogs/{blogId}/posts/{postId}/comments:
+    get:
+      summary: Get Blog Post Comments
+      description: Retrieves the comments for a post, possibly filtered
+      operationId: blogger.comments.list
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch comments from
+      - in: query
+        name: endDate
+        description: Latest date of comment to fetch, a date-time with RFC 3339 formatting
+      - in: query
+        name: fetchBodies
+        description: Whether the body content of the comments is included
+      - in: query
+        name: maxResults
+        description: Maximum number of comments to include in the result
+      - in: query
+        name: pageToken
+        description: Continuation token if request is paged
+      - in: path
+        name: postId
+        description: ID of the post to fetch posts from
+      - in: query
+        name: startDate
+        description: Earliest date of comment to fetch, a date-time with RFC 3339
+          formatting
+      - in: query
+        name: status
+      - in: query
+        name: view
+        description: Access level with which to view the returned result
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comments
+  /blogs/{blogId}/posts/{postId}/comments/{commentId}:
+    delete:
+      summary: Delete Blog Post Comments
+      description: Delete a comment by ID
+      operationId: blogger.comments.delete
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: commentId
+        description: The ID of the comment to delete
+      - in: path
+        name: postId
+        description: The ID of the Post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comments
+    get:
+      summary: Get Blog Post Comment
+      description: Gets one comment by ID
+      operationId: blogger.comments.get
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to containing the comment
+      - in: path
+        name: commentId
+        description: The ID of the comment to get
+      - in: path
+        name: postId
+        description: ID of the post to fetch posts from
+      - in: query
+        name: view
+        description: 'Access level for the requested comment (default: READER)'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comments
+  /blogs/{blogId}/posts/{postId}/comments/{commentId}/approve:
+    post:
+      summary: Update Blog Post Comment
+      description: Marks a comment as not spam
+      operationId: blogger.comments.approve
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: commentId
+        description: The ID of the comment to mark as not spam
+      - in: path
+        name: postId
+        description: The ID of the Post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comments
+  /blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent:
+    post:
+      summary: Update Blog Post Comment
+      description: Removes the content of a comment
+      operationId: blogger.comments.removeContent
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: commentId
+        description: The ID of the comment to delete content from
+      - in: path
+        name: postId
+        description: The ID of the Post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comments
+  /blogs/{blogId}/posts/{postId}/comments/{commentId}/spam:
+    post:
+      summary: Update Blog Post Comment SPAM
+      description: Marks a comment as spam
+      operationId: blogger.comments.markAsSpam
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: commentId
+        description: The ID of the comment to mark as spam
+      - in: path
+        name: postId
+        description: The ID of the Post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comments
+  /blogs/{blogId}/posts/{postId}/publish:
+    post:
+      summary: Publish Blog Post
+      description: Publishes a draft post, optionally at the specific time of the
+        given publishDate parameter
+      operationId: blogger.posts.publish
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: postId
+        description: The ID of the Post
+      - in: query
+        name: publishDate
+        description: Optional date and time to schedule the publishing of the Blog
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+  /blogs/{blogId}/posts/{postId}/revert:
+    post:
+      summary: Revert Blog Post
+      description: Revert a published or scheduled post to draft state
+      operationId: blogger.posts.revert
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the Blog
+      - in: path
+        name: postId
+        description: The ID of the Post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blog Post
+  /users/{userId}:
+    get:
+      summary: Get User
+      description: Gets one user by ID
+      operationId: blogger.users.get
+      parameters:
+      - in: path
+        name: userId
+        description: The ID of the user to get
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /users/{userId}/blogs:
+    get:
+      summary: Get User Blogs
+      description: Retrieves a list of blogs, possibly filtered
+      operationId: blogger.blogs.listByUser
+      parameters:
+      - in: query
+        name: fetchUserInfo
+        description: Whether the response is a list of blogs with per-user information
+          instead of just blogs
+      - in: query
+        name: role
+        description: User access types for blogs to include in the results, e
+      - in: query
+        name: status
+        description: 'Blog statuses to include in the result (default: Live blogs
+          only)'
+      - in: path
+        name: userId
+        description: ID of the user whose blogs are to be fetched
+      - in: query
+        name: view
+        description: Access level with which to view the blogs
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /users/{userId}/blogs/{blogId}:
+    get:
+      summary: Get User Blog
+      description: Gets one blog and user info pair by blogId and userId
+      operationId: blogger.blogUserInfos.get
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the blog to get
+      - in: query
+        name: maxPosts
+        description: Maximum number of posts to pull back with the blog
+      - in: path
+        name: userId
+        description: ID of the user whose blogs are to be fetched
+      responses:
+        200:
+          description: OK
+      tags:
+      - User Blogs
+  /users/{userId}/blogs/{blogId}/posts:
+    get:
+      summary: Get User Blog Posts
+      description: Retrieves a list of post and post user info pairs, possibly filtered
+      operationId: blogger.postUserInfos.list
+      parameters:
+      - in: path
+        name: blogId
+        description: ID of the blog to fetch posts from
+      - in: query
+        name: endDate
+        description: Latest post date to fetch, a date-time with RFC 3339 formatting
+      - in: query
+        name: fetchBodies
+        description: Whether the body content of posts is included
+      - in: query
+        name: labels
+        description: Comma-separated list of labels to search for
+      - in: query
+        name: maxResults
+        description: Maximum number of posts to fetch
+      - in: query
+        name: orderBy
+        description: Sort order applied to search results
+      - in: query
+        name: pageToken
+        description: Continuation token if the request is paged
+      - in: query
+        name: startDate
+        description: Earliest post date to fetch, a date-time with RFC 3339 formatting
+      - in: query
+        name: status
+      - in: path
+        name: userId
+        description: ID of the user for the per-user information to be fetched
+      - in: query
+        name: view
+        description: Access level with which to view the returned result
+      responses:
+        200:
+          description: OK
+      tags:
+      - User Blog Posts
+  /users/{userId}/blogs/{blogId}/posts/{postId}:
+    get:
+      summary: Get User Blog Post
+      description: Gets one post and user info pair, by post ID and user ID
+      operationId: blogger.postUserInfos.get
+      parameters:
+      - in: path
+        name: blogId
+        description: The ID of the blog
+      - in: query
+        name: maxComments
+        description: Maximum number of comments to pull back on a post
+      - in: path
+        name: postId
+        description: The ID of the post to get
+      - in: path
+        name: userId
+        description: ID of the user for the per-user information to be fetched
+      responses:
+        200:
+          description: OK
+      tags:
+      - User Blog Posts
+definitions:
+  Blog:
+    properties:
+      customMetaData:
+        description: This is a default description.
+        type: parameters
+      description:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      locale:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      pages:
+        description: This is a default description.
+        type: parameters
+      posts:
+        description: This is a default description.
+        type: parameters
+      published:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  BlogList:
+    properties:
+      blogUserInfos:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  BlogPerUserInfo:
+    properties:
+      blogId:
+        description: This is a default description.
+        type: parameters
+      hasAdminAccess:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      photosAlbumKey:
+        description: This is a default description.
+        type: parameters
+      role:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  BlogUserInfo:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+  Comment:
+    properties:
+      author:
+        description: This is a default description.
+        type: parameters
+      blog:
+        description: This is a default description.
+        type: parameters
+      content:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      inReplyTo:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      post:
+        description: This is a default description.
+        type: parameters
+      published:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+  CommentList:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      prevPageToken:
+        description: This is a default description.
+        type: parameters
+  Page:
+    properties:
+      author:
+        description: This is a default description.
+        type: parameters
+      blog:
+        description: This is a default description.
+        type: parameters
+      content:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      published:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  PageList:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  Pageviews:
+    properties:
+      blogId:
+        description: This is a default description.
+        type: parameters
+      counts:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Post:
+    properties:
+      author:
+        description: This is a default description.
+        type: parameters
+      blog:
+        description: This is a default description.
+        type: parameters
+      content:
+        description: This is a default description.
+        type: parameters
+      customMetaData:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      images:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      labels:
+        description: This is a default description.
+        type: parameters
+      location:
+        description: This is a default description.
+        type: parameters
+      published:
+        description: This is a default description.
+        type: parameters
+      readerComments:
+        description: This is a default description.
+        type: parameters
+      replies:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      titleLink:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  PostList:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  PostPerUserInfo:
+    properties:
+      blogId:
+        description: This is a default description.
+        type: parameters
+      hasEditAccess:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      postId:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  PostUserInfo:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+  PostUserInfosList:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  User:
+    properties:
+      about:
+        description: This is a default description.
+        type: parameters
+      blogs:
+        description: This is a default description.
+        type: parameters
+      created:
+        description: This is a default description.
+        type: parameters
+      displayName:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      locale:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
