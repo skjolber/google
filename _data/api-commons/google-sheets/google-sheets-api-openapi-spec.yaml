@@ -1,0 +1,1329 @@
+swagger: "2.0"
+info:
+  title: Google Sheets
+  description: Reads and writes Google Sheets.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v4
+host: sheets.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v4/spreadsheets:
+    post:
+      summary: Create Spreadsheet
+      description: Creates a spreadsheet, returning the newly created spreadsheet
+      operationId: sheets.spreadsheets.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}:
+    get:
+      summary: Get Spreadsheet
+      description: Returns the spreadsheet at the given ID
+      operationId: sheets.spreadsheets.get
+      parameters:
+      - in: query
+        name: includeGridData
+        description: True if grid data should be returned
+      - in: query
+        name: ranges
+        description: The ranges to retrieve from the spreadsheet
+      - in: path
+        name: spreadsheetId
+        description: The spreadsheet to request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/sheets/{sheetId}:copyTo:
+    post:
+      summary: Copy Spreadsheet
+      description: Copies a single sheet from a spreadsheet to another spreadsheet
+      operationId: sheets.spreadsheets.sheets.copyTo
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: sheetId
+        description: The ID of the sheet to copy
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet containing the sheet to copy
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/values/{range}:
+    get:
+      summary: Get Spreadsheet Values
+      description: Returns a range of values from a spreadsheet
+      operationId: sheets.spreadsheets.values.get
+      parameters:
+      - in: query
+        name: dateTimeRenderOption
+        description: How dates, times, and durations should be represented in the
+          output
+      - in: query
+        name: majorDimension
+        description: The major dimension that results should use
+      - in: path
+        name: range
+        description: The A1 notation of the values to retrieve
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to retrieve data from
+      - in: query
+        name: valueRenderOption
+        description: How values should be represented in the output
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+    put:
+      summary: Get Spreadsheet Values In Range
+      description: Sets values in a range of a spreadsheet
+      operationId: sheets.spreadsheets.values.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: includeValuesInResponse
+        description: Determines if the update response should include the valuesnof
+          the cells that were updated
+      - in: path
+        name: range
+        description: The A1 notation of the values to update
+      - in: query
+        name: responseDateTimeRenderOption
+        description: Determines how dates, times, and durations in the response should
+          benrendered
+      - in: query
+        name: responseValueRenderOption
+        description: Determines how values in the response should be rendered
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to update
+      - in: query
+        name: valueInputOption
+        description: How the input data should be interpreted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/values/{range}:append:
+    post:
+      summary: Append Values To Spreadsheet
+      description: Appends values to a spreadsheet
+      operationId: sheets.spreadsheets.values.append
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: includeValuesInResponse
+        description: Determines if the update response should include the valuesnof
+          the cells that were appended
+      - in: query
+        name: insertDataOption
+        description: How the input data should be inserted
+      - in: path
+        name: range
+        description: The A1 notation of a range to search for a logical table of data
+      - in: query
+        name: responseDateTimeRenderOption
+        description: Determines how dates, times, and durations in the response should
+          benrendered
+      - in: query
+        name: responseValueRenderOption
+        description: Determines how values in the response should be rendered
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to update
+      - in: query
+        name: valueInputOption
+        description: How the input data should be interpreted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/values/{range}:clear:
+    post:
+      summary: Clear Value From Spreadsheet
+      description: Clears values from a spreadsheet
+      operationId: sheets.spreadsheets.values.clear
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: range
+        description: The A1 notation of the values to clear
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/values:batchClear:
+    post:
+      summary: Clear Range of Value From Spreasheet
+      description: Clears one or more ranges of values from a spreadsheet
+      operationId: sheets.spreadsheets.values.batchClear
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/values:batchGet:
+    get:
+      summary: Get Value From Spreadsheet
+      description: Returns one or more ranges of values from a spreadsheet
+      operationId: sheets.spreadsheets.values.batchGet
+      parameters:
+      - in: query
+        name: dateTimeRenderOption
+        description: How dates, times, and durations should be represented in the
+          output
+      - in: query
+        name: majorDimension
+        description: The major dimension that results should use
+      - in: query
+        name: ranges
+        description: The A1 notation of the values to retrieve
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to retrieve data from
+      - in: query
+        name: valueRenderOption
+        description: How values should be represented in the output
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}/values:batchUpdate:
+    post:
+      summary: Update Values In Spreadsheet
+      description: Sets values in one or more ranges of a spreadsheet
+      operationId: sheets.spreadsheets.values.batchUpdate
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: spreadsheetId
+        description: The ID of the spreadsheet to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+  /v4/spreadsheets/{spreadsheetId}:batchUpdate:
+    post:
+      summary: Update Spreadsheet
+      description: Spreadsheet
+      operationId: sheets.spreadsheets.batchUpdate
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: spreadsheetId
+        description: The spreadsheet to apply the updates to
+      responses:
+        200:
+          description: OK
+      tags:
+      - Spreadsheet
+definitions:
+  AddBandingRequest:
+    properties: []
+  AddBandingResponse:
+    properties: []
+  AddChartRequest:
+    properties: []
+  AddChartResponse:
+    properties: []
+  AddConditionalFormatRuleRequest:
+    properties:
+      index:
+        description: This is a default description.
+        type: post
+  AddFilterViewRequest:
+    properties: []
+  AddFilterViewResponse:
+    properties: []
+  AddNamedRangeRequest:
+    properties: []
+  AddNamedRangeResponse:
+    properties: []
+  AddProtectedRangeRequest:
+    properties: []
+  AddProtectedRangeResponse:
+    properties: []
+  AddSheetRequest:
+    properties: []
+  AddSheetResponse:
+    properties: []
+  AppendCellsRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+      rows:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  AppendDimensionRequest:
+    properties:
+      dimension:
+        description: This is a default description.
+        type: post
+      length:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  AppendValuesResponse:
+    properties:
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+      tableRange:
+        description: This is a default description.
+        type: post
+  AutoFillRequest:
+    properties:
+      useAlternateSeries:
+        description: This is a default description.
+        type: post
+  AutoResizeDimensionsRequest:
+    properties: []
+  BandedRange:
+    properties:
+      bandedRangeId:
+        description: This is a default description.
+        type: post
+  BandingProperties:
+    properties: []
+  BasicChartAxis:
+    properties:
+      position:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  BasicChartDomain:
+    properties: []
+  BasicChartSeries:
+    properties:
+      targetAxis:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  BasicChartSpec:
+    properties:
+      axis:
+        description: This is a default description.
+        type: post
+      chartType:
+        description: This is a default description.
+        type: post
+      domains:
+        description: This is a default description.
+        type: post
+      headerCount:
+        description: This is a default description.
+        type: post
+      legendPosition:
+        description: This is a default description.
+        type: post
+      series:
+        description: This is a default description.
+        type: post
+  BasicFilter:
+    properties:
+      criteria:
+        description: This is a default description.
+        type: post
+      sortSpecs:
+        description: This is a default description.
+        type: post
+  BatchClearValuesRequest:
+    properties:
+      ranges:
+        description: This is a default description.
+        type: post
+  BatchClearValuesResponse:
+    properties:
+      clearedRanges:
+        description: This is a default description.
+        type: post
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+  BatchGetValuesResponse:
+    properties:
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+      valueRanges:
+        description: This is a default description.
+        type: post
+  BatchUpdateSpreadsheetRequest:
+    properties:
+      includeSpreadsheetInResponse:
+        description: This is a default description.
+        type: post
+      requests:
+        description: This is a default description.
+        type: post
+      responseIncludeGridData:
+        description: This is a default description.
+        type: post
+      responseRanges:
+        description: This is a default description.
+        type: post
+  BatchUpdateSpreadsheetResponse:
+    properties:
+      replies:
+        description: This is a default description.
+        type: post
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+  BatchUpdateValuesRequest:
+    properties:
+      data:
+        description: This is a default description.
+        type: post
+      includeValuesInResponse:
+        description: This is a default description.
+        type: post
+      responseDateTimeRenderOption:
+        description: This is a default description.
+        type: post
+      responseValueRenderOption:
+        description: This is a default description.
+        type: post
+      valueInputOption:
+        description: This is a default description.
+        type: post
+  BatchUpdateValuesResponse:
+    properties:
+      responses:
+        description: This is a default description.
+        type: post
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+      totalUpdatedCells:
+        description: This is a default description.
+        type: post
+      totalUpdatedColumns:
+        description: This is a default description.
+        type: post
+      totalUpdatedRows:
+        description: This is a default description.
+        type: post
+      totalUpdatedSheets:
+        description: This is a default description.
+        type: post
+  BooleanCondition:
+    properties:
+      type:
+        description: This is a default description.
+        type: post
+      values:
+        description: This is a default description.
+        type: post
+  BooleanRule:
+    properties: []
+  Border:
+    properties:
+      style:
+        description: This is a default description.
+        type: post
+      width:
+        description: This is a default description.
+        type: post
+  Borders:
+    properties: []
+  CellData:
+    properties:
+      formattedValue:
+        description: This is a default description.
+        type: post
+      hyperlink:
+        description: This is a default description.
+        type: post
+      note:
+        description: This is a default description.
+        type: post
+      textFormatRuns:
+        description: This is a default description.
+        type: post
+  CellFormat:
+    properties:
+      horizontalAlignment:
+        description: This is a default description.
+        type: post
+      hyperlinkDisplayType:
+        description: This is a default description.
+        type: post
+      textDirection:
+        description: This is a default description.
+        type: post
+      verticalAlignment:
+        description: This is a default description.
+        type: post
+      wrapStrategy:
+        description: This is a default description.
+        type: post
+  ChartData:
+    properties: []
+  ChartSourceRange:
+    properties:
+      sources:
+        description: This is a default description.
+        type: post
+  ChartSpec:
+    properties:
+      hiddenDimensionStrategy:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  ClearBasicFilterRequest:
+    properties:
+      sheetId:
+        description: This is a default description.
+        type: post
+  ClearValuesRequest:
+    properties: []
+  ClearValuesResponse:
+    properties:
+      clearedRange:
+        description: This is a default description.
+        type: post
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+  Color:
+    properties:
+      alpha:
+        description: This is a default description.
+        type: post
+      blue:
+        description: This is a default description.
+        type: post
+      green:
+        description: This is a default description.
+        type: post
+      red:
+        description: This is a default description.
+        type: post
+  ConditionValue:
+    properties:
+      relativeDate:
+        description: This is a default description.
+        type: post
+      userEnteredValue:
+        description: This is a default description.
+        type: post
+  ConditionalFormatRule:
+    properties:
+      ranges:
+        description: This is a default description.
+        type: post
+  CopyPasteRequest:
+    properties:
+      pasteOrientation:
+        description: This is a default description.
+        type: post
+      pasteType:
+        description: This is a default description.
+        type: post
+  CopySheetToAnotherSpreadsheetRequest:
+    properties:
+      destinationSpreadsheetId:
+        description: This is a default description.
+        type: post
+  CutPasteRequest:
+    properties:
+      pasteType:
+        description: This is a default description.
+        type: post
+  DataValidationRule:
+    properties:
+      inputMessage:
+        description: This is a default description.
+        type: post
+      showCustomUi:
+        description: This is a default description.
+        type: post
+      strict:
+        description: This is a default description.
+        type: post
+  DeleteBandingRequest:
+    properties:
+      bandedRangeId:
+        description: This is a default description.
+        type: post
+  DeleteConditionalFormatRuleRequest:
+    properties:
+      index:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  DeleteConditionalFormatRuleResponse:
+    properties: []
+  DeleteDimensionRequest:
+    properties: []
+  DeleteEmbeddedObjectRequest:
+    properties:
+      objectId:
+        description: This is a default description.
+        type: post
+  DeleteFilterViewRequest:
+    properties:
+      filterId:
+        description: This is a default description.
+        type: post
+  DeleteNamedRangeRequest:
+    properties:
+      namedRangeId:
+        description: This is a default description.
+        type: post
+  DeleteProtectedRangeRequest:
+    properties:
+      protectedRangeId:
+        description: This is a default description.
+        type: post
+  DeleteRangeRequest:
+    properties:
+      shiftDimension:
+        description: This is a default description.
+        type: post
+  DeleteSheetRequest:
+    properties:
+      sheetId:
+        description: This is a default description.
+        type: post
+  DimensionProperties:
+    properties:
+      hiddenByFilter:
+        description: This is a default description.
+        type: post
+      hiddenByUser:
+        description: This is a default description.
+        type: post
+      pixelSize:
+        description: This is a default description.
+        type: post
+  DimensionRange:
+    properties:
+      dimension:
+        description: This is a default description.
+        type: post
+      endIndex:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+  DuplicateFilterViewRequest:
+    properties:
+      filterId:
+        description: This is a default description.
+        type: post
+  DuplicateFilterViewResponse:
+    properties: []
+  DuplicateSheetRequest:
+    properties:
+      insertSheetIndex:
+        description: This is a default description.
+        type: post
+      newSheetId:
+        description: This is a default description.
+        type: post
+      newSheetName:
+        description: This is a default description.
+        type: post
+      sourceSheetId:
+        description: This is a default description.
+        type: post
+  DuplicateSheetResponse:
+    properties: []
+  Editors:
+    properties:
+      domainUsersCanEdit:
+        description: This is a default description.
+        type: post
+      groups:
+        description: This is a default description.
+        type: post
+      users:
+        description: This is a default description.
+        type: post
+  EmbeddedChart:
+    properties:
+      chartId:
+        description: This is a default description.
+        type: post
+  EmbeddedObjectPosition:
+    properties:
+      newSheet:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  ErrorValue:
+    properties:
+      message:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  ExtendedValue:
+    properties:
+      boolValue:
+        description: This is a default description.
+        type: post
+      formulaValue:
+        description: This is a default description.
+        type: post
+      numberValue:
+        description: This is a default description.
+        type: post
+      stringValue:
+        description: This is a default description.
+        type: post
+  FilterCriteria:
+    properties:
+      hiddenValues:
+        description: This is a default description.
+        type: post
+  FilterView:
+    properties:
+      criteria:
+        description: This is a default description.
+        type: post
+      filterViewId:
+        description: This is a default description.
+        type: post
+      namedRangeId:
+        description: This is a default description.
+        type: post
+      sortSpecs:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  FindReplaceRequest:
+    properties:
+      allSheets:
+        description: This is a default description.
+        type: post
+      find:
+        description: This is a default description.
+        type: post
+      includeFormulas:
+        description: This is a default description.
+        type: post
+      matchCase:
+        description: This is a default description.
+        type: post
+      matchEntireCell:
+        description: This is a default description.
+        type: post
+      replacement:
+        description: This is a default description.
+        type: post
+      searchByRegex:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  FindReplaceResponse:
+    properties:
+      formulasChanged:
+        description: This is a default description.
+        type: post
+      occurrencesChanged:
+        description: This is a default description.
+        type: post
+      rowsChanged:
+        description: This is a default description.
+        type: post
+      sheetsChanged:
+        description: This is a default description.
+        type: post
+      valuesChanged:
+        description: This is a default description.
+        type: post
+  GradientRule:
+    properties: []
+  GridCoordinate:
+    properties:
+      columnIndex:
+        description: This is a default description.
+        type: post
+      rowIndex:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  GridData:
+    properties:
+      columnMetadata:
+        description: This is a default description.
+        type: post
+      rowData:
+        description: This is a default description.
+        type: post
+      rowMetadata:
+        description: This is a default description.
+        type: post
+      startColumn:
+        description: This is a default description.
+        type: post
+      startRow:
+        description: This is a default description.
+        type: post
+  GridProperties:
+    properties:
+      columnCount:
+        description: This is a default description.
+        type: post
+      frozenColumnCount:
+        description: This is a default description.
+        type: post
+      frozenRowCount:
+        description: This is a default description.
+        type: post
+      hideGridlines:
+        description: This is a default description.
+        type: post
+      rowCount:
+        description: This is a default description.
+        type: post
+  GridRange:
+    properties:
+      endColumnIndex:
+        description: This is a default description.
+        type: post
+      endRowIndex:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+      startColumnIndex:
+        description: This is a default description.
+        type: post
+      startRowIndex:
+        description: This is a default description.
+        type: post
+  InsertDimensionRequest:
+    properties:
+      inheritFromBefore:
+        description: This is a default description.
+        type: post
+  InsertRangeRequest:
+    properties:
+      shiftDimension:
+        description: This is a default description.
+        type: post
+  InterpolationPoint:
+    properties:
+      type:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  IterativeCalculationSettings:
+    properties:
+      convergenceThreshold:
+        description: This is a default description.
+        type: post
+      maxIterations:
+        description: This is a default description.
+        type: post
+  MergeCellsRequest:
+    properties:
+      mergeType:
+        description: This is a default description.
+        type: post
+  MoveDimensionRequest:
+    properties:
+      destinationIndex:
+        description: This is a default description.
+        type: post
+  NamedRange:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+      namedRangeId:
+        description: This is a default description.
+        type: post
+  NumberFormat:
+    properties:
+      pattern:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  OverlayPosition:
+    properties:
+      heightPixels:
+        description: This is a default description.
+        type: post
+      offsetXPixels:
+        description: This is a default description.
+        type: post
+      offsetYPixels:
+        description: This is a default description.
+        type: post
+      widthPixels:
+        description: This is a default description.
+        type: post
+  Padding:
+    properties:
+      bottom:
+        description: This is a default description.
+        type: post
+      left:
+        description: This is a default description.
+        type: post
+      right:
+        description: This is a default description.
+        type: post
+      top:
+        description: This is a default description.
+        type: post
+  PasteDataRequest:
+    properties:
+      data:
+        description: This is a default description.
+        type: post
+      delimiter:
+        description: This is a default description.
+        type: post
+      html:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  PieChartSpec:
+    properties:
+      legendPosition:
+        description: This is a default description.
+        type: post
+      pieHole:
+        description: This is a default description.
+        type: post
+      threeDimensional:
+        description: This is a default description.
+        type: post
+  PivotFilterCriteria:
+    properties:
+      visibleValues:
+        description: This is a default description.
+        type: post
+  PivotGroup:
+    properties:
+      showTotals:
+        description: This is a default description.
+        type: post
+      sortOrder:
+        description: This is a default description.
+        type: post
+      sourceColumnOffset:
+        description: This is a default description.
+        type: post
+      valueMetadata:
+        description: This is a default description.
+        type: post
+  PivotGroupSortValueBucket:
+    properties:
+      buckets:
+        description: This is a default description.
+        type: post
+      valuesIndex:
+        description: This is a default description.
+        type: post
+  PivotGroupValueMetadata:
+    properties:
+      collapsed:
+        description: This is a default description.
+        type: post
+  PivotTable:
+    properties:
+      columns:
+        description: This is a default description.
+        type: post
+      criteria:
+        description: This is a default description.
+        type: post
+      rows:
+        description: This is a default description.
+        type: post
+      valueLayout:
+        description: This is a default description.
+        type: post
+      values:
+        description: This is a default description.
+        type: post
+  PivotValue:
+    properties:
+      formula:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      sourceColumnOffset:
+        description: This is a default description.
+        type: post
+      summarizeFunction:
+        description: This is a default description.
+        type: post
+  ProtectedRange:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      namedRangeId:
+        description: This is a default description.
+        type: post
+      protectedRangeId:
+        description: This is a default description.
+        type: post
+      requestingUserCanEdit:
+        description: This is a default description.
+        type: post
+      unprotectedRanges:
+        description: This is a default description.
+        type: post
+      warningOnly:
+        description: This is a default description.
+        type: post
+  RepeatCellRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  Request:
+    properties: []
+  Response:
+    properties: []
+  RowData:
+    properties:
+      values:
+        description: This is a default description.
+        type: post
+  SetBasicFilterRequest:
+    properties: []
+  SetDataValidationRequest:
+    properties: []
+  Sheet:
+    properties:
+      bandedRanges:
+        description: This is a default description.
+        type: post
+      charts:
+        description: This is a default description.
+        type: post
+      conditionalFormats:
+        description: This is a default description.
+        type: post
+      data:
+        description: This is a default description.
+        type: post
+      filterViews:
+        description: This is a default description.
+        type: post
+      merges:
+        description: This is a default description.
+        type: post
+      protectedRanges:
+        description: This is a default description.
+        type: post
+  SheetProperties:
+    properties:
+      hidden:
+        description: This is a default description.
+        type: post
+      index:
+        description: This is a default description.
+        type: post
+      rightToLeft:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+      sheetType:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  SortRangeRequest:
+    properties:
+      sortSpecs:
+        description: This is a default description.
+        type: post
+  SortSpec:
+    properties:
+      dimensionIndex:
+        description: This is a default description.
+        type: post
+      sortOrder:
+        description: This is a default description.
+        type: post
+  SourceAndDestination:
+    properties:
+      dimension:
+        description: This is a default description.
+        type: post
+      fillLength:
+        description: This is a default description.
+        type: post
+  Spreadsheet:
+    properties:
+      namedRanges:
+        description: This is a default description.
+        type: post
+      sheets:
+        description: This is a default description.
+        type: post
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+      spreadsheetUrl:
+        description: This is a default description.
+        type: post
+  SpreadsheetProperties:
+    properties:
+      autoRecalc:
+        description: This is a default description.
+        type: post
+      locale:
+        description: This is a default description.
+        type: post
+      timeZone:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  TextFormat:
+    properties:
+      bold:
+        description: This is a default description.
+        type: post
+      fontFamily:
+        description: This is a default description.
+        type: post
+      fontSize:
+        description: This is a default description.
+        type: post
+      italic:
+        description: This is a default description.
+        type: post
+      strikethrough:
+        description: This is a default description.
+        type: post
+      underline:
+        description: This is a default description.
+        type: post
+  TextFormatRun:
+    properties:
+      startIndex:
+        description: This is a default description.
+        type: post
+  TextRotation:
+    properties:
+      angle:
+        description: This is a default description.
+        type: post
+      vertical:
+        description: This is a default description.
+        type: post
+  TextToColumnsRequest:
+    properties:
+      delimiter:
+        description: This is a default description.
+        type: post
+      delimiterType:
+        description: This is a default description.
+        type: post
+  UnmergeCellsRequest:
+    properties: []
+  UpdateBandingRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateBordersRequest:
+    properties: []
+  UpdateCellsRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+      rows:
+        description: This is a default description.
+        type: post
+  UpdateChartSpecRequest:
+    properties:
+      chartId:
+        description: This is a default description.
+        type: post
+  UpdateConditionalFormatRuleRequest:
+    properties:
+      index:
+        description: This is a default description.
+        type: post
+      newIndex:
+        description: This is a default description.
+        type: post
+      sheetId:
+        description: This is a default description.
+        type: post
+  UpdateConditionalFormatRuleResponse:
+    properties:
+      newIndex:
+        description: This is a default description.
+        type: post
+      oldIndex:
+        description: This is a default description.
+        type: post
+  UpdateDimensionPropertiesRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateEmbeddedObjectPositionRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+      objectId:
+        description: This is a default description.
+        type: post
+  UpdateEmbeddedObjectPositionResponse:
+    properties: []
+  UpdateFilterViewRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateNamedRangeRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateProtectedRangeRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateSheetPropertiesRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateSpreadsheetPropertiesRequest:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  UpdateValuesResponse:
+    properties:
+      spreadsheetId:
+        description: This is a default description.
+        type: post
+      updatedCells:
+        description: This is a default description.
+        type: post
+      updatedColumns:
+        description: This is a default description.
+        type: post
+      updatedRange:
+        description: This is a default description.
+        type: post
+      updatedRows:
+        description: This is a default description.
+        type: post
+  ValueRange:
+    properties:
+      majorDimension:
+        description: This is a default description.
+        type: post
+      range:
+        description: This is a default description.
+        type: post
+      values:
+        description: This is a default description.
+        type: post
