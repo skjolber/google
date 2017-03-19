@@ -1,0 +1,887 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Stackdriver Logging",
+		"description": "Writes log entries and manages your Stackdriver Logging configuration.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v2"
+	},
+	"host": "logging.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v2/entries:list": {
+			"post": {
+				"summary": "Get Log Entries",
+				"description": "Lists log entries",
+				"operationId": "logging.entries.list",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Entry"]
+			}
+		},
+		"/v2/entries:write": {
+			"post": {
+				"summary": "Write Log Entry",
+				"description": "Writes log entries to Stackdriver Logging",
+				"operationId": "logging.entries.write",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Entry"]
+			}
+		},
+		"/v2/monitoredResourceDescriptors": {
+			"get": {
+				"summary": "Get Monitored Resource Descriptors",
+				"description": "Lists the descriptors for monitored resource types used by Stackdriver Logging",
+				"operationId": "logging.monitoredResourceDescriptors.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Optional"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Optional"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Entry"]
+			}
+		},
+		"/v2/{logName}": {
+			"delete": {
+				"summary": "Delete Log Entries",
+				"description": "Deletes all the log entries in a log",
+				"operationId": "logging.billingAccounts.logs.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "logName",
+					"description": "Required"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Entry"]
+			}
+		},
+		"/v2/{metricName}": {
+			"delete": {
+				"summary": "Delete Log Metric",
+				"description": "Deletes a logs-based metric",
+				"operationId": "logging.projects.metrics.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "metricName",
+					"description": "The resource name of the metric to delete:n"projects/[PROJECT_ID]/metrics/[METRIC_ID]"n"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Metric"]
+			},
+			"get": {
+				"summary": "Get Log Metric",
+				"description": "Gets a logs-based metric",
+				"operationId": "logging.projects.metrics.get",
+				"parameters": [{
+					"in": "path",
+					"name": "metricName",
+					"description": "The resource name of the desired metric:n"projects/[PROJECT_ID]/metrics/[METRIC_ID]"n"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Metric"]
+			},
+			"put": {
+				"summary": "Create Log Metric",
+				"description": "Creates or updates a logs-based metric",
+				"operationId": "logging.projects.metrics.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "metricName",
+					"description": "The resource name of the metric to update:n"projects/[PROJECT_ID]/metrics/[METRIC_ID]"nThe updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Metric"]
+			}
+		},
+		"/v2/{parent}/logs": {
+			"get": {
+				"summary": "Get Logs",
+				"description": "Lists the logs in projects, organizations, folders, or billing accounts",
+				"operationId": "logging.billingAccounts.logs.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Optional"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Optional"
+				},
+				{
+					"in": "path",
+					"name": "parent",
+					"description": "Required"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log"]
+			}
+		},
+		"/v2/{parent}/metrics": {
+			"get": {
+				"summary": "Get Log Metrics",
+				"description": "Lists logs-based metrics",
+				"operationId": "logging.projects.metrics.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Optional"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Optional"
+				},
+				{
+					"in": "path",
+					"name": "parent",
+					"description": "Required"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Metric"]
+			},
+			"post": {
+				"summary": "Create log Metrics",
+				"description": "Creates a logs-based metric",
+				"operationId": "logging.projects.metrics.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "parent",
+					"description": "The resource name of the project in which to create the metric:n"projects/[PROJECT_ID]"nThe new metric must be provided in the request"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Log Metric"]
+			}
+		},
+		"/v2/{parent}/sinks": {
+			"get": {
+				"summary": "Get Sinks",
+				"description": "Lists sinks",
+				"operationId": "logging.billingAccounts.sinks.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Optional"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Optional"
+				},
+				{
+					"in": "path",
+					"name": "parent",
+					"description": "Required"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Sink"]
+			},
+			"post": {
+				"summary": "Create Sink",
+				"description": "Creates a sink that exports specified log entries to a destination",
+				"operationId": "logging.billingAccounts.sinks.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "parent",
+					"description": "Required"
+				},
+				{
+					"in": "query",
+					"name": "uniqueWriterIdentity",
+					"description": "Optional"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Sink"]
+			}
+		},
+		"/v2/{sinkName}": {
+			"delete": {
+				"summary": "Delete Sink",
+				"description": "Deletes a sink",
+				"operationId": "logging.billingAccounts.sinks.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "sinkName",
+					"description": "Required"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Sink"]
+			},
+			"get": {
+				"summary": "Get Sink",
+				"description": "Gets a sink",
+				"operationId": "logging.billingAccounts.sinks.get",
+				"parameters": [{
+					"in": "path",
+					"name": "sinkName",
+					"description": "Required"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Sink"]
+			},
+			"put": {
+				"summary": "Update Sink",
+				"description": "Updates a sink",
+				"operationId": "logging.billingAccounts.sinks.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "sinkName",
+					"description": "Required"
+				},
+				{
+					"in": "query",
+					"name": "uniqueWriterIdentity",
+					"description": "Optional"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Sink"]
+			}
+		}
+	},
+	"definitions": {
+		"Empty": {
+			"properties": []
+		},
+		"HttpRequest": {
+			"properties": {
+				"cacheFillBytes": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"cacheHit": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"cacheLookup": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"cacheValidatedWithOriginServer": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"latency": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"referer": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"remoteIp": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"requestMethod": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"requestSize": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"requestUrl": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"responseSize": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"serverIp": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"userAgent": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LabelDescriptor": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"key": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"valueType": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListLogEntriesRequest": {
+			"properties": {
+				"filter": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"orderBy": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"pageSize": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"pageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"projectIds": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"resourceNames": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListLogEntriesResponse": {
+			"properties": {
+				"entries": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListLogMetricsResponse": {
+			"properties": {
+				"metrics": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListLogsResponse": {
+			"properties": {
+				"logNames": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListMonitoredResourceDescriptorsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"resourceDescriptors": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListSinksResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"sinks": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LogEntry": {
+			"properties": {
+				"insertId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"jsonPayload": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"logName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"protoPayload": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"severity": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"textPayload": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"timestamp": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"trace": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LogEntryOperation": {
+			"properties": {
+				"first": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"last": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"producer": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LogEntrySourceLocation": {
+			"properties": {
+				"file": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"function": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"line": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LogLine": {
+			"properties": {
+				"logMessage": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"severity": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"time": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LogMetric": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"filter": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"LogSink": {
+			"properties": {
+				"destination": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"filter": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"outputVersionFormat": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"writerIdentity": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"MonitoredResource": {
+			"properties": {
+				"labels": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"MonitoredResourceDescriptor": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"RequestLog": {
+			"properties": {
+				"appEngineRelease": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"appId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"cost": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"finished": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"first": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"host": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"httpVersion": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"instanceId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"instanceIndex": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"ip": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"latency": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"line": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"megaCycles": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"moduleId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"nickname": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"pendingTime": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"referrer": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"requestId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"resource": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"responseSize": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"sourceReference": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"taskName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"taskQueueName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"traceId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"urlMapEntry": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"userAgent": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"versionId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"wasLoadingRequest": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"SourceLocation": {
+			"properties": {
+				"file": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"functionName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"line": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"SourceReference": {
+			"properties": {
+				"repository": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"revisionId": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"WriteLogEntriesRequest": {
+			"properties": {
+				"entries": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"logName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"partialSuccess": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"WriteLogEntriesResponse": {
+			"properties": []
+		}
+	}
+}
