@@ -1,1 +1,563 @@
-~
+swagger: "2.0"
+info:
+  title: Ad Exchange Seller
+  description: Accesses the inventory of Ad Exchange seller users and generates reports.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v2.0
+host: www.googleapis.com
+basePath: /adexchangeseller/v2.0
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /accounts:
+    get:
+      summary: Get Accounts
+      description: List all accounts available to this Ad Exchange account
+      operationId: adexchangeseller.accounts.list
+      parameters:
+      - in: query
+        name: maxResults
+        description: The maximum number of accounts to include in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through accounts
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /accounts/{accountId}:
+    get:
+      summary: Get Account
+      description: Get information about the selected Ad Exchange account
+      operationId: adexchangeseller.accounts.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to get information about
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /accounts/{accountId}/adclients:
+    get:
+      summary: Get Ad Clients
+      description: List all ad clients in this Ad Exchange account
+      operationId: adexchangeseller.accounts.adclients.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: query
+        name: maxResults
+        description: The maximum number of ad clients to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad clients
+      responses:
+        200:
+          description: OK
+      tags:
+      - Ad Client
+  /accounts/{accountId}/adclients/{adClientId}/customchannels:
+    get:
+      summary: Get Custom Channels
+      description: List all custom channels in the specified ad client for this Ad
+        Exchange account
+      operationId: adexchangeseller.accounts.customchannels.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client for which to list custom channels
+      - in: query
+        name: maxResults
+        description: The maximum number of custom channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through custom channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+  /accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}:
+    get:
+      summary: Get Custom Channels
+      description: Get the specified custom channel from the specified ad client
+      operationId: adexchangeseller.accounts.customchannels.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client which contains the custom channel
+      - in: path
+        name: customChannelId
+        description: Custom channel to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+  /accounts/{accountId}/adclients/{adClientId}/urlchannels:
+    get:
+      summary: Get URL Channels
+      description: List all URL channels in the specified ad client for this Ad Exchange
+        account
+      operationId: adexchangeseller.accounts.urlchannels.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client for which to list URL channels
+      - in: query
+        name: maxResults
+        description: The maximum number of URL channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through URL channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+  /accounts/{accountId}/alerts:
+    get:
+      summary: Get Alerts
+      description: List the alerts for this Ad Exchange account
+      operationId: adexchangeseller.accounts.alerts.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account owning the alerts
+      - in: query
+        name: locale
+        description: The locale to use for translating alert messages
+      responses:
+        200:
+          description: OK
+      tags:
+      - Alert
+  /accounts/{accountId}/metadata/dimensions:
+    get:
+      summary: Get Dimensions
+      description: List the metadata for the dimensions available to this AdExchange
+        account
+      operationId: adexchangeseller.accounts.metadata.dimensions.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account with visibility to the dimensions
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dimension
+  /accounts/{accountId}/metadata/metrics:
+    get:
+      summary: Get Metrics
+      description: List the metadata for the metrics available to this AdExchange
+        account
+      operationId: adexchangeseller.accounts.metadata.metrics.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account with visibility to the metrics
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metric
+  /accounts/{accountId}/preferreddeals:
+    get:
+      summary: Get Preferred Deals
+      description: List the preferred deals for this Ad Exchange account
+      operationId: adexchangeseller.accounts.preferreddeals.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account owning the deals
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /accounts/{accountId}/preferreddeals/{dealId}:
+    get:
+      summary: Get Preferred Deal
+      description: Get information about the selected Ad Exchange Preferred Deal
+      operationId: adexchangeseller.accounts.preferreddeals.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account owning the deal
+      - in: path
+        name: dealId
+        description: Preferred deal to get information about
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /accounts/{accountId}/reports:
+    get:
+      summary: Get Reports
+      description: Generate an Ad Exchange report based on the report request sent
+        in the query parameters
+      operationId: adexchangeseller.accounts.reports.generate
+      parameters:
+      - in: path
+        name: accountId
+        description: Account which owns the generated report
+      - in: query
+        name: dimension
+        description: Dimensions to base the report on
+      - in: query
+        name: endDate
+        description: End of the date range to report on in "YYYY-MM-DD" format, inclusive
+      - in: query
+        name: filter
+        description: Filters to be run on the report
+      - in: query
+        name: locale
+        description: Optional locale to use for translating report output to a local
+          language
+      - in: query
+        name: maxResults
+        description: The maximum number of rows of report data to return
+      - in: query
+        name: metric
+        description: Numeric columns to include in the report
+      - in: query
+        name: sort
+        description: The name of a dimension or metric to sort the resulting report
+          on, optionally prefixed with "+" to sort ascending or "-" to sort descending
+      - in: query
+        name: startDate
+        description: Start of the date range to report on in "YYYY-MM-DD" format,
+          inclusive
+      - in: query
+        name: startIndex
+        description: Index of the first row of report data to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /accounts/{accountId}/reports/saved:
+    get:
+      summary: Get Saved Reports
+      description: List all saved reports in this Ad Exchange account
+      operationId: adexchangeseller.accounts.reports.saved.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account owning the saved reports
+      - in: query
+        name: maxResults
+        description: The maximum number of saved reports to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through saved reports
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /accounts/{accountId}/reports/{savedReportId}:
+    get:
+      summary: Get Saved Report
+      description: Generate an Ad Exchange report based on the saved report ID sent
+        in the query parameters
+      operationId: adexchangeseller.accounts.reports.saved.generate
+      parameters:
+      - in: path
+        name: accountId
+        description: Account owning the saved report
+      - in: query
+        name: locale
+        description: Optional locale to use for translating report output to a local
+          language
+      - in: query
+        name: maxResults
+        description: The maximum number of rows of report data to return
+      - in: path
+        name: savedReportId
+        description: The saved report to retrieve
+      - in: query
+        name: startIndex
+        description: Index of the first row of report data to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+definitions:
+  Account:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  Accounts:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  AdClient:
+    properties:
+      arcOptIn:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      productCode:
+        description: This is a default description.
+        type: parameters
+      supportsReporting:
+        description: This is a default description.
+        type: parameters
+  AdClients:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  Alert:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      message:
+        description: This is a default description.
+        type: parameters
+      severity:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+  Alerts:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  CustomChannel:
+    properties:
+      code:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      targetingInfo:
+        description: This is a default description.
+        type: parameters
+  CustomChannels:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  Metadata:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  PreferredDeal:
+    properties:
+      advertiserName:
+        description: This is a default description.
+        type: parameters
+      buyerNetworkName:
+        description: This is a default description.
+        type: parameters
+      currencyCode:
+        description: This is a default description.
+        type: parameters
+      endTime:
+        description: This is a default description.
+        type: parameters
+      fixedCpm:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      startTime:
+        description: This is a default description.
+        type: parameters
+  PreferredDeals:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Report:
+    properties:
+      averages:
+        description: This is a default description.
+        type: parameters
+      headers:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      rows:
+        description: This is a default description.
+        type: parameters
+      totalMatchedRows:
+        description: This is a default description.
+        type: parameters
+      totals:
+        description: This is a default description.
+        type: parameters
+      warnings:
+        description: This is a default description.
+        type: parameters
+  ReportingMetadataEntry:
+    properties:
+      compatibleDimensions:
+        description: This is a default description.
+        type: parameters
+      compatibleMetrics:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      requiredDimensions:
+        description: This is a default description.
+        type: parameters
+      requiredMetrics:
+        description: This is a default description.
+        type: parameters
+      supportedProducts:
+        description: This is a default description.
+        type: parameters
+  SavedReport:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  SavedReports:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  UrlChannel:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      urlPattern:
+        description: This is a default description.
+        type: parameters
+  UrlChannels:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
