@@ -1,0 +1,90 @@
+{
+	"name": "Google Play",
+	"description": "The Google Play Developer API allows you to perform a number of publishing and app-management tasks. It includes two components: The Subscriptions and In-App Purchases API lets you manage in-app purchases and subscriptions. The Publishing API lets you upload and publish apps, and perform other publishing-related tasks.",
+	"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-play.png",
+	"tags": ["Partners",
+	"Movies",
+	"Mobile",
+	"Google APIs",
+	"Gaming",
+	"Games",
+	"Android"],
+	"created": "2017-03-18",
+	"modified": "2017-03-18",
+	"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [{
+		"name": "Google App State API",
+		"description": "The Google Play Developer API allows you to perform a number of publishing and app-management tasks",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-play.png",
+		"humanURL": "https://play.google.com/store",
+		"baseURL": "https://play.google.com/store",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/google-app-state-api-openapi-spec.json"
+		}]
+	},
+	{
+		"name": "Google Play Developer API",
+		"description": "The Google Play Developer API allows you to perform a number of publishing and app-management tasks",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-play.png",
+		"humanURL": "https://play.google.com/store",
+		"baseURL": "https://play.google.com/store",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/google-play-developer-api-openapi-spec.json"
+		}]
+	},
+	{
+		"name": "Google Play EMM API",
+		"description": "The Google Play Developer API allows you to perform a number of publishing and app-management tasks",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-play.png",
+		"humanURL": "https://play.google.com/store",
+		"baseURL": "https://play.google.com/store",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/google-play-emm-api-openapi-spec.json"
+		}]
+	},
+	{
+		"name": "Google Play Game Services API",
+		"description": "The Google Play Developer API allows you to perform a number of publishing and app-management tasks",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-play.png",
+		"humanURL": "https://play.google.com/store",
+		"baseURL": "https://play.google.com/store",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/google-play-game-services-api-openapi-spec.json"
+		}]
+	},
+	{
+		"name": "Google Play Movies Partner API",
+		"description": "The Google Play Developer API allows you to perform a number of publishing and app-management tasks",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-play.png",
+		"humanURL": "https://play.google.com/store",
+		"baseURL": "https://play.google.com/store",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/google-play-movies-partner-api-openapi-spec.json"
+		}]
+	}],
+	"x-common": [{
+		"type": "x-website",
+		"url": "https://play.google.com/store"
+	},
+	{
+		"type": "x-portal",
+		"url": "https://play.google.com/store"
+	}],
+	"include": [],
+	"maintainers": [{
+		"FN": "Kin Lane",
+		"x-twitter": "apievangelist",
+		"email": "info@apievangelist.com"
+	}]
+}
