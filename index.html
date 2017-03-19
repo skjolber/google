@@ -18,16 +18,14 @@ title: Google
 {% for api in index.include %}
 
   {% assign path = api.url  | replace: 'https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/','' %}
-  {% assign path = path  | replace: '/apis.json','' %}
+  {% assign path = path  | replace: '/apis.yaml','' %}
 
   {% for api in contents %}
 
     {% assign api_name = api[0] %}
-    {{ api_name }} == {{ path }}<br />
     {% assign folder = api[1] %}
+    
     {% if api_name == path %}
-
-    folder: {{ folder }}<br />
 
       <!--- Begin --->
 
