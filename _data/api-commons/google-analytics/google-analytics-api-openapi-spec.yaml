@@ -1,0 +1,3435 @@
+
+  swagger: "2.0"
+info:
+  title: Google Analytics
+  description: Views and manages your Google Analytics data.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v3
+host: www.googleapis.com
+basePath: /analytics/v3
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /data/ga:
+    get:
+      summary: Return Analytics Data
+      description: Returns Analytics data for a view (profile)
+      operationId: analytics.data.ga.get
+      parameters:
+      - in: query
+        name: dimensions
+        description: A comma-separated list of Analytics dimensions
+      - in: query
+        name: end-date
+        description: End date for fetching Analytics data
+      - in: query
+        name: filters
+        description: A comma-separated list of dimension or metric filters to be applied
+          to Analytics data
+      - in: query
+        name: ids
+        description: Unique table ID for retrieving Analytics data
+      - in: query
+        name: include-empty-rows
+        description: The response will include empty rows if this parameter is set
+          to true, the default is true
+      - in: query
+        name: max-results
+        description: The maximum number of entries to include in this feed
+      - in: query
+        name: metrics
+        description: A comma-separated list of Analytics metrics
+      - in: query
+        name: output
+        description: The selected format for the response
+      - in: query
+        name: samplingLevel
+        description: The desired sampling level
+      - in: query
+        name: segment
+        description: An Analytics segment to be applied to data
+      - in: query
+        name: sort
+        description: A comma-separated list of dimensions or metrics that determine
+          the sort order for Analytics data
+      - in: query
+        name: start-date
+        description: Start date for fetching Analytics data
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Analytic Data
+  /data/mcf:
+    get:
+      summary: Returns Analytics Multi-Channel Funnels Data
+      description: Returns Analytics Multi-Channel Funnels data for a view (profile)
+      operationId: analytics.data.mcf.get
+      parameters:
+      - in: query
+        name: dimensions
+        description: A comma-separated list of Multi-Channel Funnels dimensions
+      - in: query
+        name: end-date
+        description: End date for fetching Analytics data
+      - in: query
+        name: filters
+        description: A comma-separated list of dimension or metric filters to be applied
+          to the Analytics data
+      - in: query
+        name: ids
+        description: Unique table ID for retrieving Analytics data
+      - in: query
+        name: max-results
+        description: The maximum number of entries to include in this feed
+      - in: query
+        name: metrics
+        description: A comma-separated list of Multi-Channel Funnels metrics
+      - in: query
+        name: samplingLevel
+        description: The desired sampling level
+      - in: query
+        name: sort
+        description: A comma-separated list of dimensions or metrics that determine
+          the sort order for the Analytics data
+      - in: query
+        name: start-date
+        description: Start date for fetching Analytics data
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Analytic Data
+  /data/realtime:
+    get:
+      summary: Return Real Time Data
+      description: Returns real time data for a view (profile)
+      operationId: analytics.data.realtime.get
+      parameters:
+      - in: query
+        name: dimensions
+        description: A comma-separated list of real time dimensions
+      - in: query
+        name: filters
+        description: A comma-separated list of dimension or metric filters to be applied
+          to real time data
+      - in: query
+        name: ids
+        description: Unique table ID for retrieving real time data
+      - in: query
+        name: max-results
+        description: The maximum number of entries to include in this feed
+      - in: query
+        name: metrics
+        description: A comma-separated list of real time metrics
+      - in: query
+        name: sort
+        description: A comma-separated list of dimensions or metrics that determine
+          the sort order for real time data
+      responses:
+        200:
+          description: OK
+      tags:
+      - Real Time Data
+  /management/accounts:
+    get:
+      summary: Get Accounts
+      description: Lists all accounts to which the user has access
+      operationId: analytics.management.accounts.list
+      parameters:
+      - in: query
+        name: max-results
+        description: The maximum number of accounts to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first account to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /management/accounts/{accountId}/entityUserLinks:
+    get:
+      summary: Get users
+      description: Lists account-user links for a given account
+      operationId: analytics.management.accountUserLinks.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve the user links for
+      - in: query
+        name: max-results
+        description: The maximum number of account-user links to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first account-user link to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    post:
+      summary: Add New Users
+      description: Adds a new user to the given account
+      operationId: analytics.management.accountUserLinks.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the user link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /management/accounts/{accountId}/entityUserLinks/{linkId}:
+    delete:
+      summary: Remove User
+      description: Removes a user from the given account
+      operationId: analytics.management.accountUserLinks.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to delete the user link for
+      - in: path
+        name: linkId
+        description: Link ID to delete the user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    put:
+      summary: Update Permissions
+      description: Updates permissions for an existing user on the given account
+      operationId: analytics.management.accountUserLinks.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to update the account-user link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: linkId
+        description: Link ID to update the account-user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Permission
+  /management/accounts/{accountId}/filters:
+    get:
+      summary: Get Filters
+      description: Lists all filters for an account
+      operationId: analytics.management.filters.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve filters for
+      - in: query
+        name: max-results
+        description: The maximum number of filters to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Filter
+    post:
+      summary: Create Filter
+      description: Create a new filter
+      operationId: analytics.management.filters.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create filter for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Filter
+  /management/accounts/{accountId}/filters/{filterId}:
+    delete:
+      summary: Delete Filter
+      description: Delete a filter
+      operationId: analytics.management.filters.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to delete the filter for
+      - in: path
+        name: filterId
+        description: ID of the filter to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Filter
+    get:
+      summary: Get Filter
+      description: Returns a filters to which the user has access
+      operationId: analytics.management.filters.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve filters for
+      - in: path
+        name: filterId
+        description: Filter ID to retrieve filters for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Filter
+    patch:
+      summary: Update Filter
+      description: Updates an existing filter
+      operationId: analytics.management.filters.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the filter belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: filterId
+        description: ID of the filter to be updated
+      responses:
+        200:
+          description: OK
+      tags:
+      - Filter
+    put:
+      summary: Update Filter
+      description: Updates an existing filter
+      operationId: analytics.management.filters.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the filter belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: filterId
+        description: ID of the filter to be updated
+      responses:
+        200:
+          description: OK
+      tags:
+      - Filter
+  /management/accounts/{accountId}/webproperties:
+    get:
+      summary: Get Web Properties
+      description: Lists web properties to which the user has access
+      operationId: analytics.management.webproperties.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve web properties for
+      - in: query
+        name: max-results
+        description: The maximum number of web properties to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Web Property
+    post:
+      summary: Create Web Property
+      description: Create a new property if the account has fewer than 20 properties
+      operationId: analytics.management.webproperties.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the web property for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Web Property
+  /management/accounts/{accountId}/webproperties/{webPropertyId}:
+    get:
+      summary: Get Web Property
+      description: Gets a web property to which the user has access
+      operationId: analytics.management.webproperties.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve the web property for
+      - in: path
+        name: webPropertyId
+        description: ID to retrieve the web property for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Web Property
+    patch:
+      summary: Update Web Property
+      description: Updates an existing web property
+      operationId: analytics.management.webproperties.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the web property belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Web Property
+    put:
+      summary: Update Web Property
+      description: Updates an existing web property
+      operationId: analytics.management.webproperties.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the web property belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Web Property
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources:
+    get:
+      summary: Get Custom Data
+      description: List custom data sources to which the user has access
+      operationId: analytics.management.customDataSources.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account Id for the custom data sources to retrieve
+      - in: query
+        name: max-results
+        description: The maximum number of custom data sources to include in this
+          response
+      - in: query
+        name: start-index
+        description: A 1-based index of the first custom data source to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property Id for the custom data sources to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Custom Data
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData:
+    post:
+      summary: Delete Data
+      description: Delete data associated with a previous upload
+      operationId: analytics.management.uploads.deleteUploadData
+      parameters:
+      - in: path
+        name: accountId
+        description: Account Id for the uploads to be deleted
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: customDataSourceId
+        description: Custom data source Id for the uploads to be deleted
+      - in: path
+        name: webPropertyId
+        description: Web property Id for the uploads to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Data
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads:
+    get:
+      summary: List Uploads
+      description: List uploads to which the user has access
+      operationId: analytics.management.uploads.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account Id for the uploads to retrieve
+      - in: path
+        name: customDataSourceId
+        description: Custom data source Id for uploads to retrieve
+      - in: query
+        name: max-results
+        description: The maximum number of uploads to include in this response
+      - in: query
+        name: start-index
+        description: A 1-based index of the first upload to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property Id for the uploads to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Upload
+    post:
+      summary: Upload Data
+      description: Upload data for a custom data source
+      operationId: analytics.management.uploads.uploadData
+      parameters:
+      - in: path
+        name: accountId
+        description: Account Id associated with the upload
+      - in: path
+        name: customDataSourceId
+        description: Custom data source Id to which the data being uploaded belongs
+      - in: path
+        name: webPropertyId
+        description: Web property UA-string associated with the upload
+      responses:
+        200:
+          description: OK
+      tags:
+      - Data
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}:
+    get:
+      summary: Get UPloads
+      description: List uploads to which the user has access
+      operationId: analytics.management.uploads.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account Id for the upload to retrieve
+      - in: path
+        name: customDataSourceId
+        description: Custom data source Id for upload to retrieve
+      - in: path
+        name: uploadId
+        description: Upload Id to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property Id for the upload to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Upload
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions:
+    get:
+      summary: Get Custom Dimensions
+      description: Lists custom dimensions to which the user has access
+      operationId: analytics.management.customDimensions.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom dimensions to retrieve
+      - in: query
+        name: max-results
+        description: The maximum number of custom dimensions to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom dimensions to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dimension
+    post:
+      summary: Create Custom Dimension
+      description: Create a new custom dimension
+      operationId: analytics.management.customDimensions.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom dimension to create
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom dimension to create
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dimension
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}:
+    get:
+      summary: Get Custom Dimension
+      description: Get a custom dimension to which the user has access
+      operationId: analytics.management.customDimensions.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom dimension to retrieve
+      - in: path
+        name: customDimensionId
+        description: The ID of the custom dimension to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom dimension to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dimension
+    patch:
+      summary: Update Custom Dimensions
+      description: Updates an existing custom dimension
+      operationId: analytics.management.customDimensions.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom dimension to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: customDimensionId
+        description: Custom dimension ID for the custom dimension to update
+      - in: query
+        name: ignoreCustomDataSourceLinks
+        description: Force the update and ignore any warnings related to the custom
+          dimension being linked to a custom data source / data set
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom dimension to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dimension
+    put:
+      summary: Update Custom Dimensions
+      description: Updates an existing custom dimension
+      operationId: analytics.management.customDimensions.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom dimension to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: customDimensionId
+        description: Custom dimension ID for the custom dimension to update
+      - in: query
+        name: ignoreCustomDataSourceLinks
+        description: Force the update and ignore any warnings related to the custom
+          dimension being linked to a custom data source / data set
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom dimension to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dimension
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics:
+    get:
+      summary: Get Custom Metrics
+      description: Lists custom metrics to which the user has access
+      operationId: analytics.management.customMetrics.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom metrics to retrieve
+      - in: query
+        name: max-results
+        description: The maximum number of custom metrics to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom metrics to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metric
+    post:
+      summary: Create Custom Metric
+      description: Create a new custom metric
+      operationId: analytics.management.customMetrics.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom metric to create
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom dimension to create
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metric
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}:
+    get:
+      summary: Get Custom Metric
+      description: Get a custom metric to which the user has access
+      operationId: analytics.management.customMetrics.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom metric to retrieve
+      - in: path
+        name: customMetricId
+        description: The ID of the custom metric to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom metric to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metric
+    patch:
+      summary: Update Custom Metric
+      description: Updates an existing custom metric
+      operationId: analytics.management.customMetrics.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom metric to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: customMetricId
+        description: Custom metric ID for the custom metric to update
+      - in: query
+        name: ignoreCustomDataSourceLinks
+        description: Force the update and ignore any warnings related to the custom
+          metric being linked to a custom data source / data set
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom metric to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metric
+    put:
+      summary: Update Custom Metric
+      description: Updates an existing custom metric
+      operationId: analytics.management.customMetrics.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the custom metric to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: customMetricId
+        description: Custom metric ID for the custom metric to update
+      - in: query
+        name: ignoreCustomDataSourceLinks
+        description: Force the update and ignore any warnings related to the custom
+          metric being linked to a custom data source / data set
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the custom metric to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metric
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks:
+    get:
+      summary: List AdWords
+      description: Lists webProperty-AdWords links for a given web property
+      operationId: analytics.management.webPropertyAdWordsLinks.list
+      parameters:
+      - in: path
+        name: accountId
+        description: ID of the account which the given web property belongs to
+      - in: query
+        name: max-results
+        description: The maximum number of webProperty-AdWords links to include in
+          this response
+      - in: query
+        name: start-index
+        description: An index of the first webProperty-AdWords link to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the AdWords links for
+      responses:
+        200:
+          description: OK
+      tags:
+      - AdWord
+    post:
+      summary: Create AdWord
+      description: Creates a webProperty-AdWords link
+      operationId: analytics.management.webPropertyAdWordsLinks.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: ID of the Google Analytics account to create the link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID to create the link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - AdWord
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}:
+    delete:
+      summary: Delete AdWord
+      description: Deletes a web property-AdWords link
+      operationId: analytics.management.webPropertyAdWordsLinks.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: ID of the account which the given web property belongs to
+      - in: path
+        name: webPropertyAdWordsLinkId
+        description: Web property AdWords link ID
+      - in: path
+        name: webPropertyId
+        description: Web property ID to delete the AdWords link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - AdWord
+    get:
+      summary: Get AdWord
+      description: Returns a web property-AdWords link to which the user has access
+      operationId: analytics.management.webPropertyAdWordsLinks.get
+      parameters:
+      - in: path
+        name: accountId
+        description: ID of the account which the given web property belongs to
+      - in: path
+        name: webPropertyAdWordsLinkId
+        description: Web property-AdWords link ID
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the AdWords link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - AdWord
+    patch:
+      summary: Update AdWord
+      description: Updates an existing webProperty-AdWords link
+      operationId: analytics.management.webPropertyAdWordsLinks.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: ID of the account which the given web property belongs to
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyAdWordsLinkId
+        description: Web property-AdWords link ID
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the AdWords link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - AdWord
+    put:
+      summary: Update AdWord
+      description: Updates an existing webProperty-AdWords link
+      operationId: analytics.management.webPropertyAdWordsLinks.update
+      parameters:
+      - in: path
+        name: accountId
+        description: ID of the account which the given web property belongs to
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyAdWordsLinkId
+        description: Web property-AdWords link ID
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the AdWords link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - AdWord
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks:
+    get:
+      summary: Get Users
+      description: Lists webProperty-user links for a given web property
+      operationId: analytics.management.webpropertyUserLinks.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID which the given web property belongs to
+      - in: query
+        name: max-results
+        description: The maximum number of webProperty-user Links to include in this
+          response
+      - in: query
+        name: start-index
+        description: An index of the first webProperty-user link to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web Property ID for the webProperty-user links to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    post:
+      summary: Add User
+      description: Adds a new user to the given web property
+      operationId: analytics.management.webpropertyUserLinks.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the user link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web Property ID to create the user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}:
+    delete:
+      summary: Remove User
+      description: Removes a user from the given web property
+      operationId: analytics.management.webpropertyUserLinks.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to delete the user link for
+      - in: path
+        name: linkId
+        description: Link ID to delete the user link for
+      - in: path
+        name: webPropertyId
+        description: Web Property ID to delete the user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    put:
+      summary: Update Permission
+      description: Updates permissions for an existing user on the given web property
+      operationId: analytics.management.webpropertyUserLinks.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to update the account-user link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: linkId
+        description: Link ID to update the account-user link for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to update the account-user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Permission
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles:
+    get:
+      summary: List Views
+      description: Lists views (profiles) to which the user has access
+      operationId: analytics.management.profiles.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID for the view (profiles) to retrieve
+      - in: query
+        name: max-results
+        description: The maximum number of views (profiles) to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID for the views (profiles) to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - View
+    post:
+      summary: Create View
+      description: Create a new view (profile)
+      operationId: analytics.management.profiles.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the view (profile) for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID to create the view (profile) for
+      responses:
+        200:
+          description: OK
+      tags:
+      - View
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}:
+    delete:
+      summary: Delete View
+      description: Deletes a view (profile)
+      operationId: analytics.management.profiles.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to delete the view (profile) for
+      - in: path
+        name: profileId
+        description: ID of the view (profile) to be deleted
+      - in: path
+        name: webPropertyId
+        description: Web property ID to delete the view (profile) for
+      responses:
+        200:
+          description: OK
+      tags:
+      - View
+    get:
+      summary: Get View
+      description: Gets a view (profile) to which the user has access
+      operationId: analytics.management.profiles.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve the view (profile) for
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve the view (profile) for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the view (profile) for
+      responses:
+        200:
+          description: OK
+      tags:
+      - View
+    patch:
+      summary: Update View
+      description: Updates an existing view (profile)
+      operationId: analytics.management.profiles.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the view (profile) belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: ID of the view (profile) to be updated
+      - in: path
+        name: webPropertyId
+        description: Web property ID to which the view (profile) belongs
+      responses:
+        200:
+          description: OK
+      tags:
+      - View
+    put:
+      summary: Update View
+      description: Updates an existing view (profile)
+      operationId: analytics.management.profiles.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the view (profile) belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: ID of the view (profile) to be updated
+      - in: path
+        name: webPropertyId
+        description: Web property ID to which the view (profile) belongs
+      responses:
+        200:
+          description: OK
+      tags:
+      - View
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks:
+    get:
+      summary: List Users
+      description: Lists profile-user links for a given view (profile)
+      operationId: analytics.management.profileUserLinks.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID which the given view (profile) belongs to
+      - in: query
+        name: max-results
+        description: The maximum number of profile-user links to include in this response
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve the profile-user links for
+      - in: query
+        name: start-index
+        description: An index of the first profile-user link to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web Property ID which the given view (profile) belongs to
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    post:
+      summary: Add User
+      description: Adds a new user to the given view (profile)
+      operationId: analytics.management.profileUserLinks.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the user link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: View (Profile) ID to create the user link for
+      - in: path
+        name: webPropertyId
+        description: Web Property ID to create the user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}:
+    delete:
+      summary: Remove User
+      description: Removes a user from the given view (profile)
+      operationId: analytics.management.profileUserLinks.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to delete the user link for
+      - in: path
+        name: linkId
+        description: Link ID to delete the user link for
+      - in: path
+        name: profileId
+        description: View (Profile) ID to delete the user link for
+      - in: path
+        name: webPropertyId
+        description: Web Property ID to delete the user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    put:
+      summary: Update Permissions
+      description: Updates permissions for an existing user on the given view (profile)
+      operationId: analytics.management.profileUserLinks.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to update the user link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: linkId
+        description: Link ID to update the user link for
+      - in: path
+        name: profileId
+        description: View (Profile ID) to update the user link for
+      - in: path
+        name: webPropertyId
+        description: Web Property ID to update the user link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Permission
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments:
+    get:
+      summary: List Experiments
+      description: Lists experiments to which the user has access
+      operationId: analytics.management.experiments.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve experiments for
+      - in: query
+        name: max-results
+        description: The maximum number of experiments to include in this response
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve experiments for
+      - in: query
+        name: start-index
+        description: An index of the first experiment to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve experiments for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Experiment
+    post:
+      summary: Create Experiment
+      description: Create a new experiment
+      operationId: analytics.management.experiments.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the experiment for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: View (Profile) ID to create the experiment for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to create the experiment for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Experiment
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}:
+    delete:
+      summary: Delete Experiment
+      description: Delete an experiment
+      operationId: analytics.management.experiments.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the experiment belongs
+      - in: path
+        name: experimentId
+        description: ID of the experiment to delete
+      - in: path
+        name: profileId
+        description: View (Profile) ID to which the experiment belongs
+      - in: path
+        name: webPropertyId
+        description: Web property ID to which the experiment belongs
+      responses:
+        200:
+          description: OK
+      tags:
+      - Experiment
+    get:
+      summary: Get Experiment
+      description: Returns an experiment to which the user has access
+      operationId: analytics.management.experiments.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve the experiment for
+      - in: path
+        name: experimentId
+        description: Experiment ID to retrieve the experiment for
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve the experiment for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the experiment for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Experiment
+    patch:
+      summary: Update Experiment
+      description: Update an existing experiment
+      operationId: analytics.management.experiments.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID of the experiment to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: experimentId
+        description: Experiment ID of the experiment to update
+      - in: path
+        name: profileId
+        description: View (Profile) ID of the experiment to update
+      - in: path
+        name: webPropertyId
+        description: Web property ID of the experiment to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Experiment
+    put:
+      summary: Update Experiment
+      description: Update an existing experiment
+      operationId: analytics.management.experiments.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID of the experiment to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: experimentId
+        description: Experiment ID of the experiment to update
+      - in: path
+        name: profileId
+        description: View (Profile) ID of the experiment to update
+      - in: path
+        name: webPropertyId
+        description: Web property ID of the experiment to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Experiment
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals:
+    get:
+      summary: Get Goals
+      description: Lists goals to which the user has access
+      operationId: analytics.management.goals.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve goals for
+      - in: query
+        name: max-results
+        description: The maximum number of goals to include in this response
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve goals for
+      - in: query
+        name: start-index
+        description: An index of the first goal to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve goals for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Goal
+    post:
+      summary: Create Goal
+      description: Create a new goal
+      operationId: analytics.management.goals.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the goal for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: View (Profile) ID to create the goal for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to create the goal for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Goal
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}:
+    get:
+      summary: Get Goal
+      description: Gets a goal to which the user has access
+      operationId: analytics.management.goals.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve the goal for
+      - in: path
+        name: goalId
+        description: Goal ID to retrieve the goal for
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve the goal for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve the goal for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Goal
+    patch:
+      summary: Update Goal
+      description: Updates an existing goal
+      operationId: analytics.management.goals.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to update the goal
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: goalId
+        description: Index of the goal to be updated
+      - in: path
+        name: profileId
+        description: View (Profile) ID to update the goal
+      - in: path
+        name: webPropertyId
+        description: Web property ID to update the goal
+      responses:
+        200:
+          description: OK
+      tags:
+      - Goal
+    put:
+      summary: Update Goal
+      description: Updates an existing goal
+      operationId: analytics.management.goals.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to update the goal
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: goalId
+        description: Index of the goal to be updated
+      - in: path
+        name: profileId
+        description: View (Profile) ID to update the goal
+      - in: path
+        name: webPropertyId
+        description: Web property ID to update the goal
+      responses:
+        200:
+          description: OK
+      tags:
+      - Goal
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks:
+    get:
+      summary: Get Profile Filter
+      description: Lists all profile filter links for a profile
+      operationId: analytics.management.profileFilterLinks.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve profile filter links for
+      - in: query
+        name: max-results
+        description: The maximum number of profile filter links to include in this
+          response
+      - in: path
+        name: profileId
+        description: Profile ID to retrieve filter links for
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property Id for profile filter links for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile Filter
+    post:
+      summary: Create Profile Filter
+      description: Create a new profile filter link
+      operationId: analytics.management.profileFilterLinks.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create profile filter link for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: Profile ID to create filter link for
+      - in: path
+        name: webPropertyId
+        description: Web property Id to create profile filter link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile Filter
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}:
+    delete:
+      summary: Delete Profile Filter
+      description: Delete a profile filter link
+      operationId: analytics.management.profileFilterLinks.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which the profile filter link belongs
+      - in: path
+        name: linkId
+        description: ID of the profile filter link to delete
+      - in: path
+        name: profileId
+        description: Profile ID to which the filter link belongs
+      - in: path
+        name: webPropertyId
+        description: Web property Id to which the profile filter link belongs
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile Filter
+    get:
+      summary: Get Profile Filter
+      description: Returns a single profile filter link
+      operationId: analytics.management.profileFilterLinks.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve profile filter link for
+      - in: path
+        name: linkId
+        description: ID of the profile filter link
+      - in: path
+        name: profileId
+        description: Profile ID to retrieve filter link for
+      - in: path
+        name: webPropertyId
+        description: Web property Id to retrieve profile filter link for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile Filter
+    patch:
+      summary: Update Profile Filter
+      description: Update an existing profile filter link
+      operationId: analytics.management.profileFilterLinks.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which profile filter link belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: linkId
+        description: ID of the profile filter link to be updated
+      - in: path
+        name: profileId
+        description: Profile ID to which filter link belongs
+      - in: path
+        name: webPropertyId
+        description: Web property Id to which profile filter link belongs
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile Filter
+    put:
+      summary: Update Profile Filter
+      description: Update an existing profile filter link
+      operationId: analytics.management.profileFilterLinks.update
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to which profile filter link belongs
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: linkId
+        description: ID of the profile filter link to be updated
+      - in: path
+        name: profileId
+        description: Profile ID to which filter link belongs
+      - in: path
+        name: webPropertyId
+        description: Web property Id to which profile filter link belongs
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile Filter
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports:
+    get:
+      summary: Get Unsampled Reports
+      description: Lists unsampled reports to which the user has access
+      operationId: analytics.management.unsampledReports.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve unsampled reports for
+      - in: query
+        name: max-results
+        description: The maximum number of unsampled reports to include in this response
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve unsampled reports for
+      - in: query
+        name: start-index
+        description: An index of the first unsampled report to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve unsampled reports for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+    post:
+      summary: Create Unsampled Report
+      description: Create a new unsampled report
+      operationId: analytics.management.unsampledReports.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to create the unsampled report for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: profileId
+        description: View (Profile) ID to create the unsampled report for
+      - in: path
+        name: webPropertyId
+        description: Web property ID to create the unsampled report for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}:
+    delete:
+      summary: Delete Unsampled Report
+      description: Deletes an unsampled report
+      operationId: analytics.management.unsampledReports.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to delete the unsampled report for
+      - in: path
+        name: profileId
+        description: View (Profile) ID to delete the unsampled report for
+      - in: path
+        name: unsampledReportId
+        description: ID of the unsampled report to be deleted
+      - in: path
+        name: webPropertyId
+        description: Web property ID to delete the unsampled reports for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+    get:
+      summary: Get Unsampled Report
+      description: Returns a single unsampled report
+      operationId: analytics.management.unsampledReports.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account ID to retrieve unsampled report for
+      - in: path
+        name: profileId
+        description: View (Profile) ID to retrieve unsampled report for
+      - in: path
+        name: unsampledReportId
+        description: ID of the unsampled report to retrieve
+      - in: path
+        name: webPropertyId
+        description: Web property ID to retrieve unsampled reports for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences:
+    get:
+      summary: Get Remarketing Audiences
+      description: Lists remarketing audiences to which the user has access
+      operationId: analytics.management.remarketingAudience.list
+      parameters:
+      - in: path
+        name: accountId
+        description: The account ID of the remarketing audiences to retrieve
+      - in: query
+        name: max-results
+        description: The maximum number of remarketing audiences to include in this
+          response
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      - in: query
+        name: type
+      - in: path
+        name: webPropertyId
+        description: The web property ID of the remarketing audiences to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Remarketing Audience
+    post:
+      summary: Create Remarketing Audience
+      description: Creates a new remarketing audience
+      operationId: analytics.management.remarketingAudience.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: The account ID for which to create the remarketing audience
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: webPropertyId
+        description: Web property ID for which to create the remarketing audience
+      responses:
+        200:
+          description: OK
+      tags:
+      - Remarketing Audience
+  /management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}:
+    get:
+      summary: Get Remarketing Audience
+      description: Gets a remarketing audience to which the user has access
+      operationId: analytics.management.remarketingAudience.get
+      parameters:
+      - in: path
+        name: accountId
+        description: The account ID of the remarketing audience to retrieve
+      - in: path
+        name: remarketingAudienceId
+        description: The ID of the remarketing audience to retrieve
+      - in: path
+        name: webPropertyId
+        description: The web property ID of the remarketing audience to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Remarketing Audience
+    patch:
+      summary: Update Remarketing Audience
+      description: Updates an existing remarketing audience
+      operationId: analytics.management.remarketingAudience.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: The account ID of the remarketing audience to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: remarketingAudienceId
+        description: The ID of the remarketing audience to update
+      - in: path
+        name: webPropertyId
+        description: The web property ID of the remarketing audience to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Remarketing Audience
+    put:
+      summary: Update Remarketing Audience
+      description: Updates an existing remarketing audience
+      operationId: analytics.management.remarketingAudience.update
+      parameters:
+      - in: path
+        name: accountId
+        description: The account ID of the remarketing audience to update
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: remarketingAudienceId
+        description: The ID of the remarketing audience to update
+      - in: path
+        name: webPropertyId
+        description: The web property ID of the remarketing audience to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Remarketing Audience
+  /management/accountSummaries:
+    get:
+      summary: Get Account Summary
+      description: Lists account summaries (lightweight tree comprised of accounts/properties/profiles)
+        to which the user has access
+      operationId: analytics.management.accountSummaries.list
+      parameters:
+      - in: query
+        name: max-results
+        description: The maximum number of account summaries to include in this response,
+          where the largest acceptable value is 1000
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /management/segments:
+    get:
+      summary: Get Segments
+      description: Lists segments to which the user has access
+      operationId: analytics.management.segments.list
+      parameters:
+      - in: query
+        name: max-results
+        description: The maximum number of segments to include in this response
+      - in: query
+        name: start-index
+        description: An index of the first segment to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Segment
+  /metadata/{reportType}/columns:
+    get:
+      summary: Get Columsn
+      description: Lists all columns for a report type
+      operationId: analytics.metadata.columns.list
+      parameters:
+      - in: path
+        name: reportType
+        description: Report type
+      responses:
+        200:
+          description: OK
+      tags:
+      - Column
+  /provisioning/createAccountTicket:
+    post:
+      summary: Create Account Ticket
+      description: Creates an account ticket
+      operationId: analytics.provisioning.createAccountTicket
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Ticket
+definitions:
+  Account:
+    properties:
+      childLink:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      permissions:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      starred:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+  AccountRef:
+    properties:
+      href:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  AccountSummaries:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  AccountSummary:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      starred:
+        description: This is a default description.
+        type: post
+      webProperties:
+        description: This is a default description.
+        type: post
+  AccountTicket:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      redirectUri:
+        description: This is a default description.
+        type: post
+  Accounts:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  AdWordsAccount:
+    properties:
+      autoTaggingEnabled:
+        description: This is a default description.
+        type: post
+      customerId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  AnalyticsDataimportDeleteUploadDataRequest:
+    properties:
+      customDataImportUids:
+        description: This is a default description.
+        type: post
+  Column:
+    properties:
+      attributes:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  Columns:
+    properties:
+      attributeNames:
+        description: This is a default description.
+        type: post
+      etag:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+  CustomDataSource:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      childLink:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      importBehavior:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      profilesLinked:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      uploadType:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  CustomDataSources:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  CustomDimension:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      active:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      index:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      scope:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  CustomDimensions:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  CustomMetric:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      active:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      index:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      max_value:
+        description: This is a default description.
+        type: post
+      min_value:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      scope:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  CustomMetrics:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  EntityAdWordsLink:
+    properties:
+      adWordsAccounts:
+        description: This is a default description.
+        type: post
+      entity:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      profileIds:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+  EntityAdWordsLinks:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+  EntityUserLink:
+    properties:
+      entity:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      permissions:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+  EntityUserLinks:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+  Experiment:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      editableInGaUi:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      equalWeighting:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      minimumExperimentLengthInDays:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      objectiveMetric:
+        description: This is a default description.
+        type: post
+      optimizationType:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      profileId:
+        description: This is a default description.
+        type: post
+      reasonExperimentEnded:
+        description: This is a default description.
+        type: post
+      rewriteVariationUrlsAsOriginal:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      servingFramework:
+        description: This is a default description.
+        type: post
+      snippet:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+      trafficCoverage:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      variations:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+      winnerConfidenceLevel:
+        description: This is a default description.
+        type: post
+      winnerFound:
+        description: This is a default description.
+        type: post
+  Experiments:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  Filter:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      advancedDetails:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      lowercaseDetails:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      searchAndReplaceDetails:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      uppercaseDetails:
+        description: This is a default description.
+        type: post
+  FilterExpression:
+    properties:
+      caseSensitive:
+        description: This is a default description.
+        type: post
+      expressionValue:
+        description: This is a default description.
+        type: post
+      field:
+        description: This is a default description.
+        type: post
+      fieldIndex:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      matchType:
+        description: This is a default description.
+        type: post
+  FilterRef:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      href:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  Filters:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  GaData:
+    properties:
+      columnHeaders:
+        description: This is a default description.
+        type: post
+      containsSampledData:
+        description: This is a default description.
+        type: post
+      dataLastRefreshed:
+        description: This is a default description.
+        type: post
+      dataTable:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      profileInfo:
+        description: This is a default description.
+        type: post
+      query:
+        description: This is a default description.
+        type: post
+      rows:
+        description: This is a default description.
+        type: post
+      sampleSize:
+        description: This is a default description.
+        type: post
+      sampleSpace:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      totalsForAllResults:
+        description: This is a default description.
+        type: post
+  Goal:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      active:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      eventDetails:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      profileId:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      urlDestinationDetails:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+      visitNumPagesDetails:
+        description: This is a default description.
+        type: post
+      visitTimeOnSiteDetails:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  Goals:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  IncludeConditions:
+    properties:
+      daysToLookBack:
+        description: This is a default description.
+        type: post
+      isSmartList:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      membershipDurationDays:
+        description: This is a default description.
+        type: post
+      segment:
+        description: This is a default description.
+        type: post
+  LinkedForeignAccount:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      eligibleForSearch:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      linkedAccountId:
+        description: This is a default description.
+        type: post
+      remarketingAudienceId:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  McfData:
+    properties:
+      columnHeaders:
+        description: This is a default description.
+        type: post
+      containsSampledData:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      profileInfo:
+        description: This is a default description.
+        type: post
+      query:
+        description: This is a default description.
+        type: post
+      rows:
+        description: This is a default description.
+        type: post
+      sampleSize:
+        description: This is a default description.
+        type: post
+      sampleSpace:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      totalsForAllResults:
+        description: This is a default description.
+        type: post
+  Profile:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      botFilteringEnabled:
+        description: This is a default description.
+        type: post
+      childLink:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      currency:
+        description: This is a default description.
+        type: post
+      defaultPage:
+        description: This is a default description.
+        type: post
+      eCommerceTracking:
+        description: This is a default description.
+        type: post
+      enhancedECommerceTracking:
+        description: This is a default description.
+        type: post
+      excludeQueryParameters:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      permissions:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      siteSearchCategoryParameters:
+        description: This is a default description.
+        type: post
+      siteSearchQueryParameters:
+        description: This is a default description.
+        type: post
+      starred:
+        description: This is a default description.
+        type: post
+      stripSiteSearchCategoryParameters:
+        description: This is a default description.
+        type: post
+      stripSiteSearchQueryParameters:
+        description: This is a default description.
+        type: post
+      timezone:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+      websiteUrl:
+        description: This is a default description.
+        type: post
+  ProfileFilterLink:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      rank:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+  ProfileFilterLinks:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  ProfileRef:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      href:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  ProfileSummary:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      starred:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  Profiles:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  RealtimeData:
+    properties:
+      columnHeaders:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      profileInfo:
+        description: This is a default description.
+        type: post
+      query:
+        description: This is a default description.
+        type: post
+      rows:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      totalsForAllResults:
+        description: This is a default description.
+        type: post
+  RemarketingAudience:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      audienceDefinition:
+        description: This is a default description.
+        type: post
+      audienceType:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      linkedAdAccounts:
+        description: This is a default description.
+        type: post
+      linkedViews:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      stateBasedAudienceDefinition:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  RemarketingAudiences:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  Segment:
+    properties:
+      created:
+        description: This is a default description.
+        type: post
+      definition:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      segmentId:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+  Segments:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  UnsampledReport:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      cloudStorageDownloadDetails:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      dimensions:
+        description: This is a default description.
+        type: post
+      downloadType:
+        description: This is a default description.
+        type: post
+      driveDownloadDetails:
+        description: This is a default description.
+        type: post
+      end-date:
+        description: This is a default description.
+        type: post
+      filters:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      metrics:
+        description: This is a default description.
+        type: post
+      profileId:
+        description: This is a default description.
+        type: post
+      segment:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      start-date:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      webPropertyId:
+        description: This is a default description.
+        type: post
+  UnsampledReports:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  Upload:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      customDataSourceId:
+        description: This is a default description.
+        type: post
+      errors:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+  Uploads:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+  UserRef:
+    properties:
+      email:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  WebPropertyRef:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      href:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  WebPropertySummary:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      level:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      profiles:
+        description: This is a default description.
+        type: post
+      starred:
+        description: This is a default description.
+        type: post
+      websiteUrl:
+        description: This is a default description.
+        type: post
+  Webproperties:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      itemsPerPage:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextLink:
+        description: This is a default description.
+        type: post
+      previousLink:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+      username:
+        description: This is a default description.
+        type: post
+  Webproperty:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+      childLink:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      defaultProfileId:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      industryVertical:
+        description: This is a default description.
+        type: post
+      internalWebPropertyId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      level:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      parentLink:
+        description: This is a default description.
+        type: post
+      permissions:
+        description: This is a default description.
+        type: post
+      profileCount:
+        description: This is a default description.
+        type: post
+      selfLink:
+        description: This is a default description.
+        type: post
+      starred:
+        description: This is a default description.
+        type: post
+      updated:
+        description: This is a default description.
+        type: post
+      websiteUrl:
+        description: This is a default description.
+        type: post
