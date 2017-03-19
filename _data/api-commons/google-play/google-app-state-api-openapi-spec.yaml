@@ -1,0 +1,143 @@
+swagger: "2.0"
+info:
+  title: Google App State
+  description: The Google App State API.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: www.googleapis.com
+basePath: /appstate/v1
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /states:
+    get:
+      summary: Get State Keys
+      description: Lists all the states keys, and optionally the state data
+      operationId: appstate.states.list
+      parameters:
+      - in: query
+        name: includeData
+        description: Whether to include the full data in addition to the version number
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application State
+  /states/{stateKey}:
+    delete:
+      summary: Delete State Key
+      description: Deletes a key and the data associated with it
+      operationId: appstate.states.delete
+      parameters:
+      - in: path
+        name: stateKey
+        description: The key for the data to be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application State
+    get:
+      summary: Get State Key
+      description: Retrieves the data corresponding to the passed key
+      operationId: appstate.states.get
+      parameters:
+      - in: path
+        name: stateKey
+        description: The key for the data to be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application State
+    put:
+      summary: Update State Key
+      description: Update the data associated with the input key if and only if the
+        passed version matches the currently stored version
+      operationId: appstate.states.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: currentStateVersion
+        description: The version of the app state your application is attempting to
+          update
+      - in: path
+        name: stateKey
+        description: The key for the data to be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application State
+  /states/{stateKey}/clear:
+    post:
+      summary: Clear State Key
+      description: Clears (sets to empty) the data for the passed key if and only
+        if the passed version matches the currently stored version
+      operationId: appstate.states.clear
+      parameters:
+      - in: query
+        name: currentDataVersion
+        description: The version of the data to be cleared
+      - in: path
+        name: stateKey
+        description: The key for the data to be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application State
+definitions:
+  GetResponse:
+    properties:
+      currentStateVersion:
+        description: This is a default description.
+        type: post
+      data:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      stateKey:
+        description: This is a default description.
+        type: post
+  ListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      maximumKeyCount:
+        description: This is a default description.
+        type: post
+  UpdateRequest:
+    properties:
+      data:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  WriteResult:
+    properties:
+      currentStateVersion:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      stateKey:
+        description: This is a default description.
+        type: post
