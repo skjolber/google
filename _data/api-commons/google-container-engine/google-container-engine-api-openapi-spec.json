@@ -1,0 +1,865 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google Container Engine",
+		"description": "Builds and manages clusters that run container-based applications, powered by open source Kubernetes technology.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "container.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/projects/{projectId}/zones/{zone}/clusters": {
+			"get": {
+				"summary": "Get Clusters",
+				"description": "Lists all clusters owned by a project in either the specified zone or all zones",
+				"operationId": "container.projects.zones.clusters.list",
+				"parameters": [{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Cluster"]
+			},
+			"post": {
+				"summary": "Create Cluster",
+				"description": "Creates a cluster, consisting of the specified number and type of Google Compute Engine instances",
+				"operationId": "container.projects.zones.clusters.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Cluster"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}": {
+			"delete": {
+				"summary": "Delete Cluster",
+				"description": "Deletes the cluster, including the Kubernetes endpoint and all worker nodes",
+				"operationId": "container.projects.zones.clusters.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster to delete"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Cluster"]
+			},
+			"get": {
+				"summary": "Get Cluster",
+				"description": "Gets the details of a specific cluster",
+				"operationId": "container.projects.zones.clusters.get",
+				"parameters": [{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster to retrieve"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Cluster"]
+			},
+			"put": {
+				"summary": "Update Cluster",
+				"description": "Updates the settings of a specific cluster",
+				"operationId": "container.projects.zones.clusters.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster to upgrade"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Cluster"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools": {
+			"get": {
+				"summary": "Get Cluster Node Pools",
+				"description": "Lists the node pools for a cluster",
+				"operationId": "container.projects.zones.clusters.nodePools.list",
+				"parameters": [{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://developers"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Node Pool"]
+			},
+			"post": {
+				"summary": "Create Cluster Node Pool",
+				"description": "Creates a node pool for a cluster",
+				"operationId": "container.projects.zones.clusters.nodePools.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://developers"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Node Pool"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}": {
+			"delete": {
+				"summary": "Delete Cluster Node Pool",
+				"description": "Deletes a node pool from a cluster",
+				"operationId": "container.projects.zones.clusters.nodePools.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster"
+				},
+				{
+					"in": "path",
+					"name": "nodePoolId",
+					"description": "The name of the node pool to delete"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://developers"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Node Pool"]
+			},
+			"get": {
+				"summary": "Get Cluster Node Pool",
+				"description": "Retrieves the node pool requested",
+				"operationId": "container.projects.zones.clusters.nodePools.get",
+				"parameters": [{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster"
+				},
+				{
+					"in": "path",
+					"name": "nodePoolId",
+					"description": "The name of the node pool"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://developers"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Node Pool"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setManagement": {
+			"post": {
+				"summary": "Set Cluster Node Management",
+				"description": "Sets the NodeManagement options for a node pool",
+				"operationId": "container.projects.zones.clusters.nodePools.setManagement",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster to update"
+				},
+				{
+					"in": "path",
+					"name": "nodePoolId",
+					"description": "The name of the node pool to update"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Node Pool"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}:rollback": {
+			"post": {
+				"summary": "Rollback Node ",
+				"description": "Roll back the previously Aborted or Failed NodePool upgrade",
+				"operationId": "container.projects.zones.clusters.nodePools.rollback",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "clusterId",
+					"description": "The name of the cluster to rollback"
+				},
+				{
+					"in": "path",
+					"name": "nodePoolId",
+					"description": "The name of the node pool to rollback"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Node Pool"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/operations": {
+			"get": {
+				"summary": "Get Operations",
+				"description": "Lists all operations in a project in a specific zone or all zones",
+				"operationId": "container.projects.zones.operations.list",
+				"parameters": [{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Operation"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/operations/{operationId}": {
+			"get": {
+				"summary": "Get Operations",
+				"description": "Gets the specified operation",
+				"operationId": "container.projects.zones.operations.get",
+				"parameters": [{
+					"in": "path",
+					"name": "operationId",
+					"description": "The server-assigned `name` of the operation"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Operation"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/operations/{operationId}:cancel": {
+			"post": {
+				"summary": "Create Operation",
+				"description": "Cancels the specified operation",
+				"operationId": "container.projects.zones.operations.cancel",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "operationId",
+					"description": "The server-assigned `name` of the operation"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Operation"]
+			}
+		},
+		"/v1/projects/{projectId}/zones/{zone}/serverconfig": {
+			"get": {
+				"summary": "Get Server Configuration",
+				"description": "Returns configuration info about the Container Engine service",
+				"operationId": "container.projects.zones.getServerconfig",
+				"parameters": [{
+					"in": "path",
+					"name": "projectId",
+					"description": "The Google Developers Console [project ID or project number](https://support"
+				},
+				{
+					"in": "path",
+					"name": "zone",
+					"description": "The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Server"]
+			}
+		}
+	},
+	"definitions": {
+		"AddonsConfig": {
+			"properties": []
+		},
+		"AutoUpgradeOptions": {
+			"properties": {
+				"autoUpgradeStartTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Cluster": {
+			"properties": {
+				"clusterIpv4Cidr": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"createTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"currentMasterVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"currentNodeCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"currentNodeVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"enableKubernetesAlpha": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"endpoint": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"expireTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"initialClusterVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"initialNodeCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"instanceGroupUrls": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"locations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"loggingService": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"monitoringService": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"network": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nodeIpv4CidrSize": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nodePools": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"servicesIpv4Cidr": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"statusMessage": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"subnetwork": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"zone": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ClusterUpdate": {
+			"properties": {
+				"desiredImageType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"desiredLocations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"desiredMasterVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"desiredMonitoringService": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"desiredNodePoolId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"desiredNodeVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"CreateClusterRequest": {
+			"properties": []
+		},
+		"CreateNodePoolRequest": {
+			"properties": []
+		},
+		"HorizontalPodAutoscaling": {
+			"properties": {
+				"disabled": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"HttpLoadBalancing": {
+			"properties": {
+				"disabled": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListClustersResponse": {
+			"properties": {
+				"clusters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"missingZones": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListNodePoolsResponse": {
+			"properties": {
+				"nodePools": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListOperationsResponse": {
+			"properties": {
+				"missingZones": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"operations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"MasterAuth": {
+			"properties": {
+				"clientCertificate": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"clientKey": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"clusterCaCertificate": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"password": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"username": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"NodeConfig": {
+			"properties": {
+				"diskSizeGb": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"imageType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"localSsdCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"machineType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"metadata": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"oauthScopes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"preemptible": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"serviceAccount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"tags": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"NodeManagement": {
+			"properties": {
+				"autoUpgrade": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"NodePool": {
+			"properties": {
+				"initialNodeCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"instanceGroupUrls": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"statusMessage": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"NodePoolAutoscaling": {
+			"properties": {
+				"enabled": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maxNodeCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"minNodeCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Operation": {
+			"properties": {
+				"detail": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"operationType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"statusMessage": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"targetLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"zone": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ServerConfig": {
+			"properties": {
+				"defaultClusterVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"defaultImageType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"validImageTypes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"validMasterVersions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"validNodeVersions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"SetNodePoolManagementRequest": {
+			"properties": []
+		},
+		"UpdateClusterRequest": {
+			"properties": []
+		}
+	}
+}
