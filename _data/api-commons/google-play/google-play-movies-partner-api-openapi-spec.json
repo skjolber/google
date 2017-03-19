@@ -1,0 +1,669 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google Play Movies Partner",
+		"description": "Gets the delivery status of titles for Google Play Movies Partners.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "playmoviespartner.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/accounts/{accountId}/avails": {
+			"get": {
+				"summary": "Get Available Movies",
+				"description": "List Avails owned or managed by the partner",
+				"operationId": "playmoviespartner.accounts.avails.list",
+				"parameters": [{
+					"in": "path",
+					"name": "accountId",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "query",
+					"name": "altId",
+					"description": "Filter Avails that match a case-insensitive, partner-specific custom id"
+				},
+				{
+					"in": "query",
+					"name": "altIds",
+					"description": "Filter Avails that match (case-insensitive) any of the given partner-specific custom ids"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "pphNames",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "studioNames",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "territories",
+					"description": "Filter Avails that match (case-insensitive) any of the given country codes,nusing the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us")"
+				},
+				{
+					"in": "query",
+					"name": "title",
+					"description": "Filter that matches Avails with a `title_internal_alias`,n`series_title_internal_alias`, `season_title_internal_alias`,nor `episode_title_internal_alias` that contains the givenncase-insensitive title"
+				},
+				{
+					"in": "query",
+					"name": "videoIds",
+					"description": "Filter Avails that match any of the given `video_id`s"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Movie"]
+			}
+		},
+		"/v1/accounts/{accountId}/avails/{availId}": {
+			"get": {
+				"summary": "Get Available Movie",
+				"description": "Get an Avail given its avail group id and avail id",
+				"operationId": "playmoviespartner.accounts.avails.get",
+				"parameters": [{
+					"in": "path",
+					"name": "accountId",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "path",
+					"name": "availId",
+					"description": "REQUIRED"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Movie"]
+			}
+		},
+		"/v1/accounts/{accountId}/orders": {
+			"get": {
+				"summary": "Get Orders",
+				"description": "List Orders owned or managed by the partner",
+				"operationId": "playmoviespartner.accounts.orders.list",
+				"parameters": [{
+					"in": "path",
+					"name": "accountId",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "query",
+					"name": "customId",
+					"description": "Filter Orders that match a case-insensitive, partner-specific custom id"
+				},
+				{
+					"in": "query",
+					"name": "name",
+					"description": "Filter that matches Orders with a `name`, `show`, `season` or `episode`nthat contains the given case-insensitive name"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "pphNames",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "status",
+					"description": "Filter Orders that match one of the given status"
+				},
+				{
+					"in": "query",
+					"name": "studioNames",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "videoIds",
+					"description": "Filter Orders that match any of the given `video_id`s"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Order"]
+			}
+		},
+		"/v1/accounts/{accountId}/orders/{orderId}": {
+			"get": {
+				"summary": "Get Order",
+				"description": "Get an Order given its id",
+				"operationId": "playmoviespartner.accounts.orders.get",
+				"parameters": [{
+					"in": "path",
+					"name": "accountId",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "path",
+					"name": "orderId",
+					"description": "REQUIRED"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Order"]
+			}
+		},
+		"/v1/accounts/{accountId}/storeInfos": {
+			"get": {
+				"summary": "Get Store Information",
+				"description": "List StoreInfos owned or managed by the partner",
+				"operationId": "playmoviespartner.accounts.storeInfos.list",
+				"parameters": [{
+					"in": "path",
+					"name": "accountId",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "query",
+					"name": "countries",
+					"description": "Filter StoreInfos that match (case-insensitive) any of the given countryncodes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us")"
+				},
+				{
+					"in": "query",
+					"name": "mids",
+					"description": "Filter StoreInfos that match any of the given `mid`s"
+				},
+				{
+					"in": "query",
+					"name": "name",
+					"description": "Filter that matches StoreInfos with a `name` or `show_name`nthat contains the given case-insensitive name"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "pphNames",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "seasonIds",
+					"description": "Filter StoreInfos that match any of the given `season_id`s"
+				},
+				{
+					"in": "query",
+					"name": "studioNames",
+					"description": "See _List methods rules_ for info about this field"
+				},
+				{
+					"in": "query",
+					"name": "videoId",
+					"description": "Filter StoreInfos that match a given `video_id`"
+				},
+				{
+					"in": "query",
+					"name": "videoIds",
+					"description": "Filter StoreInfos that match any of the given `video_id`s"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Store"]
+			}
+		},
+		"/v1/accounts/{accountId}/storeInfos/{videoId}/country/{country}": {
+			"get": {
+				"summary": "Get Video Country",
+				"description": "Get a StoreInfo given its video id and country",
+				"operationId": "playmoviespartner.accounts.storeInfos.country.get",
+				"parameters": [{
+					"in": "path",
+					"name": "accountId",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "path",
+					"name": "country",
+					"description": "REQUIRED"
+				},
+				{
+					"in": "path",
+					"name": "videoId",
+					"description": "REQUIRED"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Country"]
+			}
+		}
+	},
+	"definitions": {
+		"Avail": {
+			"properties": {
+				"altId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"availId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"captionExemption": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"captionIncluded": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"contentId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"encodeId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"end": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"episodeAltId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"episodeNumber": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"episodeTitleInternalAlias": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formatProfile": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"licenseType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pphNames": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"priceType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"priceValue": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"productId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ratingReason": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ratingSystem": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ratingValue": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"releaseDate": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonAltId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonNumber": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonTitleInternalAlias": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seriesAltId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seriesTitleInternalAlias": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"start": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"storeLanguage": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"suppressionLiftDate": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"territory": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"titleInternalAlias": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"videoId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"workType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListAvailsResponse": {
+			"properties": {
+				"avails": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalSize": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListOrdersResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"orders": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalSize": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListStoreInfosResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"storeInfos": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalSize": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Order": {
+			"properties": {
+				"approvedTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"channelId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"channelName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"countries": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"customId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"earliestAvailStartTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"episodeName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"legacyPriority": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"normalizedPriority": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"orderId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"orderedTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pphName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"priority": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"receivedTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"rejectionNote": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"showName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"statusDetail": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"studioName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"videoId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"StoreInfo": {
+			"properties": {
+				"audioTracks": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"country": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"editLevelEidr": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"episodeNumber": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hasAudio51": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hasEstOffer": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hasHdOffer": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hasInfoCards": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hasSdOffer": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hasVodOffer": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"liveTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"mid": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pphNames": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"seasonNumber": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"showId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"showName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"studioName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"subtitles": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"titleLevelEidr": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"trailerId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"videoId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
