@@ -1,271 +1,310 @@
 {
-	"name": "Amazon Web Services",
-	"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/amazon-aws-logo.jpg",
-	"created": "2017-01-05",
-	"modified": "2017-01-05",
-	"url": "http://amazon.web.services.stack.network/apis.json",
+	"name": "Google",
+	"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-logo.jpg",
+	"created": "2017-03-18",
+	"modified": "2017-03-18",
+	"url": "http://google.stack.network/apis.json",
 	"specificationVersion": "0.14",
 	"apis": [],
-	"tags": ["Amazon Web Services",
-	"Amazon Web Services"],
+	"tags": ["Google APIs"],
 	"include": [{
-		"name": "Amazon EC2",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/amazon-ec2/apis.json"
+		"name": "Accelerated Mobile Pages (AMP) URL",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/accelerated-mobile-pages-amp-url/apis.json"
 	},
 	{
-		"name": "AWS API Gateway",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-api-gateway/apis.json"
+		"name": "Blogger",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/blogger/apis.json"
 	},
 	{
-		"name": "AWS AppStream 2.0",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-appstream-20/apis.json"
+		"name": "Firebase",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/firebase/apis.json"
 	},
 	{
-		"name": "AWS Auto Scaling",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-auto-scaling/apis.json"
+		"name": "G Suite",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/g-suite/apis.json"
 	},
 	{
-		"name": "AWS Batch API",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-batch-api/apis.json"
+		"name": "Gmail",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/gmail/apis.json"
 	},
 	{
-		"name": "AWS Certificate Manager",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-certificate-manager/apis.json"
+		"name": "Google Adsense",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-adsense/apis.json"
 	},
 	{
-		"name": "AWS CloudFormation",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cloudformation/apis.json"
+		"name": "Google Analytics",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-analytics/apis.json"
 	},
 	{
-		"name": "AWS CloudFront",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cloudfront/apis.json"
+		"name": "Google API Discovery Service",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-api-discovery-service/apis.json"
 	},
 	{
-		"name": "AWS CloudHSM",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cloudhsm/apis.json"
+		"name": "Google App Engine",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-app-engine/apis.json"
 	},
 	{
-		"name": "AWS CloudSearch",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cloudsearch/apis.json"
+		"name": "Google Apps Admin SDK",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-apps-admin-sdk/apis.json"
 	},
 	{
-		"name": "AWS CloudTrail",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cloudtrail/apis.json"
+		"name": "Google Apps Script Execution",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-apps-script-execution/apis.json"
 	},
 	{
-		"name": "AWS CloudWatch",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cloudwatch/apis.json"
+		"name": "Google Beacons",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-beacons/apis.json"
 	},
 	{
-		"name": "AWS Code Pipeline",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-code-pipeline/apis.json"
+		"name": "Google Biquery",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-biquery/apis.json"
 	},
 	{
-		"name": "AWS CodeBuild",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-codebuild/apis.json"
+		"name": "Google Books",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-books/apis.json"
 	},
 	{
-		"name": "AWS CodeCommit",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-codecommit/apis.json"
+		"name": "Google Calendar",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-calendar/apis.json"
 	},
 	{
-		"name": "AWS CodeDeploy",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-codedeploy/apis.json"
+		"name": "Google Civic Information",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-civic-information/apis.json"
 	},
 	{
-		"name": "AWS Cognito",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-cognito/apis.json"
+		"name": "Google Classroom",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-classroom/apis.json"
 	},
 	{
-		"name": "AWS Config",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-config/apis.json"
+		"name": "Google Cloud Billing",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-billing/apis.json"
 	},
 	{
-		"name": "AWS Data Pipeline",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-data-pipeline/apis.json"
+		"name": "Google Cloud Container Builder",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-container-builder/apis.json"
 	},
 	{
-		"name": "AWS Database Migration Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-database-migration-service/apis.json"
+		"name": "Google Cloud Dataproc",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-dataproc/apis.json"
 	},
 	{
-		"name": "AWS Device Farm",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-device-farm/apis.json"
+		"name": "Google Cloud Datastore",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-datastore/apis.json"
 	},
 	{
-		"name": "AWS Direct Connect",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-direct-connect/apis.json"
+		"name": "Google Cloud Deployment Manager",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-deployment-manager/apis.json"
 	},
 	{
-		"name": "AWS Directory Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-directory-service/apis.json"
+		"name": "Google Cloud DNS",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-dns/apis.json"
 	},
 	{
-		"name": "AWS DynamoDB",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-dynamodb/apis.json"
+		"name": "Google Cloud Functions",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-functions/apis.json"
 	},
 	{
-		"name": "AWS EC2 Container Registry Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-ec2-container-registry-service/apis.json"
+		"name": "Google Cloud Identity & Access Management (IAM)",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-identity--access-management-iam/apis.json"
 	},
 	{
-		"name": "AWS EC2 Container Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-ec2-container-service/apis.json"
+		"name": "Google Cloud Key Management Service (KMS)",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-key-management-service-kms/apis.json"
 	},
 	{
-		"name": "AWS EC2 Systems Manager",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-ec2-systems-manager/apis.json"
+		"name": "Google Cloud Machine Learning Engine",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-machine-learning-engine/apis.json"
 	},
 	{
-		"name": "AWS Elastic Beanstalk",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-elastic-beanstalk/apis.json"
+		"name": "Google Cloud Natural Language",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-natural-language/apis.json"
 	},
 	{
-		"name": "AWS Elastic Load Balancing",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-elastic-load-balancing/apis.json"
+		"name": "Google Cloud Prediction",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-prediction/apis.json"
 	},
 	{
-		"name": "AWS Elastic MapReduce",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-elastic-mapreduce/apis.json"
+		"name": "Google Cloud Pub/Sub",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-pubsub/apis.json"
 	},
 	{
-		"name": "AWS ElastiCache",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-elasticache/apis.json"
+		"name": "Google Cloud Resource Manager",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-resource-manager/apis.json"
 	},
 	{
-		"name": "AWS Elasticsearch Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-elasticsearch-service/apis.json"
+		"name": "Google Cloud Source Repositories",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-source-repositories/apis.json"
 	},
 	{
-		"name": "AWS Glacier",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-glacier/apis.json"
+		"name": "Google Cloud Spanner",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-spanner/apis.json"
 	},
 	{
-		"name": "AWS Identity and Access Management",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-identity-and-access-management/apis.json"
+		"name": "Google Cloud SQL",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-sql/apis.json"
 	},
 	{
-		"name": "AWS Inspector",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-inspector/apis.json"
+		"name": "Google Cloud Storage",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-storage/apis.json"
 	},
 	{
-		"name": "AWS Internet of Things",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-internet-of-things/apis.json"
+		"name": "Google Cloud User Accounts",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-user-accounts/apis.json"
 	},
 	{
-		"name": "AWS Key Management Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-key-management-service/apis.json"
+		"name": "Google Cloud Vision",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-cloud-vision/apis.json"
 	},
 	{
-		"name": "AWS Kinesis Analytics",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-kinesis-analytics/apis.json"
+		"name": "Google Compute Engine",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-compute-engine/apis.json"
 	},
 	{
-		"name": "AWS Kinesis Firehose",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-kinesis-firehose/apis.json"
+		"name": "Google Consumer Surveys",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-consumer-surveys/apis.json"
 	},
 	{
-		"name": "AWS Lambda",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-lambda/apis.json"
+		"name": "Google Container Engine",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-container-engine/apis.json"
 	},
 	{
-		"name": "AWS Lightsale",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-lightsale/apis.json"
+		"name": "Google Content API for Shopping",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-content-api-for-shopping/apis.json"
 	},
 	{
-		"name": "AWS Machine Learning",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-machine-learning/apis.json"
+		"name": "Google Custom Search",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-custom-search/apis.json"
 	},
 	{
-		"name": "AWS Marketplace Metering Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-marketplace-metering-service/apis.json"
+		"name": "Google Dataflow",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-dataflow/apis.json"
 	},
 	{
-		"name": "AWS OpsWorks",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-opsworks/apis.json"
+		"name": "Google Doubleclick",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-doubleclick/apis.json"
 	},
 	{
-		"name": "AWS Pinpoint",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-pinpoint/apis.json"
+		"name": "Google Drive",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-drive/apis.json"
 	},
 	{
-		"name": "AWS Polly",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-polly/apis.json"
+		"name": "Google Fit",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-fit/apis.json"
 	},
 	{
-		"name": "AWS RDS",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-rds/apis.json"
+		"name": "Google Fonts",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-fonts/apis.json"
 	},
 	{
-		"name": "AWS Redshift",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-redshift/apis.json"
+		"name": "Google Fusion Tables",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-fusion-tables/apis.json"
 	},
 	{
-		"name": "AWS Rekognition",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-rekognition/apis.json"
+		"name": "Google Genomics",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-genomics/apis.json"
 	},
 	{
-		"name": "AWS Route 53",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-route-53/apis.json"
+		"name": "Google Glass",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-glass/apis.json"
 	},
 	{
-		"name": "AWS S3",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-s3/apis.json"
+		"name": "Google Knowledge Graph Search",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-knowledge-graph-search/apis.json"
 	},
 	{
-		"name": "AWS Security Token Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-security-token-service/apis.json"
+		"name": "Google Manufacturer Center",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-manufacturer-center/apis.json"
 	},
 	{
-		"name": "AWS Server Migration Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-server-migration-service/apis.json"
+		"name": "Google OAuth2",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-oauth2/apis.json"
 	},
 	{
-		"name": "AWS Service Catalog",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-service-catalog/apis.json"
+		"name": "Google PageSpeed Insights",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-pagespeed-insights/apis.json"
 	},
 	{
-		"name": "AWS Shield",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-shield/apis.json"
+		"name": "Google Partners",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-partners/apis.json"
 	},
 	{
-		"name": "AWS Simple Email Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-simple-email-service/apis.json"
+		"name": "Google People",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-people/apis.json"
 	},
 	{
-		"name": "AWS Simple Notification Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-simple-notification-service/apis.json"
+		"name": "Google Play",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-play/apis.json"
 	},
 	{
-		"name": "AWS Simple Queue Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-simple-queue-service/apis.json"
+		"name": "Google QPX Express",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-qpx-express/apis.json"
 	},
 	{
-		"name": "AWS Snowball",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-snowball/apis.json"
+		"name": "Google Safe Browsing",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-safe-browsing/apis.json"
 	},
 	{
-		"name": "AWS Step Functions",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-step-functions/apis.json"
+		"name": "Google Search Console",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-search-console/apis.json"
 	},
 	{
-		"name": "AWS Storage Gateway Service",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-storage-gateway-service/apis.json"
+		"name": "Google Service Control",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-service-control/apis.json"
 	},
 	{
-		"name": "AWS WAF",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-waf/apis.json"
+		"name": "Google Service Management",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-service-management/apis.json"
 	},
 	{
-		"name": "AWS WorkDocs",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-workdocs/apis.json"
+		"name": "Google Sheets",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-sheets/apis.json"
 	},
 	{
-		"name": "AWS WorkSpaces",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-workspaces/apis.json"
+		"name": "Google Site Verification",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-site-verification/apis.json"
 	},
 	{
-		"name": "AWS X-Ray",
-		"url": "https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/aws-xray/apis.json"
+		"name": "Google Slides",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-slides/apis.json"
+	},
+	{
+		"name": "Google Spectrum Database",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-spectrum-database/apis.json"
+	},
+	{
+		"name": "Google Speech",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-speech/apis.json"
+	},
+	{
+		"name": "Google Stackdriver",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-stackdriver/apis.json"
+	},
+	{
+		"name": "Google Tag Manager",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-tag-manager/apis.json"
+	},
+	{
+		"name": "Google Task Queue",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-task-queue/apis.json"
+	},
+	{
+		"name": "Google Tasks",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-tasks/apis.json"
+	},
+	{
+		"name": "Google Translate",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-translate/apis.json"
+	},
+	{
+		"name": "Google URL Shortener",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google-url-shortener/apis.json"
+	},
+	{
+		"name": "Google+",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/google/apis.json"
+	},
+	{
+		"name": "YouTube",
+		"url": "https://raw.githubusercontent.com/api-stack/google/gh-pages/_data/api-commons/youtube/apis.json"
 	}]
 }
