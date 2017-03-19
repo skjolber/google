@@ -1,0 +1,768 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Fitness",
+		"description": "Stores and accesses user data in the fitness store from apps on any platform.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "www.googleapis.com",
+	"basePath": "/fitness/v1/users",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/{userId}/dataset:aggregate": {
+			"post": {
+				"summary": "Get Aggregate Data",
+				"description": "Aggregates data of a certain type or stream into buckets divided by a given type of boundary",
+				"operationId": "fitness.users.dataset.aggregate",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Aggregate data for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Aggregate Data"]
+			}
+		},
+		"/{userId}/dataSources": {
+			"get": {
+				"summary": "Get Data Sources",
+				"description": "Lists all data sources that are visible to the developer, using the OAuth scopes provided",
+				"operationId": "fitness.users.dataSources.list",
+				"parameters": [{
+					"in": "query",
+					"name": "dataTypeName",
+					"description": "The names of data types to include in the list"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "List data sources for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Data Source"]
+			},
+			"post": {
+				"summary": "Create Data Source",
+				"description": "Creates a new data source that is unique across all data sources belonging to this user",
+				"operationId": "fitness.users.dataSources.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Create the data source for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Data Source"]
+			}
+		},
+		"/{userId}/dataSources/{dataSourceId}": {
+			"delete": {
+				"summary": "Delete Data Source",
+				"description": "Deletes the specified data source",
+				"operationId": "fitness.users.dataSources.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source to delete"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Retrieve a data source for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Data Source"]
+			},
+			"get": {
+				"summary": "Get Data Source",
+				"description": "Returns the specified data source",
+				"operationId": "fitness.users.dataSources.get",
+				"parameters": [{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source to retrieve"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Retrieve a data source for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Data Source"]
+			},
+			"patch": {
+				"summary": "Update Data Source",
+				"description": "Updates the specified data source",
+				"operationId": "fitness.users.dataSources.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source to update"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Update the data source for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Data Source"]
+			},
+			"put": {
+				"summary": "Update Data Source",
+				"description": "Updates the specified data source",
+				"operationId": "fitness.users.dataSources.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source to update"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Update the data source for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Data Source"]
+			}
+		},
+		"/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}": {
+			"delete": {
+				"summary": "Delete All Data Source Datasets",
+				"description": "Performs an inclusive delete of all data points whose start and end times have any overlap with the time range specified by the dataset ID",
+				"operationId": "fitness.users.dataSources.datasets.delete",
+				"parameters": [{
+					"in": "query",
+					"name": "currentTimeMillis",
+					"description": "The client's current time in milliseconds since epoch"
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch"
+				},
+				{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source that created the dataset"
+				},
+				{
+					"in": "query",
+					"name": "modifiedTimeMillis",
+					"description": "When the operation was performed on the client"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Delete a dataset for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			},
+			"get": {
+				"summary": "Get All Data Source Datasets",
+				"description": "Returns a dataset containing all data points whose start and end times overlap with the specified range of the dataset minimum start time and maximum end time",
+				"operationId": "fitness.users.dataSources.datasets.get",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch"
+				},
+				{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source that created the dataset"
+				},
+				{
+					"in": "query",
+					"name": "limit",
+					"description": "If specified, no more than this many data points will be included in the dataset"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The continuation token, which is used to page through large datasets"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Retrieve a dataset for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			},
+			"patch": {
+				"summary": "Add Data Point To Data Source Datasets",
+				"description": "Adds data points to a dataset",
+				"operationId": "fitness.users.dataSources.datasets.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "query",
+					"name": "currentTimeMillis",
+					"description": "The client's current time in milliseconds since epoch"
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch"
+				},
+				{
+					"in": "path",
+					"name": "dataSourceId",
+					"description": "The data stream ID of the data source that created the dataset"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Patch a dataset for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			}
+		},
+		"/{userId}/sessions": {
+			"get": {
+				"summary": "Get Sessions",
+				"description": "Lists sessions previously created",
+				"operationId": "fitness.users.sessions.list",
+				"parameters": [{
+					"in": "query",
+					"name": "endTime",
+					"description": "An RFC3339 timestamp"
+				},
+				{
+					"in": "query",
+					"name": "includeDeleted",
+					"description": "If true, deleted sessions will be returned"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The continuation token, which is used to page through large result sets"
+				},
+				{
+					"in": "query",
+					"name": "startTime",
+					"description": "An RFC3339 timestamp"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "List sessions for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Session"]
+			}
+		},
+		"/{userId}/sessions/{sessionId}": {
+			"delete": {
+				"summary": "Delete Session",
+				"description": "Deletes a session specified by the given session ID",
+				"operationId": "fitness.users.sessions.delete",
+				"parameters": [{
+					"in": "query",
+					"name": "currentTimeMillis",
+					"description": "The client's current time in milliseconds since epoch"
+				},
+				{
+					"in": "path",
+					"name": "sessionId",
+					"description": "The ID of the session to be deleted"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Delete a session for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Session"]
+			},
+			"put": {
+				"summary": "Update Session",
+				"description": "Updates or insert a given session",
+				"operationId": "fitness.users.sessions.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "query",
+					"name": "currentTimeMillis",
+					"description": "The client's current time in milliseconds since epoch"
+				},
+				{
+					"in": "path",
+					"name": "sessionId",
+					"description": "The ID of the session to be created"
+				},
+				{
+					"in": "path",
+					"name": "userId",
+					"description": "Create sessions for the person identified"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Session"]
+			}
+		}
+	},
+	"definitions": {
+		"AggregateBucket": {
+			"properties": {
+				"activity": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"dataset": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"endTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"startTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"AggregateBy": {
+			"properties": {
+				"dataSourceId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"dataTypeName": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"AggregateRequest": {
+			"properties": {
+				"aggregateBy": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"endTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"filteredDataQualityStandard": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"startTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"AggregateResponse": {
+			"properties": {
+				"bucket": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"Application": {
+			"properties": {
+				"detailsUrl": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"packageName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"BucketByActivity": {
+			"properties": {
+				"activityDataSourceId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"minDurationMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"BucketBySession": {
+			"properties": {
+				"minDurationMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"BucketByTime": {
+			"properties": {
+				"durationMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"BucketByTimePeriod": {
+			"properties": {
+				"timeZoneId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"DataPoint": {
+			"properties": {
+				"computationTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"dataTypeName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"endTimeNanos": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"modifiedTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"originDataSourceId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"rawTimestampNanos": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"startTimeNanos": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"DataSource": {
+			"properties": {
+				"dataQualityStandard": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"dataStreamId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"dataStreamName": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"DataType": {
+			"properties": {
+				"field": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"DataTypeField": {
+			"properties": {
+				"format": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"optional": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"Dataset": {
+			"properties": {
+				"dataSourceId": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"maxEndTimeNs": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"minStartTimeNs": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"point": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"Device": {
+			"properties": {
+				"manufacturer": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"model": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"uid": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListDataSourcesResponse": {
+			"properties": {
+				"dataSource": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ListSessionsResponse": {
+			"properties": {
+				"deletedSession": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"hasMoreData": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"session": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"MapValue": {
+			"properties": {
+				"fpVal": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"Session": {
+			"properties": {
+				"activeTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"activityType": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"endTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"modifiedTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"startTimeMillis": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"Value": {
+			"properties": {
+				"fpVal": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"intVal": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"mapVal": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"stringVal": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		},
+		"ValueMapValEntry": {
+			"properties": {
+				"key": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		}
+	}
+}
