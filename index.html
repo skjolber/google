@@ -5,17 +5,18 @@ title: Google
 
 <h1>Google</h1>
 <p><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-logo.jpg" align="right" width="250" style="padding: 15p;" /></p>
-<p>This is my work to define the APIs offered by Amazon Web Services. This work is all defined used <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI Spec</a>, and indexed using <a href="http://apisjson.org/">APIs.json</a>. You can find an individual APIs.json index for each of the individual servies, as wel as a <a href="https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/apis.json">complete APIs.json for this entire collection</a>.</p>
+<p>This is my work to define the APIs offered by Amazon Web Services. This work is all defined used <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI Spec</a>, and indexed using <a href="http://apisjson.org/">APIs.json</a>. You can find an individual APIs.json index for each of the individual servies, as wel as a <a href="https://raw.githubusercontent.com/api-stack/google/master/_data/apis.json">complete APIs.json for this entire collection</a>.</p>
 <p>While my intention with this is to eventually define a machine readable definition of all the Amazon Web Services that can be used at run-time, right now I only have the surface area designed. I am working to profile all the headers, parameters, as well as the underlying data model, and error responses.</p>
-<p>This project is all <a href="https://github.com/api-stack/amazon-web-services">hosted on Github</a>, and if you put to use and improve on any of the definitions, please make sure and contribute back so everyone can benefit from the contributions. Ideally AWS would maintain this, but until that happens, we all need to step up and make sure these valuable serices are defined in a machined readable way.</p>
+<p>This project is all <a href="https://github.com/api-stack/google">hosted on Github</a>, and if you put to use and improve on any of the definitions, please make sure and contribute back so everyone can benefit from the contributions. Ideally AWS would maintain this, but until that happens, we all need to step up and make sure these valuable serices are defined in a machined readable way.</p>
 <p>Currently I have 88 APIs, across 66 services with 2,210 unique resources included in my Amazon Web Services API collection.</p>
+
 {% assign index = site.data.apis %}
 {% assign apijson = index[0] %}
 {% assign contents = site.data.api-commons %}
 
 {% for api in index.include %}
 
-  {% assign path = api.url  | replace: 'https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/','' %}
+  {% assign path = api.url  | replace: 'https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/','' %}
   {% assign path = path  | replace: '/apis.json','' %}
 
   {% for api in contents %}
@@ -126,7 +127,7 @@ title: Google
                                 {% if property.type == 'x-openapi-spec' %}
 
                                   {% assign openapi_spec_url = property.url %}
-                                  {% assign pathname = openapi_spec_url | replace: 'https://raw.githubusercontent.com/api-stack/amazon-web-services/master/_data/api-commons/','' %}
+                                  {% assign pathname = openapi_spec_url | replace: 'https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/','' %}
                                   {% assign pathplusfolder = path | append:'/' %}
                                   {% assign pathname = pathname | replace: '.json','' %}
                                   {% assign pathname = pathname | replace: pathplusfolder,'' %}
