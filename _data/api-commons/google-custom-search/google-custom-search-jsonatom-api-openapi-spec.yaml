@@ -1,0 +1,348 @@
+swagger: "2.0"
+info:
+  title: CustomSearch
+  description: Lets you search over a website or collection of websites
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: www.googleapis.com
+basePath: /customsearch
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1:
+    get:
+      summary: Search
+      description: Returns metadata about the search performed, metadata about the
+        custom search engine used for the search, and the search results
+      operationId: search.cse.list
+      parameters:
+      - in: query
+        name: c2coff
+        description: Turns off the translation between zh-CN and zh-TW
+      - in: query
+        name: cr
+        description: Country restrict(s)
+      - in: query
+        name: cref
+        description: The URL of a linked custom search engine
+      - in: query
+        name: cx
+        description: The custom search engine ID to scope this search query
+      - in: query
+        name: dateRestrict
+        description: Specifies all search results are from a time period
+      - in: query
+        name: exactTerms
+        description: Identifies a phrase that all documents in the search results
+          must contain
+      - in: query
+        name: excludeTerms
+        description: Identifies a word or phrase that should not appear in any documents
+          in the search results
+      - in: query
+        name: fileType
+        description: Returns images of a specified type
+      - in: query
+        name: filter
+        description: Controls turning on or off the duplicate content filter
+      - in: query
+        name: gl
+        description: Geolocation of end user
+      - in: query
+        name: googlehost
+        description: The local Google domain to use to perform the search
+      - in: query
+        name: highRange
+        description: Creates a range in form as_nlo value
+      - in: query
+        name: hl
+        description: Sets the user interface language
+      - in: query
+        name: hq
+        description: Appends the extra query terms to the query
+      - in: query
+        name: imgColorType
+        description: 'Returns black and white, grayscale, or color images: mono, gray,
+          and color'
+      - in: query
+        name: imgDominantColor
+        description: 'Returns images of a specific dominant color: yellow, green,
+          teal, blue, purple, pink, white, gray, black and brown'
+      - in: query
+        name: imgSize
+        description: 'Returns images of a specified size, where size can be one of:
+          icon, small, medium, large, xlarge, xxlarge, and huge'
+      - in: query
+        name: imgType
+        description: 'Returns images of a type, which can be one of: clipart, face,
+          lineart, news, and photo'
+      - in: query
+        name: linkSite
+        description: Specifies that all search results should contain a link to a
+          particular URL
+      - in: query
+        name: lowRange
+        description: Creates a range in form as_nlo value
+      - in: query
+        name: lr
+        description: The language restriction for the search results
+      - in: query
+        name: num
+        description: Number of search results to return
+      - in: query
+        name: orTerms
+        description: Provides additional search terms to check for in a document,
+          where each document in the search results must contain at least one of the
+          additional search terms
+      - in: query
+        name: q
+        description: Query
+      - in: query
+        name: relatedSite
+        description: Specifies that all search results should be pages that are related
+          to the specified URL
+      - in: query
+        name: rights
+        description: Filters based on licensing
+      - in: query
+        name: safe
+        description: Search safety level
+      - in: query
+        name: searchType
+        description: 'Specifies the search type: image'
+      - in: query
+        name: siteSearch
+        description: Specifies all search results should be pages from a given site
+      - in: query
+        name: siteSearchFilter
+        description: Controls whether to include or exclude results from the site
+          named in the as_sitesearch parameter
+      - in: query
+        name: sort
+        description: The sort expression to apply to the results
+      - in: query
+        name: start
+        description: The index of the first result to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Search
+definitions:
+  Context:
+    properties:
+      facets:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  Promotion:
+    properties:
+      bodyLines:
+        description: This is a default description.
+        type: parameters
+      displayLink:
+        description: This is a default description.
+        type: parameters
+      htmlTitle:
+        description: This is a default description.
+        type: parameters
+      image:
+        description: This is a default description.
+        type: parameters
+      link:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  Query:
+    properties:
+      count:
+        description: This is a default description.
+        type: parameters
+      cr:
+        description: This is a default description.
+        type: parameters
+      cref:
+        description: This is a default description.
+        type: parameters
+      cx:
+        description: This is a default description.
+        type: parameters
+      dateRestrict:
+        description: This is a default description.
+        type: parameters
+      disableCnTwTranslation:
+        description: This is a default description.
+        type: parameters
+      exactTerms:
+        description: This is a default description.
+        type: parameters
+      excludeTerms:
+        description: This is a default description.
+        type: parameters
+      fileType:
+        description: This is a default description.
+        type: parameters
+      filter:
+        description: This is a default description.
+        type: parameters
+      gl:
+        description: This is a default description.
+        type: parameters
+      googleHost:
+        description: This is a default description.
+        type: parameters
+      highRange:
+        description: This is a default description.
+        type: parameters
+      hl:
+        description: This is a default description.
+        type: parameters
+      hq:
+        description: This is a default description.
+        type: parameters
+      imgColorType:
+        description: This is a default description.
+        type: parameters
+      imgDominantColor:
+        description: This is a default description.
+        type: parameters
+      imgSize:
+        description: This is a default description.
+        type: parameters
+      imgType:
+        description: This is a default description.
+        type: parameters
+      inputEncoding:
+        description: This is a default description.
+        type: parameters
+      language:
+        description: This is a default description.
+        type: parameters
+      linkSite:
+        description: This is a default description.
+        type: parameters
+      lowRange:
+        description: This is a default description.
+        type: parameters
+      orTerms:
+        description: This is a default description.
+        type: parameters
+      outputEncoding:
+        description: This is a default description.
+        type: parameters
+      relatedSite:
+        description: This is a default description.
+        type: parameters
+      rights:
+        description: This is a default description.
+        type: parameters
+      safe:
+        description: This is a default description.
+        type: parameters
+      searchTerms:
+        description: This is a default description.
+        type: parameters
+      searchType:
+        description: This is a default description.
+        type: parameters
+      siteSearch:
+        description: This is a default description.
+        type: parameters
+      siteSearchFilter:
+        description: This is a default description.
+        type: parameters
+      sort:
+        description: This is a default description.
+        type: parameters
+      startIndex:
+        description: This is a default description.
+        type: parameters
+      startPage:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      totalResults:
+        description: This is a default description.
+        type: parameters
+  Result:
+    properties:
+      cacheId:
+        description: This is a default description.
+        type: parameters
+      displayLink:
+        description: This is a default description.
+        type: parameters
+      fileFormat:
+        description: This is a default description.
+        type: parameters
+      formattedUrl:
+        description: This is a default description.
+        type: parameters
+      htmlFormattedUrl:
+        description: This is a default description.
+        type: parameters
+      htmlSnippet:
+        description: This is a default description.
+        type: parameters
+      htmlTitle:
+        description: This is a default description.
+        type: parameters
+      image:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      labels:
+        description: This is a default description.
+        type: parameters
+      link:
+        description: This is a default description.
+        type: parameters
+      mime:
+        description: This is a default description.
+        type: parameters
+      pagemap:
+        description: This is a default description.
+        type: parameters
+      snippet:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  Search:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      promotions:
+        description: This is a default description.
+        type: parameters
+      queries:
+        description: This is a default description.
+        type: parameters
+      searchInformation:
+        description: This is a default description.
+        type: parameters
+      spelling:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
