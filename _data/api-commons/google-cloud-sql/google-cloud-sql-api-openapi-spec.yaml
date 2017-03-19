@@ -1,0 +1,1474 @@
+swagger: "2.0"
+info:
+  title: Cloud SQL Administration
+  description: Creates and configures Cloud SQL instances, which provide fully-managed
+    MySQL databases.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1beta4
+host: www.googleapis.com
+basePath: /sql/v1beta4
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /flags:
+    get:
+      summary: ""
+      description: List all available database flags for Google Cloud SQL instances
+      operationId: sql.flags.list
+      parameters:
+      - in: query
+        name: databaseVersion
+        description: Database version for flag retrieval
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances:
+    get:
+      summary: ""
+      description: Lists instances under a given project in the alphabetical order
+        of the instance name
+      operationId: sql.instances.list
+      parameters:
+      - in: query
+        name: filter
+        description: A filter expression for filtering listed instances
+      - in: query
+        name: maxResults
+        description: The maximum number of results to return per response
+      - in: query
+        name: pageToken
+        description: A previously-returned page token representing part of the larger
+          set of results to view
+      - in: path
+        name: project
+        description: Project ID of the project for which to list Cloud SQL instances
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    post:
+      summary: ""
+      description: Creates a new Cloud SQL instance
+      operationId: sql.instances.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: project
+        description: Project ID of the project to which the newly created Cloud SQL
+          instances should belong
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}:
+    delete:
+      summary: ""
+      description: Deletes a Cloud SQL instance
+      operationId: sql.instances.delete
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    get:
+      summary: ""
+      description: Retrieves a resource containing information about a Cloud SQL instance
+      operationId: sql.instances.get
+      parameters:
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    patch:
+      summary: ""
+      description: Updates settings of a Cloud SQL instance
+      operationId: sql.instances.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    put:
+      summary: ""
+      description: Updates settings of a Cloud SQL instance
+      operationId: sql.instances.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/backupRuns:
+    get:
+      summary: ""
+      description: Lists all backup runs associated with a given instance and configuration
+        in the reverse chronological order of the enqueued time
+      operationId: sql.backupRuns.list
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: query
+        name: maxResults
+        description: Maximum number of backup runs per response
+      - in: query
+        name: pageToken
+        description: A previously-returned page token representing part of the larger
+          set of results to view
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    post:
+      summary: ""
+      description: Creates a new backup run on demand
+      operationId: sql.backupRuns.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/backupRuns/{id}:
+    delete:
+      summary: ""
+      description: Deletes the backup taken by a backup run
+      operationId: sql.backupRuns.delete
+      parameters:
+      - in: path
+        name: id
+        description: The ID of the Backup Run to delete
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    get:
+      summary: ""
+      description: Retrieves a resource containing information about a backup run
+      operationId: sql.backupRuns.get
+      parameters:
+      - in: path
+        name: id
+        description: The ID of this Backup Run
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/clone:
+    post:
+      summary: ""
+      description: Creates a Cloud SQL instance as a clone of the source instance
+      operationId: sql.instances.clone
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: The ID of the Cloud SQL instance to be cloned (source)
+      - in: path
+        name: project
+        description: Project ID of the source as well as the clone Cloud SQL instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/createEphemeral:
+    post:
+      summary: ""
+      description: Generates a short-lived X509 certificate containing the provided
+        public key and signed by a private key specific to the target instance
+      operationId: sql.sslCerts.createEphemeral
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the Cloud SQL project
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/databases:
+    get:
+      summary: ""
+      description: Lists databases in the specified Cloud SQL instance
+      operationId: sql.databases.list
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project for which to list Cloud SQL instances
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    post:
+      summary: ""
+      description: Inserts a resource containing information about a database inside
+        a Cloud SQL instance
+      operationId: sql.databases.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/databases/{database}:
+    delete:
+      summary: ""
+      description: Deletes a database from a Cloud SQL instance
+      operationId: sql.databases.delete
+      parameters:
+      - in: path
+        name: database
+        description: Name of the database to be deleted in the instance
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    get:
+      summary: ""
+      description: Retrieves a resource containing information about a database inside
+        a Cloud SQL instance
+      operationId: sql.databases.get
+      parameters:
+      - in: path
+        name: database
+        description: Name of the database in the instance
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    patch:
+      summary: ""
+      description: Updates a resource containing information about a database inside
+        a Cloud SQL instance
+      operationId: sql.databases.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: database
+        description: Name of the database to be updated in the instance
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    put:
+      summary: ""
+      description: Updates a resource containing information about a database inside
+        a Cloud SQL instance
+      operationId: sql.databases.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: database
+        description: Name of the database to be updated in the instance
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/export:
+    post:
+      summary: ""
+      description: Exports data from a Cloud SQL instance to a Google Cloud Storage
+        bucket as a MySQL dump file
+      operationId: sql.instances.export
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance to be exported
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/failover:
+    post:
+      summary: ""
+      description: Failover the instance to its failover replica instance
+      operationId: sql.instances.failover
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: ID of the project that contains the read replica
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/import:
+    post:
+      summary: ""
+      description: Imports data into a Cloud SQL instance from a MySQL dump file in
+        Google Cloud Storage
+      operationId: sql.instances.import
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/promoteReplica:
+    post:
+      summary: ""
+      description: Promotes the read replica instance to be a stand-alone Cloud SQL
+        instance
+      operationId: sql.instances.promoteReplica
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL read replica instance name
+      - in: path
+        name: project
+        description: ID of the project that contains the read replica
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/resetSslConfig:
+    post:
+      summary: ""
+      description: Deletes all client certificates and generates a new server SSL
+        certificate for the instance
+      operationId: sql.instances.resetSslConfig
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/restart:
+    post:
+      summary: ""
+      description: Restarts a Cloud SQL instance
+      operationId: sql.instances.restart
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance to be restarted
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/restoreBackup:
+    post:
+      summary: ""
+      description: Restores a backup of a Cloud SQL instance
+      operationId: sql.instances.restoreBackup
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/sslCerts:
+    get:
+      summary: ""
+      description: Lists all of the current SSL certificates for the instance
+      operationId: sql.sslCerts.list
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project for which to list Cloud SQL instances
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    post:
+      summary: ""
+      description: Creates an SSL certificate and returns it along with the private
+        key and server certificate authority
+      operationId: sql.sslCerts.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project to which the newly created Cloud SQL
+          instances should belong
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}:
+    delete:
+      summary: ""
+      description: Deletes the SSL certificate
+      operationId: sql.sslCerts.delete
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance to be deleted
+      - in: path
+        name: sha1Fingerprint
+        description: Sha1 FingerPrint
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    get:
+      summary: ""
+      description: Retrieves a particular SSL certificate
+      operationId: sql.sslCerts.get
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      - in: path
+        name: sha1Fingerprint
+        description: Sha1 FingerPrint
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/startReplica:
+    post:
+      summary: ""
+      description: Starts the replication in the read replica instance
+      operationId: sql.instances.startReplica
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL read replica instance name
+      - in: path
+        name: project
+        description: ID of the project that contains the read replica
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/stopReplica:
+    post:
+      summary: ""
+      description: Stops the replication in the read replica instance
+      operationId: sql.instances.stopReplica
+      parameters:
+      - in: path
+        name: instance
+        description: Cloud SQL read replica instance name
+      - in: path
+        name: project
+        description: ID of the project that contains the read replica
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/truncateLog:
+    post:
+      summary: ""
+      description: Truncate MySQL general and slow query log tables
+      operationId: sql.instances.truncateLog
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Cloud SQL instance ID
+      - in: path
+        name: project
+        description: Project ID of the Cloud SQL project
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/instances/{instance}/users:
+    delete:
+      summary: ""
+      description: Deletes a user from a Cloud SQL instance
+      operationId: sql.users.delete
+      parameters:
+      - in: query
+        name: host
+        description: Host of the user in the instance
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: query
+        name: name
+        description: Name of the user in the instance
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    get:
+      summary: ""
+      description: Lists users in the specified Cloud SQL instance
+      operationId: sql.users.list
+      parameters:
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    post:
+      summary: ""
+      description: Creates a new user in a Cloud SQL instance
+      operationId: sql.users.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+    put:
+      summary: ""
+      description: Updates an existing user in a Cloud SQL instance
+      operationId: sql.users.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: host
+        description: Host of the user in the instance
+      - in: path
+        name: instance
+        description: Database instance ID
+      - in: query
+        name: name
+        description: Name of the user in the instance
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/operations:
+    get:
+      summary: ""
+      description: Lists all instance operations that have been performed on the given
+        Cloud SQL instance in the reverse chronological order of the start time
+      operationId: sql.operations.list
+      parameters:
+      - in: query
+        name: instance
+        description: Cloud SQL instance ID
+      - in: query
+        name: maxResults
+        description: Maximum number of operations per response
+      - in: query
+        name: pageToken
+        description: A previously-returned page token representing part of the larger
+          set of results to view
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/operations/{operation}:
+    get:
+      summary: ""
+      description: Retrieves an instance operation that has been performed on an instance
+      operationId: sql.operations.get
+      parameters:
+      - in: path
+        name: operation
+        description: Instance operation ID
+      - in: path
+        name: project
+        description: Project ID of the project that contains the instance
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /projects/{project}/tiers:
+    get:
+      summary: ""
+      description: Lists all available service tiers for Google Cloud SQL, for example
+        D1, D2
+      operationId: sql.tiers.list
+      parameters:
+      - in: path
+        name: project
+        description: Project ID of the project for which to list tiers
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+definitions:
+  AclEntry:
+    properties:
+      expirationTime:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      value:
+        description: This is a default description.
+        type: parameters
+  BackupConfiguration:
+    properties:
+      binaryLogEnabled:
+        description: This is a default description.
+        type: parameters
+      enabled:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      startTime:
+        description: This is a default description.
+        type: parameters
+  BackupRun:
+    properties:
+      description:
+        description: This is a default description.
+        type: parameters
+      endTime:
+        description: This is a default description.
+        type: parameters
+      enqueuedTime:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      instance:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      startTime:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+      windowStartTime:
+        description: This is a default description.
+        type: parameters
+  BackupRunsListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  BinLogCoordinates:
+    properties:
+      binLogFileName:
+        description: This is a default description.
+        type: parameters
+      binLogPosition:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  CloneContext:
+    properties:
+      destinationInstanceName:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Database:
+    properties:
+      charset:
+        description: This is a default description.
+        type: parameters
+      collation:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      instance:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      project:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+  DatabaseFlags:
+    properties:
+      name:
+        description: This is a default description.
+        type: parameters
+      value:
+        description: This is a default description.
+        type: parameters
+  DatabaseInstance:
+    properties:
+      backendType:
+        description: This is a default description.
+        type: parameters
+      connectionName:
+        description: This is a default description.
+        type: parameters
+      currentDiskSize:
+        description: This is a default description.
+        type: parameters
+      databaseVersion:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      failoverReplica:
+        description: This is a default description.
+        type: parameters
+      instanceType:
+        description: This is a default description.
+        type: parameters
+      ipAddresses:
+        description: This is a default description.
+        type: parameters
+      ipv6Address:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      masterInstanceName:
+        description: This is a default description.
+        type: parameters
+      maxDiskSize:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      project:
+        description: This is a default description.
+        type: parameters
+      region:
+        description: This is a default description.
+        type: parameters
+      replicaNames:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      serviceAccountEmailAddress:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      suspensionReason:
+        description: This is a default description.
+        type: parameters
+  DatabasesListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  ExportContext:
+    properties:
+      csvExportOptions:
+        description: This is a default description.
+        type: parameters
+      databases:
+        description: This is a default description.
+        type: parameters
+      fileType:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      sqlExportOptions:
+        description: This is a default description.
+        type: parameters
+      uri:
+        description: This is a default description.
+        type: parameters
+  FailoverContext:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      settingsVersion:
+        description: This is a default description.
+        type: parameters
+  Flag:
+    properties:
+      allowedStringValues:
+        description: This is a default description.
+        type: parameters
+      appliesTo:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      maxValue:
+        description: This is a default description.
+        type: parameters
+      minValue:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      requiresRestart:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+  FlagsListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  ImportContext:
+    properties:
+      csvImportOptions:
+        description: This is a default description.
+        type: parameters
+      database:
+        description: This is a default description.
+        type: parameters
+      fileType:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      uri:
+        description: This is a default description.
+        type: parameters
+  InstancesCloneRequest:
+    properties: []
+  InstancesExportRequest:
+    properties: []
+  InstancesFailoverRequest:
+    properties: []
+  InstancesImportRequest:
+    properties: []
+  InstancesListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  InstancesRestoreBackupRequest:
+    properties: []
+  InstancesTruncateLogRequest:
+    properties: []
+  IpConfiguration:
+    properties:
+      authorizedNetworks:
+        description: This is a default description.
+        type: parameters
+      ipv4Enabled:
+        description: This is a default description.
+        type: parameters
+      requireSsl:
+        description: This is a default description.
+        type: parameters
+  IpMapping:
+    properties:
+      ipAddress:
+        description: This is a default description.
+        type: parameters
+      timeToRetire:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+  Labels:
+    properties:
+      key:
+        description: This is a default description.
+        type: parameters
+      value:
+        description: This is a default description.
+        type: parameters
+  LocationPreference:
+    properties:
+      followGaeApplication:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      zone:
+        description: This is a default description.
+        type: parameters
+  MaintenanceWindow:
+    properties:
+      day:
+        description: This is a default description.
+        type: parameters
+      hour:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      updateTrack:
+        description: This is a default description.
+        type: parameters
+  MySqlReplicaConfiguration:
+    properties:
+      caCertificate:
+        description: This is a default description.
+        type: parameters
+      clientCertificate:
+        description: This is a default description.
+        type: parameters
+      clientKey:
+        description: This is a default description.
+        type: parameters
+      connectRetryInterval:
+        description: This is a default description.
+        type: parameters
+      dumpFilePath:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      masterHeartbeatPeriod:
+        description: This is a default description.
+        type: parameters
+      password:
+        description: This is a default description.
+        type: parameters
+      sslCipher:
+        description: This is a default description.
+        type: parameters
+      username:
+        description: This is a default description.
+        type: parameters
+      verifyServerCertificate:
+        description: This is a default description.
+        type: parameters
+  OnPremisesConfiguration:
+    properties:
+      hostPort:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Operation:
+    properties:
+      endTime:
+        description: This is a default description.
+        type: parameters
+      insertTime:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      operationType:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      startTime:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      targetId:
+        description: This is a default description.
+        type: parameters
+      targetLink:
+        description: This is a default description.
+        type: parameters
+      targetProject:
+        description: This is a default description.
+        type: parameters
+      user:
+        description: This is a default description.
+        type: parameters
+  OperationError:
+    properties:
+      code:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      message:
+        description: This is a default description.
+        type: parameters
+  OperationErrors:
+    properties:
+      errors:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  OperationsListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ReplicaConfiguration:
+    properties:
+      failoverTarget:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  RestoreBackupContext:
+    properties:
+      backupRunId:
+        description: This is a default description.
+        type: parameters
+      instanceId:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Settings:
+    properties:
+      activationPolicy:
+        description: This is a default description.
+        type: parameters
+      authorizedGaeApplications:
+        description: This is a default description.
+        type: parameters
+      availabilityType:
+        description: This is a default description.
+        type: parameters
+      crashSafeReplicationEnabled:
+        description: This is a default description.
+        type: parameters
+      dataDiskSizeGb:
+        description: This is a default description.
+        type: parameters
+      dataDiskType:
+        description: This is a default description.
+        type: parameters
+      databaseFlags:
+        description: This is a default description.
+        type: parameters
+      databaseReplicationEnabled:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      labels:
+        description: This is a default description.
+        type: parameters
+      pricingPlan:
+        description: This is a default description.
+        type: parameters
+      replicationType:
+        description: This is a default description.
+        type: parameters
+      settingsVersion:
+        description: This is a default description.
+        type: parameters
+      storageAutoResize:
+        description: This is a default description.
+        type: parameters
+      storageAutoResizeLimit:
+        description: This is a default description.
+        type: parameters
+      tier:
+        description: This is a default description.
+        type: parameters
+  SslCert:
+    properties:
+      cert:
+        description: This is a default description.
+        type: parameters
+      certSerialNumber:
+        description: This is a default description.
+        type: parameters
+      commonName:
+        description: This is a default description.
+        type: parameters
+      createTime:
+        description: This is a default description.
+        type: parameters
+      expirationTime:
+        description: This is a default description.
+        type: parameters
+      instance:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      sha1Fingerprint:
+        description: This is a default description.
+        type: parameters
+  SslCertDetail:
+    properties:
+      certPrivateKey:
+        description: This is a default description.
+        type: parameters
+  SslCertsCreateEphemeralRequest:
+    properties:
+      public_key:
+        description: This is a default description.
+        type: parameters
+  SslCertsInsertRequest:
+    properties:
+      commonName:
+        description: This is a default description.
+        type: parameters
+  SslCertsInsertResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+  SslCertsListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Tier:
+    properties:
+      DiskQuota:
+        description: This is a default description.
+        type: parameters
+      RAM:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      region:
+        description: This is a default description.
+        type: parameters
+      tier:
+        description: This is a default description.
+        type: parameters
+  TiersListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  TruncateLogContext:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      logType:
+        description: This is a default description.
+        type: parameters
+  User:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      host:
+        description: This is a default description.
+        type: parameters
+      instance:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      password:
+        description: This is a default description.
+        type: parameters
+      project:
+        description: This is a default description.
+        type: parameters
+  UsersListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
