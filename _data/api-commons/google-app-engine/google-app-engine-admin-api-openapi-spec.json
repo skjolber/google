@@ -1,0 +1,1656 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google App Engine Admin",
+		"description": "Provisions and manages App Engine applications.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "appengine.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/apps": {
+			"post": {
+				"summary": "Create App",
+				"description": "Creates an App Engine application for a Google Cloud Platform project",
+				"operationId": "appengine.apps.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Application"]
+			}
+		},
+		"/v1/apps/{appsId}": {
+			"get": {
+				"summary": "Get App",
+				"description": "Gets information about an application",
+				"operationId": "appengine.apps.get",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Application"]
+			},
+			"patch": {
+				"summary": "Update App",
+				"description": "Updates the specified Application resource",
+				"operationId": "appengine.apps.patch",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "query",
+					"name": "updateMask",
+					"description": "Standard field mask for the set of fields to be updated"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Application"]
+			}
+		},
+		"/v1/apps/{appsId}/locations": {
+			"get": {
+				"summary": "Get App Locations",
+				"description": "Lists information about the supported locations for this service",
+				"operationId": "appengine.apps.locations.list",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "query",
+					"name": "filter",
+					"description": "The standard list filter"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "The standard list page size"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The standard list page token"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Application Location"]
+			}
+		},
+		"/v1/apps/{appsId}/locations/{locationsId}": {
+			"get": {
+				"summary": "Get App Location",
+				"description": "Get information about a location",
+				"operationId": "appengine.apps.locations.get",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "locationsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Application Location"]
+			}
+		},
+		"/v1/apps/{appsId}/operations": {
+			"get": {
+				"summary": "Get Operations",
+				"description": "Lists operations that match the specified filter in the request",
+				"operationId": "appengine.apps.operations.list",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "query",
+					"name": "filter",
+					"description": "The standard list filter"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "The standard list page size"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The standard list page token"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Operation"]
+			}
+		},
+		"/v1/apps/{appsId}/operations/{operationsId}": {
+			"get": {
+				"summary": "Get State",
+				"description": "Gets the latest state of a long-running operation",
+				"operationId": "appengine.apps.operations.get",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "operationsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["State"]
+			}
+		},
+		"/v1/apps/{appsId}/services": {
+			"get": {
+				"summary": "Get Services",
+				"description": "Lists all the services in the application",
+				"operationId": "appengine.apps.services.list",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `parent`"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Maximum results to return per page"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Continuation token for fetching the next page of results"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Service"]
+			}
+		},
+		"/v1/apps/{appsId}/services/{servicesId}": {
+			"delete": {
+				"summary": "Delete Service",
+				"description": "Deletes the specified service and all enclosed versions",
+				"operationId": "appengine.apps.services.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Service"]
+			},
+			"get": {
+				"summary": "Get Configuration",
+				"description": "Gets the current configuration of the specified service",
+				"operationId": "appengine.apps.services.get",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Configuration"]
+			},
+			"patch": {
+				"summary": "Update Configuration",
+				"description": "Updates the configuration of the specified service",
+				"operationId": "appengine.apps.services.patch",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "query",
+					"name": "migrateTraffic",
+					"description": "Set to true to gradually shift traffic to one or more versions that you specify"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "query",
+					"name": "updateMask",
+					"description": "Standard field mask for the set of fields to be updated"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Configuration"]
+			}
+		},
+		"/v1/apps/{appsId}/services/{servicesId}/versions": {
+			"get": {
+				"summary": "Get Versions",
+				"description": "Lists the versions of a service",
+				"operationId": "appengine.apps.services.versions.list",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `parent`"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Maximum results to return per page"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Continuation token for fetching the next page of results"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `parent`"
+				},
+				{
+					"in": "query",
+					"name": "view",
+					"description": "Controls the set of fields returned in the List response"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Version"]
+			},
+			"post": {
+				"summary": "Deploy Version",
+				"description": "Deploys code and resource files to a new version",
+				"operationId": "appengine.apps.services.versions.create",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `parent`"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `parent`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Version"]
+			}
+		},
+		"/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}": {
+			"delete": {
+				"summary": "Delete Version",
+				"description": "Deletes an existing Version resource",
+				"operationId": "appengine.apps.services.versions.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Version"]
+			},
+			"get": {
+				"summary": "Get Version",
+				"description": "Gets the specified Version resource",
+				"operationId": "appengine.apps.services.versions.get",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "query",
+					"name": "view",
+					"description": "Controls the set of fields returned in the Get response"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Version"]
+			},
+			"patch": {
+				"summary": "Update Version",
+				"description": "Updates the specified Version resource",
+				"operationId": "appengine.apps.services.versions.patch",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "query",
+					"name": "updateMask",
+					"description": "Standard field mask for the set of fields to be updated"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Version"]
+			}
+		},
+		"/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances": {
+			"get": {
+				"summary": "Get Instances",
+				"description": "Lists the instances of a version",
+				"operationId": "appengine.apps.services.versions.instances.list",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `parent`"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Maximum results to return per page"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Continuation token for fetching the next page of results"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `parent`"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `parent`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Instance"]
+			}
+		},
+		"/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}": {
+			"delete": {
+				"summary": "Stop Instance",
+				"description": "Stops a running instance",
+				"operationId": "appengine.apps.services.versions.instances.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "instancesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Instance"]
+			},
+			"get": {
+				"summary": "Get Instance",
+				"description": "Gets instance information",
+				"operationId": "appengine.apps.services.versions.instances.get",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "instancesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Instance"]
+			}
+		},
+		"/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug": {
+			"post": {
+				"summary": "Enable Debugging",
+				"description": "Enables debugging on a VM instance",
+				"operationId": "appengine.apps.services.versions.instances.debug",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "instancesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "servicesId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "path",
+					"name": "versionsId",
+					"description": "Part of `name`"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugging"]
+			}
+		},
+		"/v1/apps/{appsId}:repair": {
+			"post": {
+				"summary": "Repair App",
+				"description": "Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account",
+				"operationId": "appengine.apps.repair",
+				"parameters": [{
+					"in": "path",
+					"name": "appsId",
+					"description": "Part of `name`"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["App"]
+			}
+		}
+	},
+	"definitions": {
+		"ApiConfigHandler": {
+			"properties": {
+				"authFailAction": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"login": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"script": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"securityLevel": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"url": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ApiEndpointHandler": {
+			"properties": {
+				"scriptPath": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Application": {
+			"properties": {
+				"authDomain": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"codeBucket": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"defaultBucket": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"defaultCookieExpiration": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"defaultHostname": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"dispatchRules": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"gcrDomain": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"locationId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"servingStatus": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"AutomaticScaling": {
+			"properties": {
+				"coolDownPeriod": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"maxConcurrentRequests": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"maxIdleInstances": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"maxPendingLatency": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"maxTotalInstances": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"minIdleInstances": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"minPendingLatency": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"minTotalInstances": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"BasicScaling": {
+			"properties": {
+				"idleTimeout": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"maxInstances": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ContainerInfo": {
+			"properties": {
+				"image": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"CpuUtilization": {
+			"properties": {
+				"aggregationWindowLength": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetUtilization": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"DebugInstanceRequest": {
+			"properties": {
+				"sshKey": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Deployment": {
+			"properties": {
+				"files": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"DiskUtilization": {
+			"properties": {
+				"targetReadBytesPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetReadOpsPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetWriteBytesPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetWriteOpsPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"EndpointsApiService": {
+			"properties": {
+				"configId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ErrorHandler": {
+			"properties": {
+				"errorCode": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"mimeType": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"staticFile": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"FileInfo": {
+			"properties": {
+				"mimeType": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"sha1Sum": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"sourceUrl": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"HealthCheck": {
+			"properties": {
+				"checkInterval": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"disableHealthCheck": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"healthyThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"host": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"restartThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"timeout": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"unhealthyThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"IdentityAwareProxy": {
+			"properties": {
+				"enabled": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"oauth2ClientId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"oauth2ClientSecret": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"oauth2ClientSecretSha256": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Instance": {
+			"properties": {
+				"appEngineRelease": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"availability": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"averageLatency": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"errors": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"memoryUsage": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"qps": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"requests": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vmDebugEnabled": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vmId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vmIp": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vmName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vmStatus": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vmZoneName": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Library": {
+			"properties": {
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListInstancesResponse": {
+			"properties": {
+				"instances": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListLocationsResponse": {
+			"properties": {
+				"locations": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListOperationsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"operations": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListServicesResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"services": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListVersionsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"versions": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"LivenessCheck": {
+			"properties": {
+				"checkInterval": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"healthyThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"host": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"initialDelay": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"path": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"timeout": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"unhealthyThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Location": {
+			"properties": {
+				"labels": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"locationId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"metadata": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"LocationMetadata": {
+			"properties": {
+				"flexibleEnvironmentAvailable": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"standardEnvironmentAvailable": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ManualScaling": {
+			"properties": {
+				"instances": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Network": {
+			"properties": {
+				"forwardedPorts": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"instanceTag": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"subnetworkName": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"NetworkUtilization": {
+			"properties": {
+				"targetReceivedBytesPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetReceivedPacketsPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetSentBytesPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetSentPacketsPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Operation": {
+			"properties": {
+				"done": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"metadata": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"response": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"OperationMetadata": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"insertTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"operationType": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"target": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"user": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"OperationMetadataExperimental": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"insertTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"target": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"user": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"OperationMetadataV1": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"ephemeralMessage": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"insertTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"target": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"user": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"warning": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"OperationMetadataV1Alpha": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"ephemeralMessage": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"insertTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"target": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"user": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"warning": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"OperationMetadataV1Beta": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"ephemeralMessage": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"insertTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"target": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"user": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"warning": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"OperationMetadataV1Beta5": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"insertTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"method": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"target": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"user": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ReadinessCheck": {
+			"properties": {
+				"checkInterval": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"healthyThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"host": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"path": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"timeout": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"unhealthyThreshold": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"RequestUtilization": {
+			"properties": {
+				"targetConcurrentRequests": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"targetRequestCountPerSecond": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Resources": {
+			"properties": {
+				"cpu": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"diskGb": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"memoryGb": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"volumes": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ScriptHandler": {
+			"properties": {
+				"scriptPath": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Service": {
+			"properties": {
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"StaticFilesHandler": {
+			"properties": {
+				"applicationReadable": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"expiration": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"httpHeaders": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"mimeType": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"path": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"requireMatchingFile": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"uploadPathRegex": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Status": {
+			"properties": {
+				"code": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"details": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"message": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"TrafficSplit": {
+			"properties": {
+				"allocations": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"shardBy": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"UrlDispatchRule": {
+			"properties": {
+				"domain": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"path": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"service": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"UrlMap": {
+			"properties": {
+				"authFailAction": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"login": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"redirectHttpResponseCode": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"securityLevel": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"urlRegex": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Version": {
+			"properties": {
+				"betaSettings": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"createTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"createdBy": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"defaultExpiration": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"diskUsageBytes": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"env": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"envVariables": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"errorHandlers": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"handlers": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"inboundServices": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"instanceClass": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"libraries": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nobuildFilesRegex": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"runtime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"servingStatus": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"threadsafe": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"versionUrl": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"vm": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Volume": {
+			"properties": {
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"sizeGb": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"volumeType": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ZipInfo": {
+			"properties": {
+				"filesCount": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"sourceUrl": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		}
+	}
+}
