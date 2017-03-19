@@ -1,0 +1,1781 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "BigQuery",
+		"description": "A data platform for customers to create, manage, share and query data.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v2"
+	},
+	"host": "www.googleapis.com",
+	"basePath": "/bigquery/v2",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/projects": {
+			"get": {
+				"summary": "Get Projects",
+				"description": "Lists all projects to which you have been granted any project role",
+				"operationId": "bigquery.projects.list",
+				"parameters": [{
+					"in": "query",
+					"name": "maxResults",
+					"description": "Maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Page token, returned by a previous call, to request the next page of results"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Project"]
+			}
+		},
+		"/projects/{projectId}/datasets": {
+			"get": {
+				"summary": "Get Datasets",
+				"description": "Lists all datasets in the specified project to which you have been granted the READER dataset role",
+				"operationId": "bigquery.datasets.list",
+				"parameters": [{
+					"in": "query",
+					"name": "all",
+					"description": "Whether to list all datasets, including hidden ones"
+				},
+				{
+					"in": "query",
+					"name": "filter",
+					"description": "An expression for filtering the results of the request by label"
+				},
+				{
+					"in": "query",
+					"name": "maxResults",
+					"description": "The maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Page token, returned by a previous call, to request the next page of results"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the datasets to be listed"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			},
+			"post": {
+				"summary": "Create Dataset",
+				"description": "Creates a new empty dataset",
+				"operationId": "bigquery.datasets.insert",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the new dataset"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			}
+		},
+		"/projects/{projectId}/datasets/{datasetId}": {
+			"delete": {
+				"summary": "Delete Dataset",
+				"description": "Deletes the dataset specified by the datasetId value",
+				"operationId": "bigquery.datasets.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of dataset being deleted"
+				},
+				{
+					"in": "query",
+					"name": "deleteContents",
+					"description": "If True, delete all the tables in the dataset"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the dataset being deleted"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			},
+			"get": {
+				"summary": "Get Dataset",
+				"description": "Returns the dataset specified by datasetID",
+				"operationId": "bigquery.datasets.get",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the requested dataset"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the requested dataset"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			},
+			"patch": {
+				"summary": "Update Dataset",
+				"description": "Updates information in an existing dataset",
+				"operationId": "bigquery.datasets.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the dataset being updated"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the dataset being updated"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			},
+			"put": {
+				"summary": "Update Dataset",
+				"description": "Updates information in an existing dataset",
+				"operationId": "bigquery.datasets.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the dataset being updated"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the dataset being updated"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Dataset"]
+			}
+		},
+		"/projects/{projectId}/datasets/{datasetId}/tables": {
+			"get": {
+				"summary": "Get Tables",
+				"description": "Lists all tables in the specified dataset",
+				"operationId": "bigquery.tables.list",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the tables to list"
+				},
+				{
+					"in": "query",
+					"name": "maxResults",
+					"description": "Maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Page token, returned by a previous call, to request the next page of results"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the tables to list"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table"]
+			},
+			"post": {
+				"summary": "Create Table",
+				"description": "Creates a new, empty table in the dataset",
+				"operationId": "bigquery.tables.insert",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the new table"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the new table"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table"]
+			}
+		},
+		"/projects/{projectId}/datasets/{datasetId}/tables/{tableId}": {
+			"delete": {
+				"summary": "Delete Table",
+				"description": "Deletes the table specified by tableId from the dataset",
+				"operationId": "bigquery.tables.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the table to delete"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the table to delete"
+				},
+				{
+					"in": "path",
+					"name": "tableId",
+					"description": "Table ID of the table to delete"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table"]
+			},
+			"get": {
+				"summary": "Get Tble",
+				"description": "Gets the specified table resource by table ID",
+				"operationId": "bigquery.tables.get",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the requested table"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the requested table"
+				},
+				{
+					"in": "path",
+					"name": "tableId",
+					"description": "Table ID of the requested table"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table"]
+			},
+			"patch": {
+				"summary": "Update Table",
+				"description": "Updates information in an existing table",
+				"operationId": "bigquery.tables.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the table to update"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the table to update"
+				},
+				{
+					"in": "path",
+					"name": "tableId",
+					"description": "Table ID of the table to update"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table"]
+			},
+			"put": {
+				"summary": "Update Table",
+				"description": "Updates information in an existing table",
+				"operationId": "bigquery.tables.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the table to update"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the table to update"
+				},
+				{
+					"in": "path",
+					"name": "tableId",
+					"description": "Table ID of the table to update"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table"]
+			}
+		},
+		"/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data": {
+			"get": {
+				"summary": "Get Table",
+				"description": "Retrieves table data from a specified set of rows",
+				"operationId": "bigquery.tabledata.list",
+				"parameters": [{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the table to read"
+				},
+				{
+					"in": "query",
+					"name": "maxResults",
+					"description": "Maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Page token, returned by a previous call, identifying the result set"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the table to read"
+				},
+				{
+					"in": "query",
+					"name": "startIndex",
+					"description": "Zero-based index of the starting row to read"
+				},
+				{
+					"in": "path",
+					"name": "tableId",
+					"description": "Table ID of the table to read"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table Data"]
+			}
+		},
+		"/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll": {
+			"post": {
+				"summary": "Insert Data",
+				"description": "Streams data into BigQuery one record at a time without needing to run a load job",
+				"operationId": "bigquery.tabledata.insertAll",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "datasetId",
+					"description": "Dataset ID of the destination table"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the destination table"
+				},
+				{
+					"in": "path",
+					"name": "tableId",
+					"description": "Table ID of the destination table"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Table Data"]
+			}
+		},
+		"/projects/{projectId}/jobs": {
+			"get": {
+				"summary": "Get Jobs",
+				"description": "Lists all jobs that you started in the specified project",
+				"operationId": "bigquery.jobs.list",
+				"parameters": [{
+					"in": "query",
+					"name": "allUsers",
+					"description": "Whether to display jobs owned by all users in the project"
+				},
+				{
+					"in": "query",
+					"name": "maxResults",
+					"description": "Maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Page token, returned by a previous call, to request the next page of results"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the jobs to list"
+				},
+				{
+					"in": "query",
+					"name": "projection",
+					"description": "Restrict information returned to a set of selected fields"
+				},
+				{
+					"in": "query",
+					"name": "stateFilter",
+					"description": "Filter for job state"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Job"]
+			},
+			"post": {
+				"summary": "Create Job",
+				"description": "Starts a new asynchronous job",
+				"operationId": "bigquery.jobs.insert",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the project that will be billed for the job"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Job"]
+			}
+		},
+		"/projects/{projectId}/jobs/{jobId}": {
+			"get": {
+				"summary": "Get Job",
+				"description": "Returns information about a specific job",
+				"operationId": "bigquery.jobs.get",
+				"parameters": [{
+					"in": "path",
+					"name": "jobId",
+					"description": "[Required] Job ID of the requested job"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "[Required] Project ID of the requested job"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Job"]
+			}
+		},
+		"/projects/{projectId}/jobs/{jobId}/cancel": {
+			"post": {
+				"summary": "Cancel Job",
+				"description": "Requests that a job be cancelled",
+				"operationId": "bigquery.jobs.cancel",
+				"parameters": [{
+					"in": "path",
+					"name": "jobId",
+					"description": "[Required] Job ID of the job to cancel"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "[Required] Project ID of the job to cancel"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Job"]
+			}
+		},
+		"/projects/{projectId}/queries": {
+			"post": {
+				"summary": "Run Query Job",
+				"description": "Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout",
+				"operationId": "bigquery.jobs.query",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "Project ID of the project billed for the query"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Job"]
+			}
+		},
+		"/projects/{projectId}/queries/{jobId}": {
+			"get": {
+				"summary": "Get Query Job Results",
+				"description": "Retrieves the results of a query job",
+				"operationId": "bigquery.jobs.getQueryResults",
+				"parameters": [{
+					"in": "path",
+					"name": "jobId",
+					"description": "[Required] Job ID of the query job"
+				},
+				{
+					"in": "query",
+					"name": "maxResults",
+					"description": "Maximum number of results to read"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Page token, returned by a previous call, to request the next page of results"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "[Required] Project ID of the query job"
+				},
+				{
+					"in": "query",
+					"name": "startIndex",
+					"description": "Zero-based index of the starting row"
+				},
+				{
+					"in": "query",
+					"name": "timeoutMs",
+					"description": "How long to wait for the query to complete, in milliseconds, before returning"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Job"]
+			}
+		}
+	},
+	"definitions": {
+		"BigtableColumn": {
+			"properties": {
+				"encoding": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"fieldName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"onlyReadLatest": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"qualifierEncoded": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"qualifierString": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"BigtableColumnFamily": {
+			"properties": {
+				"columns": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"encoding": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"familyId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"onlyReadLatest": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"BigtableOptions": {
+			"properties": {
+				"columnFamilies": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ignoreUnspecifiedColumnFamilies": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"readRowkeyAsString": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"CsvOptions": {
+			"properties": {
+				"allowJaggedRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"allowQuotedNewlines": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"encoding": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"fieldDelimiter": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"quote": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"skipLeadingRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Dataset": {
+			"properties": {
+				"access": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"creationTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"defaultTableExpirationMs": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"friendlyName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"lastModifiedTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"location": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"DatasetList": {
+			"properties": {
+				"datasets": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"DatasetReference": {
+			"properties": {
+				"datasetId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ErrorProto": {
+			"properties": {
+				"debugInfo": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"location": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"message": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"reason": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ExplainQueryStage": {
+			"properties": {
+				"computeRatioAvg": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"computeRatioMax": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"readRatioAvg": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"readRatioMax": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"recordsRead": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"recordsWritten": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"steps": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"waitRatioAvg": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"waitRatioMax": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"writeRatioAvg": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"writeRatioMax": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ExplainQueryStep": {
+			"properties": {
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"substeps": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ExternalDataConfiguration": {
+			"properties": {
+				"autodetect": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"compression": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ignoreUnknownValues": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maxBadRecords": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceFormat": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceUris": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"GetQueryResultsResponse": {
+			"properties": {
+				"cacheHit": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"errors": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"jobComplete": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numDmlAffectedRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"rows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalBytesProcessed": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"GoogleSheetsOptions": {
+			"properties": {
+				"skipLeadingRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Job": {
+			"properties": {
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"user_email": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobCancelResponse": {
+			"properties": {
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobConfiguration": {
+			"properties": {
+				"dryRun": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobConfigurationExtract": {
+			"properties": {
+				"compression": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"destinationFormat": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"destinationUri": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"destinationUris": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"fieldDelimiter": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"printHeader": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobConfigurationLoad": {
+			"properties": {
+				"allowJaggedRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"allowQuotedNewlines": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"autodetect": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"createDisposition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"encoding": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"fieldDelimiter": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ignoreUnknownValues": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maxBadRecords": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nullMarker": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"projectionFields": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"quote": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"schemaInline": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"schemaInlineFormat": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"schemaUpdateOptions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"skipLeadingRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceFormat": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceUris": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"writeDisposition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobConfigurationQuery": {
+			"properties": {
+				"allowLargeResults": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"createDisposition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"flattenResults": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maximumBillingTier": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maximumBytesBilled": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"parameterMode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"preserveNulls": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"priority": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"query": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"queryParameters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"schemaUpdateOptions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"tableDefinitions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"useLegacySql": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"useQueryCache": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userDefinedFunctionResources": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"writeDisposition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobConfigurationTableCopy": {
+			"properties": {
+				"createDisposition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceTables": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"writeDisposition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobList": {
+			"properties": {
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"jobs": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobReference": {
+			"properties": {
+				"jobId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobStatistics": {
+			"properties": {
+				"creationTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalBytesProcessed": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobStatistics2": {
+			"properties": {
+				"billingTier": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"cacheHit": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numDmlAffectedRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"queryPlan": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"referencedTables": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"statementType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalBytesBilled": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalBytesProcessed": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"undeclaredQueryParameters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobStatistics3": {
+			"properties": {
+				"inputFileBytes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"inputFiles": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"outputBytes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"outputRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobStatistics4": {
+			"properties": {
+				"destinationUriFileCounts": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JobStatus": {
+			"properties": {
+				"errors": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"state": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ProjectList": {
+			"properties": {
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"projects": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalItems": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ProjectReference": {
+			"properties": {
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"QueryParameter": {
+			"properties": {
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"QueryParameterType": {
+			"properties": {
+				"structTypes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"QueryParameterValue": {
+			"properties": {
+				"arrayValues": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"structValues": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"QueryRequest": {
+			"properties": {
+				"dryRun": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maxResults": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"parameterMode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"preserveNulls": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"query": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"queryParameters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"timeoutMs": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"useLegacySql": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"useQueryCache": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"QueryResponse": {
+			"properties": {
+				"cacheHit": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"errors": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"jobComplete": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numDmlAffectedRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"rows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalBytesProcessed": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Streamingbuffer": {
+			"properties": {
+				"estimatedBytes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"estimatedRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"oldestEntryTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Table": {
+			"properties": {
+				"creationTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"expirationTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"friendlyName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"lastModifiedTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"location": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numBytes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numLongTermBytes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableCell": {
+			"properties": []
+		},
+		"TableDataInsertAllRequest": {
+			"properties": {
+				"ignoreUnknownValues": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"rows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"skipInvalidRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"templateSuffix": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableDataInsertAllResponse": {
+			"properties": {
+				"insertErrors": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableDataList": {
+			"properties": {
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"rows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalRows": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableFieldSchema": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"fields": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"mode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableList": {
+			"properties": {
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"tables": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"totalItems": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableReference": {
+			"properties": {
+				"datasetId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"tableId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableRow": {
+			"properties": {
+				"f": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TableSchema": {
+			"properties": {
+				"fields": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TimePartitioning": {
+			"properties": {
+				"expirationMs": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"UserDefinedFunctionResource": {
+			"properties": {
+				"inlineCode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"resourceUri": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ViewDefinition": {
+			"properties": {
+				"query": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"useLegacySql": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userDefinedFunctionResources": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
