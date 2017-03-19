@@ -1,0 +1,554 @@
+swagger: "2.0"
+info:
+  title: Google Cloud Resource Manager
+  description: The Google Cloud Resource Manager API provides methods for creating,
+    reading, and updating project metadata.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: cloudresourcemanager.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/liens:
+    get:
+      summary: List Liens
+      description: List all Liens applied to the `parent` resource
+      operationId: cloudresourcemanager.liens.list
+      parameters:
+      - in: query
+        name: pageSize
+        description: The maximum number of items to return
+      - in: query
+        name: pageToken
+        description: The `next_page_token` value returned from a previous List request,
+          if any
+      - in: query
+        name: parent
+        description: The name of the resource to list all attached Liens
+      responses:
+        200:
+          description: OK
+      tags:
+      - Lien
+    post:
+      summary: Create Lien
+      description: Create a Lien which applies to the resource denoted by the `parent`
+        field
+      operationId: cloudresourcemanager.liens.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Lien
+  /v1/organizations:search:
+    post:
+      summary: Search Organization
+      description: Searches Organization resources that are visible to the user and
+        satisfynthe specified filter
+      operationId: cloudresourcemanager.organizations.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Organization
+  /v1/projects:
+    get:
+      summary: List Projects
+      description: Lists Projects that are visible to the user and satisfy thenspecified
+        filter
+      operationId: cloudresourcemanager.projects.list
+      parameters:
+      - in: query
+        name: filter
+        description: An expression for filtering the results of the request
+      - in: query
+        name: pageSize
+        description: The maximum number of Projects to return in the response
+      - in: query
+        name: pageToken
+        description: A pagination token returned from a previous call to ListProjectsnthat
+          indicates from where listing should continue
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+    post:
+      summary: Create Project
+      description: Request that a new Project be created
+      operationId: cloudresourcemanager.projects.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+  /v1/projects/{projectId}:
+    delete:
+      summary: Delete Project
+      description: Marks the Project identified by the specifiedn`project_id` (for
+        example, `my-project-123`) for deletion
+      operationId: cloudresourcemanager.projects.delete
+      parameters:
+      - in: path
+        name: projectId
+        description: The Project ID (for example, `foo-bar-123`)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+    get:
+      summary: Get Project
+      description: Retrieves the Project identified by the specifiedn`project_id`
+        (for example, `my-project-123`)
+      operationId: cloudresourcemanager.projects.get
+      parameters:
+      - in: path
+        name: projectId
+        description: The Project ID (for example, `my-project-123`)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+    put:
+      summary: Update Project
+      description: Updates the attributes of the Project identified by the specifiedn`project_id`
+        (for example, `my-project-123`)
+      operationId: cloudresourcemanager.projects.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: projectId
+        description: The project ID (for example, `my-project-123`)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+  /v1/projects/{projectId}:getAncestry:
+    post:
+      summary: Get Project Ancestry
+      description: Gets a list of ancestors in the resource hierarchy for the Projectnidentified
+        by the specified `project_id` (for example, `my-project-123`)
+      operationId: cloudresourcemanager.projects.getAncestry
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: projectId
+        description: The Project ID (for example, `my-project-123`)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+  /v1/projects/{projectId}:undelete:
+    post:
+      summary: Restore Project
+      description: Restores the Project identified by the specifiedn`project_id` (for
+        example, `my-project-123`)
+      operationId: cloudresourcemanager.projects.undelete
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: projectId
+        description: The project ID (for example, `foo-bar-123`)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+  /v1/projects/{resource}:getIamPolicy:
+    post:
+      summary: Get IAM Policy
+      description: Returns the IAM access control policy for the specified Project
+      operationId: cloudresourcemanager.projects.getIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy is being requested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/projects/{resource}:setIamPolicy:
+    post:
+      summary: Set IAM Policy
+      description: Sets the IAM access control policy for the specified Project
+      operationId: cloudresourcemanager.projects.setIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy is being specified'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/projects/{resource}:testIamPermissions:
+    post:
+      summary: Test IAM Policy
+      description: Returns permissions that a caller has on the specified Project
+      operationId: cloudresourcemanager.projects.testIamPermissions
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy detail is being
+          requested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{name}:
+    delete:
+      summary: Delete Lien
+      description: Delete a Lien by `name`
+      operationId: cloudresourcemanager.liens.delete
+      parameters:
+      - in: path
+        name: name
+        description: The name/identifier of the Lien to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Lien
+    get:
+      summary: Get Operation
+      description: Gets the latest state of a long-running operation
+      operationId: cloudresourcemanager.operations.get
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{resource}:getIamPolicy:
+    post:
+      summary: Get Organization IAM Policy
+      description: Gets the access control policy for an Organization resource
+      operationId: cloudresourcemanager.organizations.getIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy is being requested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Organization
+  /v1/{resource}:setIamPolicy:
+    post:
+      summary: Set Organization IAM Policy
+      description: Sets the access control policy on an Organization resource
+      operationId: cloudresourcemanager.organizations.setIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy is being specified'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Organization
+  /v1/{resource}:testIamPermissions:
+    post:
+      summary: TEst Organization IAM Permissions
+      description: Returns permissions that a caller has on the specified Organization
+      operationId: cloudresourcemanager.organizations.testIamPermissions
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy detail is being
+          requested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Organization
+definitions:
+  Ancestor:
+    properties: []
+  AuditConfig:
+    properties:
+      auditLogConfigs:
+        description: This is a default description.
+        type: post
+      service:
+        description: This is a default description.
+        type: post
+  AuditLogConfig:
+    properties:
+      exemptedMembers:
+        description: This is a default description.
+        type: post
+      logType:
+        description: This is a default description.
+        type: post
+  Binding:
+    properties:
+      members:
+        description: This is a default description.
+        type: post
+      role:
+        description: This is a default description.
+        type: post
+  Empty:
+    properties: []
+  FolderOperation:
+    properties:
+      destinationParent:
+        description: This is a default description.
+        type: post
+      displayName:
+        description: This is a default description.
+        type: post
+      operationType:
+        description: This is a default description.
+        type: post
+      sourceParent:
+        description: This is a default description.
+        type: post
+  FolderOperationError:
+    properties:
+      errorMessageId:
+        description: This is a default description.
+        type: post
+  GetAncestryRequest:
+    properties: []
+  GetAncestryResponse:
+    properties:
+      ancestor:
+        description: This is a default description.
+        type: post
+  GetIamPolicyRequest:
+    properties: []
+  Lien:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      origin:
+        description: This is a default description.
+        type: post
+      parent:
+        description: This is a default description.
+        type: post
+      reason:
+        description: This is a default description.
+        type: post
+      restrictions:
+        description: This is a default description.
+        type: post
+  ListLiensResponse:
+    properties:
+      liens:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListProjectsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      projects:
+        description: This is a default description.
+        type: post
+  Operation:
+    properties:
+      done:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      response:
+        description: This is a default description.
+        type: post
+  Organization:
+    properties:
+      creationTime:
+        description: This is a default description.
+        type: post
+      displayName:
+        description: This is a default description.
+        type: post
+      lifecycleState:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  OrganizationOwner:
+    properties:
+      directoryCustomerId:
+        description: This is a default description.
+        type: post
+  Policy:
+    properties:
+      auditConfigs:
+        description: This is a default description.
+        type: post
+      bindings:
+        description: This is a default description.
+        type: post
+      etag:
+        description: This is a default description.
+        type: post
+      version:
+        description: This is a default description.
+        type: post
+  Project:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      labels:
+        description: This is a default description.
+        type: post
+      lifecycleState:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+      projectNumber:
+        description: This is a default description.
+        type: post
+  ProjectCreationStatus:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      gettable:
+        description: This is a default description.
+        type: post
+      ready:
+        description: This is a default description.
+        type: post
+  ResourceId:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  SearchOrganizationsRequest:
+    properties:
+      filter:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+  SearchOrganizationsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      organizations:
+        description: This is a default description.
+        type: post
+  SetIamPolicyRequest:
+    properties:
+      updateMask:
+        description: This is a default description.
+        type: post
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsRequest:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsResponse:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  UndeleteProjectRequest:
+    properties: []
