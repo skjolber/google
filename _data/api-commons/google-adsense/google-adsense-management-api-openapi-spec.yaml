@@ -1,1 +1,1187 @@
-~
+
+  swagger: "2.0"
+info:
+  title: AdSense Management
+  description: Accesses AdSense publishers' inventory and generates performance reports.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1.4
+host: www.googleapis.com
+basePath: /adsense/v1.4
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /accounts:
+    get:
+      summary: ""
+      description: List all accounts available to this AdSense account
+      operationId: adsense.accounts.list
+      parameters:
+      - in: query
+        name: maxResults
+        description: The maximum number of accounts to include in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through accounts
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}:
+    get:
+      summary: ""
+      description: Get information about the selected AdSense account
+      operationId: adsense.accounts.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to get information about
+      - in: query
+        name: tree
+        description: Whether the tree of sub accounts should be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients:
+    get:
+      summary: ""
+      description: List all ad clients in the specified account
+      operationId: adsense.accounts.adclients.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account for which to list ad clients
+      - in: query
+        name: maxResults
+        description: The maximum number of ad clients to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad clients
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/adunits:
+    get:
+      summary: ""
+      description: List all ad units in the specified ad client for the specified
+        account
+      operationId: adsense.accounts.adunits.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client for which to list ad units
+      - in: query
+        name: includeInactive
+        description: Whether to include inactive ad units
+      - in: query
+        name: maxResults
+        description: The maximum number of ad units to include in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad units
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}:
+    get:
+      summary: ""
+      description: Gets the specified ad unit in the specified ad client for the specified
+        account
+      operationId: adsense.accounts.adunits.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client for which to get the ad unit
+      - in: path
+        name: adUnitId
+        description: Ad unit to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode:
+    get:
+      summary: ""
+      description: Get ad code for the specified ad unit
+      operationId: adsense.accounts.adunits.getAdCode
+      parameters:
+      - in: path
+        name: accountId
+        description: Account which contains the ad client
+      - in: path
+        name: adClientId
+        description: Ad client with contains the ad unit
+      - in: path
+        name: adUnitId
+        description: Ad unit to get the code for
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels:
+    get:
+      summary: ""
+      description: List all custom channels which the specified ad unit belongs to
+      operationId: adsense.accounts.adunits.customchannels.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client which contains the ad unit
+      - in: path
+        name: adUnitId
+        description: Ad unit for which to list custom channels
+      - in: query
+        name: maxResults
+        description: The maximum number of custom channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through custom channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/customchannels:
+    get:
+      summary: ""
+      description: List all custom channels in the specified ad client for the specified
+        account
+      operationId: adsense.accounts.customchannels.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client for which to list custom channels
+      - in: query
+        name: maxResults
+        description: The maximum number of custom channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through custom channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}:
+    get:
+      summary: ""
+      description: Get the specified custom channel from the specified ad client for
+        the specified account
+      operationId: adsense.accounts.customchannels.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client which contains the custom channel
+      - in: path
+        name: customChannelId
+        description: Custom channel to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits:
+    get:
+      summary: ""
+      description: List all ad units in the specified custom channel
+      operationId: adsense.accounts.customchannels.adunits.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client which contains the custom channel
+      - in: path
+        name: customChannelId
+        description: Custom channel for which to list ad units
+      - in: query
+        name: includeInactive
+        description: Whether to include inactive ad units
+      - in: query
+        name: maxResults
+        description: The maximum number of ad units to include in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad units
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/adclients/{adClientId}/urlchannels:
+    get:
+      summary: ""
+      description: List all URL channels in the specified ad client for the specified
+        account
+      operationId: adsense.accounts.urlchannels.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the ad client belongs
+      - in: path
+        name: adClientId
+        description: Ad client for which to list URL channels
+      - in: query
+        name: maxResults
+        description: The maximum number of URL channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through URL channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/alerts:
+    get:
+      summary: ""
+      description: List the alerts for the specified AdSense account
+      operationId: adsense.accounts.alerts.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account for which to retrieve the alerts
+      - in: query
+        name: locale
+        description: The locale to use for translating alert messages
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/alerts/{alertId}:
+    delete:
+      summary: ""
+      description: Dismiss (delete) the specified alert from the specified publisher
+        AdSense account
+      operationId: adsense.accounts.alerts.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: Account which contains the ad unit
+      - in: path
+        name: alertId
+        description: Alert to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/payments:
+    get:
+      summary: ""
+      description: List the payments for the specified AdSense account
+      operationId: adsense.accounts.payments.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account for which to retrieve the payments
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/reports:
+    get:
+      summary: ""
+      description: Generate an AdSense report based on the report request sent in
+        the query parameters
+      operationId: adsense.accounts.reports.generate
+      parameters:
+      - in: path
+        name: accountId
+        description: Account upon which to report
+      - in: query
+        name: currency
+        description: Optional currency to use when reporting on monetary metrics
+      - in: query
+        name: dimension
+        description: Dimensions to base the report on
+      - in: query
+        name: endDate
+        description: End of the date range to report on in "YYYY-MM-DD" format, inclusive
+      - in: query
+        name: filter
+        description: Filters to be run on the report
+      - in: query
+        name: locale
+        description: Optional locale to use for translating report output to a local
+          language
+      - in: query
+        name: maxResults
+        description: The maximum number of rows of report data to return
+      - in: query
+        name: metric
+        description: Numeric columns to include in the report
+      - in: query
+        name: sort
+        description: The name of a dimension or metric to sort the resulting report
+          on, optionally prefixed with "+" to sort ascending or "-" to sort descending
+      - in: query
+        name: startDate
+        description: Start of the date range to report on in "YYYY-MM-DD" format,
+          inclusive
+      - in: query
+        name: startIndex
+        description: Index of the first row of report data to return
+      - in: query
+        name: useTimezoneReporting
+        description: Whether the report should be generated in the AdSense account's
+          local timezone
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/reports/saved:
+    get:
+      summary: ""
+      description: List all saved reports in the specified AdSense account
+      operationId: adsense.accounts.reports.saved.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the saved reports belong
+      - in: query
+        name: maxResults
+        description: The maximum number of saved reports to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through saved reports
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/reports/{savedReportId}:
+    get:
+      summary: ""
+      description: Generate an AdSense report based on the saved report ID sent in
+        the query parameters
+      operationId: adsense.accounts.reports.saved.generate
+      parameters:
+      - in: path
+        name: accountId
+        description: Account to which the saved reports belong
+      - in: query
+        name: locale
+        description: Optional locale to use for translating report output to a local
+          language
+      - in: query
+        name: maxResults
+        description: The maximum number of rows of report data to return
+      - in: path
+        name: savedReportId
+        description: The saved report to retrieve
+      - in: query
+        name: startIndex
+        description: Index of the first row of report data to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/savedadstyles:
+    get:
+      summary: ""
+      description: List all saved ad styles in the specified account
+      operationId: adsense.accounts.savedadstyles.list
+      parameters:
+      - in: path
+        name: accountId
+        description: Account for which to list saved ad styles
+      - in: query
+        name: maxResults
+        description: The maximum number of saved ad styles to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through saved ad styles
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /accounts/{accountId}/savedadstyles/{savedAdStyleId}:
+    get:
+      summary: ""
+      description: List a specific saved ad style for the specified account
+      operationId: adsense.accounts.savedadstyles.get
+      parameters:
+      - in: path
+        name: accountId
+        description: Account for which to get the saved ad style
+      - in: path
+        name: savedAdStyleId
+        description: Saved ad style to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients:
+    get:
+      summary: ""
+      description: List all ad clients in this AdSense account
+      operationId: adsense.adclients.list
+      parameters:
+      - in: query
+        name: maxResults
+        description: The maximum number of ad clients to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad clients
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/adunits:
+    get:
+      summary: ""
+      description: List all ad units in the specified ad client for this AdSense account
+      operationId: adsense.adunits.list
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client for which to list ad units
+      - in: query
+        name: includeInactive
+        description: Whether to include inactive ad units
+      - in: query
+        name: maxResults
+        description: The maximum number of ad units to include in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad units
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/adunits/{adUnitId}:
+    get:
+      summary: ""
+      description: Gets the specified ad unit in the specified ad client
+      operationId: adsense.adunits.get
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client for which to get the ad unit
+      - in: path
+        name: adUnitId
+        description: Ad unit to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/adunits/{adUnitId}/adcode:
+    get:
+      summary: ""
+      description: Get ad code for the specified ad unit
+      operationId: adsense.adunits.getAdCode
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client with contains the ad unit
+      - in: path
+        name: adUnitId
+        description: Ad unit to get the code for
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/adunits/{adUnitId}/customchannels:
+    get:
+      summary: ""
+      description: List all custom channels which the specified ad unit belongs to
+      operationId: adsense.adunits.customchannels.list
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client which contains the ad unit
+      - in: path
+        name: adUnitId
+        description: Ad unit for which to list custom channels
+      - in: query
+        name: maxResults
+        description: The maximum number of custom channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through custom channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/customchannels:
+    get:
+      summary: ""
+      description: List all custom channels in the specified ad client for this AdSense
+        account
+      operationId: adsense.customchannels.list
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client for which to list custom channels
+      - in: query
+        name: maxResults
+        description: The maximum number of custom channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through custom channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/customchannels/{customChannelId}:
+    get:
+      summary: ""
+      description: Get the specified custom channel from the specified ad client
+      operationId: adsense.customchannels.get
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client which contains the custom channel
+      - in: path
+        name: customChannelId
+        description: Custom channel to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/customchannels/{customChannelId}/adunits:
+    get:
+      summary: ""
+      description: List all ad units in the specified custom channel
+      operationId: adsense.customchannels.adunits.list
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client which contains the custom channel
+      - in: path
+        name: customChannelId
+        description: Custom channel for which to list ad units
+      - in: query
+        name: includeInactive
+        description: Whether to include inactive ad units
+      - in: query
+        name: maxResults
+        description: The maximum number of ad units to include in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad units
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /adclients/{adClientId}/urlchannels:
+    get:
+      summary: ""
+      description: List all URL channels in the specified ad client for this AdSense
+        account
+      operationId: adsense.urlchannels.list
+      parameters:
+      - in: path
+        name: adClientId
+        description: Ad client for which to list URL channels
+      - in: query
+        name: maxResults
+        description: The maximum number of URL channels to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through URL channels
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /alerts:
+    get:
+      summary: ""
+      description: List the alerts for this AdSense account
+      operationId: adsense.alerts.list
+      parameters:
+      - in: query
+        name: locale
+        description: The locale to use for translating alert messages
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /alerts/{alertId}:
+    delete:
+      summary: ""
+      description: Dismiss (delete) the specified alert from the publisher's AdSense
+        account
+      operationId: adsense.alerts.delete
+      parameters:
+      - in: path
+        name: alertId
+        description: Alert to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /metadata/dimensions:
+    get:
+      summary: ""
+      description: List the metadata for the dimensions available to this AdSense
+        account
+      operationId: adsense.metadata.dimensions.list
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /metadata/metrics:
+    get:
+      summary: ""
+      description: List the metadata for the metrics available to this AdSense account
+      operationId: adsense.metadata.metrics.list
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /payments:
+    get:
+      summary: ""
+      description: List the payments for this AdSense account
+      operationId: adsense.payments.list
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /reports:
+    get:
+      summary: ""
+      description: Generate an AdSense report based on the report request sent in
+        the query parameters
+      operationId: adsense.reports.generate
+      parameters:
+      - in: query
+        name: accountId
+        description: Accounts upon which to report
+      - in: query
+        name: currency
+        description: Optional currency to use when reporting on monetary metrics
+      - in: query
+        name: dimension
+        description: Dimensions to base the report on
+      - in: query
+        name: endDate
+        description: End of the date range to report on in "YYYY-MM-DD" format, inclusive
+      - in: query
+        name: filter
+        description: Filters to be run on the report
+      - in: query
+        name: locale
+        description: Optional locale to use for translating report output to a local
+          language
+      - in: query
+        name: maxResults
+        description: The maximum number of rows of report data to return
+      - in: query
+        name: metric
+        description: Numeric columns to include in the report
+      - in: query
+        name: sort
+        description: The name of a dimension or metric to sort the resulting report
+          on, optionally prefixed with "+" to sort ascending or "-" to sort descending
+      - in: query
+        name: startDate
+        description: Start of the date range to report on in "YYYY-MM-DD" format,
+          inclusive
+      - in: query
+        name: startIndex
+        description: Index of the first row of report data to return
+      - in: query
+        name: useTimezoneReporting
+        description: Whether the report should be generated in the AdSense account's
+          local timezone
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /reports/saved:
+    get:
+      summary: ""
+      description: List all saved reports in this AdSense account
+      operationId: adsense.reports.saved.list
+      parameters:
+      - in: query
+        name: maxResults
+        description: The maximum number of saved reports to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through saved reports
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /reports/{savedReportId}:
+    get:
+      summary: ""
+      description: Generate an AdSense report based on the saved report ID sent in
+        the query parameters
+      operationId: adsense.reports.saved.generate
+      parameters:
+      - in: query
+        name: locale
+        description: Optional locale to use for translating report output to a local
+          language
+      - in: query
+        name: maxResults
+        description: The maximum number of rows of report data to return
+      - in: path
+        name: savedReportId
+        description: The saved report to retrieve
+      - in: query
+        name: startIndex
+        description: Index of the first row of report data to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /savedadstyles:
+    get:
+      summary: ""
+      description: List all saved ad styles in the user's account
+      operationId: adsense.savedadstyles.list
+      parameters:
+      - in: query
+        name: maxResults
+        description: The maximum number of saved ad styles to include in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through saved ad styles
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+  /savedadstyles/{savedAdStyleId}:
+    get:
+      summary: ""
+      description: Get a specific saved ad style from the user's account
+      operationId: adsense.savedadstyles.get
+      parameters:
+      - in: path
+        name: savedAdStyleId
+        description: Saved ad style to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - ""
+definitions:
+  Account:
+    properties:
+      creation_time:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      premium:
+        description: This is a default description.
+        type: parameters
+      subAccounts:
+        description: This is a default description.
+        type: parameters
+      timezone:
+        description: This is a default description.
+        type: parameters
+  Accounts:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  AdClient:
+    properties:
+      arcOptIn:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      productCode:
+        description: This is a default description.
+        type: parameters
+      supportsReporting:
+        description: This is a default description.
+        type: parameters
+  AdClients:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  AdCode:
+    properties:
+      adCode:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  AdStyle:
+    properties:
+      colors:
+        description: This is a default description.
+        type: parameters
+      corners:
+        description: This is a default description.
+        type: parameters
+      font:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  AdUnit:
+    properties:
+      code:
+        description: This is a default description.
+        type: parameters
+      contentAdsSettings:
+        description: This is a default description.
+        type: parameters
+      feedAdsSettings:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      mobileContentAdsSettings:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      savedStyleId:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+  AdUnits:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  AdsenseReportsGenerateResponse:
+    properties:
+      averages:
+        description: This is a default description.
+        type: parameters
+      endDate:
+        description: This is a default description.
+        type: parameters
+      headers:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      rows:
+        description: This is a default description.
+        type: parameters
+      startDate:
+        description: This is a default description.
+        type: parameters
+      totalMatchedRows:
+        description: This is a default description.
+        type: parameters
+      totals:
+        description: This is a default description.
+        type: parameters
+      warnings:
+        description: This is a default description.
+        type: parameters
+  Alert:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      isDismissible:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      message:
+        description: This is a default description.
+        type: parameters
+      severity:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+  Alerts:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  CustomChannel:
+    properties:
+      code:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      targetingInfo:
+        description: This is a default description.
+        type: parameters
+  CustomChannels:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  Metadata:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Payment:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      paymentAmount:
+        description: This is a default description.
+        type: parameters
+      paymentAmountCurrencyCode:
+        description: This is a default description.
+        type: parameters
+      paymentDate:
+        description: This is a default description.
+        type: parameters
+  Payments:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  ReportingMetadataEntry:
+    properties:
+      compatibleDimensions:
+        description: This is a default description.
+        type: parameters
+      compatibleMetrics:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      requiredDimensions:
+        description: This is a default description.
+        type: parameters
+      requiredMetrics:
+        description: This is a default description.
+        type: parameters
+      supportedProducts:
+        description: This is a default description.
+        type: parameters
+  SavedAdStyle:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  SavedAdStyles:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  SavedReport:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  SavedReports:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  UrlChannel:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      urlPattern:
+        description: This is a default description.
+        type: parameters
+  UrlChannels:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
