@@ -1,6 +1,5 @@
 
-  ---
-swagger: "2.0"
+  swagger: "2.0"
 info:
   title: Google Analytics
   description: Views and manages your Google Analytics data.
@@ -3434,4 +3433,3 @@ definitions:
       websiteUrl:
         description: This is a default description.
         type: post
-...
