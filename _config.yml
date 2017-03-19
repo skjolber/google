@@ -1,1 +1,214 @@
-theme: jekyll-theme-cayman
+title:        Google
+url:          http://google.stack.network
+logo:         http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-logo.jpg
+logo_width:   65
+logo_bottom_padding: 10
+
+version:      1.1.1
+author:
+  name:       'Kin Lane'
+  email:      'info@apievangelist.com'
+markdown:     kramdown
+
+permalink: /:categories/:year/:month/:day/:title/
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+
+paginate: 25
+paginate_path: "/blog/page:num"
+
+categories_path : /categories.html
+tags_path : /tags.html
+
+org: api-stack
+repo: google
+
+# Masthead title
+masthead_link: http://apis.how/xzca4kr2wb
+masthead_font_size: 75
+masthead_title: '{"Google"}'
+
+# Feature
+feature_title: API Guide
+feature_link: http://apievangelist.com
+feature_image_source: https://s3.amazonaws.com/kinlane-productions/whitepapers/api-guides-loading.jpg
+feature_image_width: 40
+
+# Project
+
+project_image: https://s3.amazonaws.com/kinlane-productions/api-commons/api-commons-icon.png
+project_summary: Research project to keep track of established, and emerging ways of defining APIs such as Swagger, API Blueprint, and RAML. I am also working to include information about media types, schemas, and other ways to define the value APIs bring to table. You can find news I've curated, organizations doing interesting things, some of the common building blocks I've identified, and open source tooling in this research repo.
+
+# Navigation
+navigation:
+  - label1: Home
+    link1: /
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 0
+    padding: 0
+    decorate: 0
+  - label1: Blog
+    link1: /blog/
+    size1: 80
+    extend: 1
+    label2: RSS
+    link2: /blog.xml
+    size2: 60
+    padding: 0
+    decorate: 0
+  - label1: News
+    link1: /news/
+    size1: 80
+    extend: 1
+    label2: RSS
+    link2: /news.xml
+    size2: 60
+    padding: 0
+    decorate: 0
+  - label1: Organizations
+    link1: /organizations/
+    size1: 80
+    extend: 1
+    label2: JSON
+    link2: /data/companies.json
+    size2: 60
+    padding: 0
+    decorate: 0
+  - label1: Tooling
+    link1: /tools/
+    size1: 80
+    extend: 1
+    label2: JSON
+    link2: /data/tools.json
+    size2: 60
+    padding: 0
+    decorate: 0
+  - label1: Return to API Evangelist
+    link1: http://apievangelist.com
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 10
+    padding: 0
+    decorate: 1
+
+# Footer Navigation
+footernavigation:
+  - label: API 100K View
+    link: http://apievangelist.com
+  - label: News
+    link: /news/
+  - label: Partners
+    link: http://apievangelist.com/partners/
+  - label: APIs.json
+    link: http://apisjson.org
+  - label: About Kin Lane
+    link: http://kinlane.com
+  - label: Branding Guidelines
+    link: http://apievangelist.com/branding-guidelines.html
+  - label: Contact
+    link: http://kinlane.com/contacts/
+
+# sponsors
+sponsors_margin_top: 15
+sponsors_padding_top: 3
+sponsors_json_url: https://s3.amazonaws.com/kinlane-productions/json/sponsors.json
+
+# This drives the /extension listing
+extensions:
+  - title: "x-codegen-settings"
+    name: "APIMATIC"
+    source_url: "https://apimatic.io/blog/post/swagger-2-0-extension-for-code-generation-settings"
+    gist_url: "https://gist.github.com/kinlane/b525ab628f070c84456e.js"
+  - title: "x-a127-services"
+    name: "Apigee"
+    source_url: "https://github.com/apigee-127/volos/tree/master/swagger"
+    gist_url: "https://gist.github.com/kinlane/d0d6db70a67d916461ed.js"
+  - title: "x-swagger-router-controller"
+    name: "Apigee"
+    source_url: "https://github.com/swagger-api/swagger-node/blob/master/docs/swagger-file.md"
+    gist_url: "https://gist.github.com/kinlane/85fb77c897b681eafde9.js"
+  - title: "x-amples"
+    name: "James Earl Douglas"
+    source_url: "https://github.com/earldouglas/swagger-test"
+    gist_url: "https://gist.github.com/kinlane/90b1b48e16d14644e9cb.js"
+  - title: "x-amazon-apigateway-integration"
+    name: "Warner Godfrey"
+    source_url: "https://hub.docker.com/r/warnergodfrey/aws-apigateway-swagger/"
+    gist_url: "https://gist.github.com/kinlane/a4dec9386878c66ded96.js"
+  - title: "x-ms-summary"
+    name: "Microsoft Azure"
+    source_url: "https://azure.microsoft.com/en-us/documentation/articles/app-service-api-optimize-for-logic-apps/"
+    gist_url: "https://gist.github.com/kinlane/9d580c9d75060bb3ecae.js"
+  - title: "x-logo"
+    name: "Any API"
+    source_url: "http://any-api.com"
+    gist_url: "https://gist.github.com/kinlane/63de641a3d33374a916c.js"
+  - title: "x-origin"
+    name: "Any API"
+    source_url: "http://any-api.com"
+    gist_url: "https://gist.github.com/kinlane/c29b89aca1fbe72fb563.js"
+  - title: "x-providerName"
+    name: "Any API"
+    source_url: "http://any-api.com"
+    gist_url: "https://gist.github.com/kinlane/f234e506548c29c1fe97.js"
+  - title: "x-unofficialSpec"
+    name: "Any API"
+    source_url: "http://any-api.com"
+    gist_url: "https://gist.github.com/kinlane/d365d1e1fc61d83ccc22.js"
+  - title: "x-summary and x-description"
+    name: "Apiary"
+    source_url: "https://help.apiary.io/api_101/swagger-extensions/"
+    gist_url: "https://gist.github.com/netmilk/e61bd109dca737f77cf2.js"
+  - title: "x-example"
+    name: "Apiary"
+    source_url: "https://help.apiary.io/api_101/swagger-extensions/"
+    gist_url: "https://gist.github.com/honzajavorek/12b536f8ba0c9977f5e2605aecb4607b.js"
+
+# sponsors
+sponsors_margin_top: 15
+sponsors_padding_top: 3
+sponsors_json_url: https://s3.amazonaws.com/kinlane-productions/json/sponsors.json
+
+# support
+support_title: Support My API Definition Research
+support_header: I depend on the support of my partners to fund my work as an independent analysts. I have been monitoring the world of APIs since July of 2010 through the support of my partners, and a handful of writing or consulting projects along the way. If you find what I do valuable, please help support me by purchasing my guides, giving below, or if there are specific aspects of API definitions, or have specific definitions you'd like me to focus on, let me know, and maybe we can find a way to provide you with what you are looking for.
+support_footer: I pay my bills by consulting on API projects, and writing white papers and guides. You can find much of my research freely available across my website(s), but if you want to support my work, and get a single snapshot of it at any point in time, I recommend <a href="/guide/">purchasing my API definition guide</a>. Anyone who gives $250.00 or more a month, will automatically get access to all of my content via a shared Dropbox, Google Drive, or Github repository. Thank you for your support, and feel free to ping me directly if you have more questions.
+
+# Footer
+footer_title: API Evangelist
+footer_link: http://apievangelist.com
+footer_image_source: https://s3.amazonaws.com/kinlane-productions/footer/empowered-by-you-banner.png
+footer_image_width: 60
+
+# curated
+curated_desc: As I keep track on the world of APIs I curate news, blog posts, articles, and other research that I feel is relevant specifically to API definitions--these are the links I am including in my research.
+
+# organizations
+org_title: Some Organizations To Watch
+org_desc: These are the companies, and organizations who are doing interesting things when it comes to defining APIs. If they have an API, I'm working to profile, and provide machine readable indexes of each one below. If they do not have an API, I will just provide a brief profile of their operations.
+org_footer: If there is an organization you think should be listed here, <a href="https://github.com/{{ site.org }}/{{ site.repo }}/issues" target="_blank">you can submit as Github issue for this research project</a> and I will consider adding.
+
+# tools
+tools_title: API Definition Tooling
+tools_desc: These are the open source tools I am tracking on as part my API definitions research, that can be applied during the API design cycle.
+tools_footer: If there is an open source tool that should be listed here, <a href="https://github.com/{{ site.org }}/{{ site.repo }}/issues">submit as a Github Issue, and I will consider adding</a>, if it is open source, and fits into this API design research.
+
+# building blocks
+building_block_title: API Definition Building Blocks
+building_block_desc: As I monitor the API space I am always on the hunt for the common building blocks that make up any area of my work--these are some of the common elements I have aggregated from across the world of API definitions.
+building_block_footer: I am always adding to, and shifting my lists of the common building blocks as I evolve my understand of the space, and who is doing interesting things with API definitions.
+
+# patents
+patent_title: API Definition Patents
+patent_desc: I have been tracking on API related patents for some years, trying to understand how APIs are being referenced in patents, and in some cases the focus of the patent. Here are the patents I've tagged as being DNS related from the companies who are doing interesting things with DNS APIs.
+patent_footer: I tend to process the new patent filings and publications every couple of weeks. When ready I try to publish them along with my research.
+
+# doc colors
+get_color: 009900;
+post_color: 0000ff;
+put_color: FF0080;
+delete_color: FF9900;
