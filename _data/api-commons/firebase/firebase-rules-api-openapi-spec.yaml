@@ -1,0 +1,241 @@
+swagger: "2.0"
+info:
+  title: Firebase Rules
+  description: Creates and manages rules that determine when a Firebase Rules-enabled
+    service should permit a request.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: firebaserules.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/{name}:
+    delete:
+      summary: Delete Release
+      description: Delete a `Release` by resource name
+      operationId: firebaserules.projects.releases.delete
+      parameters:
+      - in: path
+        name: name
+        description: Resource name for the `Release` to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Release
+    get:
+      summary: Get Release
+      description: Get a `Release` by name
+      operationId: firebaserules.projects.releases.get
+      parameters:
+      - in: path
+        name: name
+        description: Resource name of the `Release`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Release
+    put:
+      summary: Update Release
+      description: Update a `Release`
+      operationId: firebaserules.projects.releases.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Resource name for the `Release`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Release
+  /v1/{name}/releases:
+    get:
+      summary: List Releases
+      description: List the `Release` values for a project
+      operationId: firebaserules.projects.releases.list
+      parameters:
+      - in: query
+        name: filter
+        description: '`Release` filter'
+      - in: path
+        name: name
+        description: Resource name for the project
+      - in: query
+        name: pageSize
+        description: Page size to load
+      - in: query
+        name: pageToken
+        description: Next page token for the next batch of `Release` instances
+      responses:
+        200:
+          description: OK
+      tags:
+      - Release
+    post:
+      summary: Create Releases
+      description: Create a `Release`
+      operationId: firebaserules.projects.releases.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Resource name for the project which owns this `Release`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Release
+  /v1/{name}/rulesets:
+    get:
+      summary: List Rules
+      description: List `Ruleset` metadata only and optionally filter the results
+        by Rulesetnname
+      operationId: firebaserules.projects.rulesets.list
+      parameters:
+      - in: path
+        name: name
+        description: Resource name for the project
+      - in: query
+        name: pageSize
+        description: Page size to load
+      - in: query
+        name: pageToken
+        description: Next page token for loading the next batch of `Ruleset` instances
+      responses:
+        200:
+          description: OK
+      tags:
+      - Rules
+    post:
+      summary: Create Rules
+      description: Create a `Ruleset` from `Source`
+      operationId: firebaserules.projects.rulesets.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Resource name for Project which owns this `Ruleset`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Rules
+  /v1/{name}:test:
+    post:
+      summary: Test  Rule
+      description: Test `Source` for syntactic and semantic correctness
+      operationId: firebaserules.projects.test
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Name of the project
+      responses:
+        200:
+          description: OK
+      tags:
+      - Rules
+definitions:
+  Empty:
+    properties: []
+  File:
+    properties:
+      content:
+        description: This is a default description.
+        type: post
+      fingerprint:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  Issue:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      severity:
+        description: This is a default description.
+        type: post
+  ListReleasesResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      releases:
+        description: This is a default description.
+        type: post
+  ListRulesetsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      rulesets:
+        description: This is a default description.
+        type: post
+  Release:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      rulesetName:
+        description: This is a default description.
+        type: post
+      updateTime:
+        description: This is a default description.
+        type: post
+  Ruleset:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  Source:
+    properties:
+      files:
+        description: This is a default description.
+        type: post
+  SourcePosition:
+    properties:
+      column:
+        description: This is a default description.
+        type: post
+      fileName:
+        description: This is a default description.
+        type: post
+      line:
+        description: This is a default description.
+        type: post
+  TestRulesetRequest:
+    properties: []
+  TestRulesetResponse:
+    properties:
+      issues:
+        description: This is a default description.
+        type: post
