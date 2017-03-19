@@ -1,0 +1,86 @@
+{
+	"name": "YouTube",
+	"description": "YouTube allows billions of people to discover, watch and share originally-created videos. YouTube provides a forum for people to connect, inform, and inspire others across the globe and acts as a distribution platform for original content creators and advertisers large and small.",
+	"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/youtube-logo.png",
+	"tags": ["Videos",
+	"Google APIs",
+	"Analysis"],
+	"created": "2017-03-18",
+	"modified": "2017-03-18",
+	"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/youtube/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [{
+		"name": "YouTube Analytics API",
+		"description": "YouTube allows billions of people to discover, watch and share originally-created videos",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/youtube-logo.png",
+		"humanURL": "http://apis.how/ongomzlitk",
+		"baseURL": "http://apis.how/ongomzlitk",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/youtube/youtube-analytics-api-openapi-spec.json"
+		}]
+	},
+	{
+		"name": "YouTube Data API",
+		"description": "YouTube allows billions of people to discover, watch and share originally-created videos",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/youtube-logo.png",
+		"humanURL": "http://apis.how/ongomzlitk",
+		"baseURL": "http://apis.how/ongomzlitk",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/youtube/youtube-data-api-openapi-spec.json"
+		}]
+	}],
+	"x-common": [{
+		"type": "x-blog",
+		"url": "https://developers.google.com/youtube/articles/"
+	},
+	{
+		"type": "x-authentication-overview",
+		"url": "https://developers.google.com/youtube/v3/guides/authentication"
+	},
+	{
+		"type": "x-blog",
+		"url": "https://youtube-eng.googleblog.com/"
+	},
+	{
+		"type": "x-blog-rss-feed",
+		"url": "https://youtube-eng.googleblog.com/feeds/posts/default?alt=rss"
+	},
+	{
+		"type": "x-deprecation-policy",
+		"url": "https://developers.google.com/youtube/youtube-api-list"
+	},
+	{
+		"type": "x-getting-started",
+		"url": "https://developers.google.com/youtube/v3/getting-started"
+	},
+	{
+		"type": "x-twitter",
+		"url": "https://twitter.com/YouTubeDev"
+	},
+	{
+		"type": "x-website",
+		"url": "https://www.youtube.com/"
+	},
+	{
+		"type": "x-webinars",
+		"url": "https://www.youtube.com/"
+	},
+	{
+		"type": "x-widgets",
+		"url": "https://developers.google.com/youtube/youtube_upload_widget"
+	},
+	{
+		"type": "x-portal",
+		"url": "https://www.youtube.com/"
+	}],
+	"include": [],
+	"maintainers": [{
+		"FN": "Kin Lane",
+		"x-twitter": "apievangelist",
+		"email": "info@apievangelist.com"
+	}]
+}
