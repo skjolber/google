@@ -1,0 +1,360 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "APIs Discovery Service",
+		"description": "Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "www.googleapis.com",
+	"basePath": "/discovery/v1",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/apis": {
+			"get": {
+				"summary": "Get APIs",
+				"description": "Retrieve the list of APIs supported at this endpoint",
+				"operationId": "discovery.apis.list",
+				"parameters": [{
+					"in": "query",
+					"name": "name",
+					"description": "Only include APIs with the given name"
+				},
+				{
+					"in": "query",
+					"name": "preferred",
+					"description": "Return only the preferred version of an API"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["API"]
+			}
+		},
+		"/apis/{api}/{version}/rest": {
+			"get": {
+				"summary": "Get API Description",
+				"description": "Retrieve the description of a particular version of an api",
+				"operationId": "discovery.apis.getRest",
+				"parameters": [{
+					"in": "path",
+					"name": "api",
+					"description": "The name of the API"
+				},
+				{
+					"in": "path",
+					"name": "version",
+					"description": "The version of the API"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["API"]
+			}
+		}
+	},
+	"definitions": {
+		"DirectoryList": {
+			"properties": {
+				"discoveryVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"items": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"JsonSchema": {
+			"properties": {
+				"$ref": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"annotations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"default": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"enum": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"enumDescriptions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"format": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"location": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"maximum": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"minimum": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pattern": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"properties": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"readOnly": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"repeated": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"required": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"variant": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"RestDescription": {
+			"properties": {
+				"auth": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"basePath": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"baseUrl": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"batchPath": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"canonicalName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"discoveryVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"documentationLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"exponentialBackoffDefault": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"features": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"icons": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"methods": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ownerDomain": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ownerName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"packagePath": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"parameters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"protocol": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"resources": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"revision": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"rootUrl": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"schemas": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"servicePath": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"title": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"version_module": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"RestMethod": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etagRequired": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"httpMethod": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"mediaUpload": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"parameterOrder": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"parameters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"path": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"request": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"response": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"scopes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"supportsMediaDownload": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"supportsMediaUpload": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"supportsSubscription": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"useMediaDownloadService": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"RestResource": {
+			"properties": {
+				"methods": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"resources": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
