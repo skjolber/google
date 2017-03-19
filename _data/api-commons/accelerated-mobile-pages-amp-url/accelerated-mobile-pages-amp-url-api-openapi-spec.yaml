@@ -1,0 +1,31 @@
+"\r\n  {\n\t\"swagger\": \"2.0\",\n\t\"info\": {\n\t\t\"title\": \"Accelerated
+  Mobile Pages (AMP) URL\",\n\t\t\"description\": \"This API contains a single method,
+  batchGet. Call this method to retrieve the AMP URL (and equivalent AMP Cache URL)
+  for given public URL(s).\",\n\t\t\"contact\": {\n\t\t\t\"name\": \"Google\",\n\t\t\t\"url\":
+  \"https://google.com\"\n\t\t},\n\t\t\"version\": \"v1\"\n\t},\n\t\"host\": \"acceleratedmobilepageurl.googleapis.com\",\n\t\"basePath\":
+  \"/\",\n\t\"schemes\": [\"http\"],\n\t\"produces\": [\"application/json\"],\n\t\"consumes\":
+  [\"application/json\"],\n\t\"paths\": {\n\t\t\"/v1/ampUrls:batchGet\": {\n\t\t\t\"post\":
+  {\n\t\t\t\t\"summary\": \"\",\n\t\t\t\t\"description\": \"Returns AMP URL(s) and
+  equivalentn[AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format)\",\n\t\t\t\t\"operationId\":
+  \"acceleratedmobilepageurl.ampUrls.batchGet\",\n\t\t\t\t\"parameters\": [{\n\t\t\t\t\t\"in\":
+  \"body\",\n\t\t\t\t\t\"name\": \"body\",\n\t\t\t\t\t\"schema\": {\n\t\t\t\t\t\t\"$ref\":
+  \"#/definitions/holder\"\n\t\t\t\t\t}\n\t\t\t\t}],\n\t\t\t\t\"responses\": {\n\t\t\t\t\t\"200\":
+  {\n\t\t\t\t\t\t\"description\": \"OK\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"tags\":
+  [\"AMP URLs\"]\n\t\t\t}\n\t\t}\n\t},\n\t\"definitions\": {\n\t\t\"AmpUrl\": {\n\t\t\t\"properties\":
+  {\n\t\t\t\t\"ampUrl\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
+  \"post\"\n\t\t\t\t},\n\t\t\t\t\"cdnAmpUrl\": {\n\t\t\t\t\t\"description\": \"This
+  is a default description.\",\n\t\t\t\t\t\"type\": \"post\"\n\t\t\t\t},\n\t\t\t\t\"originalUrl\":
+  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
+  \"post\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"AmpUrlError\": {\n\t\t\t\"properties\":
+  {\n\t\t\t\t\"errorCode\": {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
+  \"post\"\n\t\t\t\t},\n\t\t\t\t\"errorMessage\": {\n\t\t\t\t\t\"description\": \"This
+  is a default description.\",\n\t\t\t\t\t\"type\": \"post\"\n\t\t\t\t},\n\t\t\t\t\"originalUrl\":
+  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
+  \"post\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"BatchGetAmpUrlsRequest\": {\n\t\t\t\"properties\":
+  {\n\t\t\t\t\"lookupStrategy\": {\n\t\t\t\t\t\"description\": \"This is a default
+  description.\",\n\t\t\t\t\t\"type\": \"post\"\n\t\t\t\t},\n\t\t\t\t\"urls\": {\n\t\t\t\t\t\"description\":
+  \"This is a default description.\",\n\t\t\t\t\t\"type\": \"post\"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"BatchGetAmpUrlsResponse\":
+  {\n\t\t\t\"properties\": {\n\t\t\t\t\"ampUrls\": {\n\t\t\t\t\t\"description\": \"This
+  is a default description.\",\n\t\t\t\t\t\"type\": \"post\"\n\t\t\t\t},\n\t\t\t\t\"urlErrors\":
+  {\n\t\t\t\t\t\"description\": \"This is a default description.\",\n\t\t\t\t\t\"type\":
+  \"post\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
