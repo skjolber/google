@@ -1,0 +1,35 @@
+name: Google Dataflow
+description: Dataflow is a unified programming model and a managed service for developing
+  and executing a wide range of data processing patterns including ETL, batch computation,
+  and continuous computation. Cloud Dataflow frees you from operational tasks like
+  resource management and performance optimization.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-cloud-dataflow.jpeg
+tags:
+- Orchestration
+- iPaaS
+- Google APIs
+- Data
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-dataflow/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Cloud Dataflow API
+  description: Dataflow is a unified programming model and a managed service for developing
+    and executing a wide range of data processing patterns including ETL, batch computation,
+    and continuous computation
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-cloud-dataflow.jpeg
+  humanURL: https://cloud.google.com/dataflow/
+  baseURL: https://cloud.google.com/dataflow/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-dataflow/google-cloud-dataflow-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://cloud.google.com/dataflow/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
