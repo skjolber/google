@@ -45,9 +45,10 @@ paths:
         description: If set to `true`, returns `google
       - in: query
         name: waitToken
-        description: A wait token that, if specified, blocks the method call until
-          the listnof active breakpoints has changed, or a server selected timeout
-          hasnexpired
+        description: |-
+          A wait token that, if specified, blocks the method call until the list
+          of active breakpoints has changed, or a server selected timeout has
+          expired
       responses:
         200:
           description: OK
@@ -111,18 +112,22 @@ paths:
         description: ID of the debuggee whose breakpoints to list
       - in: query
         name: includeAllUsers
-        description: When set to `true`, the response includes the list of breakpoints
-          set bynany user
+        description: |-
+          When set to `true`, the response includes the list of breakpoints set by
+          any user
       - in: query
         name: includeInactive
-        description: When set to `true`, the response includes active and inactivenbreakpoints
+        description: |-
+          When set to `true`, the response includes active and inactive
+          breakpoints
       - in: query
         name: stripResults
         description: This field is deprecated
       - in: query
         name: waitToken
-        description: A wait token that, if specified, blocks the call until the breakpointsnlist
-          has changed, or a server selected timeout has expired
+        description: |-
+          A wait token that, if specified, blocks the call until the breakpoints
+          list has changed, or a server selected timeout has expired
       responses:
         200:
           description: OK
