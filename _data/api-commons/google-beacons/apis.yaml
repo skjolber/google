@@ -1,0 +1,38 @@
+name: Google Beacons
+description: Give your users better location and proximity experiences by providing
+  a strong context signal for their devices in the form of Bluetooth low energy (BLE)
+  beacons with Eddystone, the open beacon format from Google. The Google beacon platform
+  enables you to manage your beacons remotely, integrate with Google services and
+  help users devices to discover content and functionality across Android, native
+  apps and the web.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-beacons.jpg
+tags:
+- Sensors
+- Internet of Things
+- Google APIs
+- Beacons
+- ""
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-beacons/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Proximity Beacon API
+  description: Give your users better location and proximity experiences by providing
+    a strong context signal for their devices in the form of Bluetooth low energy
+    (BLE) beacons with Eddystone, the open beacon format from Google
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-beacons.jpg
+  humanURL: https://developers.google.com/beacons/
+  baseURL: https://developers.google.com/beacons/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-beacons/google-proximity-beacon-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://developers.google.com/beacons/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
