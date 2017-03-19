@@ -1,0 +1,23 @@
+name: Google Analytics
+description: Google Analytics gives you the digital analytics tools you need to analyze
+  data from all touchpoints in one place, for a deeper understanding of the customer
+  experience. You can then share the insights that matter with your whole organization.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/logo_lockup_analytics_icon_vertical_black_2x.png
+tags:
+- Google APIs
+- Analysis
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-analytics/apis.yaml
+specificationVersion: "0.14"
+apis: []
+x-common:
+- type: x-website
+  url: https://www.google.com/analytics/#?modal_active=none
+- type: x-portal
+  url: https://www.google.com/analytics/#?modal_active=none
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
