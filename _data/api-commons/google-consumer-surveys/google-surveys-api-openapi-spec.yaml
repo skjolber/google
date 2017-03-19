@@ -1,0 +1,430 @@
+swagger: "2.0"
+info:
+  title: Consumer Surveys
+  description: Creates and conducts surveys, lists the surveys that an authenticated
+    user owns, and retrieves survey results and information about specified surveys.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v2
+host: www.googleapis.com
+basePath: /consumersurveys/v2
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /mobileAppPanels:
+    get:
+      summary: Get Mobile App Panels
+      description: Lists the MobileAppPanels available to the authenticated user
+      operationId: consumersurveys.mobileapppanels.list
+      parameters:
+      - in: query
+        name: maxResults
+      - in: query
+        name: startIndex
+      - in: query
+        name: token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Mobile Application
+  /mobileAppPanels/{panelId}:
+    get:
+      summary: Get Mobile App Panel
+      description: Retrieves a MobileAppPanel that is available to the authenticated
+        user
+      operationId: consumersurveys.mobileapppanels.get
+      parameters:
+      - in: path
+        name: panelId
+        description: External URL ID for the panel
+      responses:
+        200:
+          description: OK
+      tags:
+      - Mobile Application
+    put:
+      summary: Update Mobile App Panel
+      description: Updates a MobileAppPanel
+      operationId: consumersurveys.mobileapppanels.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: panelId
+        description: External URL ID for the panel
+      responses:
+        200:
+          description: OK
+      tags:
+      - Mobile Application
+  /surveys:
+    get:
+      summary: Get Surveys
+      description: Lists the surveys owned by the authenticated user
+      operationId: consumersurveys.surveys.list
+      parameters:
+      - in: query
+        name: maxResults
+      - in: query
+        name: startIndex
+      - in: query
+        name: token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+    post:
+      summary: Create Survey
+      description: Creates a survey
+      operationId: consumersurveys.surveys.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+  /surveys/{resourceId}/start:
+    post:
+      summary: Begin Survey
+      description: Begins running a survey
+      operationId: consumersurveys.surveys.start
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resourceId
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+  /surveys/{resourceId}/stop:
+    post:
+      summary: Stop Survey
+      description: Stops a running survey
+      operationId: consumersurveys.surveys.stop
+      parameters:
+      - in: path
+        name: resourceId
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+  /surveys/{surveyUrlId}:
+    delete:
+      summary: Remove Survey
+      description: Removes a survey from view in all user GET requests
+      operationId: consumersurveys.surveys.delete
+      parameters:
+      - in: path
+        name: surveyUrlId
+        description: External URL ID for the survey
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+    get:
+      summary: Get Survey
+      description: Retrieves information about the specified survey
+      operationId: consumersurveys.surveys.get
+      parameters:
+      - in: path
+        name: surveyUrlId
+        description: External URL ID for the survey
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+    put:
+      summary: Update Survey
+      description: Updates a survey
+      operationId: consumersurveys.surveys.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: surveyUrlId
+        description: External URL ID for the survey
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+  /surveys/{surveyUrlId}/results:
+    get:
+      summary: Get Survey Results
+      description: Retrieves any survey results that have been produced so far
+      operationId: consumersurveys.results.get
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: surveyUrlId
+        description: External URL ID for the survey
+      responses:
+        200:
+          description: OK
+      tags:
+      - Survey
+definitions:
+  FieldMask:
+    properties:
+      fields:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+  MobileAppPanel:
+    properties:
+      country:
+        description: This is a default description.
+        type: parameters
+      isPublicPanel:
+        description: This is a default description.
+        type: parameters
+      language:
+        description: This is a default description.
+        type: parameters
+      mobileAppPanelId:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      owners:
+        description: This is a default description.
+        type: parameters
+  MobileAppPanelsListResponse:
+    properties:
+      requestId:
+        description: This is a default description.
+        type: parameters
+      resources:
+        description: This is a default description.
+        type: parameters
+  PageInfo:
+    properties:
+      resultPerPage:
+        description: This is a default description.
+        type: parameters
+      startIndex:
+        description: This is a default description.
+        type: parameters
+      totalResults:
+        description: This is a default description.
+        type: parameters
+  ResultsGetRequest:
+    properties: []
+  ResultsMask:
+    properties:
+      fields:
+        description: This is a default description.
+        type: parameters
+      projection:
+        description: This is a default description.
+        type: parameters
+  Survey:
+    properties:
+      customerData:
+        description: This is a default description.
+        type: parameters
+      description:
+        description: This is a default description.
+        type: parameters
+      owners:
+        description: This is a default description.
+        type: parameters
+      questions:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      surveyUrlId:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      wantedResponseCount:
+        description: This is a default description.
+        type: parameters
+  SurveyAudience:
+    properties:
+      ages:
+        description: This is a default description.
+        type: parameters
+      country:
+        description: This is a default description.
+        type: parameters
+      countrySubdivision:
+        description: This is a default description.
+        type: parameters
+      gender:
+        description: This is a default description.
+        type: parameters
+      languages:
+        description: This is a default description.
+        type: parameters
+      mobileAppPanelId:
+        description: This is a default description.
+        type: parameters
+      populationSource:
+        description: This is a default description.
+        type: parameters
+  SurveyCost:
+    properties:
+      costPerResponseNanos:
+        description: This is a default description.
+        type: parameters
+      currencyCode:
+        description: This is a default description.
+        type: parameters
+      maxCostPerResponseNanos:
+        description: This is a default description.
+        type: parameters
+      nanos:
+        description: This is a default description.
+        type: parameters
+  SurveyQuestion:
+    properties:
+      answerOrder:
+        description: This is a default description.
+        type: parameters
+      answers:
+        description: This is a default description.
+        type: parameters
+      hasOther:
+        description: This is a default description.
+        type: parameters
+      highValueLabel:
+        description: This is a default description.
+        type: parameters
+      images:
+        description: This is a default description.
+        type: parameters
+      lastAnswerPositionPinned:
+        description: This is a default description.
+        type: parameters
+      lowValueLabel:
+        description: This is a default description.
+        type: parameters
+      mustPickSuggestion:
+        description: This is a default description.
+        type: parameters
+      numStars:
+        description: This is a default description.
+        type: parameters
+      openTextPlaceholder:
+        description: This is a default description.
+        type: parameters
+      openTextSuggestions:
+        description: This is a default description.
+        type: parameters
+      question:
+        description: This is a default description.
+        type: parameters
+      sentimentText:
+        description: This is a default description.
+        type: parameters
+      singleLineResponse:
+        description: This is a default description.
+        type: parameters
+      thresholdAnswers:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+      unitOfMeasurementLabel:
+        description: This is a default description.
+        type: parameters
+      videoId:
+        description: This is a default description.
+        type: parameters
+  SurveyQuestionImage:
+    properties:
+      altText:
+        description: This is a default description.
+        type: parameters
+      data:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  SurveyRejection:
+    properties:
+      explanation:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+  SurveyResults:
+    properties:
+      status:
+        description: This is a default description.
+        type: parameters
+      surveyUrlId:
+        description: This is a default description.
+        type: parameters
+  SurveysDeleteResponse:
+    properties:
+      requestId:
+        description: This is a default description.
+        type: parameters
+  SurveysListResponse:
+    properties:
+      requestId:
+        description: This is a default description.
+        type: parameters
+      resources:
+        description: This is a default description.
+        type: parameters
+  SurveysStartRequest:
+    properties:
+      maxCostPerResponseNanos:
+        description: This is a default description.
+        type: parameters
+  SurveysStartResponse:
+    properties:
+      requestId:
+        description: This is a default description.
+        type: parameters
+  SurveysStopResponse:
+    properties:
+      requestId:
+        description: This is a default description.
+        type: parameters
+  TokenPagination:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      previousPageToken:
+        description: This is a default description.
+        type: parameters
