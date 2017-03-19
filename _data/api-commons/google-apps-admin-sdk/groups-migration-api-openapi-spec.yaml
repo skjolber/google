@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  title: Groups Migration
+  description: Groups Migration Api.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: www.googleapis.com
+basePath: /groups/v1/groups
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /{groupId}/archive:
+    post:
+      summary: Archive Mail
+      description: Inserts a new mail into the archive of the Google group
+      operationId: groupsmigration.archive.insert
+      parameters:
+      - in: path
+        name: groupId
+        description: The group ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Archive
+definitions:
+  Groups:
+    properties:
+      kind:
+        description: This is a default description.
+        type: post
+      responseCode:
+        description: This is a default description.
+        type: post
