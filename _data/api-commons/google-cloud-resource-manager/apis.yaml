@@ -1,0 +1,36 @@
+name: Google Cloud Resource Manager
+description: Google Cloud Platform provides resource containers such as Organizations
+  and Projects, that allow you to group and hierarchically organize other Cloud Platform
+  resources. This hierarchical organization lets you easily manage common aspects
+  of your resources such as access control and configuration settings. The Google
+  Cloud Resource Manager service enables you to programmatically manage these resource
+  containers.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/Generic-GCP.png
+tags:
+- Orchestration
+- Management
+- Google APIs
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-resource-manager/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Cloud Resource Manager API
+  description: Google Cloud Platform provides resource containers such as Organizations
+    and Projects, that allow you to group and hierarchically organize other Cloud
+    Platform resources
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/Generic-GCP.png
+  humanURL: https://cloud.google.com/resource-manager/
+  baseURL: https://cloud.google.com/resource-manager/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-resource-manager/google-cloud-resource-manager-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://cloud.google.com/resource-manager/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
