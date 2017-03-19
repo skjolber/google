@@ -19,8 +19,8 @@ paginate_path: "/blog/page:num"
 categories_path : /categories.html
 tags_path : /tags.html
 
-org: api-stack
-repo: google
+github_org: api-stack
+github_repo: google
 
 # Masthead title
 masthead_link: http://apis.how/xzca4kr2wb
