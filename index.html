@@ -23,8 +23,11 @@ HERE: {{ index.include }}
   {% for api in contents %}
 
     {% assign api_name = api[0] %}
+    {{ api_name }}<br />
     {% assign folder = api[1] %}
     {% if api_name == path %}
+
+    folder: {{ folder }}<br />
 
       <!--- Begin --->
 
