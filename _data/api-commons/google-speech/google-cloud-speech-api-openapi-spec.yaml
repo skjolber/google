@@ -1,0 +1,201 @@
+swagger: "2.0"
+info:
+  title: Google Cloud Speech
+  description: Google Cloud Speech API.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1beta1
+host: speech.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1beta1/operations:
+    get:
+      summary: Get Operations
+      description: Lists operations that match the specified filter in the request
+      operationId: speech.operations.list
+      parameters:
+      - in: query
+        name: filter
+        description: The standard list filter
+      - in: query
+        name: name
+        description: The name of the operation collection
+      - in: query
+        name: pageSize
+        description: The standard list page size
+      - in: query
+        name: pageToken
+        description: The standard list page token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1beta1/operations/{name}:
+    delete:
+      summary: Delete Operation
+      description: Deletes a long-running operation
+      operationId: speech.operations.delete
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+    get:
+      summary: Delete Operation
+      description: Gets the latest state of a long-running operation
+      operationId: speech.operations.get
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1beta1/operations/{name}:cancel:
+    post:
+      summary: Cancel Operation
+      description: Starts asynchronous cancellation on a long-running operation
+      operationId: speech.operations.cancel
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource to be cancelled
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1beta1/speech:asyncrecognize:
+    post:
+      summary: Perform Asynchronous Speech Recognition
+      description: 'Performs asynchronous speech recognition: receive results via
+        then[google'
+      operationId: speech.speech.asyncrecognize
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Speech Recognition
+  /v1beta1/speech:syncrecognize:
+    post:
+      summary: Perform Synchronous Speech Recognition
+      description: 'Performs synchronous speech recognition: receive results after
+        all audionhas been sent and processed'
+      operationId: speech.speech.syncrecognize
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Speech Recognition
+definitions:
+  AsyncRecognizeRequest:
+    properties: []
+  Empty:
+    properties: []
+  ListOperationsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      operations:
+        description: This is a default description.
+        type: post
+  Operation:
+    properties:
+      done:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      response:
+        description: This is a default description.
+        type: post
+  RecognitionAudio:
+    properties:
+      content:
+        description: This is a default description.
+        type: post
+      uri:
+        description: This is a default description.
+        type: post
+  RecognitionConfig:
+    properties:
+      encoding:
+        description: This is a default description.
+        type: post
+      languageCode:
+        description: This is a default description.
+        type: post
+      maxAlternatives:
+        description: This is a default description.
+        type: post
+      profanityFilter:
+        description: This is a default description.
+        type: post
+      sampleRate:
+        description: This is a default description.
+        type: post
+  SpeechContext:
+    properties:
+      phrases:
+        description: This is a default description.
+        type: post
+  SpeechRecognitionAlternative:
+    properties:
+      confidence:
+        description: This is a default description.
+        type: post
+      transcript:
+        description: This is a default description.
+        type: post
+  SpeechRecognitionResult:
+    properties:
+      alternatives:
+        description: This is a default description.
+        type: post
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
+  SyncRecognizeRequest:
+    properties: []
+  SyncRecognizeResponse:
+    properties:
+      results:
+        description: This is a default description.
+        type: post
