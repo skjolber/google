@@ -82,13 +82,19 @@ paths:
         description: '[Required] The resource name of the Google Cloud Platform project'
       - in: query
         name: serviceFilter.resourceType
-        description: '[Optional] The exact value to match againstn[`ServiceContext'
+        description: |-
+          [Optional] The exact value to match against
+          [`ServiceContext
       - in: query
         name: serviceFilter.service
-        description: '[Optional] The exact value to match againstn[`ServiceContext'
+        description: |-
+          [Optional] The exact value to match against
+          [`ServiceContext
       - in: query
         name: serviceFilter.version
-        description: '[Optional] The exact value to match againstn[`ServiceContext'
+        description: |-
+          [Optional] The exact value to match against
+          [`ServiceContext
       - in: query
         name: timeRange.period
         description: Restricts the query to the specified time range
@@ -126,8 +132,9 @@ paths:
         description: '[Optional] The alignment of the timed counts to be returned'
       - in: query
         name: alignmentTime
-        description: '[Optional] Time where the timed counts shall be aligned if roundednalignment
-          is chosen'
+        description: |-
+          [Optional] Time where the timed counts shall be aligned if rounded
+          alignment is chosen
       - in: query
         name: groupId
         description: '[Optional] List all <code>ErrorGroupStats</code> with these
@@ -146,13 +153,19 @@ paths:
         description: '[Required] The resource name of the Google Cloud Platform project'
       - in: query
         name: serviceFilter.resourceType
-        description: '[Optional] The exact value to match againstn[`ServiceContext'
+        description: |-
+          [Optional] The exact value to match against
+          [`ServiceContext
       - in: query
         name: serviceFilter.service
-        description: '[Optional] The exact value to match againstn[`ServiceContext'
+        description: |-
+          [Optional] The exact value to match against
+          [`ServiceContext
       - in: query
         name: serviceFilter.version
-        description: '[Optional] The exact value to match againstn[`ServiceContext'
+        description: |-
+          [Optional] The exact value to match against
+          [`ServiceContext
       - in: query
         name: timedCountDuration
         description: '[Optional] The preferred duration for a single returned `TimedCount`'
