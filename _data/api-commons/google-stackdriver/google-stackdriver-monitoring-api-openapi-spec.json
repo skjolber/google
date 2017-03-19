@@ -1,0 +1,856 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Stackdriver Monitoring",
+		"description": "Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v3"
+	},
+	"host": "monitoring.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v3/{name}": {
+			"delete": {
+				"summary": "Delete Metric",
+				"description": "Deletes a metric descriptor",
+				"operationId": "monitoring.projects.metricDescriptors.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "name",
+					"description": "The metric descriptor on which to execute the request"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Metric"]
+			},
+			"get": {
+				"summary": "Get Metric",
+				"description": "Gets a single monitored resource descriptor",
+				"operationId": "monitoring.projects.monitoredResourceDescriptors.get",
+				"parameters": [{
+					"in": "path",
+					"name": "name",
+					"description": "The monitored resource descriptor to get"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Metric"]
+			},
+			"put": {
+				"summary": "Update Metric",
+				"description": "Updates an existing group",
+				"operationId": "monitoring.projects.groups.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "Output only"
+				},
+				{
+					"in": "query",
+					"name": "validateOnly",
+					"description": "If true, validate this request but do not update the existing group"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Metric"]
+			}
+		},
+		"/v3/{name}/groups": {
+			"get": {
+				"summary": "Get Groups",
+				"description": "Lists the existing groups",
+				"operationId": "monitoring.projects.groups.list",
+				"parameters": [{
+					"in": "query",
+					"name": "ancestorsOfGroup",
+					"description": "A group name: "projects/{project_id_or_number}/groups/{group_id}""
+				},
+				{
+					"in": "query",
+					"name": "childrenOfGroup",
+					"description": "A group name: "projects/{project_id_or_number}/groups/{group_id}""
+				},
+				{
+					"in": "query",
+					"name": "descendantsOfGroup",
+					"description": "A group name: "projects/{project_id_or_number}/groups/{group_id}""
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project whose groups are to be listed"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "A positive number that is the maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Metric"]
+			},
+			"post": {
+				"summary": "Create Group",
+				"description": "Creates a new group",
+				"operationId": "monitoring.projects.groups.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project in which to create the group"
+				},
+				{
+					"in": "query",
+					"name": "validateOnly",
+					"description": "If true, validate this request but do not create the group"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			}
+		},
+		"/v3/{name}/members": {
+			"get": {
+				"summary": "Get Members",
+				"description": "Lists the monitored resources that are members of a group",
+				"operationId": "monitoring.projects.groups.members.list",
+				"parameters": [{
+					"in": "query",
+					"name": "filter",
+					"description": "An optional list filter describing the members to be returned"
+				},
+				{
+					"in": "query",
+					"name": "interval.endTime",
+					"description": "Required"
+				},
+				{
+					"in": "query",
+					"name": "interval.startTime",
+					"description": "Optional"
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The group whose members are listed"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "A positive number that is the maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Member"]
+			}
+		},
+		"/v3/{name}/metricDescriptors": {
+			"get": {
+				"summary": "Get Metric",
+				"description": "Lists metric descriptors that match a filter",
+				"operationId": "monitoring.projects.metricDescriptors.list",
+				"parameters": [{
+					"in": "query",
+					"name": "filter",
+					"description": "If this field is empty, all custom and system-defined metric descriptors are returned"
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project on which to execute the request"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "A positive number that is the maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Metric"]
+			},
+			"post": {
+				"summary": "Create Metric",
+				"description": "Creates a new metric descriptor",
+				"operationId": "monitoring.projects.metricDescriptors.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project on which to execute the request"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Metric"]
+			}
+		},
+		"/v3/{name}/monitoredResourceDescriptors": {
+			"get": {
+				"summary": "Get Monitored Resources",
+				"description": "Lists monitored resource descriptors that match a filter",
+				"operationId": "monitoring.projects.monitoredResourceDescriptors.list",
+				"parameters": [{
+					"in": "query",
+					"name": "filter",
+					"description": "An optional filter describing the descriptors to be returned"
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project on which to execute the request"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "A positive number that is the maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Monitors"]
+			}
+		},
+		"/v3/{name}/timeSeries": {
+			"get": {
+				"summary": "Get Time Series",
+				"description": "Lists time series that match a filter",
+				"operationId": "monitoring.projects.timeSeries.list",
+				"parameters": [{
+					"in": "query",
+					"name": "aggregation.alignmentPeriod",
+					"description": "The alignment period for per-time series alignment"
+				},
+				{
+					"in": "query",
+					"name": "aggregation.crossSeriesReducer",
+					"description": "The approach to be used to combine time series"
+				},
+				{
+					"in": "query",
+					"name": "aggregation.groupByFields",
+					"description": "The set of fields to preserve when crossSeriesReducer is specified"
+				},
+				{
+					"in": "query",
+					"name": "aggregation.perSeriesAligner",
+					"description": "The approach to be used to align individual time series"
+				},
+				{
+					"in": "query",
+					"name": "filter",
+					"description": "A monitoring filter that specifies which time series should be returned"
+				},
+				{
+					"in": "query",
+					"name": "interval.endTime",
+					"description": "Required"
+				},
+				{
+					"in": "query",
+					"name": "interval.startTime",
+					"description": "Optional"
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project on which to execute the request"
+				},
+				{
+					"in": "query",
+					"name": "orderBy",
+					"description": "Specifies the order in which the points of the time series should be returned"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "A positive number that is the maximum number of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method"
+				},
+				{
+					"in": "query",
+					"name": "view",
+					"description": "Specifies which information is returned about the time series"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Time Series"]
+			},
+			"post": {
+				"summary": "Add Data",
+				"description": "Creates or adds data to one or more time series",
+				"operationId": "monitoring.projects.timeSeries.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The project on which to execute the request"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""]
+			}
+		}
+	},
+	"definitions": {
+		"BucketOptions": {
+			"properties": []
+		},
+		"CollectdPayload": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"metadata": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"plugin": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"pluginInstance": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"typeInstance": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"values": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"CollectdValue": {
+			"properties": {
+				"dataSourceName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"dataSourceType": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"CreateCollectdTimeSeriesRequest": {
+			"properties": {
+				"collectdPayloads": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"collectdVersion": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"CreateTimeSeriesRequest": {
+			"properties": {
+				"timeSeries": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Distribution": {
+			"properties": {
+				"bucketCounts": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"count": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"mean": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"sumOfSquaredDeviation": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Empty": {
+			"properties": []
+		},
+		"Explicit": {
+			"properties": {
+				"bounds": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Exponential": {
+			"properties": {
+				"growthFactor": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"numFiniteBuckets": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"scale": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Field": {
+			"properties": {
+				"cardinality": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"defaultValue": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"jsonName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"number": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"oneofIndex": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"options": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"packed": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"typeUrl": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Group": {
+			"properties": {
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"filter": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"isCluster": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"parentName": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"LabelDescriptor": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"key": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"valueType": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Linear": {
+			"properties": {
+				"numFiniteBuckets": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"offset": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"width": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListGroupMembersResponse": {
+			"properties": {
+				"members": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"totalSize": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListGroupsResponse": {
+			"properties": {
+				"group": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListMetricDescriptorsResponse": {
+			"properties": {
+				"metricDescriptors": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListMonitoredResourceDescriptorsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"resourceDescriptors": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListTimeSeriesResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"timeSeries": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Metric": {
+			"properties": {
+				"labels": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"MetricDescriptor": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"metricKind": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"unit": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"valueType": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"MonitoredResource": {
+			"properties": {
+				"labels": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"MonitoredResourceDescriptor": {
+			"properties": {
+				"description": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Option": {
+			"properties": {
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Point": {
+			"properties": []
+		},
+		"Range": {
+			"properties": {
+				"max": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"min": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"SourceContext": {
+			"properties": {
+				"fileName": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"TimeInterval": {
+			"properties": {
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"TimeSeries": {
+			"properties": {
+				"metricKind": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"points": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"valueType": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Type": {
+			"properties": {
+				"fields": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"oneofs": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"options": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"syntax": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"TypedValue": {
+			"properties": {
+				"boolValue": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"doubleValue": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"int64Value": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"stringValue": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		}
+	}
+}
