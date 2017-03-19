@@ -1,0 +1,783 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google People",
+		"description": "Provides access to information about profiles and contacts.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "people.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/people:batchGet": {
+			"get": {
+				"summary": "Get People",
+				"description": "Provides information about a list of specific people by specifying a listnof requested resource names",
+				"operationId": "people.people.getBatchGet",
+				"parameters": [{
+					"in": "query",
+					"name": "requestMask.includeField",
+					"description": "Comma-separated list of fields to be included in the response"
+				},
+				{
+					"in": "query",
+					"name": "resourceNames",
+					"description": "The resource name, such as one returned byn[`people"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["People"]
+			}
+		},
+		"/v1/{resourceName}": {
+			"get": {
+				"summary": "Get Person",
+				"description": "Provides information about a person resource for a resource name",
+				"operationId": "people.people.get",
+				"parameters": [{
+					"in": "query",
+					"name": "requestMask.includeField",
+					"description": "Comma-separated list of fields to be included in the response"
+				},
+				{
+					"in": "path",
+					"name": "resourceName",
+					"description": "The resource name of the person to provide information about"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["People"]
+			}
+		},
+		"/v1/{resourceName}/connections": {
+			"get": {
+				"summary": "Get Connections",
+				"description": "Provides a list of the authenticated user's contacts merged with anynlinked profiles",
+				"operationId": "people.people.connections.list",
+				"parameters": [{
+					"in": "query",
+					"name": "pageSize",
+					"description": "The number of connections to include in the response"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "The token of the page to be returned"
+				},
+				{
+					"in": "query",
+					"name": "requestMask.includeField",
+					"description": "Comma-separated list of fields to be included in the response"
+				},
+				{
+					"in": "query",
+					"name": "requestSyncToken",
+					"description": "Whether the response should include a sync token, which can be used to getnall changes since the last request"
+				},
+				{
+					"in": "path",
+					"name": "resourceName",
+					"description": "The resource name to return connections for"
+				},
+				{
+					"in": "query",
+					"name": "sortOrder",
+					"description": "The order in which the connections should be sorted"
+				},
+				{
+					"in": "query",
+					"name": "syncToken",
+					"description": "A sync token, returned by a previous call to `people"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Connection"]
+			}
+		}
+	},
+	"definitions": {
+		"Address": {
+			"properties": {
+				"city": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"country": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"countryCode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"extendedAddress": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formattedValue": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"poBox": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"postalCode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"region": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"streetAddress": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"AgeRangeType": {
+			"properties": {
+				"ageRange": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Biography": {
+			"properties": {
+				"contentType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Birthday": {
+			"properties": {
+				"text": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"BraggingRights": {
+			"properties": {
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ContactGroupMembership": {
+			"properties": {
+				"contactGroupId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"CoverPhoto": {
+			"properties": {
+				"default": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"url": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Date": {
+			"properties": {
+				"day": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"month": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"year": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"DomainMembership": {
+			"properties": {
+				"inViewerDomain": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"EmailAddress": {
+			"properties": {
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Event": {
+			"properties": {
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"FieldMetadata": {
+			"properties": {
+				"primary": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"verified": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Gender": {
+			"properties": {
+				"formattedValue": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"GetPeopleResponse": {
+			"properties": {
+				"responses": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ImClient": {
+			"properties": {
+				"formattedProtocol": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"protocol": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"username": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Interest": {
+			"properties": {
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListConnectionsResponse": {
+			"properties": {
+				"connections": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextSyncToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Locale": {
+			"properties": {
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Membership": {
+			"properties": []
+		},
+		"Name": {
+			"properties": {
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"displayNameLastFirst": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"familyName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"givenName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"honorificPrefix": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"honorificSuffix": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"middleName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticFamilyName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticFullName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticGivenName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticHonorificPrefix": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticHonorificSuffix": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticMiddleName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Nickname": {
+			"properties": {
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Occupation": {
+			"properties": {
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Organization": {
+			"properties": {
+				"current": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"department": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"domain": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"jobDescription": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"location": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneticName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"symbol": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"title": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Person": {
+			"properties": {
+				"addresses": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ageRange": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"ageRanges": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"biographies": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"birthdays": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"braggingRights": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"coverPhotos": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"emailAddresses": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"events": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"genders": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"imClients": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"interests": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"locales": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"memberships": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"names": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nicknames": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"occupations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"organizations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneNumbers": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"photos": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"relations": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"relationshipInterests": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"relationshipStatuses": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"residences": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"resourceName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"skills": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"taglines": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"urls": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"PersonMetadata": {
+			"properties": {
+				"deleted": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"linkedPeopleResourceNames": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"objectType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"previousResourceNames": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sources": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"PersonResponse": {
+			"properties": {
+				"httpStatusCode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"requestedResourceName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"PhoneNumber": {
+			"properties": {
+				"canonicalForm": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Photo": {
+			"properties": {
+				"url": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ProfileMetadata": {
+			"properties": {
+				"objectType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Relation": {
+			"properties": {
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"person": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"RelationshipInterest": {
+			"properties": {
+				"formattedValue": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"RelationshipStatus": {
+			"properties": {
+				"formattedValue": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Residence": {
+			"properties": {
+				"current": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Skill": {
+			"properties": {
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Source": {
+			"properties": {
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Tagline": {
+			"properties": {
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Url": {
+			"properties": {
+				"formattedType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
