@@ -1,0 +1,318 @@
+swagger: "2.0"
+info:
+  title: Google Safe Browsing
+  description: The Safe Browsing API is an experimental API that allows client applications
+    to check URLs against Google's constantly-updated blacklists of suspected phishing
+    and malware pages. Your client application can use the API to download an encrypted
+    table for local, client-side lookups of URLs.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v4
+host: safebrowsing.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v4/encodedFullHashes/{encodedRequest}:
+    get:
+      summary: Encode Full Hashes
+      description: Encode Full Hashes
+      operationId: safebrowsing.encodedFullHashes.get
+      parameters:
+      - in: query
+        name: clientId
+        description: A client ID that (hopefully) uniquely identifies the client implementationnof
+          the Safe Browsing API
+      - in: query
+        name: clientVersion
+        description: The version of the client implementation
+      - in: path
+        name: encodedRequest
+        description: A serialized FindFullHashesRequest proto
+      responses:
+        200:
+          description: OK
+      tags:
+      - Hash
+  /v4/encodedUpdates/{encodedRequest}:
+    get:
+      summary: Encoded Updates
+      description: Encoded Updates
+      operationId: safebrowsing.encodedUpdates.get
+      parameters:
+      - in: query
+        name: clientId
+        description: A client ID that uniquely identifies the client implementation
+          of the SafenBrowsing API
+      - in: query
+        name: clientVersion
+        description: The version of the client implementation
+      - in: path
+        name: encodedRequest
+        description: A serialized FetchThreatListUpdatesRequest proto
+      responses:
+        200:
+          description: OK
+      tags:
+      - Updates
+  /v4/fullHashes:find:
+    post:
+      summary: Find Full Hash Match
+      description: Finds the full hashes that match the requested hash prefixes
+      operationId: safebrowsing.fullHashes.find
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Hash
+  /v4/threatLists:
+    get:
+      summary: List Threats
+      description: Lists the Safe Browsing threat lists available for download
+      operationId: safebrowsing.threatLists.list
+      responses:
+        200:
+          description: OK
+      tags:
+      - Threats
+  /v4/threatListUpdates:fetch:
+    post:
+      summary: List Most Recent Threats
+      description: Fetches the most recent threat list updates
+      operationId: safebrowsing.threatListUpdates.fetch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Threats
+  /v4/threatMatches:find:
+    post:
+      summary: Find Threat Entry
+      description: Finds the threat entries that match the Safe Browsing lists
+      operationId: safebrowsing.threatMatches.find
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Threats
+definitions:
+  Checksum:
+    properties:
+      sha256:
+        description: This is a default description.
+        type: post
+  ClientInfo:
+    properties:
+      clientId:
+        description: This is a default description.
+        type: post
+      clientVersion:
+        description: This is a default description.
+        type: post
+  Constraints:
+    properties:
+      maxDatabaseEntries:
+        description: This is a default description.
+        type: post
+      maxUpdateEntries:
+        description: This is a default description.
+        type: post
+      region:
+        description: This is a default description.
+        type: post
+      supportedCompressions:
+        description: This is a default description.
+        type: post
+  FetchThreatListUpdatesRequest:
+    properties:
+      listUpdateRequests:
+        description: This is a default description.
+        type: post
+  FetchThreatListUpdatesResponse:
+    properties:
+      listUpdateResponses:
+        description: This is a default description.
+        type: post
+      minimumWaitDuration:
+        description: This is a default description.
+        type: post
+  FindFullHashesRequest:
+    properties:
+      clientStates:
+        description: This is a default description.
+        type: post
+  FindFullHashesResponse:
+    properties:
+      matches:
+        description: This is a default description.
+        type: post
+      minimumWaitDuration:
+        description: This is a default description.
+        type: post
+      negativeCacheDuration:
+        description: This is a default description.
+        type: post
+  FindThreatMatchesRequest:
+    properties: []
+  FindThreatMatchesResponse:
+    properties:
+      matches:
+        description: This is a default description.
+        type: post
+  ListThreatListsResponse:
+    properties:
+      threatLists:
+        description: This is a default description.
+        type: post
+  ListUpdateRequest:
+    properties:
+      platformType:
+        description: This is a default description.
+        type: post
+      state:
+        description: This is a default description.
+        type: post
+      threatEntryType:
+        description: This is a default description.
+        type: post
+      threatType:
+        description: This is a default description.
+        type: post
+  ListUpdateResponse:
+    properties:
+      additions:
+        description: This is a default description.
+        type: post
+      newClientState:
+        description: This is a default description.
+        type: post
+      platformType:
+        description: This is a default description.
+        type: post
+      removals:
+        description: This is a default description.
+        type: post
+      responseType:
+        description: This is a default description.
+        type: post
+      threatEntryType:
+        description: This is a default description.
+        type: post
+      threatType:
+        description: This is a default description.
+        type: post
+  MetadataEntry:
+    properties:
+      key:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  RawHashes:
+    properties:
+      prefixSize:
+        description: This is a default description.
+        type: post
+      rawHashes:
+        description: This is a default description.
+        type: post
+  RawIndices:
+    properties:
+      indices:
+        description: This is a default description.
+        type: post
+  RiceDeltaEncoding:
+    properties:
+      encodedData:
+        description: This is a default description.
+        type: post
+      firstValue:
+        description: This is a default description.
+        type: post
+      numEntries:
+        description: This is a default description.
+        type: post
+      riceParameter:
+        description: This is a default description.
+        type: post
+  ThreatEntry:
+    properties:
+      digest:
+        description: This is a default description.
+        type: post
+      hash:
+        description: This is a default description.
+        type: post
+      url:
+        description: This is a default description.
+        type: post
+  ThreatEntryMetadata:
+    properties:
+      entries:
+        description: This is a default description.
+        type: post
+  ThreatEntrySet:
+    properties:
+      compressionType:
+        description: This is a default description.
+        type: post
+  ThreatInfo:
+    properties:
+      platformTypes:
+        description: This is a default description.
+        type: post
+      threatEntries:
+        description: This is a default description.
+        type: post
+      threatEntryTypes:
+        description: This is a default description.
+        type: post
+      threatTypes:
+        description: This is a default description.
+        type: post
+  ThreatListDescriptor:
+    properties:
+      platformType:
+        description: This is a default description.
+        type: post
+      threatEntryType:
+        description: This is a default description.
+        type: post
+      threatType:
+        description: This is a default description.
+        type: post
+  ThreatMatch:
+    properties:
+      cacheDuration:
+        description: This is a default description.
+        type: post
+      platformType:
+        description: This is a default description.
+        type: post
+      threatEntryType:
+        description: This is a default description.
+        type: post
+      threatType:
+        description: This is a default description.
+        type: post
