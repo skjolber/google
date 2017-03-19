@@ -1,160 +1,160 @@
-- name: Google
-  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-logo.jpg
-  created: "2017-03-18"
-  modified: "2017-03-18"
-  url: http://google.stack.network/apis.yaml
-  specificationVersion: "0.14"
-  apis: []
-  tags:
-  - Google APIs
-  include:
-  - name: Accelerated Mobile Pages (AMP) URL
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/accelerated-mobile-pages-amp-url/apis.yaml
-  - name: Blogger
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/blogger/apis.yaml
-  - name: Firebase
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/apis.yaml
-  - name: G Suite
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/g-suite/apis.yaml
-  - name: Gmail
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/gmail/apis.yaml
-  - name: Google Adsense
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-adsense/apis.yaml
-  - name: Google Analytics
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-analytics/apis.yaml
-  - name: Google API Discovery Service
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-api-discovery-service/apis.yaml
-  - name: Google App Engine
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-app-engine/apis.yaml
-  - name: Google Apps Admin SDK
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-apps-admin-sdk/apis.yaml
-  - name: Google Apps Script Execution
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-apps-script-execution/apis.yaml
-  - name: Google Beacons
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-beacons/apis.yaml
-  - name: Google Biquery
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-biquery/apis.yaml
-  - name: Google Books
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-books/apis.yaml
-  - name: Google Calendar
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-calendar/apis.yaml
-  - name: Google Civic Information
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-civic-information/apis.yaml
-  - name: Google Classroom
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-classroom/apis.yaml
-  - name: Google Cloud Billing
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-billing/apis.yaml
-  - name: Google Cloud Container Builder
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-container-builder/apis.yaml
-  - name: Google Cloud Dataproc
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-dataproc/apis.yaml
-  - name: Google Cloud Datastore
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-datastore/apis.yaml
-  - name: Google Cloud Deployment Manager
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-deployment-manager/apis.yaml
-  - name: Google Cloud DNS
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-dns/apis.yaml
-  - name: Google Cloud Functions
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-functions/apis.yaml
-  - name: Google Cloud Identity & Access Management (IAM)
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity--access-management-iam/apis.yaml
-  - name: Google Cloud Key Management Service (KMS)
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-key-management-service-kms/apis.yaml
-  - name: Google Cloud Machine Learning Engine
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-machine-learning-engine/apis.yaml
-  - name: Google Cloud Natural Language
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-natural-language/apis.yaml
-  - name: Google Cloud Prediction
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-prediction/apis.yaml
-  - name: Google Cloud Pub/Sub
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-pubsub/apis.yaml
-  - name: Google Cloud Resource Manager
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-resource-manager/apis.yaml
-  - name: Google Cloud Source Repositories
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-source-repositories/apis.yaml
-  - name: Google Cloud Spanner
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-spanner/apis.yaml
-  - name: Google Cloud SQL
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-sql/apis.yaml
-  - name: Google Cloud Storage
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-storage/apis.yaml
-  - name: Google Cloud User Accounts
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-user-accounts/apis.yaml
-  - name: Google Cloud Vision
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-vision/apis.yaml
-  - name: Google Compute Engine
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-compute-engine/apis.yaml
-  - name: Google Consumer Surveys
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-consumer-surveys/apis.yaml
-  - name: Google Container Engine
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-container-engine/apis.yaml
-  - name: Google Content API for Shopping
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-content-api-for-shopping/apis.yaml
-  - name: Google Custom Search
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-custom-search/apis.yaml
-  - name: Google Dataflow
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-dataflow/apis.yaml
-  - name: Google Doubleclick
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/apis.yaml
-  - name: Google Drive
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-drive/apis.yaml
-  - name: Google Fit
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fit/apis.yaml
-  - name: Google Fonts
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fonts/apis.yaml
-  - name: Google Fusion Tables
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fusion-tables/apis.yaml
-  - name: Google Genomics
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-genomics/apis.yaml
-  - name: Google Glass
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-glass/apis.yaml
-  - name: Google Knowledge Graph Search
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-knowledge-graph-search/apis.yaml
-  - name: Google Manufacturer Center
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-manufacturer-center/apis.yaml
-  - name: Google OAuth2
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-oauth2/apis.yaml
-  - name: Google PageSpeed Insights
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-pagespeed-insights/apis.yaml
-  - name: Google Partners
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-partners/apis.yaml
-  - name: Google People
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-people/apis.yaml
-  - name: Google Play
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/apis.yaml
-  - name: Google QPX Express
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-qpx-express/apis.yaml
-  - name: Google Safe Browsing
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-safe-browsing/apis.yaml
-  - name: Google Search Console
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-search-console/apis.yaml
-  - name: Google Service Control
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-service-control/apis.yaml
-  - name: Google Service Management
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-service-management/apis.yaml
-  - name: Google Sheets
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-sheets/apis.yaml
-  - name: Google Site Verification
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-site-verification/apis.yaml
-  - name: Google Slides
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-slides/apis.yaml
-  - name: Google Spectrum Database
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-spectrum-database/apis.yaml
-  - name: Google Speech
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-speech/apis.yaml
-  - name: Google Stackdriver
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-stackdriver/apis.yaml
-  - name: Google Tag Manager
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tag-manager/apis.yaml
-  - name: Google Task Queue
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-task-queue/apis.yaml
-  - name: Google Tasks
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tasks/apis.yaml
-  - name: Google Translate
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-translate/apis.yaml
-  - name: Google URL Shortener
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-url-shortener/apis.yaml
-  - name: Google+
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google/apis.yaml
-  - name: YouTube
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/youtube/apis.yaml
+name: Google
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-logo.jpg
+created: "2017-03-18"
+modified: "2017-03-18"
+url: http://google.stack.network/apis.yaml
+specificationVersion: "0.14"
+apis: []
+tags:
+- Google APIs
+include:
+- name: Accelerated Mobile Pages (AMP) URL
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/accelerated-mobile-pages-amp-url/apis.yaml
+- name: Blogger
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/blogger/apis.yaml
+- name: Firebase
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/apis.yaml
+- name: G Suite
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/g-suite/apis.yaml
+- name: Gmail
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/gmail/apis.yaml
+- name: Google Adsense
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-adsense/apis.yaml
+- name: Google Analytics
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-analytics/apis.yaml
+- name: Google API Discovery Service
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-api-discovery-service/apis.yaml
+- name: Google App Engine
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-app-engine/apis.yaml
+- name: Google Apps Admin SDK
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-apps-admin-sdk/apis.yaml
+- name: Google Apps Script Execution
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-apps-script-execution/apis.yaml
+- name: Google Beacons
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-beacons/apis.yaml
+- name: Google Biquery
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-biquery/apis.yaml
+- name: Google Books
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-books/apis.yaml
+- name: Google Calendar
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-calendar/apis.yaml
+- name: Google Civic Information
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-civic-information/apis.yaml
+- name: Google Classroom
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-classroom/apis.yaml
+- name: Google Cloud Billing
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-billing/apis.yaml
+- name: Google Cloud Container Builder
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-container-builder/apis.yaml
+- name: Google Cloud Dataproc
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-dataproc/apis.yaml
+- name: Google Cloud Datastore
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-datastore/apis.yaml
+- name: Google Cloud Deployment Manager
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-deployment-manager/apis.yaml
+- name: Google Cloud DNS
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-dns/apis.yaml
+- name: Google Cloud Functions
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-functions/apis.yaml
+- name: Google Cloud Identity & Access Management (IAM)
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity--access-management-iam/apis.yaml
+- name: Google Cloud Key Management Service (KMS)
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-key-management-service-kms/apis.yaml
+- name: Google Cloud Machine Learning Engine
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-machine-learning-engine/apis.yaml
+- name: Google Cloud Natural Language
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-natural-language/apis.yaml
+- name: Google Cloud Prediction
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-prediction/apis.yaml
+- name: Google Cloud Pub/Sub
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-pubsub/apis.yaml
+- name: Google Cloud Resource Manager
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-resource-manager/apis.yaml
+- name: Google Cloud Source Repositories
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-source-repositories/apis.yaml
+- name: Google Cloud Spanner
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-spanner/apis.yaml
+- name: Google Cloud SQL
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-sql/apis.yaml
+- name: Google Cloud Storage
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-storage/apis.yaml
+- name: Google Cloud User Accounts
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-user-accounts/apis.yaml
+- name: Google Cloud Vision
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-vision/apis.yaml
+- name: Google Compute Engine
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-compute-engine/apis.yaml
+- name: Google Consumer Surveys
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-consumer-surveys/apis.yaml
+- name: Google Container Engine
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-container-engine/apis.yaml
+- name: Google Content API for Shopping
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-content-api-for-shopping/apis.yaml
+- name: Google Custom Search
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-custom-search/apis.yaml
+- name: Google Dataflow
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-dataflow/apis.yaml
+- name: Google Doubleclick
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/apis.yaml
+- name: Google Drive
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-drive/apis.yaml
+- name: Google Fit
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fit/apis.yaml
+- name: Google Fonts
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fonts/apis.yaml
+- name: Google Fusion Tables
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fusion-tables/apis.yaml
+- name: Google Genomics
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-genomics/apis.yaml
+- name: Google Glass
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-glass/apis.yaml
+- name: Google Knowledge Graph Search
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-knowledge-graph-search/apis.yaml
+- name: Google Manufacturer Center
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-manufacturer-center/apis.yaml
+- name: Google OAuth2
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-oauth2/apis.yaml
+- name: Google PageSpeed Insights
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-pagespeed-insights/apis.yaml
+- name: Google Partners
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-partners/apis.yaml
+- name: Google People
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-people/apis.yaml
+- name: Google Play
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/apis.yaml
+- name: Google QPX Express
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-qpx-express/apis.yaml
+- name: Google Safe Browsing
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-safe-browsing/apis.yaml
+- name: Google Search Console
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-search-console/apis.yaml
+- name: Google Service Control
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-service-control/apis.yaml
+- name: Google Service Management
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-service-management/apis.yaml
+- name: Google Sheets
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-sheets/apis.yaml
+- name: Google Site Verification
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-site-verification/apis.yaml
+- name: Google Slides
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-slides/apis.yaml
+- name: Google Spectrum Database
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-spectrum-database/apis.yaml
+- name: Google Speech
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-speech/apis.yaml
+- name: Google Stackdriver
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-stackdriver/apis.yaml
+- name: Google Tag Manager
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tag-manager/apis.yaml
+- name: Google Task Queue
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-task-queue/apis.yaml
+- name: Google Tasks
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tasks/apis.yaml
+- name: Google Translate
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-translate/apis.yaml
+- name: Google URL Shortener
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-url-shortener/apis.yaml
+- name: Google+
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google/apis.yaml
+- name: YouTube
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/youtube/apis.yaml
