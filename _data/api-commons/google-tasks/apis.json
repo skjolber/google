@@ -1,0 +1,33 @@
+{
+	"name": "Google Tasks",
+	"description": "The Google Tasks API lets you search, read, and update Google Tasks content and metadata. This document describes how to use a RESTful calling style and client libraries for various programming languages (currently Java, Python, and PHP) to access and edit Google Tasks data.",
+	"image": "",
+	"tags": ["Tasks",
+	"Google APIs"],
+	"created": "2017-03-18",
+	"modified": "2017-03-18",
+	"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tasks/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [{
+		"name": "Google Tasks API",
+		"description": "The Google Tasks API lets you search, read, and update Google Tasks content and metadata",
+		"image": "",
+		"humanURL": "https://developers.google.com/google-apps/tasks/",
+		"baseURL": "https://developers.google.com/google-apps/tasks/",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tasks/google-tasks-api-openapi-spec.json"
+		}]
+	}],
+	"x-common": [{
+		"type": "x-website",
+		"url": "https://developers.google.com/google-apps/tasks/"
+	}],
+	"include": [],
+	"maintainers": [{
+		"FN": "Kin Lane",
+		"x-twitter": "apievangelist",
+		"email": "info@apievangelist.com"
+	}]
+}
