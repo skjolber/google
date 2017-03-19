@@ -1,0 +1,981 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google Mirror",
+		"description": "Interacts with Glass users via the timeline.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "www.googleapis.com",
+	"basePath": "/mirror/v1",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/accounts/{userToken}/{accountType}/{accountName}": {
+			"post": {
+				"summary": "Insert Account",
+				"description": "Inserts a new account for a user",
+				"operationId": "mirror.accounts.insert",
+				"parameters": [{
+					"in": "path",
+					"name": "accountName",
+					"description": "The name of the account to be passed to the Android Account Manager"
+				},
+				{
+					"in": "path",
+					"name": "accountType",
+					"description": "Account type to be passed to Android Account Manager"
+				},
+				{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "userToken",
+					"description": "The ID for the user"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Account"]
+			}
+		},
+		"/contacts": {
+			"get": {
+				"summary": "Get Contacts",
+				"description": "Retrieves a list of contacts for the authenticated user",
+				"operationId": "mirror.contacts.list",
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Contact"]
+			},
+			"post": {
+				"summary": "Insert Contact",
+				"description": "Inserts a new contact",
+				"operationId": "mirror.contacts.insert",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Contact"]
+			}
+		},
+		"/contacts/{id}": {
+			"delete": {
+				"summary": "Delete Contact",
+				"description": "Deletes a contact",
+				"operationId": "mirror.contacts.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the contact"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Contact"]
+			},
+			"get": {
+				"summary": "Get Contact",
+				"description": "Gets a single contact by ID",
+				"operationId": "mirror.contacts.get",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the contact"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Contact"]
+			},
+			"patch": {
+				"summary": "Update Contact",
+				"description": "Updates a contact in place",
+				"operationId": "mirror.contacts.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the contact"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Contact"]
+			},
+			"put": {
+				"summary": "Update Contact",
+				"description": "Updates a contact in place",
+				"operationId": "mirror.contacts.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the contact"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Contact"]
+			}
+		},
+		"/locations": {
+			"get": {
+				"summary": "Get Locations",
+				"description": "Retrieves a list of locations for the user",
+				"operationId": "mirror.locations.list",
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Location"]
+			}
+		},
+		"/locations/{id}": {
+			"get": {
+				"summary": "Get Location",
+				"description": "Gets a single location by ID",
+				"operationId": "mirror.locations.get",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the location or latest for the last known location"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Location"]
+			}
+		},
+		"/settings/{id}": {
+			"get": {
+				"summary": "Get Setting",
+				"description": "Gets a single setting by ID",
+				"operationId": "mirror.settings.get",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the setting"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Setting"]
+			}
+		},
+		"/subscriptions": {
+			"get": {
+				"summary": "Get Subscriptions",
+				"description": "Retrieves a list of subscriptions for the authenticated user and service",
+				"operationId": "mirror.subscriptions.list",
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			},
+			"post": {
+				"summary": "Create Subscription",
+				"description": "Creates a new subscription",
+				"operationId": "mirror.subscriptions.insert",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			}
+		},
+		"/subscriptions/{id}": {
+			"delete": {
+				"summary": "Delete Subscription",
+				"description": "Deletes a subscription",
+				"operationId": "mirror.subscriptions.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the subscription"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			},
+			"put": {
+				"summary": "Update Subscription",
+				"description": "Updates an existing subscription in place",
+				"operationId": "mirror.subscriptions.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the subscription"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Subscription"]
+			}
+		},
+		"/timeline": {
+			"get": {
+				"summary": "Get Timelines",
+				"description": "Retrieves a list of timeline items for the authenticated user",
+				"operationId": "mirror.timeline.list",
+				"parameters": [{
+					"in": "query",
+					"name": "bundleId",
+					"description": "If provided, only items with the given bundleId will be returned"
+				},
+				{
+					"in": "query",
+					"name": "includeDeleted",
+					"description": "If true, tombstone records for deleted items will be returned"
+				},
+				{
+					"in": "query",
+					"name": "maxResults",
+					"description": "The maximum number of items to include in the response, used for paging"
+				},
+				{
+					"in": "query",
+					"name": "orderBy",
+					"description": "Controls the order in which timeline items are returned"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Token for the page of results to return"
+				},
+				{
+					"in": "query",
+					"name": "pinnedOnly",
+					"description": "If true, only pinned items will be returned"
+				},
+				{
+					"in": "query",
+					"name": "sourceItemId",
+					"description": "If provided, only items with the given sourceItemId will be returned"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline"]
+			},
+			"post": {
+				"summary": "Update Timeline",
+				"description": "Inserts a new item into the timeline",
+				"operationId": "mirror.timeline.insert",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline"]
+			}
+		},
+		"/timeline/{id}": {
+			"delete": {
+				"summary": "Delete Timeline",
+				"description": "Deletes a timeline item",
+				"operationId": "mirror.timeline.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the timeline item"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline"]
+			},
+			"get": {
+				"summary": "Get Timeline",
+				"description": "Gets a single timeline item by ID",
+				"operationId": "mirror.timeline.get",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the timeline item"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline"]
+			},
+			"patch": {
+				"summary": "Update Timeline",
+				"description": "Updates a timeline item in place",
+				"operationId": "mirror.timeline.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the timeline item"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline"]
+			},
+			"put": {
+				"summary": "Update Timeline",
+				"description": "Updates a timeline item in place",
+				"operationId": "mirror.timeline.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "The ID of the timeline item"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline Attachment"]
+			}
+		},
+		"/timeline/{itemId}/attachments": {
+			"get": {
+				"summary": "Get Timeline Attachments",
+				"description": "Returns a list of attachments for a timeline item",
+				"operationId": "mirror.timeline.attachments.list",
+				"parameters": [{
+					"in": "path",
+					"name": "itemId",
+					"description": "The ID of the timeline item whose attachments should be listed"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline Attachment"]
+			},
+			"post": {
+				"summary": "Add Timeline Attachment",
+				"description": "Adds a new attachment to a timeline item",
+				"operationId": "mirror.timeline.attachments.insert",
+				"parameters": [{
+					"in": "path",
+					"name": "itemId",
+					"description": "The ID of the timeline item the attachment belongs to"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline Attachment"]
+			}
+		},
+		"/timeline/{itemId}/attachments/{attachmentId}": {
+			"delete": {
+				"summary": "Delete Timeline Attachment",
+				"description": "Deletes an attachment from a timeline item",
+				"operationId": "mirror.timeline.attachments.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "attachmentId",
+					"description": "The ID of the attachment"
+				},
+				{
+					"in": "path",
+					"name": "itemId",
+					"description": "The ID of the timeline item the attachment belongs to"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline Attachment"]
+			},
+			"get": {
+				"summary": "Get Timeline Attachment",
+				"description": "Retrieves an attachment on a timeline item by item ID and attachment ID",
+				"operationId": "mirror.timeline.attachments.get",
+				"parameters": [{
+					"in": "path",
+					"name": "attachmentId",
+					"description": "The ID of the attachment"
+				},
+				{
+					"in": "path",
+					"name": "itemId",
+					"description": "The ID of the timeline item the attachment belongs to"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Timeline Attachment"]
+			}
+		}
+	},
+	"definitions": {
+		"Account": {
+			"properties": {
+				"authTokens": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"features": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"password": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userData": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Attachment": {
+			"properties": {
+				"contentType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"contentUrl": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isProcessingContent": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"AttachmentsListResponse": {
+			"properties": {
+				"items": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"AuthToken": {
+			"properties": {
+				"authToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Command": {
+			"properties": {
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Contact": {
+			"properties": {
+				"acceptCommands": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"acceptTypes": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"imageUrls": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"phoneNumber": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"priority": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sharingFeatures": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"source": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"speakableName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ContactsListResponse": {
+			"properties": {
+				"items": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Location": {
+			"properties": {
+				"accuracy": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"address": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"latitude": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"longitude": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"timestamp": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"LocationsListResponse": {
+			"properties": {
+				"items": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"MenuItem": {
+			"properties": {
+				"action": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"contextual_command": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"payload": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"removeWhenSelected": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"values": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"MenuValue": {
+			"properties": {
+				"displayName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"iconUrl": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"state": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Notification": {
+			"properties": {
+				"collection": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"itemId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"operation": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userActions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"verifyToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"NotificationConfig": {
+			"properties": {
+				"deliveryTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"level": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Setting": {
+			"properties": {
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Subscription": {
+			"properties": {
+				"callbackUrl": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"collection": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"operation": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"updated": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"verifyToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"SubscriptionsListResponse": {
+			"properties": {
+				"items": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TimelineItem": {
+			"properties": {
+				"attachments": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"bundleId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"canonicalUrl": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"created": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"displayTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"etag": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"html": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"inReplyTo": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isBundleCover": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isDeleted": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isPinned": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"menuItems": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"pinScore": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"recipients": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"selfLink": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceItemId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"speakableText": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"speakableType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"text": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"title": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"updated": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TimelineListResponse": {
+			"properties": {
+				"items": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"UserAction": {
+			"properties": {
+				"payload": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"UserData": {
+			"properties": {
+				"key": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
