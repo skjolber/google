@@ -1,0 +1,30 @@
+{
+	"name": "Google Custom Search",
+	"description": "The JSON/Atom Custom Search API lets you develop websites and applications to retrieve and display search results from Google Custom Search programmatically. With this API, you can use RESTful requests to get either web search or image search results in JSON or Atom format.",
+	"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-custom-search.png",
+	"tags": ["Search",
+	"Google APIs"],
+	"created": "2017-03-18",
+	"modified": "2017-03-18",
+	"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-custom-search/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [{
+		"name": "Google Custom Search JSON/Atom API",
+		"description": "The JSON/Atom Custom Search API lets you develop websites and applications to retrieve and display search results from Google Custom Search programmatically",
+		"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-custom-search.png",
+		"humanURL": "",
+		"baseURL": "",
+		"tags": [],
+		"properties": [{
+			"type": "x-openapi-spec",
+			"url": "https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-custom-search/google-custom-search-jsonatom-api-openapi-spec.json"
+		}]
+	}],
+	"x-common": [],
+	"include": [],
+	"maintainers": [{
+		"FN": "Kin Lane",
+		"x-twitter": "apievangelist",
+		"email": "info@apievangelist.com"
+	}]
+}
