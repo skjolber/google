@@ -1,1 +1,2145 @@
-~
+swagger: "2.0"
+info:
+  title: Google Play EMM
+  description: Manages the deployment of apps to Android for Work users.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: www.googleapis.com
+basePath: /androidenterprise/v1
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /enterprises:
+    get:
+      summary: Get Enterprises
+      description: Looks up an enterprise by domain name
+      operationId: androidenterprise.enterprises.list
+      parameters:
+      - in: query
+        name: domain
+        description: The exact primary domain name of the enterprise to look up
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enterprise
+    post:
+      summary: Create Enterprise
+      description: Establishes the binding between the EMM and an enterprise
+      operationId: androidenterprise.enterprises.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: token
+        description: The token provided by the enterprise to register the EMM
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enterprise
+  /enterprises/acknowledgeNotificationSet:
+    post:
+      summary: Create Acknowledges Notification Set
+      description: Acknowledges notifications that were received from Enterprises
+      operationId: androidenterprise.enterprises.acknowledgeNotificationSet
+      parameters:
+      - in: query
+        name: notificationSetId
+        description: The notification set ID as returned by Enterprises
+      responses:
+        200:
+          description: OK
+      tags:
+      - Notification
+  /enterprises/completeSignup:
+    post:
+      summary: Complete Signup Flow
+      description: Completes the signup flow, by specifying the Completion token and
+        Enterprise token
+      operationId: androidenterprise.enterprises.completeSignup
+      parameters:
+      - in: query
+        name: completionToken
+        description: The Completion token initially returned by GenerateSignupUrl
+      - in: query
+        name: enterpriseToken
+        description: The Enterprise token appended to the Callback URL
+      responses:
+        200:
+          description: OK
+      tags:
+      - Signup
+  /enterprises/enroll:
+    post:
+      summary: Entroll Enterprise
+      description: Enrolls an enterprise with the calling EMM
+      operationId: androidenterprise.enterprises.enroll
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: token
+        description: The token provided by the enterprise to register the EMM
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enroll
+  /enterprises/pullNotificationSet:
+    post:
+      summary: Get Notification Set
+      description: Pulls and returns a notification set for the enterprises associated
+        with the service account authenticated for the request
+      operationId: androidenterprise.enterprises.pullNotificationSet
+      parameters:
+      - in: query
+        name: requestMode
+        description: The request mode for pulling notifications
+      responses:
+        200:
+          description: OK
+      tags:
+      - Notification
+  /enterprises/signupUrl:
+    post:
+      summary: ""
+      description: Generates a sign-up URL
+      operationId: androidenterprise.enterprises.generateSignupUrl
+      parameters:
+      - in: query
+        name: callbackUrl
+        description: The callback URL to which the Admin will be redirected after
+          successfully creating an enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Signup
+  /enterprises/{enterpriseId}:
+    delete:
+      summary: Delete Enterprise
+      description: Deletes the binding between the EMM and enterprise
+      operationId: androidenterprise.enterprises.delete
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enterprise
+    get:
+      summary: Get Enterprise
+      description: Retrieves the name and domain of an enterprise
+      operationId: androidenterprise.enterprises.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enterprise
+  /enterprises/{enterpriseId}/account:
+    put:
+      summary: Update Enterprise Account
+      description: Sets the account that will be used to authenticate to the API as
+        the enterprise
+      operationId: androidenterprise.enterprises.setAccount
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enterprise
+  /enterprises/{enterpriseId}/createWebToken:
+    post:
+      summary: Create Web Token
+      description: Returns a unique token to access an embeddable UI
+      operationId: androidenterprise.enterprises.createWebToken
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+  /enterprises/{enterpriseId}/groupLicenses:
+    get:
+      summary: Get Group Licenses
+      description: Retrieves IDs of all products for which the enterprise has a group
+        license
+      operationId: androidenterprise.grouplicenses.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - License
+  /enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}:
+    get:
+      summary: Get Group License
+      description: Retrieves details of an enterprise's group license for a product
+      operationId: androidenterprise.grouplicenses.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: groupLicenseId
+        description: The ID of the product the group license is for, e
+      responses:
+        200:
+          description: OK
+      tags:
+      - License
+  /enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users:
+    get:
+      summary: Get Group License User
+      description: Retrieves the IDs of the users who have been granted entitlements
+        under the license
+      operationId: androidenterprise.grouplicenseusers.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: groupLicenseId
+        description: The ID of the product the group license is for, e
+      responses:
+        200:
+          description: OK
+      tags:
+      - License
+  /enterprises/{enterpriseId}/products:
+    get:
+      summary: Get Products
+      description: Finds approved products that match a query, or all approved products
+        if there is no query
+      operationId: androidenterprise.products.list
+      parameters:
+      - in: query
+        name: approved
+        description: Specifies whether to search among all products (false) or among
+          only products that have been approved (true)
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: query
+        name: language
+        description: The BCP47 tag for the user's preferred language (e
+      - in: query
+        name: maxResults
+        description: Specifies the maximum number of products that can be returned
+          per request
+      - in: query
+        name: query
+        description: The search query as typed in the Google Play store search box
+      - in: query
+        name: token
+        description: A pagination token is contained in a request''s response when
+          there are more products
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+  /enterprises/{enterpriseId}/products/{productId}:
+    get:
+      summary: Get Product
+      description: Retrieves details of a product for display to an enterprise admin
+      operationId: androidenterprise.products.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: query
+        name: language
+        description: The BCP47 tag for the user's preferred language (e
+      - in: path
+        name: productId
+        description: The ID of the product, e
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+  /enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema:
+    get:
+      summary: Get Restriction Schema
+      description: Retrieves the schema that defines the configurable properties for
+        this product
+      operationId: androidenterprise.products.getAppRestrictionsSchema
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: query
+        name: language
+        description: The BCP47 tag for the user's preferred language (e
+      - in: path
+        name: productId
+        description: The ID of the product
+      responses:
+        200:
+          description: OK
+      tags:
+      - Schema
+  /enterprises/{enterpriseId}/products/{productId}/approve:
+    post:
+      summary: Approve Product
+      description: Approves the specified product and the relevant app permissions,
+        if any
+      operationId: androidenterprise.products.approve
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: productId
+        description: The ID of the product
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+  /enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl:
+    post:
+      summary: Generates a URL
+      description: Generates a URL that can be rendered in an iframe to display the
+        permissions (if any) of a product
+      operationId: androidenterprise.products.generateApprovalUrl
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: query
+        name: languageCode
+        description: The BCP 47 language code used for permission names and descriptions
+          in the returned iframe, for instance "en-US"
+      - in: path
+        name: productId
+        description: The ID of the product
+      responses:
+        200:
+          description: OK
+      tags:
+      - URL
+  /enterprises/{enterpriseId}/products/{productId}/permissions:
+    get:
+      summary: Retrieves the Android App Permission
+      description: Retrieves the Android app permissions required by this app
+      operationId: androidenterprise.products.getPermissions
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: productId
+        description: The ID of the product
+      responses:
+        200:
+          description: OK
+      tags:
+      - Permission
+  /enterprises/{enterpriseId}/products/{productId}/unapprove:
+    post:
+      summary: Unnarove Product
+      description: Unapproves the specified product (and the relevant app permissions,
+        if any)
+      operationId: androidenterprise.products.unapprove
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: productId
+        description: The ID of the product
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+  /enterprises/{enterpriseId}/sendTestPushNotification:
+    post:
+      summary: Send Test Push
+      description: Sends a test push notification to validate the EMM integration
+        with the Google Cloud Pub/Sub service for this enterprise
+      operationId: androidenterprise.enterprises.sendTestPushNotification
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Testing
+  /enterprises/{enterpriseId}/serviceAccount:
+    get:
+      summary: Return Service Account
+      description: Returns a service account and credentials
+      operationId: androidenterprise.enterprises.getServiceAccount
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: query
+        name: keyType
+        description: The type of credential to return with the service account
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /enterprises/{enterpriseId}/serviceAccountKeys:
+    get:
+      summary: Return Active Credentials
+      description: Lists all active credentials for the service account associated
+        with this enterprise
+      operationId: androidenterprise.serviceaccountkeys.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Credential
+    post:
+      summary: Generate New Credentials
+      description: Generates new credentials for the service account associated with
+        this enterprise
+      operationId: androidenterprise.serviceaccountkeys.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Credential
+  /enterprises/{enterpriseId}/serviceAccountKeys/{keyId}:
+    delete:
+      summary: Remove and Invalidates Credentials
+      description: Removes and invalidates the specified credentials for the service
+        account associated with this enterprise
+      operationId: androidenterprise.serviceaccountkeys.delete
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: keyId
+        description: The ID of the key
+      responses:
+        200:
+          description: OK
+      tags:
+      - Credential
+  /enterprises/{enterpriseId}/storeLayout:
+    get:
+      summary: Get Store Layout
+      description: Returns the store layout for the enterprise
+      operationId: androidenterprise.enterprises.getStoreLayout
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout
+    put:
+      summary: Update Store Layout
+      description: Sets the store layout for the enterprise
+      operationId: androidenterprise.enterprises.setStoreLayout
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout
+  /enterprises/{enterpriseId}/storeLayout/pages:
+    get:
+      summary: Get Store Layout Pages
+      description: Retrieves the details of all pages in the store
+      operationId: androidenterprise.storelayoutpages.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page
+    post:
+      summary: Create Store Layout Page
+      description: Inserts a new store page
+      operationId: androidenterprise.storelayoutpages.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page
+  /enterprises/{enterpriseId}/storeLayout/pages/{pageId}:
+    delete:
+      summary: Delete Store Layout Page
+      description: Deletes a store page
+      operationId: androidenterprise.storelayoutpages.delete
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page
+    get:
+      summary: Get Store Layout Page
+      description: Retrieves details of a store page
+      operationId: androidenterprise.storelayoutpages.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page
+    patch:
+      summary: Update Store Layout Page
+      description: Updates the content of a store page
+      operationId: androidenterprise.storelayoutpages.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page
+    put:
+      summary: Create Store Layout Page
+      description: Updates the content of a store page
+      operationId: androidenterprise.storelayoutpages.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+  /enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters:
+    get:
+      summary: Get Store Layout Page Clusters
+      description: Retrieves the details of all clusters on the specified page
+      operationId: androidenterprise.storelayoutclusters.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+    post:
+      summary: Insert Store Layout Page Cluster
+      description: Inserts a new cluster in a page
+      operationId: androidenterprise.storelayoutclusters.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+  /enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}:
+    delete:
+      summary: Delete Store Layout Page Cluster
+      description: Deletes a cluster
+      operationId: androidenterprise.storelayoutclusters.delete
+      parameters:
+      - in: path
+        name: clusterId
+        description: The ID of the cluster
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+    get:
+      summary: Get Store Layout Page Cluster
+      description: Retrieves details of a cluster
+      operationId: androidenterprise.storelayoutclusters.get
+      parameters:
+      - in: path
+        name: clusterId
+        description: The ID of the cluster
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+    patch:
+      summary: Update Store Layout Page Cluster
+      description: Updates a cluster
+      operationId: androidenterprise.storelayoutclusters.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: clusterId
+        description: The ID of the cluster
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+    put:
+      summary: Update Store Layout Page Cluster
+      description: Updates a cluster
+      operationId: androidenterprise.storelayoutclusters.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: clusterId
+        description: The ID of the cluster
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: pageId
+        description: The ID of the page
+      responses:
+        200:
+          description: OK
+      tags:
+      - Store Layout Page Cluster
+  /enterprises/{enterpriseId}/unenroll:
+    post:
+      summary: Unenroll Enterprise
+      description: Unenrolls an enterprise from the calling EMM
+      operationId: androidenterprise.enterprises.unenroll
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Enterprise
+  /enterprises/{enterpriseId}/users:
+    get:
+      summary: Lookup User
+      description: Looks up a user by primary email address
+      operationId: androidenterprise.users.list
+      parameters:
+      - in: query
+        name: email
+        description: The exact primary email address of the user to look up
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    post:
+      summary: Create New User
+      description: Creates a new EMM-managed user
+      operationId: androidenterprise.users.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /enterprises/{enterpriseId}/users/{userId}:
+    delete:
+      summary: Delete User
+      description: Deleted an EMM-managed user
+      operationId: androidenterprise.users.delete
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    get:
+      summary: Get User
+      description: Retrieves a user's details
+      operationId: androidenterprise.users.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    patch:
+      summary: Update User
+      description: Updates the details of an EMM-managed user
+      operationId: androidenterprise.users.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+    put:
+      summary: Update User
+      description: Updates the details of an EMM-managed user
+      operationId: androidenterprise.users.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+  /enterprises/{enterpriseId}/users/{userId}/authenticationToken:
+    post:
+      summary: Generate Authentication Token
+      description: Generates an authentication token which the device policy client
+        can use to provision the given EMM-managed user account on a device
+      operationId: androidenterprise.users.generateAuthenticationToken
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+  /enterprises/{enterpriseId}/users/{userId}/availableProductSet:
+    get:
+      summary: Get Products
+      description: Retrieves the set of products a user is entitled to access
+      operationId: androidenterprise.users.getAvailableProductSet
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+    put:
+      summary: Update Products
+      description: Modifies the set of products that a user is entitled to access
+        (referred to as whitelisted products)
+      operationId: androidenterprise.users.setAvailableProductSet
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+  /enterprises/{enterpriseId}/users/{userId}/devices:
+    get:
+      summary: Get User Devices
+      description: Retrieves the IDs of all of a user's devices
+      operationId: androidenterprise.devices.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Device
+  /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}:
+    get:
+      summary: Get User Device
+      description: Retrieves the details of a device
+      operationId: androidenterprise.devices.get
+      parameters:
+      - in: path
+        name: deviceId
+        description: The ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Device
+  /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs:
+    get:
+      summary: Get App Installs
+      description: Retrieves the details of all apps installed on the specified device
+      operationId: androidenterprise.installs.list
+      parameters:
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+  /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}:
+    delete:
+      summary: Remove App Install
+      description: Requests to remove an app from a device
+      operationId: androidenterprise.installs.delete
+      parameters:
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: installId
+        description: The ID of the product represented by the install, e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    get:
+      summary: Get App Install
+      description: Retrieves details of an installation of an app on a device
+      operationId: androidenterprise.installs.get
+      parameters:
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: installId
+        description: The ID of the product represented by the install, e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    patch:
+      summary: Update App Install
+      description: Requests to install the latest version of an app to a device
+      operationId: androidenterprise.installs.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: installId
+        description: The ID of the product represented by the install, e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    put:
+      summary: Update App Install
+      description: Requests to install the latest version of an app to a device
+      operationId: androidenterprise.installs.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: installId
+        description: The ID of the product represented by the install, e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+  /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice:
+    get:
+      summary: Get Per Device App Installs
+      description: Lists all the per-device managed configurations for the specified
+        device
+      operationId: androidenterprise.managedconfigurationsfordevice.list
+      parameters:
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+  /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}:
+    delete:
+      summary: Remove Per Device App Install
+      description: Removes a per-device managed configuration for an app for the specified
+        device
+      operationId: androidenterprise.managedconfigurationsfordevice.delete
+      parameters:
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForDeviceId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    get:
+      summary: Get Per Device App Install
+      description: Retrieves details of a per-device managed configuration
+      operationId: androidenterprise.managedconfigurationsfordevice.get
+      parameters:
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForDeviceId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    patch:
+      summary: Update Per Device App Install
+      description: Adds or updates a per-device managed configuration for an app for
+        the specified device
+      operationId: androidenterprise.managedconfigurationsfordevice.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForDeviceId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    put:
+      summary: Update Per Device App Install
+      description: Adds or updates a per-device managed configuration for an app for
+        the specified device
+      operationId: androidenterprise.managedconfigurationsfordevice.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: deviceId
+        description: The Android ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForDeviceId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+  /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state:
+    get:
+      summary: Get Per Device App Install State
+      description: Retrieves whether a device's access to Google services is enabled
+        or disabled
+      operationId: androidenterprise.devices.getState
+      parameters:
+      - in: path
+        name: deviceId
+        description: The ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+    put:
+      summary: Update Per Device App Install State
+      description: Sets whether a device's access to Google services is enabled or
+        disabled
+      operationId: androidenterprise.devices.setState
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: deviceId
+        description: The ID of the device
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - App Install
+  /enterprises/{enterpriseId}/users/{userId}/entitlements:
+    get:
+      summary: Get Entitlements
+      description: Lists all entitlements for the specified user
+      operationId: androidenterprise.entitlements.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Entitlement
+  /enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}:
+    delete:
+      summary: Remove Entitlement
+      description: Removes an entitlement to an app for a user
+      operationId: androidenterprise.entitlements.delete
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: entitlementId
+        description: The ID of the entitlement (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Entitlement
+    get:
+      summary: Get Entitlement
+      description: Retrieves details of an entitlement
+      operationId: androidenterprise.entitlements.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: entitlementId
+        description: The ID of the entitlement (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Entitlement
+    patch:
+      summary: Update Entitlement
+      description: Adds or updates an entitlement to an app for a user
+      operationId: androidenterprise.entitlements.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: entitlementId
+        description: The ID of the entitlement (a product ID), e
+      - in: query
+        name: install
+        description: Set to true to also install the product on all the user's devices
+          where possible
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Entitlement
+    put:
+      summary: Update Entitlement
+      description: Adds or updates an entitlement to an app for a user
+      operationId: androidenterprise.entitlements.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: entitlementId
+        description: The ID of the entitlement (a product ID), e
+      - in: query
+        name: install
+        description: Set to true to also install the product on all the user's devices
+          where possible
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Entitlement
+  /enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser:
+    get:
+      summary: Get Per User Configurations
+      description: Lists all the per-user managed configurations for the specified
+        user
+      operationId: androidenterprise.managedconfigurationsforuser.list
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Configuration
+  /enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}:
+    delete:
+      summary: Delete Per User Configurations
+      description: Removes a per-user managed configuration for an app for the specified
+        user
+      operationId: androidenterprise.managedconfigurationsforuser.delete
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForUserId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Configuration
+    get:
+      summary: Get Per User Configuration
+      description: Retrieves details of a per-user managed configuration for an app
+        for the specified user
+      operationId: androidenterprise.managedconfigurationsforuser.get
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForUserId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Configuration
+    patch:
+      summary: Update Per User Configuration
+      description: Adds or updates a per-user managed configuration for an app for
+        the specified user
+      operationId: androidenterprise.managedconfigurationsforuser.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForUserId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Configuration
+    put:
+      summary: Update Per User Configuration
+      description: Adds or updates a per-user managed configuration for an app for
+        the specified user
+      operationId: androidenterprise.managedconfigurationsforuser.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: managedConfigurationForUserId
+        description: The ID of the managed configuration (a product ID), e
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Configuration
+  /enterprises/{enterpriseId}/users/{userId}/token:
+    delete:
+      summary: Delete User Token
+      description: Revokes a previously generated token (activation code) for the
+        user
+      operationId: androidenterprise.users.revokeToken
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+    post:
+      summary: Generate User Token
+      description: Generates a token (activation code) to allow this user to configure
+        their managed account in the Android Setup Wizard
+      operationId: androidenterprise.users.generateToken
+      parameters:
+      - in: path
+        name: enterpriseId
+        description: The ID of the enterprise
+      - in: path
+        name: userId
+        description: The ID of the user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+  /permissions/{permissionId}:
+    get:
+      summary: Get Permissions
+      description: Retrieves details of an Android app permission for display to an
+        enterprise admin
+      operationId: androidenterprise.permissions.get
+      parameters:
+      - in: query
+        name: language
+        description: The BCP47 tag for the user's preferred language (e
+      - in: path
+        name: permissionId
+        description: The ID of the permission
+      responses:
+        200:
+          description: OK
+      tags:
+      - Permission
+definitions:
+  Administrator:
+    properties:
+      email:
+        description: This is a default description.
+        type: parameters
+  AdministratorWebToken:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      token:
+        description: This is a default description.
+        type: parameters
+  AdministratorWebTokenSpec:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      parent:
+        description: This is a default description.
+        type: parameters
+      permission:
+        description: This is a default description.
+        type: parameters
+  AppRestrictionsSchema:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      restrictions:
+        description: This is a default description.
+        type: parameters
+  AppRestrictionsSchemaChangeEvent:
+    properties:
+      productId:
+        description: This is a default description.
+        type: parameters
+  AppRestrictionsSchemaRestriction:
+    properties:
+      description:
+        description: This is a default description.
+        type: parameters
+      entry:
+        description: This is a default description.
+        type: parameters
+      entryValue:
+        description: This is a default description.
+        type: parameters
+      key:
+        description: This is a default description.
+        type: parameters
+      nestedRestriction:
+        description: This is a default description.
+        type: parameters
+      restrictionType:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  AppRestrictionsSchemaRestrictionRestrictionValue:
+    properties:
+      type:
+        description: This is a default description.
+        type: parameters
+      valueBool:
+        description: This is a default description.
+        type: parameters
+      valueInteger:
+        description: This is a default description.
+        type: parameters
+      valueMultiselect:
+        description: This is a default description.
+        type: parameters
+      valueString:
+        description: This is a default description.
+        type: parameters
+  AppUpdateEvent:
+    properties:
+      productId:
+        description: This is a default description.
+        type: parameters
+  AppVersion:
+    properties:
+      versionCode:
+        description: This is a default description.
+        type: parameters
+      versionString:
+        description: This is a default description.
+        type: parameters
+  ApprovalUrlInfo:
+    properties:
+      approvalUrl:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  AuthenticationToken:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      token:
+        description: This is a default description.
+        type: parameters
+  Device:
+    properties:
+      androidId:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      managementType:
+        description: This is a default description.
+        type: parameters
+  DeviceState:
+    properties:
+      accountState:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  DevicesListResponse:
+    properties:
+      device:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Enterprise:
+    properties:
+      administrator:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      primaryDomain:
+        description: This is a default description.
+        type: parameters
+  EnterpriseAccount:
+    properties:
+      accountEmail:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  EnterprisesListResponse:
+    properties:
+      enterprise:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  EnterprisesSendTestPushNotificationResponse:
+    properties:
+      messageId:
+        description: This is a default description.
+        type: parameters
+      topicName:
+        description: This is a default description.
+        type: parameters
+  Entitlement:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      reason:
+        description: This is a default description.
+        type: parameters
+  EntitlementsListResponse:
+    properties:
+      entitlement:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  GroupLicense:
+    properties:
+      acquisitionKind:
+        description: This is a default description.
+        type: parameters
+      approval:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      numProvisioned:
+        description: This is a default description.
+        type: parameters
+      numPurchased:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+  GroupLicenseUsersListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      user:
+        description: This is a default description.
+        type: parameters
+  GroupLicensesListResponse:
+    properties:
+      groupLicense:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Install:
+    properties:
+      installState:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      versionCode:
+        description: This is a default description.
+        type: parameters
+  InstallFailureEvent:
+    properties:
+      deviceId:
+        description: This is a default description.
+        type: parameters
+      failureDetails:
+        description: This is a default description.
+        type: parameters
+      failureReason:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  InstallsListResponse:
+    properties:
+      install:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  LocalizedText:
+    properties:
+      locale:
+        description: This is a default description.
+        type: parameters
+      text:
+        description: This is a default description.
+        type: parameters
+  ManagedConfiguration:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      managedProperty:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+  ManagedConfigurationsForDeviceListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      managedConfigurationForDevice:
+        description: This is a default description.
+        type: parameters
+  ManagedConfigurationsForUserListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      managedConfigurationForUser:
+        description: This is a default description.
+        type: parameters
+  ManagedProperty:
+    properties:
+      key:
+        description: This is a default description.
+        type: parameters
+      valueBool:
+        description: This is a default description.
+        type: parameters
+      valueBundleArray:
+        description: This is a default description.
+        type: parameters
+      valueInteger:
+        description: This is a default description.
+        type: parameters
+      valueString:
+        description: This is a default description.
+        type: parameters
+      valueStringArray:
+        description: This is a default description.
+        type: parameters
+  ManagedPropertyBundle:
+    properties:
+      managedProperty:
+        description: This is a default description.
+        type: parameters
+  NewDeviceEvent:
+    properties:
+      deviceId:
+        description: This is a default description.
+        type: parameters
+      managementType:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  NewPermissionsEvent:
+    properties:
+      approvedPermissions:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      requestedPermissions:
+        description: This is a default description.
+        type: parameters
+  Notification:
+    properties:
+      enterpriseId:
+        description: This is a default description.
+        type: parameters
+      timestampMillis:
+        description: This is a default description.
+        type: parameters
+  NotificationSet:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      notification:
+        description: This is a default description.
+        type: parameters
+      notificationSetId:
+        description: This is a default description.
+        type: parameters
+  PageInfo:
+    properties:
+      resultPerPage:
+        description: This is a default description.
+        type: parameters
+      startIndex:
+        description: This is a default description.
+        type: parameters
+      totalResults:
+        description: This is a default description.
+        type: parameters
+  Permission:
+    properties:
+      description:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      permissionId:
+        description: This is a default description.
+        type: parameters
+  Product:
+    properties:
+      appVersion:
+        description: This is a default description.
+        type: parameters
+      authorName:
+        description: This is a default description.
+        type: parameters
+      detailsUrl:
+        description: This is a default description.
+        type: parameters
+      distributionChannel:
+        description: This is a default description.
+        type: parameters
+      iconUrl:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      productPricing:
+        description: This is a default description.
+        type: parameters
+      requiresContainerApp:
+        description: This is a default description.
+        type: parameters
+      smallIconUrl:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      workDetailsUrl:
+        description: This is a default description.
+        type: parameters
+  ProductApprovalEvent:
+    properties:
+      approved:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+  ProductAvailabilityChangeEvent:
+    properties:
+      availabilityStatus:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+  ProductPermission:
+    properties:
+      permissionId:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+  ProductPermissions:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      permission:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+  ProductSet:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      productSetBehavior:
+        description: This is a default description.
+        type: parameters
+  ProductsApproveRequest:
+    properties: []
+  ProductsGenerateApprovalUrlResponse:
+    properties:
+      url:
+        description: This is a default description.
+        type: parameters
+  ProductsListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      product:
+        description: This is a default description.
+        type: parameters
+  ServiceAccount:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  ServiceAccountKey:
+    properties:
+      data:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      publicData:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
+  ServiceAccountKeysListResponse:
+    properties:
+      serviceAccountKey:
+        description: This is a default description.
+        type: parameters
+  SignupInfo:
+    properties:
+      completionToken:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  StoreCluster:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      orderInPage:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+  StoreLayout:
+    properties:
+      homepageId:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      storeLayoutType:
+        description: This is a default description.
+        type: parameters
+  StoreLayoutClustersListResponse:
+    properties:
+      cluster:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  StoreLayoutPagesListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      page:
+        description: This is a default description.
+        type: parameters
+  StorePage:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      link:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  TokenPagination:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      previousPageToken:
+        description: This is a default description.
+        type: parameters
+  User:
+    properties:
+      accountIdentifier:
+        description: This is a default description.
+        type: parameters
+      accountType:
+        description: This is a default description.
+        type: parameters
+      displayName:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      managementType:
+        description: This is a default description.
+        type: parameters
+      primaryEmail:
+        description: This is a default description.
+        type: parameters
+  UserToken:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      token:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  UsersListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      user:
+        description: This is a default description.
+        type: parameters
