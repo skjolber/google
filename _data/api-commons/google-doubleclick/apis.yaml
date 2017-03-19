@@ -1,0 +1,64 @@
+name: Google Doubleclick
+description: The Ad Exchange Buyer REST API allows your Real-Time Bidding application
+  to access and update account information and to submit creatives. The API also allows
+  an application (whether it does static bidding or real-time bidding) to discover
+  direct deals that sellers make available.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-double-click.png
+tags:
+- Google APIs
+- Advertising
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: DoubleClick Bid Manager API
+  description: The Ad Exchange Buyer REST API allows your Real-Time Bidding application
+    to access and update account information and to submit creatives
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-double-click.png
+  humanURL: https://www.doubleclickbygoogle.com/
+  baseURL: https://www.doubleclickbygoogle.com/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/doubleclick-bid-manager-api-openapi-spec.yaml
+- name: DoubleClick Campaign Manager API
+  description: The Ad Exchange Buyer REST API allows your Real-Time Bidding application
+    to access and update account information and to submit creatives
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-double-click.png
+  humanURL: https://www.doubleclickbygoogle.com/
+  baseURL: https://www.doubleclickbygoogle.com/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/doubleclick-campaign-manager-api-openapi-spec.yaml
+- name: Google Ad Exchange Buyer API
+  description: The Ad Exchange Buyer REST API allows your Real-Time Bidding application
+    to access and update account information and to submit creatives
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-double-click.png
+  humanURL: https://www.doubleclickbygoogle.com/
+  baseURL: https://www.doubleclickbygoogle.com/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/google-ad-exchange-buyer-api-openapi-spec.yaml
+- name: Google Ad Exchange Seller API
+  description: The Ad Exchange Buyer REST API allows your Real-Time Bidding application
+    to access and update account information and to submit creatives
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-double-click.png
+  humanURL: https://www.doubleclickbygoogle.com/
+  baseURL: https://www.doubleclickbygoogle.com/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/google-ad-exchange-seller-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://www.doubleclickbygoogle.com/
+- type: x-portal
+  url: https://www.doubleclickbygoogle.com/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
