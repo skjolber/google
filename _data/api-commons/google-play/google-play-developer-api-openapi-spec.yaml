@@ -1,1 +1,1717 @@
-~
+swagger: "2.0"
+info:
+  title: Google Play Developer
+  description: Lets Android application developers access their Google Play accounts.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v2
+host: www.googleapis.com
+basePath: /androidpublisher/v2/applications
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /{packageName}/edits:
+    post:
+      summary: Create App Edit
+      description: Creates a new edit for an app, populated with the app's current
+        state
+      operationId: androidpublisher.edits.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /{packageName}/edits/{editId}:
+    delete:
+      summary: Delete App Edit
+      description: Deletes an edit for an app
+      operationId: androidpublisher.edits.delete
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+    get:
+      summary: DGetelete App Edit
+      description: Returns information about the edit specified
+      operationId: androidpublisher.edits.get
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /{packageName}/edits/{editId}/apks/externallyHosted:
+    post:
+      summary: Create APK
+      description: Creates a new APK without uploading the APK itself to Google Play,
+        instead hosting the APK at a specified URL
+      operationId: androidpublisher.edits.apks.addexternallyhosted
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}:
+    post:
+      summary: Update Deobfuscation FIle
+      description: Uploads the deobfuscation file of the specified APK
+      operationId: androidpublisher.edits.deobfuscationfiles.upload
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The version code of the APK whose deobfuscation file is being
+          uploaded
+      - in: path
+        name: deobfuscationFileType
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier of the Android app for which the deobfuscatiuon
+          files are being uploaded; for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deobfuscation FIle
+  /{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}:
+    get:
+      summary: Get Expansion File
+      description: Fetches the Expansion File configuration for the APK specified
+      operationId: androidpublisher.edits.expansionfiles.get
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The version code of the APK whose Expansion File configuration
+          is being read or modified
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: expansionFileType
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Expansion File
+    patch:
+      summary: 'Update APK Expansion File '
+      description: Updates the APK's Expansion File configuration to reference another
+        APK's Expansion Files
+      operationId: androidpublisher.edits.expansionfiles.patch
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The version code of the APK whose Expansion File configuration
+          is being read or modified
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: expansionFileType
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Expansion File
+    post:
+      summary: 'Upload APK Expansion File '
+      description: Uploads and attaches a new Expansion File to the APK specified
+      operationId: androidpublisher.edits.expansionfiles.upload
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The version code of the APK whose Expansion File configuration
+          is being read or modified
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: expansionFileType
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Expansion File
+    put:
+      summary: 'Update APK Expansion File '
+      description: Updates the APK's Expansion File configuration to reference another
+        APK's Expansion Files
+      operationId: androidpublisher.edits.expansionfiles.update
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The version code of the APK whose Expansion File configuration
+          is being read or modified
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: expansionFileType
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Expansion File
+  /{packageName}/edits/{editId}/apks/{apkVersionCode}/listings:
+    delete:
+      summary: Delete All APK Localized Listing
+      description: Deletes all the APK-specific localized listings for a specified
+        APK
+      operationId: androidpublisher.edits.apklistings.deleteall
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The APK version code whose APK-specific listings should be read
+          or modified
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Localized Listing
+    get:
+      summary: Get APK Localized Listings
+      description: Lists all the APK-specific localized listings for a specified APK
+      operationId: androidpublisher.edits.apklistings.list
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The APK version code whose APK-specific listings should be read
+          or modified
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Localized Listing
+  /{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}:
+    delete:
+      summary: Delete APK Localized Listing
+      description: Deletes the APK-specific localized listing for a specified APK
+        and language code
+      operationId: androidpublisher.edits.apklistings.delete
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The APK version code whose APK-specific listings should be read
+          or modified
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the APK-specific
+          localized listing to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Localized Listing
+    get:
+      summary: Get APK Localized Listing
+      description: Fetches the APK-specific localized listing for a specified APK
+        and language code
+      operationId: androidpublisher.edits.apklistings.get
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The APK version code whose APK-specific listings should be read
+          or modified
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the APK-specific
+          localized listing to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Localized Listing
+    patch:
+      summary: Update APK Localized Listing
+      description: Updates or creates the APK-specific localized listing for a specified
+        APK and language code
+      operationId: androidpublisher.edits.apklistings.patch
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The APK version code whose APK-specific listings should be read
+          or modified
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the APK-specific
+          localized listing to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Localized Listing
+    put:
+      summary: Update APK Localized Listing
+      description: Updates or creates the APK-specific localized listing for a specified
+        APK and language code
+      operationId: androidpublisher.edits.apklistings.update
+      parameters:
+      - in: path
+        name: apkVersionCode
+        description: The APK version code whose APK-specific listings should be read
+          or modified
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the APK-specific
+          localized listing to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - APK Localized Listing
+  /{packageName}/edits/{editId}/details:
+    get:
+      summary: Get App Detail
+      description: Fetches app details for this edit
+      operationId: androidpublisher.edits.details.get
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+    patch:
+      summary: Update App Detail
+      description: Updates app details for this edit
+      operationId: androidpublisher.edits.details.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+    put:
+      summary: Update App Detail
+      description: Updates app details for this edit
+      operationId: androidpublisher.edits.details.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /{packageName}/edits/{editId}/listings:
+    delete:
+      summary: Delete App Detail
+      description: Deletes all localized listings from an edit
+      operationId: androidpublisher.edits.listings.deleteall
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+    get:
+      summary: Get App Details
+      description: Returns all of the localized store listings attached to this edit
+      operationId: androidpublisher.edits.listings.list
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /{packageName}/edits/{editId}/listings/{language}:
+    delete:
+      summary: Delete Localized Store Listing
+      description: Deletes the specified localized store listing from an edit
+      operationId: androidpublisher.edits.listings.delete
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Localized Store Listing
+    get:
+      summary: Get Localized Store Listing
+      description: Fetches information about a localized store listing
+      operationId: androidpublisher.edits.listings.get
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Localized Store Listing
+    patch:
+      summary: Update Localized Store Listing
+      description: Creates or updates a localized store listing
+      operationId: androidpublisher.edits.listings.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Localized Store Listing
+    put:
+      summary: Update Localized Store Listing
+      description: Creates or updates a localized store listing
+      operationId: androidpublisher.edits.listings.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          to read or modify
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Localized Store Listing
+  /{packageName}/edits/{editId}/listings/{language}/{imageType}:
+    delete:
+      summary: 'Delete All Images '
+      description: Deletes all images for the specified language and image type
+      operationId: androidpublisher.edits.images.deleteall
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: imageType
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          whose images are to read or modified
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Image
+    get:
+      summary: 'Get All Images '
+      description: Lists all images for the specified language and image type
+      operationId: androidpublisher.edits.images.list
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: imageType
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          whose images are to read or modified
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Image
+    post:
+      summary: Upoads Image
+      description: Uploads a new image and adds it to the list of images for the specified
+        language and image type
+      operationId: androidpublisher.edits.images.upload
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: imageType
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          whose images are to read or modified
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Image
+  /{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}:
+    delete:
+      summary: Delete Image
+      description: Deletes the image (specified by id) from the edit
+      operationId: androidpublisher.edits.images.delete
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: imageId
+        description: Unique identifier an image within the set of images attached
+          to this edit
+      - in: path
+        name: imageType
+      - in: path
+        name: language
+        description: The language code (a BCP-47 language tag) of the localized listing
+          whose images are to read or modified
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Image
+  /{packageName}/edits/{editId}/tracks:
+    get:
+      summary: Get Track Configurations
+      description: Lists all the track configurations for this edit
+      operationId: androidpublisher.edits.tracks.list
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Track Configuration
+  /{packageName}/edits/{editId}/tracks/{track}:
+    get:
+      summary: Get Track Configuration
+      description: Fetches the track configuration for the specified track type
+      operationId: androidpublisher.edits.tracks.get
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      - in: path
+        name: track
+        description: The track type to read or modify
+      responses:
+        200:
+          description: OK
+      tags:
+      - Track Configuration
+    patch:
+      summary: Update Track Configuration
+      description: Updates the track configuration for the specified track type
+      operationId: androidpublisher.edits.tracks.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      - in: path
+        name: track
+        description: The track type to read or modify
+      responses:
+        200:
+          description: OK
+      tags:
+      - Track Configuration
+    put:
+      summary: Update Track Configuration
+      description: Updates the track configuration for the specified track type
+      operationId: androidpublisher.edits.tracks.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      - in: path
+        name: track
+        description: The track type to read or modify
+      responses:
+        200:
+          description: OK
+      tags:
+      - Track Configuration
+  /{packageName}/edits/{editId}:commit:
+    post:
+      summary: Commit Changes
+      description: Commits/applies the changes made in this edit back to the app
+      operationId: androidpublisher.edits.commit
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Change
+  /{packageName}/edits/{editId}:validate:
+    post:
+      summary: Validate Changes
+      description: Checks that the edit can be successfully committed
+      operationId: androidpublisher.edits.validate
+      parameters:
+      - in: path
+        name: editId
+        description: Unique identifier for this edit
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app that is being updated;
+          for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - Change
+  /{packageName}/entitlements:
+    get:
+      summary: Get Entitlements
+      description: Lists the user's current inapp item or subscription entitlements
+      operationId: androidpublisher.entitlements.list
+      parameters:
+      - in: query
+        name: maxResults
+      - in: path
+        name: packageName
+        description: The package name of the application the inapp product was sold
+          in (for example, 'com
+      - in: query
+        name: productId
+        description: The product id of the inapp product (for example, 'sku1')
+      - in: query
+        name: startIndex
+      - in: query
+        name: token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Entitlement
+  /{packageName}/inappproducts:
+    get:
+      summary: Get In App Products
+      description: List all the in-app products for an Android app, both subscriptions
+        and managed in-app products
+      operationId: androidpublisher.inappproducts.list
+      parameters:
+      - in: query
+        name: maxResults
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app with in-app products; for
+          example, "com
+      - in: query
+        name: startIndex
+      - in: query
+        name: token
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Product
+    post:
+      summary: Create In App Products
+      description: Creates a new in-app product for an app
+      operationId: androidpublisher.inappproducts.insert
+      parameters:
+      - in: query
+        name: autoConvertMissingPrices
+        description: If true the prices for all regions targeted by the parent app
+          that don't have a price specified for this in-app product will be auto converted
+          to the target currency based on the default price
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app; for example, "com
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Product
+  /{packageName}/inappproducts/{sku}:
+    delete:
+      summary: Delete In App Products
+      description: Delete an in-app product for an app
+      operationId: androidpublisher.inappproducts.delete
+      parameters:
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app with the in-app product;
+          for example, "com
+      - in: path
+        name: sku
+        description: Unique identifier for the in-app product
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Product
+    get:
+      summary: Get In App Product
+      description: Returns information about the in-app product specified
+      operationId: androidpublisher.inappproducts.get
+      parameters:
+      - in: path
+        name: packageName
+      - in: path
+        name: sku
+        description: Unique identifier for the in-app product
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Product
+    patch:
+      summary: Update In App Product
+      description: Updates the details of an in-app product
+      operationId: androidpublisher.inappproducts.patch
+      parameters:
+      - in: query
+        name: autoConvertMissingPrices
+        description: If true the prices for all regions targeted by the parent app
+          that don't have a price specified for this in-app product will be auto converted
+          to the target currency based on the default price
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app with the in-app product;
+          for example, "com
+      - in: path
+        name: sku
+        description: Unique identifier for the in-app product
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Product
+    put:
+      summary: Update In App Product
+      description: Updates the details of an in-app product
+      operationId: androidpublisher.inappproducts.update
+      parameters:
+      - in: query
+        name: autoConvertMissingPrices
+        description: If true the prices for all regions targeted by the parent app
+          that don't have a price specified for this in-app product will be auto converted
+          to the target currency based on the default price
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app with the in-app product;
+          for example, "com
+      - in: path
+        name: sku
+        description: Unique identifier for the in-app product
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Product
+  /{packageName}/purchases/products/{productId}/tokens/{token}:
+    get:
+      summary: Get In App Purchases
+      description: Checks the purchase and consumption status of an inapp item
+      operationId: androidpublisher.purchases.products.get
+      parameters:
+      - in: path
+        name: packageName
+        description: The package name of the application the inapp product was sold
+          in (for example, 'com
+      - in: path
+        name: productId
+        description: The inapp product SKU (for example, 'com
+      - in: path
+        name: token
+        description: The token provided to the user's device when the inapp product
+          was purchased
+      responses:
+        200:
+          description: OK
+      tags:
+      - In App Purchase
+  /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:
+    get:
+      summary: Check User Subscriptions
+      description: Checks whether a user's subscription purchase is valid and returns
+        its expiry time
+      operationId: androidpublisher.purchases.subscriptions.get
+      parameters:
+      - in: path
+        name: packageName
+        description: The package name of the application for which this subscription
+          was purchased (for example, 'com
+      - in: path
+        name: subscriptionId
+        description: The purchased subscription ID (for example, 'monthly001')
+      - in: path
+        name: token
+        description: The token provided to the user's device when the subscription
+          was purchased
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel:
+    post:
+      summary: Cancel User Subscription
+      description: Cancels a user's subscription purchase
+      operationId: androidpublisher.purchases.subscriptions.cancel
+      parameters:
+      - in: path
+        name: packageName
+        description: The package name of the application for which this subscription
+          was purchased (for example, 'com
+      - in: path
+        name: subscriptionId
+        description: The purchased subscription ID (for example, 'monthly001')
+      - in: path
+        name: token
+        description: The token provided to the user's device when the subscription
+          was purchased
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer:
+    post:
+      summary: Defer User Subscription
+      description: Defers a user's subscription purchase until a specified future
+        expiration time
+      operationId: androidpublisher.purchases.subscriptions.defer
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: packageName
+        description: The package name of the application for which this subscription
+          was purchased (for example, 'com
+      - in: path
+        name: subscriptionId
+        description: The purchased subscription ID (for example, 'monthly001')
+      - in: path
+        name: token
+        description: The token provided to the user's device when the subscription
+          was purchased
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund:
+    post:
+      summary: Refund User Subscription
+      description: Refunds a user's subscription purchase, but the subscription remains
+        valid until its expiration time and it will continue to recur
+      operationId: androidpublisher.purchases.subscriptions.refund
+      parameters:
+      - in: path
+        name: packageName
+        description: The package name of the application for which this subscription
+          was purchased (for example, 'com
+      - in: path
+        name: subscriptionId
+        description: The purchased subscription ID (for example, 'monthly001')
+      - in: path
+        name: token
+        description: The token provided to the user's device when the subscription
+          was purchased
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke:
+    post:
+      summary: Refunds and Revoke
+      description: Refunds and immediately revokes a user's subscription purchase
+      operationId: androidpublisher.purchases.subscriptions.revoke
+      parameters:
+      - in: path
+        name: packageName
+        description: The package name of the application for which this subscription
+          was purchased (for example, 'com
+      - in: path
+        name: subscriptionId
+        description: The purchased subscription ID (for example, 'monthly001')
+      - in: path
+        name: token
+        description: The token provided to the user's device when the subscription
+          was purchased
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /{packageName}/purchases/voidedpurchases:
+    get:
+      summary: List Cancelled Purches
+      description: Lists the purchases that were cancelled, refunded or charged-back
+      operationId: androidpublisher.purchases.voidedpurchases.list
+      parameters:
+      - in: query
+        name: endTime
+        description: The time, in milliseconds since the Epoch, of the newest voided
+          in-app product purchase that you want to see in the response
+      - in: query
+        name: maxResults
+      - in: path
+        name: packageName
+        description: The package name of the application for which voided purchases
+          need to be returned (for example, 'com
+      - in: query
+        name: startIndex
+      - in: query
+        name: startTime
+        description: The time, in milliseconds since the Epoch, of the oldest voided
+          in-app product purchase that you want to see in the response
+      - in: query
+        name: token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /{packageName}/reviews:
+    get:
+      summary: Get Reviews
+      description: Returns a list of reviews
+      operationId: androidpublisher.reviews.list
+      parameters:
+      - in: query
+        name: maxResults
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app for which we want reviews;
+          for example, "com
+      - in: query
+        name: startIndex
+      - in: query
+        name: token
+      - in: query
+        name: translationLanguage
+      responses:
+        200:
+          description: OK
+      tags:
+      - Review
+  /{packageName}/reviews/{reviewId}:
+    get:
+      summary: Get Review
+      description: Returns a single review
+      operationId: androidpublisher.reviews.get
+      parameters:
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app for which we want reviews;
+          for example, "com
+      - in: path
+        name: reviewId
+      - in: query
+        name: translationLanguage
+      responses:
+        200:
+          description: OK
+      tags:
+      - Review
+  /{packageName}/reviews/{reviewId}:reply:
+    post:
+      summary: Reply To Review
+      description: Reply to a single review, or update an existing reply
+      operationId: androidpublisher.reviews.reply
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: packageName
+        description: Unique identifier for the Android app for which we want reviews;
+          for example, "com
+      - in: path
+        name: reviewId
+      responses:
+        200:
+          description: OK
+      tags:
+      - Review
+definitions:
+  Apk:
+    properties:
+      versionCode:
+        description: This is a default description.
+        type: post
+  ApkBinary:
+    properties:
+      sha1:
+        description: This is a default description.
+        type: post
+  ApkListing:
+    properties:
+      language:
+        description: This is a default description.
+        type: post
+      recentChanges:
+        description: This is a default description.
+        type: post
+  ApkListingsListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: post
+      listings:
+        description: This is a default description.
+        type: post
+  ApksAddExternallyHostedRequest:
+    properties: []
+  ApksAddExternallyHostedResponse:
+    properties: []
+  ApksListResponse:
+    properties:
+      apks:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  AppDetails:
+    properties:
+      contactEmail:
+        description: This is a default description.
+        type: post
+      contactPhone:
+        description: This is a default description.
+        type: post
+      contactWebsite:
+        description: This is a default description.
+        type: post
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+  AppEdit:
+    properties:
+      expiryTimeSeconds:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+  Comment:
+    properties: []
+  DeobfuscationFile:
+    properties:
+      symbolType:
+        description: This is a default description.
+        type: post
+  DeobfuscationFilesUploadResponse:
+    properties: []
+  DeveloperComment:
+    properties:
+      text:
+        description: This is a default description.
+        type: post
+  DeviceMetadata:
+    properties:
+      cpuMake:
+        description: This is a default description.
+        type: post
+      cpuModel:
+        description: This is a default description.
+        type: post
+      deviceClass:
+        description: This is a default description.
+        type: post
+      glEsVersion:
+        description: This is a default description.
+        type: post
+      manufacturer:
+        description: This is a default description.
+        type: post
+      nativePlatform:
+        description: This is a default description.
+        type: post
+      productName:
+        description: This is a default description.
+        type: post
+      ramMb:
+        description: This is a default description.
+        type: post
+      screenDensityDpi:
+        description: This is a default description.
+        type: post
+      screenHeightPx:
+        description: This is a default description.
+        type: post
+      screenWidthPx:
+        description: This is a default description.
+        type: post
+  Entitlement:
+    properties:
+      kind:
+        description: This is a default description.
+        type: post
+      productId:
+        description: This is a default description.
+        type: post
+      productType:
+        description: This is a default description.
+        type: post
+      token:
+        description: This is a default description.
+        type: post
+  EntitlementsListResponse:
+    properties:
+      resources:
+        description: This is a default description.
+        type: post
+  ExpansionFile:
+    properties:
+      fileSize:
+        description: This is a default description.
+        type: post
+      referencesVersion:
+        description: This is a default description.
+        type: post
+  ExpansionFilesUploadResponse:
+    properties: []
+  ExternallyHostedApk:
+    properties:
+      applicationLabel:
+        description: This is a default description.
+        type: post
+      certificateBase64s:
+        description: This is a default description.
+        type: post
+      externallyHostedUrl:
+        description: This is a default description.
+        type: post
+      fileSha1Base64:
+        description: This is a default description.
+        type: post
+      fileSha256Base64:
+        description: This is a default description.
+        type: post
+      fileSize:
+        description: This is a default description.
+        type: post
+      iconBase64:
+        description: This is a default description.
+        type: post
+      maximumSdk:
+        description: This is a default description.
+        type: post
+      minimumSdk:
+        description: This is a default description.
+        type: post
+      nativeCodes:
+        description: This is a default description.
+        type: post
+      packageName:
+        description: This is a default description.
+        type: post
+      usesFeatures:
+        description: This is a default description.
+        type: post
+      usesPermissions:
+        description: This is a default description.
+        type: post
+      versionCode:
+        description: This is a default description.
+        type: post
+      versionName:
+        description: This is a default description.
+        type: post
+  ExternallyHostedApkUsesPermission:
+    properties:
+      maxSdkVersion:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  Image:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      sha1:
+        description: This is a default description.
+        type: post
+      url:
+        description: This is a default description.
+        type: post
+  ImagesDeleteAllResponse:
+    properties:
+      deleted:
+        description: This is a default description.
+        type: post
+  ImagesListResponse:
+    properties:
+      images:
+        description: This is a default description.
+        type: post
+  ImagesUploadResponse:
+    properties: []
+  InAppProduct:
+    properties:
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+      listings:
+        description: This is a default description.
+        type: post
+      packageName:
+        description: This is a default description.
+        type: post
+      prices:
+        description: This is a default description.
+        type: post
+      purchaseType:
+        description: This is a default description.
+        type: post
+      sku:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+      subscriptionPeriod:
+        description: This is a default description.
+        type: post
+      trialPeriod:
+        description: This is a default description.
+        type: post
+  InAppProductListing:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  InappproductsBatchRequest:
+    properties:
+      entrys:
+        description: This is a default description.
+        type: post
+  InappproductsBatchRequestEntry:
+    properties:
+      batchId:
+        description: This is a default description.
+        type: post
+      methodName:
+        description: This is a default description.
+        type: post
+  InappproductsBatchResponse:
+    properties:
+      entrys:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  InappproductsBatchResponseEntry:
+    properties:
+      batchId:
+        description: This is a default description.
+        type: post
+  InappproductsInsertRequest:
+    properties: []
+  InappproductsInsertResponse:
+    properties: []
+  InappproductsListResponse:
+    properties:
+      inappproduct:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  InappproductsUpdateRequest:
+    properties: []
+  InappproductsUpdateResponse:
+    properties: []
+  Listing:
+    properties:
+      fullDescription:
+        description: This is a default description.
+        type: post
+      language:
+        description: This is a default description.
+        type: post
+      shortDescription:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+      video:
+        description: This is a default description.
+        type: post
+  ListingsListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: post
+      listings:
+        description: This is a default description.
+        type: post
+  MonthDay:
+    properties:
+      day:
+        description: This is a default description.
+        type: post
+      month:
+        description: This is a default description.
+        type: post
+  PageInfo:
+    properties:
+      resultPerPage:
+        description: This is a default description.
+        type: post
+      startIndex:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+  Price:
+    properties:
+      currency:
+        description: This is a default description.
+        type: post
+      priceMicros:
+        description: This is a default description.
+        type: post
+  ProductPurchase:
+    properties:
+      consumptionState:
+        description: This is a default description.
+        type: post
+      developerPayload:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      purchaseState:
+        description: This is a default description.
+        type: post
+      purchaseTimeMillis:
+        description: This is a default description.
+        type: post
+  Prorate:
+    properties: []
+  Review:
+    properties:
+      authorName:
+        description: This is a default description.
+        type: post
+      comments:
+        description: This is a default description.
+        type: post
+      reviewId:
+        description: This is a default description.
+        type: post
+  ReviewReplyResult:
+    properties:
+      replyText:
+        description: This is a default description.
+        type: post
+  ReviewsListResponse:
+    properties:
+      reviews:
+        description: This is a default description.
+        type: post
+  ReviewsReplyRequest:
+    properties:
+      replyText:
+        description: This is a default description.
+        type: post
+  ReviewsReplyResponse:
+    properties: []
+  Season:
+    properties:
+      prorations:
+        description: This is a default description.
+        type: post
+  SubscriptionDeferralInfo:
+    properties:
+      desiredExpiryTimeMillis:
+        description: This is a default description.
+        type: post
+      expectedExpiryTimeMillis:
+        description: This is a default description.
+        type: post
+  SubscriptionPurchase:
+    properties:
+      autoRenewing:
+        description: This is a default description.
+        type: post
+      cancelReason:
+        description: This is a default description.
+        type: post
+      countryCode:
+        description: This is a default description.
+        type: post
+      developerPayload:
+        description: This is a default description.
+        type: post
+      expiryTimeMillis:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      paymentState:
+        description: This is a default description.
+        type: post
+      priceAmountMicros:
+        description: This is a default description.
+        type: post
+      priceCurrencyCode:
+        description: This is a default description.
+        type: post
+      startTimeMillis:
+        description: This is a default description.
+        type: post
+      userCancellationTimeMillis:
+        description: This is a default description.
+        type: post
+  SubscriptionPurchasesDeferRequest:
+    properties: []
+  SubscriptionPurchasesDeferResponse:
+    properties:
+      newExpiryTimeMillis:
+        description: This is a default description.
+        type: post
+  Testers:
+    properties:
+      googleGroups:
+        description: This is a default description.
+        type: post
+      googlePlusCommunities:
+        description: This is a default description.
+        type: post
+  Timestamp:
+    properties:
+      nanos:
+        description: This is a default description.
+        type: post
+      seconds:
+        description: This is a default description.
+        type: post
+  TokenPagination:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      previousPageToken:
+        description: This is a default description.
+        type: post
+  Track:
+    properties:
+      track:
+        description: This is a default description.
+        type: post
+      userFraction:
+        description: This is a default description.
+        type: post
+      versionCodes:
+        description: This is a default description.
+        type: post
+  TracksListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: post
+      tracks:
+        description: This is a default description.
+        type: post
+  UserComment:
+    properties:
+      androidOsVersion:
+        description: This is a default description.
+        type: post
+      appVersionCode:
+        description: This is a default description.
+        type: post
+      appVersionName:
+        description: This is a default description.
+        type: post
+      device:
+        description: This is a default description.
+        type: post
+      originalText:
+        description: This is a default description.
+        type: post
+      reviewerLanguage:
+        description: This is a default description.
+        type: post
+      starRating:
+        description: This is a default description.
+        type: post
+      text:
+        description: This is a default description.
+        type: post
+      thumbsDownCount:
+        description: This is a default description.
+        type: post
+      thumbsUpCount:
+        description: This is a default description.
+        type: post
+  VoidedPurchase:
+    properties:
+      kind:
+        description: This is a default description.
+        type: post
+      purchaseTimeMillis:
+        description: This is a default description.
+        type: post
+      purchaseToken:
+        description: This is a default description.
+        type: post
+      voidedTimeMillis:
+        description: This is a default description.
+        type: post
+  VoidedPurchasesListResponse:
+    properties:
+      voidedPurchases:
+        description: This is a default description.
+        type: post
