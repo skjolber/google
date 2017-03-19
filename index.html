@@ -176,6 +176,7 @@ title: Google
 
                                     {% for path in openapi_spec_json.paths %}
 
+                                      {% assign path_name = path[0] %}
                                       {% assign method_json = path[1] %}
 
                                       {% for method in method_json %}
@@ -200,7 +201,7 @@ title: Google
                                         {% assign summary = method[1].summary %}
                                         {% assign description = method[1].description %}
 
-                                        <li style="font-size: 11px;"><strong>{{ summary }}</strong> - {{ description }}</li>
+                                        <li style="font-size: 11px;"><strong>{{ summary }}</strong> ({{ path_name }}) - {{ description }}</li>
 
                                       {% endfor %}
                                     {% endfor %}
