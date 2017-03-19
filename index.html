@@ -31,7 +31,7 @@ HERE: {{ index.include }}
       {% for item in folder %}
 
         {% assign item_name = item[0] %}
-
+        item_name: {{ item_name }}<br />
         {% if item_name == 'apis' %}
 
           {% assign apijson = item[1] %}
