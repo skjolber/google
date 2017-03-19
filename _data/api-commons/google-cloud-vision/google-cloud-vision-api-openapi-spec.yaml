@@ -1,0 +1,388 @@
+swagger: "2.0"
+info:
+  title: Google Cloud Vision
+  description: Integrates Google Vision features, including image labeling, face,
+    logo, and landmark detection, optical character recognition (OCR), and detection
+    of explicit content, into applications.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: vision.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/images:annotate:
+    post:
+      summary: Run Image Detection
+      description: Run image detection and annotation for a batch of images
+      operationId: vision.images.annotate
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Image Detection
+definitions:
+  AnnotateImageRequest:
+    properties:
+      features:
+        description: This is a default description.
+        type: post
+  AnnotateImageResponse:
+    properties:
+      faceAnnotations:
+        description: This is a default description.
+        type: post
+      labelAnnotations:
+        description: This is a default description.
+        type: post
+      landmarkAnnotations:
+        description: This is a default description.
+        type: post
+      logoAnnotations:
+        description: This is a default description.
+        type: post
+      textAnnotations:
+        description: This is a default description.
+        type: post
+  BatchAnnotateImagesRequest:
+    properties:
+      requests:
+        description: This is a default description.
+        type: post
+  BatchAnnotateImagesResponse:
+    properties:
+      responses:
+        description: This is a default description.
+        type: post
+  Block:
+    properties:
+      blockType:
+        description: This is a default description.
+        type: post
+      paragraphs:
+        description: This is a default description.
+        type: post
+  BoundingPoly:
+    properties:
+      vertices:
+        description: This is a default description.
+        type: post
+  Color:
+    properties:
+      alpha:
+        description: This is a default description.
+        type: post
+      blue:
+        description: This is a default description.
+        type: post
+      green:
+        description: This is a default description.
+        type: post
+      red:
+        description: This is a default description.
+        type: post
+  ColorInfo:
+    properties:
+      pixelFraction:
+        description: This is a default description.
+        type: post
+      score:
+        description: This is a default description.
+        type: post
+  CropHint:
+    properties:
+      confidence:
+        description: This is a default description.
+        type: post
+      importanceFraction:
+        description: This is a default description.
+        type: post
+  CropHintsAnnotation:
+    properties:
+      cropHints:
+        description: This is a default description.
+        type: post
+  CropHintsParams:
+    properties:
+      aspectRatios:
+        description: This is a default description.
+        type: post
+  DetectedBreak:
+    properties:
+      isPrefix:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  DetectedLanguage:
+    properties:
+      confidence:
+        description: This is a default description.
+        type: post
+      languageCode:
+        description: This is a default description.
+        type: post
+  DominantColorsAnnotation:
+    properties:
+      colors:
+        description: This is a default description.
+        type: post
+  EntityAnnotation:
+    properties:
+      confidence:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      locale:
+        description: This is a default description.
+        type: post
+      locations:
+        description: This is a default description.
+        type: post
+      mid:
+        description: This is a default description.
+        type: post
+      properties:
+        description: This is a default description.
+        type: post
+      score:
+        description: This is a default description.
+        type: post
+      topicality:
+        description: This is a default description.
+        type: post
+  FaceAnnotation:
+    properties:
+      angerLikelihood:
+        description: This is a default description.
+        type: post
+      blurredLikelihood:
+        description: This is a default description.
+        type: post
+      detectionConfidence:
+        description: This is a default description.
+        type: post
+      headwearLikelihood:
+        description: This is a default description.
+        type: post
+      joyLikelihood:
+        description: This is a default description.
+        type: post
+      landmarkingConfidence:
+        description: This is a default description.
+        type: post
+      landmarks:
+        description: This is a default description.
+        type: post
+      panAngle:
+        description: This is a default description.
+        type: post
+      rollAngle:
+        description: This is a default description.
+        type: post
+      sorrowLikelihood:
+        description: This is a default description.
+        type: post
+      surpriseLikelihood:
+        description: This is a default description.
+        type: post
+      tiltAngle:
+        description: This is a default description.
+        type: post
+      underExposedLikelihood:
+        description: This is a default description.
+        type: post
+  Feature:
+    properties:
+      maxResults:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  Image:
+    properties:
+      content:
+        description: This is a default description.
+        type: post
+  ImageContext:
+    properties:
+      languageHints:
+        description: This is a default description.
+        type: post
+  ImageProperties:
+    properties: []
+  ImageSource:
+    properties:
+      gcsImageUri:
+        description: This is a default description.
+        type: post
+      imageUri:
+        description: This is a default description.
+        type: post
+  Landmark:
+    properties:
+      type:
+        description: This is a default description.
+        type: post
+  LatLng:
+    properties:
+      latitude:
+        description: This is a default description.
+        type: post
+      longitude:
+        description: This is a default description.
+        type: post
+  LatLongRect:
+    properties: []
+  LocationInfo:
+    properties: []
+  Page:
+    properties:
+      blocks:
+        description: This is a default description.
+        type: post
+      height:
+        description: This is a default description.
+        type: post
+      width:
+        description: This is a default description.
+        type: post
+  Paragraph:
+    properties:
+      words:
+        description: This is a default description.
+        type: post
+  Position:
+    properties:
+      x:
+        description: This is a default description.
+        type: post
+      "y":
+        description: This is a default description.
+        type: post
+      z:
+        description: This is a default description.
+        type: post
+  Property:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+      uint64Value:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  SafeSearchAnnotation:
+    properties:
+      adult:
+        description: This is a default description.
+        type: post
+      medical:
+        description: This is a default description.
+        type: post
+      spoof:
+        description: This is a default description.
+        type: post
+      violence:
+        description: This is a default description.
+        type: post
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
+  Symbol:
+    properties:
+      text:
+        description: This is a default description.
+        type: post
+  TextAnnotation:
+    properties:
+      pages:
+        description: This is a default description.
+        type: post
+      text:
+        description: This is a default description.
+        type: post
+  TextProperty:
+    properties:
+      detectedLanguages:
+        description: This is a default description.
+        type: post
+  Vertex:
+    properties:
+      x:
+        description: This is a default description.
+        type: post
+      "y":
+        description: This is a default description.
+        type: post
+  WebDetection:
+    properties:
+      fullMatchingImages:
+        description: This is a default description.
+        type: post
+      pagesWithMatchingImages:
+        description: This is a default description.
+        type: post
+      partialMatchingImages:
+        description: This is a default description.
+        type: post
+      webEntities:
+        description: This is a default description.
+        type: post
+  WebEntity:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      entityId:
+        description: This is a default description.
+        type: post
+      score:
+        description: This is a default description.
+        type: post
+  WebImage:
+    properties:
+      score:
+        description: This is a default description.
+        type: post
+      url:
+        description: This is a default description.
+        type: post
+  WebPage:
+    properties:
+      score:
+        description: This is a default description.
+        type: post
+      url:
+        description: This is a default description.
+        type: post
+  Word:
+    properties:
+      symbols:
+        description: This is a default description.
+        type: post
