@@ -1,0 +1,600 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Stackdriver Debugger",
+		"description": "Examines the call stack and variables of a running application without stopping or slowing it down.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v2"
+	},
+	"host": "clouddebugger.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v2/controller/debuggees/register": {
+			"post": {
+				"summary": "Register Debuggee",
+				"description": "Registers the debuggee with the controller service",
+				"operationId": "clouddebugger.controller.debuggees.register",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger"]
+			}
+		},
+		"/v2/controller/debuggees/{debuggeeId}/breakpoints": {
+			"get": {
+				"summary": "Get Breakpoints",
+				"description": "Returns the list of all active breakpoints for the debuggee",
+				"operationId": "clouddebugger.controller.debuggees.breakpoints.list",
+				"parameters": [{
+					"in": "path",
+					"name": "debuggeeId",
+					"description": "Identifies the debuggee"
+				},
+				{
+					"in": "query",
+					"name": "successOnTimeout",
+					"description": "If set to `true`, returns `google"
+				},
+				{
+					"in": "query",
+					"name": "waitToken",
+					"description": "A wait token that, if specified, blocks the method call until the listnof active breakpoints has changed, or a server selected timeout hasnexpired"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger Breakpoint"]
+			}
+		},
+		"/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}": {
+			"put": {
+				"summary": "Get Breakpoint",
+				"description": "Updates the breakpoint state or mutable fields",
+				"operationId": "clouddebugger.controller.debuggees.breakpoints.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "debuggeeId",
+					"description": "Identifies the debuggee being debugged"
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "Breakpoint identifier, unique in the scope of the debuggee"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger Breakpoint"]
+			}
+		},
+		"/v2/debugger/debuggees": {
+			"get": {
+				"summary": "Get Debuggee",
+				"description": "Lists all the debuggees that the user can set breakpoints to",
+				"operationId": "clouddebugger.debugger.debuggees.list",
+				"parameters": [{
+					"in": "query",
+					"name": "clientVersion",
+					"description": "The client version making the call"
+				},
+				{
+					"in": "query",
+					"name": "includeInactive",
+					"description": "When set to `true`, the result includes all debuggees"
+				},
+				{
+					"in": "query",
+					"name": "project",
+					"description": "Project number of a Google Cloud project whose debuggees to list"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger"]
+			}
+		},
+		"/v2/debugger/debuggees/{debuggeeId}/breakpoints": {
+			"get": {
+				"summary": "Get Debuggee Breakpoints",
+				"description": "Lists all breakpoints for the debuggee",
+				"operationId": "clouddebugger.debugger.debuggees.breakpoints.list",
+				"parameters": [{
+					"in": "query",
+					"name": "action.value",
+					"description": "Only breakpoints with the specified action will pass the filter"
+				},
+				{
+					"in": "query",
+					"name": "clientVersion",
+					"description": "The client version making the call"
+				},
+				{
+					"in": "path",
+					"name": "debuggeeId",
+					"description": "ID of the debuggee whose breakpoints to list"
+				},
+				{
+					"in": "query",
+					"name": "includeAllUsers",
+					"description": "When set to `true`, the response includes the list of breakpoints set bynany user"
+				},
+				{
+					"in": "query",
+					"name": "includeInactive",
+					"description": "When set to `true`, the response includes active and inactivenbreakpoints"
+				},
+				{
+					"in": "query",
+					"name": "stripResults",
+					"description": "This field is deprecated"
+				},
+				{
+					"in": "query",
+					"name": "waitToken",
+					"description": "A wait token that, if specified, blocks the call until the breakpointsnlist has changed, or a server selected timeout has expired"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger Breakpoint"]
+			}
+		},
+		"/v2/debugger/debuggees/{debuggeeId}/breakpoints/set": {
+			"post": {
+				"summary": "Set Debuggee Breakpoint",
+				"description": "Sets the breakpoint to the debuggee",
+				"operationId": "clouddebugger.debugger.debuggees.breakpoints.set",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "query",
+					"name": "clientVersion",
+					"description": "The client version making the call"
+				},
+				{
+					"in": "path",
+					"name": "debuggeeId",
+					"description": "ID of the debuggee where the breakpoint is to be set"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger Breakpoint"]
+			}
+		},
+		"/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}": {
+			"delete": {
+				"summary": "Delete Debuggee Breakpoint",
+				"description": "Deletes the breakpoint from the debuggee",
+				"operationId": "clouddebugger.debugger.debuggees.breakpoints.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "breakpointId",
+					"description": "ID of the breakpoint to delete"
+				},
+				{
+					"in": "query",
+					"name": "clientVersion",
+					"description": "The client version making the call"
+				},
+				{
+					"in": "path",
+					"name": "debuggeeId",
+					"description": "ID of the debuggee whose breakpoint to delete"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger Breakpoint"]
+			},
+			"get": {
+				"summary": "Get Debuggee Breakpoint",
+				"description": "Gets breakpoint information",
+				"operationId": "clouddebugger.debugger.debuggees.breakpoints.get",
+				"parameters": [{
+					"in": "path",
+					"name": "breakpointId",
+					"description": "ID of the breakpoint to get"
+				},
+				{
+					"in": "query",
+					"name": "clientVersion",
+					"description": "The client version making the call"
+				},
+				{
+					"in": "path",
+					"name": "debuggeeId",
+					"description": "ID of the debuggee whose breakpoint to get"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Debugger Breakpoint"]
+			}
+		}
+	},
+	"definitions": {
+		"AliasContext": {
+			"properties": {
+				"kind": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Breakpoint": {
+			"properties": {
+				"action": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"condition": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"createTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"evaluatedExpressions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"expressions": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"finalTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isFinalState": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"logLevel": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"logMessageFormat": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"stackFrames": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userEmail": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"variableTable": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"CloudRepoSourceContext": {
+			"properties": {
+				"aliasName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"revisionId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"CloudWorkspaceId": {
+			"properties": {
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"CloudWorkspaceSourceContext": {
+			"properties": {
+				"snapshotId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Debuggee": {
+			"properties": {
+				"agentVersion": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"extSourceContexts": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isDisabled": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"isInactive": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"project": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"sourceContexts": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"uniquifier": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"Empty": {
+			"properties": []
+		},
+		"ExtendedSourceContext": {
+			"properties": {
+				"labels": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"FormatMessage": {
+			"properties": {
+				"format": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"parameters": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"GerritSourceContext": {
+			"properties": {
+				"aliasName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"gerritProject": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"hostUri": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"revisionId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"GetBreakpointResponse": {
+			"properties": []
+		},
+		"GitSourceContext": {
+			"properties": {
+				"revisionId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"url": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListActiveBreakpointsResponse": {
+			"properties": {
+				"breakpoints": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextWaitToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"waitExpired": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListBreakpointsResponse": {
+			"properties": {
+				"breakpoints": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextWaitToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListDebuggeesResponse": {
+			"properties": {
+				"debuggees": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ProjectRepoId": {
+			"properties": {
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"repoName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"RegisterDebuggeeRequest": {
+			"properties": []
+		},
+		"RegisterDebuggeeResponse": {
+			"properties": []
+		},
+		"RepoId": {
+			"properties": {
+				"uid": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"SetBreakpointResponse": {
+			"properties": []
+		},
+		"SourceContext": {
+			"properties": []
+		},
+		"SourceLocation": {
+			"properties": {
+				"line": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"path": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"StackFrame": {
+			"properties": {
+				"arguments": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"function": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"locals": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"StatusMessage": {
+			"properties": {
+				"isError": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"refersTo": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"UpdateActiveBreakpointRequest": {
+			"properties": []
+		},
+		"UpdateActiveBreakpointResponse": {
+			"properties": []
+		},
+		"Variable": {
+			"properties": {
+				"members": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"type": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"varTableIndex": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
