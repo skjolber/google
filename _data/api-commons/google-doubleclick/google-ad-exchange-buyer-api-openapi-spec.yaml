@@ -1,0 +1,1678 @@
+swagger: "2.0"
+info:
+  title: Ad Exchange Buyer
+  description: Accesses your bidding-account information, submits creatives for validation,
+    finds available direct deals, and retrieves performance reports.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1.4
+host: www.googleapis.com
+basePath: /adexchangebuyer/v1.4
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /accounts:
+    get:
+      summary: Get Accounts
+      description: Retrieves the authenticated user's list of accounts
+      operationId: adexchangebuyer.accounts.list
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /accounts/{id}:
+    get:
+      summary: Get Account
+      description: Gets one account by ID
+      operationId: adexchangebuyer.accounts.get
+      parameters:
+      - in: path
+        name: id
+        description: The account id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+    patch:
+      summary: Update Account
+      description: Updates an existing account
+      operationId: adexchangebuyer.accounts.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: confirmUnsafeAccountChange
+        description: Confirmation for erasing bidder and cookie matching urls
+      - in: path
+        name: id
+        description: The account id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+    put:
+      summary: Update Account
+      description: Updates an existing account
+      operationId: adexchangebuyer.accounts.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: confirmUnsafeAccountChange
+        description: Confirmation for erasing bidder and cookie matching urls
+      - in: path
+        name: id
+        description: The account id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /billinginfo:
+    get:
+      summary: Get Billing Info
+      description: Retrieves a list of billing information for all accounts of the
+        authenticated user
+      operationId: adexchangebuyer.billingInfo.list
+      responses:
+        200:
+          description: OK
+      tags:
+      - Billing
+  /billinginfo/{accountId}:
+    get:
+      summary: Get Billing Info
+      description: Returns the billing information for one account specified by account
+        ID
+      operationId: adexchangebuyer.billingInfo.get
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Billing
+  /billinginfo/{accountId}/{billingId}:
+    get:
+      summary: Get Budget Info
+      description: Returns the budget information for the adgroup specified by the
+        accountId and billingId
+      operationId: adexchangebuyer.budget.get
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to get the budget information for
+      - in: path
+        name: billingId
+        description: The billing id to get the budget information for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Budget
+    patch:
+      summary: Get Budget Amount
+      description: Updates the budget amount for the budget of the adgroup specified
+        by the accountId and billingId, with the budget amount in the request
+      operationId: adexchangebuyer.budget.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id associated with the budget being updated
+      - in: path
+        name: billingId
+        description: The billing id associated with the budget being updated
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Budget
+    put:
+      summary: Update Budget Amount
+      description: Updates the budget amount for the budget of the adgroup specified
+        by the accountId and billingId, with the budget amount in the request
+      operationId: adexchangebuyer.budget.update
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id associated with the budget being updated
+      - in: path
+        name: billingId
+        description: The billing id associated with the budget being updated
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Budget
+  /creatives:
+    get:
+      summary: Get Creatives
+      description: Retrieves a list of the authenticated user's active creatives
+      operationId: adexchangebuyer.creatives.list
+      parameters:
+      - in: query
+        name: accountId
+        description: When specified, only creatives for the given account ids are
+          returned
+      - in: query
+        name: buyerCreativeId
+        description: When specified, only creatives for the given buyer creative ids
+          are returned
+      - in: query
+        name: dealsStatusFilter
+        description: When specified, only creatives having the given deals status
+          are returned
+      - in: query
+        name: maxResults
+        description: Maximum number of entries returned on one result page
+      - in: query
+        name: openAuctionStatusFilter
+        description: When specified, only creatives having the given open auction
+          status are returned
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through ad clients
+      responses:
+        200:
+          description: OK
+      tags:
+      - Creative
+    post:
+      summary: Submit Creative
+      description: Submit a new creative
+      operationId: adexchangebuyer.creatives.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Creative
+  /creatives/{accountId}/{buyerCreativeId}:
+    get:
+      summary: Get Creative Status
+      description: Gets the status for a single creative
+      operationId: adexchangebuyer.creatives.get
+      parameters:
+      - in: path
+        name: accountId
+        description: The id for the account that will serve this creative
+      - in: path
+        name: buyerCreativeId
+        description: The buyer-specific id for this creative
+      responses:
+        200:
+          description: OK
+      tags:
+      - Creative
+  /creatives/{accountId}/{buyerCreativeId}/addDeal/{dealId}:
+    post:
+      summary: Create Deal
+      description: Add a deal id association for the creative
+      operationId: adexchangebuyer.creatives.addDeal
+      parameters:
+      - in: path
+        name: accountId
+        description: The id for the account that will serve this creative
+      - in: path
+        name: buyerCreativeId
+        description: The buyer-specific id for this creative
+      - in: path
+        name: dealId
+        description: The id of the deal id to associate with this creative
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /creatives/{accountId}/{buyerCreativeId}/listDeals:
+    get:
+      summary: List Deals
+      description: Lists the external deal ids associated with the creative
+      operationId: adexchangebuyer.creatives.listDeals
+      parameters:
+      - in: path
+        name: accountId
+        description: The id for the account that will serve this creative
+      - in: path
+        name: buyerCreativeId
+        description: The buyer-specific id for this creative
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /creatives/{accountId}/{buyerCreativeId}/removeDeal/{dealId}:
+    post:
+      summary: Remove Deal
+      description: Remove a deal id associated with the creative
+      operationId: adexchangebuyer.creatives.removeDeal
+      parameters:
+      - in: path
+        name: accountId
+        description: The id for the account that will serve this creative
+      - in: path
+        name: buyerCreativeId
+        description: The buyer-specific id for this creative
+      - in: path
+        name: dealId
+        description: The id of the deal id to disassociate with this creative
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /performancereport:
+    get:
+      summary: Get Performance Report
+      description: Retrieves the authenticated user's list of performance metrics
+      operationId: adexchangebuyer.performanceReport.list
+      parameters:
+      - in: query
+        name: accountId
+        description: The account id to get the reports
+      - in: query
+        name: endDateTime
+        description: The end time of the report in ISO 8601 timestamp format using
+          UTC
+      - in: query
+        name: maxResults
+        description: Maximum number of entries returned on one result page
+      - in: query
+        name: pageToken
+        description: A continuation token, used to page through performance reports
+      - in: query
+        name: startDateTime
+        description: The start time of the report in ISO 8601 timestamp format using
+          UTC
+      responses:
+        200:
+          description: OK
+      tags:
+      - Performance Report
+  /pretargetingconfigs/{accountId}:
+    get:
+      summary: Get Pretargeting Configs
+      description: Retrieves a list of the authenticated user's pretargeting configurations
+      operationId: adexchangebuyer.pretargetingConfig.list
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to get the pretargeting configs for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Pretargeting Config
+    post:
+      summary: Update Pretargeting Config
+      description: Inserts a new pretargeting configuration
+      operationId: adexchangebuyer.pretargetingConfig.insert
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to insert the pretargeting config for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Pretargeting Config
+  /pretargetingconfigs/{accountId}/{configId}:
+    delete:
+      summary: Delete Pretargeting Config
+      description: Deletes an existing pretargeting config
+      operationId: adexchangebuyer.pretargetingConfig.delete
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to delete the pretargeting config for
+      - in: path
+        name: configId
+        description: The specific id of the configuration to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Pretargeting Config
+    get:
+      summary: Get Pretargeting Config
+      description: Gets a specific pretargeting configuration
+      operationId: adexchangebuyer.pretargetingConfig.get
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to get the pretargeting config for
+      - in: path
+        name: configId
+        description: The specific id of the configuration to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Pretargeting Config
+    patch:
+      summary: Update Pretargeting Config
+      description: Updates an existing pretargeting config
+      operationId: adexchangebuyer.pretargetingConfig.patch
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to update the pretargeting config for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: configId
+        description: The specific id of the configuration to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Pretargeting Config
+    put:
+      summary: Update Pretargeting Config
+      description: Updates an existing pretargeting config
+      operationId: adexchangebuyer.pretargetingConfig.update
+      parameters:
+      - in: path
+        name: accountId
+        description: The account id to update the pretargeting config for
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: configId
+        description: The specific id of the configuration to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Pretargeting Config
+  /privateauction/{privateAuctionId}/updateproposal:
+    post:
+      summary: Update Proposal
+      description: Update a given private auction proposal
+      operationId: adexchangebuyer.marketplaceprivateauction.updateproposal
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: privateAuctionId
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+  /products/search:
+    get:
+      summary: Search
+      description: Gets the requested product
+      operationId: adexchangebuyer.products.search
+      parameters:
+      - in: query
+        name: pqlQuery
+        description: The pql query used to query for products
+      responses:
+        200:
+          description: OK
+      tags:
+      - Search
+  /products/{productId}:
+    get:
+      summary: Get Product
+      description: Gets the requested product by id
+      operationId: adexchangebuyer.products.get
+      parameters:
+      - in: path
+        name: productId
+        description: The id for the product to get the head revision for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Product
+  /proposals/insert:
+    post:
+      summary: Insert Proposal
+      description: Create the given list of proposals
+      operationId: adexchangebuyer.proposals.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+  /proposals/search:
+    get:
+      summary: Search Proposal
+      description: Search for proposals using pql query
+      operationId: adexchangebuyer.proposals.search
+      parameters:
+      - in: query
+        name: pqlQuery
+        description: Query string to retrieve specific proposals
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+  /proposals/{proposalId}:
+    get:
+      summary: Get Proposal
+      description: Get a proposal given its id
+      operationId: adexchangebuyer.proposals.get
+      parameters:
+      - in: path
+        name: proposalId
+        description: Id of the proposal to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+  /proposals/{proposalId}/deals:
+    get:
+      summary: Get Proposal Deals
+      description: List all the deals for a given proposal
+      operationId: adexchangebuyer.marketplacedeals.list
+      parameters:
+      - in: query
+        name: pqlQuery
+        description: Query string to retrieve specific deals
+      - in: path
+        name: proposalId
+        description: The proposalId to get deals for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /proposals/{proposalId}/deals/delete:
+    post:
+      summary: Delete Proposal Deal
+      description: Delete the specified deals from the proposal
+      operationId: adexchangebuyer.marketplacedeals.delete
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: proposalId
+        description: The proposalId to delete deals from
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /proposals/{proposalId}/deals/insert:
+    post:
+      summary: Insert Proposal Deal
+      description: Add new deals for the specified proposal
+      operationId: adexchangebuyer.marketplacedeals.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: proposalId
+        description: proposalId for which deals need to be added
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /proposals/{proposalId}/deals/update:
+    post:
+      summary: Update Proposal Deal
+      description: Replaces all the deals in the proposal with the passed in deals
+      operationId: adexchangebuyer.marketplacedeals.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: proposalId
+        description: The proposalId to edit deals on
+      responses:
+        200:
+          description: OK
+      tags:
+      - Deal
+  /proposals/{proposalId}/notes:
+    get:
+      summary: Get Proposal Notes
+      description: Get all the notes associated with a proposal
+      operationId: adexchangebuyer.marketplacenotes.list
+      parameters:
+      - in: query
+        name: pqlQuery
+        description: Query string to retrieve specific notes
+      - in: path
+        name: proposalId
+        description: The proposalId to get notes for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Note
+  /proposals/{proposalId}/notes/insert:
+    post:
+      summary: Insert Proposal Notes
+      description: Add notes to the proposal
+      operationId: adexchangebuyer.marketplacenotes.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: proposalId
+        description: The proposalId to add notes for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Note
+  /proposals/{proposalId}/setupcomplete:
+    post:
+      summary: Update Proposal To Complete
+      description: Update the given proposal to indicate that setup has been completed
+      operationId: adexchangebuyer.proposals.setupcomplete
+      parameters:
+      - in: path
+        name: proposalId
+        description: The proposal id for which the setup is complete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+  /proposals/{proposalId}/{revisionNumber}/{updateAction}:
+    patch:
+      summary: Update Proposal Revision Number
+      description: Update the given proposal
+      operationId: adexchangebuyer.proposals.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: proposalId
+        description: The proposal id to update
+      - in: path
+        name: revisionNumber
+        description: The last known revision number to update
+      - in: path
+        name: updateAction
+        description: The proposed action to take on the proposal
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+    put:
+      summary: Update Proposal Revision Number
+      description: Update the given proposal
+      operationId: adexchangebuyer.proposals.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: proposalId
+        description: The proposal id to update
+      - in: path
+        name: revisionNumber
+        description: The last known revision number to update
+      - in: path
+        name: updateAction
+        description: The proposed action to take on the proposal
+      responses:
+        200:
+          description: OK
+      tags:
+      - Proposal
+  /publisher/{accountId}/profiles:
+    get:
+      summary: Get Publish Profiles
+      description: Gets the requested publisher profile(s) by publisher accountId
+      operationId: adexchangebuyer.pubprofiles.list
+      parameters:
+      - in: path
+        name: accountId
+        description: The accountId of the publisher to get profiles for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Profile
+definitions:
+  Account:
+    properties:
+      bidderLocation:
+        description: This is a default description.
+        type: parameters
+      cookieMatchingNid:
+        description: This is a default description.
+        type: parameters
+      cookieMatchingUrl:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      maximumActiveCreatives:
+        description: This is a default description.
+        type: parameters
+      maximumTotalQps:
+        description: This is a default description.
+        type: parameters
+      numberActiveCreatives:
+        description: This is a default description.
+        type: parameters
+  AccountsList:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  AddOrderDealsRequest:
+    properties:
+      deals:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+      updateAction:
+        description: This is a default description.
+        type: parameters
+  AddOrderDealsResponse:
+    properties:
+      deals:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+  AddOrderNotesRequest:
+    properties:
+      notes:
+        description: This is a default description.
+        type: parameters
+  AddOrderNotesResponse:
+    properties:
+      notes:
+        description: This is a default description.
+        type: parameters
+  BillingInfo:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: parameters
+      accountName:
+        description: This is a default description.
+        type: parameters
+      billingId:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  BillingInfoList:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Budget:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: parameters
+      billingId:
+        description: This is a default description.
+        type: parameters
+      budgetAmount:
+        description: This is a default description.
+        type: parameters
+      currencyCode:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Buyer:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: parameters
+  ContactInformation:
+    properties:
+      email:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+  CreateOrdersRequest:
+    properties:
+      proposals:
+        description: This is a default description.
+        type: parameters
+      webPropertyCode:
+        description: This is a default description.
+        type: parameters
+  CreateOrdersResponse:
+    properties:
+      proposals:
+        description: This is a default description.
+        type: parameters
+  Creative:
+    properties:
+      HTMLSnippet:
+        description: This is a default description.
+        type: parameters
+      accountId:
+        description: This is a default description.
+        type: parameters
+      adChoicesDestinationUrl:
+        description: This is a default description.
+        type: parameters
+      advertiserId:
+        description: This is a default description.
+        type: parameters
+      advertiserName:
+        description: This is a default description.
+        type: parameters
+      agencyId:
+        description: This is a default description.
+        type: parameters
+      apiUploadTimestamp:
+        description: This is a default description.
+        type: parameters
+      attribute:
+        description: This is a default description.
+        type: parameters
+      buyerCreativeId:
+        description: This is a default description.
+        type: parameters
+      clickThroughUrl:
+        description: This is a default description.
+        type: parameters
+      corrections:
+        description: This is a default description.
+        type: parameters
+      dealsStatus:
+        description: This is a default description.
+        type: parameters
+      detectedDomains:
+        description: This is a default description.
+        type: parameters
+      filteringReasons:
+        description: This is a default description.
+        type: parameters
+      height:
+        description: This is a default description.
+        type: parameters
+      impressionTrackingUrl:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      languages:
+        description: This is a default description.
+        type: parameters
+      nativeAd:
+        description: This is a default description.
+        type: parameters
+      openAuctionStatus:
+        description: This is a default description.
+        type: parameters
+      productCategories:
+        description: This is a default description.
+        type: parameters
+      restrictedCategories:
+        description: This is a default description.
+        type: parameters
+      sensitiveCategories:
+        description: This is a default description.
+        type: parameters
+      servingRestrictions:
+        description: This is a default description.
+        type: parameters
+      vendorType:
+        description: This is a default description.
+        type: parameters
+      version:
+        description: This is a default description.
+        type: parameters
+      videoURL:
+        description: This is a default description.
+        type: parameters
+      width:
+        description: This is a default description.
+        type: parameters
+  CreativeDealIds:
+    properties:
+      dealStatuses:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  CreativesList:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  DealServingMetadata:
+    properties: []
+  DealServingMetadataDealPauseStatus:
+    properties:
+      buyerPauseReason:
+        description: This is a default description.
+        type: parameters
+      firstPausedBy:
+        description: This is a default description.
+        type: parameters
+      hasBuyerPaused:
+        description: This is a default description.
+        type: parameters
+      hasSellerPaused:
+        description: This is a default description.
+        type: parameters
+      sellerPauseReason:
+        description: This is a default description.
+        type: parameters
+  DealTerms:
+    properties:
+      brandingType:
+        description: This is a default description.
+        type: parameters
+      crossListedExternalDealIdType:
+        description: This is a default description.
+        type: parameters
+      description:
+        description: This is a default description.
+        type: parameters
+      estimatedImpressionsPerDay:
+        description: This is a default description.
+        type: parameters
+      sellerTimeZone:
+        description: This is a default description.
+        type: parameters
+  DealTermsGuaranteedFixedPriceTerms:
+    properties:
+      fixedPrices:
+        description: This is a default description.
+        type: parameters
+      guaranteedImpressions:
+        description: This is a default description.
+        type: parameters
+      guaranteedLooks:
+        description: This is a default description.
+        type: parameters
+      minimumDailyLooks:
+        description: This is a default description.
+        type: parameters
+  DealTermsGuaranteedFixedPriceTermsBillingInfo:
+    properties:
+      currencyConversionTimeMs:
+        description: This is a default description.
+        type: parameters
+      dfpLineItemId:
+        description: This is a default description.
+        type: parameters
+      originalContractedQuantity:
+        description: This is a default description.
+        type: parameters
+  DealTermsNonGuaranteedAuctionTerms:
+    properties:
+      autoOptimizePrivateAuction:
+        description: This is a default description.
+        type: parameters
+      reservePricePerBuyers:
+        description: This is a default description.
+        type: parameters
+  DealTermsNonGuaranteedFixedPriceTerms:
+    properties:
+      fixedPrices:
+        description: This is a default description.
+        type: parameters
+  DealTermsRubiconNonGuaranteedTerms:
+    properties: []
+  DeleteOrderDealsRequest:
+    properties:
+      dealIds:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+      updateAction:
+        description: This is a default description.
+        type: parameters
+  DeleteOrderDealsResponse:
+    properties:
+      deals:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+  DeliveryControl:
+    properties:
+      creativeBlockingLevel:
+        description: This is a default description.
+        type: parameters
+      deliveryRateType:
+        description: This is a default description.
+        type: parameters
+      frequencyCaps:
+        description: This is a default description.
+        type: parameters
+  DeliveryControlFrequencyCap:
+    properties:
+      maxImpressions:
+        description: This is a default description.
+        type: parameters
+      numTimeUnits:
+        description: This is a default description.
+        type: parameters
+      timeUnitType:
+        description: This is a default description.
+        type: parameters
+  Dimension:
+    properties:
+      dimensionType:
+        description: This is a default description.
+        type: parameters
+      dimensionValues:
+        description: This is a default description.
+        type: parameters
+  DimensionDimensionValue:
+    properties:
+      id:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      percentage:
+        description: This is a default description.
+        type: parameters
+  EditAllOrderDealsRequest:
+    properties:
+      deals:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+      updateAction:
+        description: This is a default description.
+        type: parameters
+  EditAllOrderDealsResponse:
+    properties:
+      deals:
+        description: This is a default description.
+        type: parameters
+      orderRevisionNumber:
+        description: This is a default description.
+        type: parameters
+  GetOffersResponse:
+    properties:
+      products:
+        description: This is a default description.
+        type: parameters
+  GetOrderDealsResponse:
+    properties:
+      deals:
+        description: This is a default description.
+        type: parameters
+  GetOrderNotesResponse:
+    properties:
+      notes:
+        description: This is a default description.
+        type: parameters
+  GetOrdersResponse:
+    properties:
+      proposals:
+        description: This is a default description.
+        type: parameters
+  GetPublisherProfilesByAccountIdResponse:
+    properties:
+      profiles:
+        description: This is a default description.
+        type: parameters
+  MarketplaceDeal:
+    properties:
+      creationTimeMs:
+        description: This is a default description.
+        type: parameters
+      creativePreApprovalPolicy:
+        description: This is a default description.
+        type: parameters
+      creativeSafeFrameCompatibility:
+        description: This is a default description.
+        type: parameters
+      dealId:
+        description: This is a default description.
+        type: parameters
+      externalDealId:
+        description: This is a default description.
+        type: parameters
+      flightEndTimeMs:
+        description: This is a default description.
+        type: parameters
+      flightStartTimeMs:
+        description: This is a default description.
+        type: parameters
+      inventoryDescription:
+        description: This is a default description.
+        type: parameters
+      isRfpTemplate:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      lastUpdateTimeMs:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      productRevisionNumber:
+        description: This is a default description.
+        type: parameters
+      programmaticCreativeSource:
+        description: This is a default description.
+        type: parameters
+      proposalId:
+        description: This is a default description.
+        type: parameters
+      sellerContacts:
+        description: This is a default description.
+        type: parameters
+      sharedTargetings:
+        description: This is a default description.
+        type: parameters
+      syndicationProduct:
+        description: This is a default description.
+        type: parameters
+      webPropertyCode:
+        description: This is a default description.
+        type: parameters
+  MarketplaceDealParty:
+    properties: []
+  MarketplaceLabel:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: parameters
+      createTimeMs:
+        description: This is a default description.
+        type: parameters
+      label:
+        description: This is a default description.
+        type: parameters
+  MarketplaceNote:
+    properties:
+      creatorRole:
+        description: This is a default description.
+        type: parameters
+      dealId:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      note:
+        description: This is a default description.
+        type: parameters
+      noteId:
+        description: This is a default description.
+        type: parameters
+      proposalId:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+      timestampMs:
+        description: This is a default description.
+        type: parameters
+  PerformanceReport:
+    properties:
+      bidRate:
+        description: This is a default description.
+        type: parameters
+      bidRequestRate:
+        description: This is a default description.
+        type: parameters
+      calloutStatusRate:
+        description: This is a default description.
+        type: parameters
+      cookieMatcherStatusRate:
+        description: This is a default description.
+        type: parameters
+      creativeStatusRate:
+        description: This is a default description.
+        type: parameters
+      filteredBidRate:
+        description: This is a default description.
+        type: parameters
+      hostedMatchStatusRate:
+        description: This is a default description.
+        type: parameters
+      inventoryMatchRate:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      latency50thPercentile:
+        description: This is a default description.
+        type: parameters
+      latency85thPercentile:
+        description: This is a default description.
+        type: parameters
+      latency95thPercentile:
+        description: This is a default description.
+        type: parameters
+      noQuotaInRegion:
+        description: This is a default description.
+        type: parameters
+      outOfQuota:
+        description: This is a default description.
+        type: parameters
+      pixelMatchRequests:
+        description: This is a default description.
+        type: parameters
+      pixelMatchResponses:
+        description: This is a default description.
+        type: parameters
+      quotaConfiguredLimit:
+        description: This is a default description.
+        type: parameters
+      quotaThrottledLimit:
+        description: This is a default description.
+        type: parameters
+      region:
+        description: This is a default description.
+        type: parameters
+      successfulRequestRate:
+        description: This is a default description.
+        type: parameters
+      timestamp:
+        description: This is a default description.
+        type: parameters
+      unsuccessfulRequestRate:
+        description: This is a default description.
+        type: parameters
+  PerformanceReportList:
+    properties:
+      kind:
+        description: This is a default description.
+        type: parameters
+      performanceReport:
+        description: This is a default description.
+        type: parameters
+  PretargetingConfig:
+    properties:
+      billingId:
+        description: This is a default description.
+        type: parameters
+      configId:
+        description: This is a default description.
+        type: parameters
+      configName:
+        description: This is a default description.
+        type: parameters
+      creativeType:
+        description: This is a default description.
+        type: parameters
+      dimensions:
+        description: This is a default description.
+        type: parameters
+      excludedContentLabels:
+        description: This is a default description.
+        type: parameters
+      excludedGeoCriteriaIds:
+        description: This is a default description.
+        type: parameters
+      excludedPlacements:
+        description: This is a default description.
+        type: parameters
+      excludedUserLists:
+        description: This is a default description.
+        type: parameters
+      excludedVerticals:
+        description: This is a default description.
+        type: parameters
+      geoCriteriaIds:
+        description: This is a default description.
+        type: parameters
+      isActive:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      languages:
+        description: This is a default description.
+        type: parameters
+      minimumViewabilityDecile:
+        description: This is a default description.
+        type: parameters
+      mobileCarriers:
+        description: This is a default description.
+        type: parameters
+      mobileDevices:
+        description: This is a default description.
+        type: parameters
+      mobileOperatingSystemVersions:
+        description: This is a default description.
+        type: parameters
+      placements:
+        description: This is a default description.
+        type: parameters
+      platforms:
+        description: This is a default description.
+        type: parameters
+      supportedCreativeAttributes:
+        description: This is a default description.
+        type: parameters
+      userIdentifierDataRequired:
+        description: This is a default description.
+        type: parameters
+      userLists:
+        description: This is a default description.
+        type: parameters
+      vendorTypes:
+        description: This is a default description.
+        type: parameters
+      verticals:
+        description: This is a default description.
+        type: parameters
+      videoPlayerSizes:
+        description: This is a default description.
+        type: parameters
+  PretargetingConfigList:
+    properties:
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Price:
+    properties:
+      amountMicros:
+        description: This is a default description.
+        type: parameters
+      currencyCode:
+        description: This is a default description.
+        type: parameters
+      expectedCpmMicros:
+        description: This is a default description.
+        type: parameters
+      pricingType:
+        description: This is a default description.
+        type: parameters
+  PricePerBuyer:
+    properties:
+      auctionTier:
+        description: This is a default description.
+        type: parameters
+  PrivateData:
+    properties:
+      referenceId:
+        description: This is a default description.
+        type: parameters
+      referencePayload:
+        description: This is a default description.
+        type: parameters
+  Product:
+    properties:
+      creationTimeMs:
+        description: This is a default description.
+        type: parameters
+      creatorContacts:
+        description: This is a default description.
+        type: parameters
+      flightEndTimeMs:
+        description: This is a default description.
+        type: parameters
+      flightStartTimeMs:
+        description: This is a default description.
+        type: parameters
+      hasCreatorSignedOff:
+        description: This is a default description.
+        type: parameters
+      inventorySource:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      labels:
+        description: This is a default description.
+        type: parameters
+      lastUpdateTimeMs:
+        description: This is a default description.
+        type: parameters
+      legacyOfferId:
+        description: This is a default description.
+        type: parameters
+      marketplacePublisherProfileId:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      privateAuctionId:
+        description: This is a default description.
+        type: parameters
+      productId:
+        description: This is a default description.
+        type: parameters
+      publisherProfileId:
+        description: This is a default description.
+        type: parameters
+      revisionNumber:
+        description: This is a default description.
+        type: parameters
+      sharedTargetings:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      syndicationProduct:
+        description: This is a default description.
+        type: parameters
+      webPropertyCode:
+        description: This is a default description.
+        type: parameters
+  Proposal:
+    properties:
+      buyerContacts:
+        description: This is a default description.
+        type: parameters
+      dbmAdvertiserIds:
+        description: This is a default description.
+        type: parameters
+      hasBuyerSignedOff:
+        description: This is a default description.
+        type: parameters
+      hasSellerSignedOff:
+        description: This is a default description.
+        type: parameters
+      inventorySource:
+        description: This is a default description.
+        type: parameters
+      isRenegotiating:
+        description: This is a default description.
+        type: parameters
+      isSetupComplete:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      labels:
+        description: This is a default description.
+        type: parameters
+      lastUpdaterOrCommentorRole:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      negotiationId:
+        description: This is a default description.
+        type: parameters
+      originatorRole:
+        description: This is a default description.
+        type: parameters
+      privateAuctionId:
+        description: This is a default description.
+        type: parameters
+      proposalId:
+        description: This is a default description.
+        type: parameters
+      proposalState:
+        description: This is a default description.
+        type: parameters
+      revisionNumber:
+        description: This is a default description.
+        type: parameters
+      revisionTimeMs:
+        description: This is a default description.
+        type: parameters
+      sellerContacts:
+        description: This is a default description.
+        type: parameters
+  PublisherProfileApiProto:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: parameters
+      audience:
+        description: This is a default description.
+        type: parameters
+      buyerPitchStatement:
+        description: This is a default description.
+        type: parameters
+      directContact:
+        description: This is a default description.
+        type: parameters
+      exchange:
+        description: This is a default description.
+        type: parameters
+      googlePlusLink:
+        description: This is a default description.
+        type: parameters
+      isParent:
+        description: This is a default description.
+        type: parameters
+      isPublished:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      logoUrl:
+        description: This is a default description.
+        type: parameters
+      mediaKitLink:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      overview:
+        description: This is a default description.
+        type: parameters
+      profileId:
+        description: This is a default description.
+        type: parameters
+      programmaticContact:
+        description: This is a default description.
+        type: parameters
+      publisherDomains:
+        description: This is a default description.
+        type: parameters
+      publisherProfileId:
+        description: This is a default description.
+        type: parameters
+      rateCardInfoLink:
+        description: This is a default description.
+        type: parameters
+      samplePageLink:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      topHeadlines:
+        description: This is a default description.
+        type: parameters
+  PublisherProvidedForecast:
+    properties:
+      dimensions:
+        description: This is a default description.
+        type: parameters
+      weeklyImpressions:
+        description: This is a default description.
+        type: parameters
+      weeklyUniques:
+        description: This is a default description.
+        type: parameters
+  Seller:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: parameters
+      subAccountId:
+        description: This is a default description.
+        type: parameters
+  SharedTargeting:
+    properties:
+      exclusions:
+        description: This is a default description.
+        type: parameters
+      inclusions:
+        description: This is a default description.
+        type: parameters
+      key:
+        description: This is a default description.
+        type: parameters
+  TargetingValue:
+    properties:
+      longValue:
+        description: This is a default description.
+        type: parameters
+      stringValue:
+        description: This is a default description.
+        type: parameters
+  TargetingValueCreativeSize:
+    properties:
+      companionSizes:
+        description: This is a default description.
+        type: parameters
+      creativeSizeType:
+        description: This is a default description.
+        type: parameters
+      skippableAdType:
+        description: This is a default description.
+        type: parameters
+  TargetingValueDayPartTargeting:
+    properties:
+      dayParts:
+        description: This is a default description.
+        type: parameters
+      timeZoneType:
+        description: This is a default description.
+        type: parameters
+  TargetingValueDayPartTargetingDayPart:
+    properties:
+      dayOfWeek:
+        description: This is a default description.
+        type: parameters
+      endHour:
+        description: This is a default description.
+        type: parameters
+      endMinute:
+        description: This is a default description.
+        type: parameters
+      startHour:
+        description: This is a default description.
+        type: parameters
+      startMinute:
+        description: This is a default description.
+        type: parameters
+  TargetingValueSize:
+    properties:
+      height:
+        description: This is a default description.
+        type: parameters
+      width:
+        description: This is a default description.
+        type: parameters
+  UpdatePrivateAuctionProposalRequest:
+    properties:
+      externalDealId:
+        description: This is a default description.
+        type: parameters
+      proposalRevisionNumber:
+        description: This is a default description.
+        type: parameters
+      updateAction:
+        description: This is a default description.
+        type: parameters
