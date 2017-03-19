@@ -1,1 +1,453 @@
-~
+swagger: "2.0"
+info:
+  title: Google Storage Transfer
+  description: Transfers data from external data sources to a Google Cloud Storage
+    bucket or between Google Cloud Storage buckets.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: storagetransfer.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/googleServiceAccounts/{projectId}:
+    get:
+      summary: Get Account
+      description: Returns the Google service account that is used by Storage Transfer
+        Service to access buckets in the project where transfers run or in other projects
+      operationId: storagetransfer.googleServiceAccounts.get
+      parameters:
+      - in: path
+        name: projectId
+        description: The ID of the Google Developers Console project that the Google
+          service account is associated with
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+  /v1/transferJobs:
+    get:
+      summary: Get Transfer Jobs
+      description: Lists transfer jobs
+      operationId: storagetransfer.transferJobs.list
+      parameters:
+      - in: query
+        name: filter
+        description: A list of query parameters specified as JSON text in the form
+          of {"`project_id`":"my_project_id", "`job_names`":["jobid1","jobid2",
+      - in: query
+        name: pageSize
+        description: The list page size
+      - in: query
+        name: pageToken
+        description: The list page token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+    post:
+      summary: Create Transfer Jobs
+      description: Creates a transfer job that runs periodically
+      operationId: storagetransfer.transferJobs.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+  /v1/{jobName}:
+    get:
+      summary: Get Transfer Jobs
+      description: Gets a transfer job
+      operationId: storagetransfer.transferJobs.get
+      parameters:
+      - in: path
+        name: jobName
+        description: The job to get
+      - in: query
+        name: projectId
+        description: The ID of the Google Developers Console project that owns the
+          job
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+    patch:
+      summary: Update Transfer Jobs
+      description: Updates a transfer job
+      operationId: storagetransfer.transferJobs.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: jobName
+        description: The name of job to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+  /v1/{name}:
+    delete:
+      summary: Delete Transfer Operations
+      description: This method is not supported and the server returns `UNIMPLEMENTED`
+      operationId: storagetransfer.transferOperations.delete
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+    get:
+      summary: Get Transfer Operations
+      description: Lists operations that match the specified filter in the request
+      operationId: storagetransfer.transferOperations.list
+      parameters:
+      - in: query
+        name: filter
+        description: The standard list filter
+      - in: path
+        name: name
+        description: The value `transferOperations`
+      - in: query
+        name: pageSize
+        description: The standard list page size
+      - in: query
+        name: pageToken
+        description: The standard list page token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:cancel:
+    post:
+      summary: Cancel Transfer Operation
+      description: Cancels a transfer
+      operationId: storagetransfer.transferOperations.cancel
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource to be cancelled
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:pause:
+    post:
+      summary: Pause Transfer Operation
+      description: Pauses a transfer operation
+      operationId: storagetransfer.transferOperations.pause
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The name of the transfer operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:resume:
+    post:
+      summary: Resume Transfer Operation
+      description: Resumes a transfer operation that is paused
+      operationId: storagetransfer.transferOperations.resume
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The name of the transfer operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1:getGoogleServiceAccount:
+    get:
+      summary: Get Service Account
+      description: Returns the Google service account that is used by Storage Transfer
+        Service to access buckets in the project where transfers run or in other projects
+      operationId: storagetransfer.getGoogleServiceAccount
+      parameters:
+      - in: query
+        name: projectId
+        description: The ID of the Google Developers Console project that the Google
+          service account is associated with
+      responses:
+        200:
+          description: OK
+      tags:
+      - Account
+definitions:
+  AwsAccessKey:
+    properties:
+      accessKeyId:
+        description: This is a default description.
+        type: parameters
+      secretAccessKey:
+        description: This is a default description.
+        type: parameters
+  AwsS3Data:
+    properties:
+      bucketName:
+        description: This is a default description.
+        type: parameters
+  Date:
+    properties:
+      day:
+        description: This is a default description.
+        type: parameters
+      month:
+        description: This is a default description.
+        type: parameters
+      year:
+        description: This is a default description.
+        type: parameters
+  ErrorLogEntry:
+    properties:
+      errorDetails:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  ErrorSummary:
+    properties:
+      errorCode:
+        description: This is a default description.
+        type: parameters
+      errorCount:
+        description: This is a default description.
+        type: parameters
+      errorLogEntries:
+        description: This is a default description.
+        type: parameters
+  GcsData:
+    properties:
+      bucketName:
+        description: This is a default description.
+        type: parameters
+  GoogleServiceAccount:
+    properties:
+      accountEmail:
+        description: This is a default description.
+        type: parameters
+  HttpData:
+    properties:
+      listUrl:
+        description: This is a default description.
+        type: parameters
+  ListOperationsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      operations:
+        description: This is a default description.
+        type: parameters
+  ListTransferJobsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      transferJobs:
+        description: This is a default description.
+        type: parameters
+  ObjectConditions:
+    properties:
+      excludePrefixes:
+        description: This is a default description.
+        type: parameters
+      includePrefixes:
+        description: This is a default description.
+        type: parameters
+      maxTimeElapsedSinceLastModification:
+        description: This is a default description.
+        type: parameters
+      minTimeElapsedSinceLastModification:
+        description: This is a default description.
+        type: parameters
+  Operation:
+    properties:
+      done:
+        description: This is a default description.
+        type: parameters
+      metadata:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      response:
+        description: This is a default description.
+        type: parameters
+  Schedule:
+    properties: []
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: parameters
+      details:
+        description: This is a default description.
+        type: parameters
+      message:
+        description: This is a default description.
+        type: parameters
+  TimeOfDay:
+    properties:
+      hours:
+        description: This is a default description.
+        type: parameters
+      minutes:
+        description: This is a default description.
+        type: parameters
+      nanos:
+        description: This is a default description.
+        type: parameters
+      seconds:
+        description: This is a default description.
+        type: parameters
+  TransferCounters:
+    properties:
+      bytesCopiedToSink:
+        description: This is a default description.
+        type: parameters
+      bytesDeletedFromSink:
+        description: This is a default description.
+        type: parameters
+      bytesDeletedFromSource:
+        description: This is a default description.
+        type: parameters
+      bytesFailedToDeleteFromSink:
+        description: This is a default description.
+        type: parameters
+      bytesFoundFromSource:
+        description: This is a default description.
+        type: parameters
+      bytesFoundOnlyFromSink:
+        description: This is a default description.
+        type: parameters
+      bytesFromSourceFailed:
+        description: This is a default description.
+        type: parameters
+      bytesFromSourceSkippedBySync:
+        description: This is a default description.
+        type: parameters
+      objectsCopiedToSink:
+        description: This is a default description.
+        type: parameters
+      objectsDeletedFromSink:
+        description: This is a default description.
+        type: parameters
+      objectsDeletedFromSource:
+        description: This is a default description.
+        type: parameters
+      objectsFailedToDeleteFromSink:
+        description: This is a default description.
+        type: parameters
+      objectsFoundFromSource:
+        description: This is a default description.
+        type: parameters
+      objectsFoundOnlyFromSink:
+        description: This is a default description.
+        type: parameters
+      objectsFromSourceFailed:
+        description: This is a default description.
+        type: parameters
+      objectsFromSourceSkippedBySync:
+        description: This is a default description.
+        type: parameters
+  TransferJob:
+    properties:
+      creationTime:
+        description: This is a default description.
+        type: parameters
+      deletionTime:
+        description: This is a default description.
+        type: parameters
+      description:
+        description: This is a default description.
+        type: parameters
+      lastModificationTime:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      projectId:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+  TransferOperation:
+    properties:
+      endTime:
+        description: This is a default description.
+        type: parameters
+      errorBreakdowns:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      projectId:
+        description: This is a default description.
+        type: parameters
+      startTime:
+        description: This is a default description.
+        type: parameters
+      status:
+        description: This is a default description.
+        type: parameters
+      transferJobName:
+        description: This is a default description.
+        type: parameters
+  TransferOptions:
+    properties:
+      deleteObjectsFromSourceAfterTransfer:
+        description: This is a default description.
+        type: parameters
+      deleteObjectsUniqueInSink:
+        description: This is a default description.
+        type: parameters
+      overwriteObjectsAlreadyExistingInSink:
+        description: This is a default description.
+        type: parameters
+  TransferSpec:
+    properties: []
+  UpdateTransferJobRequest:
+    properties:
+      projectId:
+        description: This is a default description.
+        type: parameters
+      updateTransferJobFieldMask:
+        description: This is a default description.
+        type: parameters
