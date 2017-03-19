@@ -1,0 +1,4583 @@
+swagger: "2.0"
+info:
+  title: YouTube Data
+  description: Supports core YouTube features, such as uploading videos, creating
+    and managing playlists, searching for content, and much more.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v3
+host: www.googleapis.com
+basePath: /youtube/v3
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /activities:
+    get:
+      summary: Get Activities
+      description: Returns a list of channel activity events that match the request
+        criteria
+      operationId: youtube.activities.list
+      parameters:
+      - in: query
+        name: channelId
+        description: The channelId parameter specifies a unique YouTube channel ID
+      - in: query
+        name: home
+        description: Set this parameter's value to true to retrieve the activity feed
+          that displays on the YouTube home page for the currently authenticated user
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: mine
+        description: Set this parameter's value to true to retrieve a feed of the
+          authenticated user's activities
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more activity resource properties that the API response will include
+      - in: query
+        name: publishedAfter
+        description: The publishedAfter parameter specifies the earliest date and
+          time that an activity could have occurred for that activity to be included
+          in the API response
+      - in: query
+        name: publishedBefore
+        description: The publishedBefore parameter specifies the date and time before
+          which an activity must have occurred for that activity to be included in
+          the API response
+      - in: query
+        name: regionCode
+        description: The regionCode parameter instructs the API to return results
+          for the specified country
+      responses:
+        200:
+          description: OK
+      tags:
+      - Activity
+    post:
+      summary: Post Activity
+      description: Posts a bulletin for a specific channel
+      operationId: youtube.activities.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Activity
+  /captions:
+    delete:
+      summary: Delete Caption
+      description: Deletes a specified caption track
+      operationId: youtube.captions.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter identifies the caption track that is being deleted
+      - in: query
+        name: onBehalfOf
+        description: ID of the Google+ Page for the channel that the request is be
+          on behalf of
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Caption
+    get:
+      summary: Get Captions
+      description: Returns a list of caption tracks that are associated with a specified
+        video
+      operationId: youtube.captions.list
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of IDs that
+          identify the caption resources that should be retrieved
+      - in: query
+        name: onBehalfOf
+        description: ID of the Google+ Page for the channel that the request is on
+          behalf of
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more caption resource parts that the API response will include
+      - in: query
+        name: videoId
+        description: The videoId parameter specifies the YouTube video ID of the video
+          for which the API should return caption tracks
+      responses:
+        200:
+          description: OK
+      tags:
+      - Caption
+    post:
+      summary: Upload Caption
+      description: Uploads a caption track
+      operationId: youtube.captions.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOf
+        description: ID of the Google+ Page for the channel that the request is be
+          on behalf of
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter specifies the caption resource parts that
+          the API response will include
+      - in: query
+        name: sync
+        description: The sync parameter indicates whether YouTube should automatically
+          synchronize the caption file with the audio track of the video
+      responses:
+        200:
+          description: OK
+      tags:
+      - Caption
+    put:
+      summary: Update Caption
+      description: Updates a caption track
+      operationId: youtube.captions.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOf
+        description: ID of the Google+ Page for the channel that the request is be
+          on behalf of
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      - in: query
+        name: sync
+        description: 'Note: The API server only processes the parameter value if the
+          request contains an updated caption file'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Caption
+  /captions/{id}:
+    get:
+      summary: Get Caption
+      description: Downloads a caption track
+      operationId: youtube.captions.download
+      parameters:
+      - in: path
+        name: id
+        description: The id parameter identifies the caption track that is being retrieved
+      - in: query
+        name: onBehalfOf
+        description: ID of the Google+ Page for the channel that the request is be
+          on behalf of
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: tfmt
+        description: The tfmt parameter specifies that the caption track should be
+          returned in a specific format
+      - in: query
+        name: tlang
+        description: The tlang parameter specifies that the API response should return
+          a translation of the specified caption track
+      responses:
+        200:
+          description: OK
+      tags:
+      - Caption
+  /channelBanners/insert:
+    post:
+      summary: Upload Channel Banner Image
+      description: Uploads a channel banner image to YouTube
+      operationId: youtube.channelBanners.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Banner Image
+  /channels:
+    get:
+      summary: Get Channels
+      description: Returns a collection of zero or more channel resources that match
+        the request criteria
+      operationId: youtube.channels.list
+      parameters:
+      - in: query
+        name: categoryId
+        description: The categoryId parameter specifies a YouTube guide category,
+          thereby requesting YouTube channels associated with that category
+      - in: query
+        name: forUsername
+        description: The forUsername parameter specifies a YouTube username, thereby
+          requesting the channel associated with that username
+      - in: query
+        name: hl
+        description: The hl parameter should be used for filter out the properties
+          that are not in the given language
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          channel ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: managedByMe
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: mine
+        description: Set this parameter's value to true to instruct the API to only
+          return channels owned by the authenticated user
+      - in: query
+        name: mySubscribers
+        description: Use the subscriptions
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more channel resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+    put:
+      summary: Update Channel
+      description: Updates a channel's metadata
+      operationId: youtube.channels.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The onBehalfOfContentOwner parameter indicates that the authenticated
+          user is acting on behalf of the content owner specified in the parameter
+          value
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+  /channelSections:
+    delete:
+      summary: Delete Channel Section
+      description: Deletes a channelSection
+      operationId: youtube.channelSections.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube channelSection ID for
+          the resource that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+    get:
+      summary: Get Channel Section
+      description: Returns channelSection resources that match the API request criteria
+      operationId: youtube.channelSections.list
+      parameters:
+      - in: query
+        name: channelId
+        description: The channelId parameter specifies a YouTube channel ID
+      - in: query
+        name: hl
+        description: The hl parameter indicates that the snippet
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          channelSection ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: mine
+        description: Set this parameter's value to true to retrieve a feed of the
+          authenticated user's channelSections
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more channelSection resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+    post:
+      summary: Add Channel Section
+      description: Adds a channelSection for the authenticated user's channel
+      operationId: youtube.channelSections.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+    put:
+      summary: Update Channel Section
+      description: Update a channelSection
+      operationId: youtube.channelSections.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Channel
+  /comments:
+    delete:
+      summary: Delete Comment
+      description: Deletes a comment
+      operationId: youtube.comments.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the comment ID for the resource that
+          is being deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+    get:
+      summary: Get Comments
+      description: Returns a list of comments that match the API request parameters
+      operationId: youtube.comments.list
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of comment
+          IDs for the resources that are being retrieved
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: parentId
+        description: The parentId parameter specifies the ID of the comment for which
+          replies should be retrieved
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more comment resource properties that the API response will include
+      - in: query
+        name: textFormat
+        description: This parameter indicates whether the API should return comments
+          formatted as HTML or as plain text
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+    post:
+      summary: Update Comment
+      description: Creates a reply to an existing comment
+      operationId: youtube.comments.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter identifies the properties that the API response
+          will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+    put:
+      summary: Update Comment
+      description: Modifies a comment
+      operationId: youtube.comments.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter identifies the properties that the API response
+          will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+  /comments/markAsSpam:
+    post:
+      summary: Mark Comment as SPAM
+      description: Expresses the caller's opinion that one or more comments should
+        be flagged as spam
+      operationId: youtube.comments.markAsSpam
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of IDs of comments
+          that the caller believes should be classified as spam
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+  /comments/setModerationStatus:
+    post:
+      summary: Set Moderation Status
+      description: Sets the moderation status of one or more comments
+      operationId: youtube.comments.setModerationStatus
+      parameters:
+      - in: query
+        name: banAuthor
+        description: The banAuthor parameter lets you indicate that you want to automatically
+          reject any additional comments written by the comment's author
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of IDs that
+          identify the comments for which you are updating the moderation status
+      - in: query
+        name: moderationStatus
+        description: Identifies the new moderation status of the specified comments
+      responses:
+        200:
+          description: OK
+      tags:
+      - Moderation
+  /commentThreads:
+    get:
+      summary: Get Comment Threads
+      description: Returns a list of comment threads that match the API request parameters
+      operationId: youtube.commentThreads.list
+      parameters:
+      - in: query
+        name: allThreadsRelatedToChannelId
+        description: The allThreadsRelatedToChannelId parameter instructs the API
+          to return all comment threads associated with the specified channel
+      - in: query
+        name: channelId
+        description: The channelId parameter instructs the API to return comment threads
+          containing comments about the specified channel
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of comment
+          thread IDs for the resources that should be retrieved
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: moderationStatus
+        description: Set this parameter to limit the returned comment threads to a
+          particular moderation state
+      - in: query
+        name: order
+        description: The order parameter specifies the order in which the API response
+          should list comment threads
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more commentThread resource properties that the API response will include
+      - in: query
+        name: searchTerms
+        description: The searchTerms parameter instructs the API to limit the API
+          response to only contain comments that contain the specified search terms
+      - in: query
+        name: textFormat
+        description: Set this parameter's value to html or plainText to instruct the
+          API to return the comments left by users in html formatted or in plain text
+      - in: query
+        name: videoId
+        description: The videoId parameter instructs the API to return comment threads
+          associated with the specified video ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+    post:
+      summary: Create Comment Thread
+      description: Creates a new top-level comment
+      operationId: youtube.commentThreads.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter identifies the properties that the API response
+          will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+    put:
+      summary: Update Comment Thread
+      description: Modifies the top-level comment in a comment thread
+      operationId: youtube.commentThreads.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of commentThread
+          resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+  /fanFundingEvents:
+    get:
+      summary: Get Funding Events
+      description: Lists fan funding events for a channel
+      operationId: youtube.fanFundingEvents.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter instructs the API to retrieve localized resource
+          metadata for a specific application language that the YouTube website supports
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies the fanFundingEvent resource parts
+          that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Funding Event
+  /guideCategories:
+    get:
+      summary: Get Categories
+      description: Returns a list of categories that can be associated with YouTube
+        channels
+      operationId: youtube.guideCategories.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter specifies the language that will be used for
+          text values in the API response
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          channel category ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: part
+        description: The part parameter specifies the guideCategory resource properties
+          that the API response will include
+      - in: query
+        name: regionCode
+        description: The regionCode parameter instructs the API to return the list
+          of guide categories available in the specified country
+      responses:
+        200:
+          description: OK
+      tags:
+      - Category
+  /i18nLanguages:
+    get:
+      summary: Get Languages
+      description: Returns a list of application languages that the YouTube website
+        supports
+      operationId: youtube.i18nLanguages.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter specifies the language that should be used for
+          text values in the API response
+      - in: query
+        name: part
+        description: The part parameter specifies the i18nLanguage resource properties
+          that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Language
+  /i18nRegions:
+    get:
+      summary: Get Regions
+      description: Returns a list of content regions that the YouTube website supports
+      operationId: youtube.i18nRegions.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter specifies the language that should be used for
+          text values in the API response
+      - in: query
+        name: part
+        description: The part parameter specifies the i18nRegion resource properties
+          that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Region
+  /liveBroadcasts:
+    delete:
+      summary: Delete Broadcast
+      description: Deletes a broadcast
+      operationId: youtube.liveBroadcasts.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube live broadcast ID for
+          the resource that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+    get:
+      summary: Get Broadcasts
+      description: Returns a list of YouTube broadcasts that match the API request
+        parameters
+      operationId: youtube.liveBroadcasts.list
+      parameters:
+      - in: query
+        name: broadcastStatus
+        description: The broadcastStatus parameter filters the API response to only
+          include broadcasts with the specified status
+      - in: query
+        name: broadcastType
+        description: The broadcastType parameter filters the API response to only
+          include broadcasts with the specified type
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of YouTube
+          broadcast IDs that identify the broadcasts being retrieved
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: mine
+        description: The mine parameter can be used to instruct the API to only return
+          broadcasts owned by the authenticated user
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more liveBroadcast resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+    post:
+      summary: Create Broadcast
+      description: Creates a broadcast
+      operationId: youtube.liveBroadcasts.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+    put:
+      summary: Update Broadcast
+      description: Updates a broadcast
+      operationId: youtube.liveBroadcasts.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+  /liveBroadcasts/bind:
+    post:
+      summary: Bind Broadcast
+      description: Binds a YouTube broadcast to a stream or removes an existing binding
+        between a broadcast and a stream
+      operationId: youtube.liveBroadcasts.bind
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the unique ID of the broadcast that
+          is being bound to a video stream
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more liveBroadcast resource properties that the API response will include
+      - in: query
+        name: streamId
+        description: The streamId parameter specifies the unique ID of the video stream
+          that is being bound to a broadcast
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+  /liveBroadcasts/control:
+    post:
+      summary: Control Broadcast
+      description: Controls the settings for a slate that can be displayed in the
+        broadcast stream
+      operationId: youtube.liveBroadcasts.control
+      parameters:
+      - in: query
+        name: displaySlate
+        description: The displaySlate parameter specifies whether the slate is being
+          enabled or disabled
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube live broadcast ID that
+          uniquely identifies the broadcast in which the slate is being updated
+      - in: query
+        name: offsetTimeMs
+        description: The offsetTimeMs parameter specifies a positive time offset when
+          the specified slate change will occur
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more liveBroadcast resource properties that the API response will include
+      - in: query
+        name: walltime
+        description: The walltime parameter specifies the wall clock time at which
+          the specified slate change will occur
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+  /liveBroadcasts/transition:
+    post:
+      summary: Transition Broadcast
+      description: Changes the status of a YouTube live broadcast and initiates any
+        processes associated with the new status
+      operationId: youtube.liveBroadcasts.transition
+      parameters:
+      - in: query
+        name: broadcastStatus
+        description: The broadcastStatus parameter identifies the state to which the
+          broadcast is changing
+      - in: query
+        name: id
+        description: The id parameter specifies the unique ID of the broadcast that
+          is transitioning to another status
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more liveBroadcast resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Broadcast
+  /liveChat/bans:
+    delete:
+      summary: Remove Chat Ban
+      description: Removes a chat ban
+      operationId: youtube.liveChatBans.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter identifies the chat ban to remove
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Ban
+    post:
+      summary: Add Chat Ban
+      description: Adds a new ban to the chat
+      operationId: youtube.liveChatBans.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Ban
+  /liveChat/messages:
+    delete:
+      summary: Delete Chat Message
+      description: Deletes a chat message
+      operationId: youtube.liveChatMessages.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube chat message ID of the
+          resource that is being deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Message
+    get:
+      summary: Get Chat Messages
+      description: Lists live chat messages for a specific chat
+      operationId: youtube.liveChatMessages.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter instructs the API to retrieve localized resource
+          metadata for a specific application language that the YouTube website supports
+      - in: query
+        name: liveChatId
+        description: The liveChatId parameter specifies the ID of the chat whose messages
+          will be returned
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of messages
+          that should be returned in the result set
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies the liveChatComment resource parts
+          that the API response will include
+      - in: query
+        name: profileImageSize
+        description: The profileImageSize parameter specifies the size of the user
+          profile pictures that should be returned in the result set
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Message
+    post:
+      summary: Add Chat Message
+      description: Adds a message to a live chat
+      operationId: youtube.liveChatMessages.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Message
+  /liveChat/moderators:
+    delete:
+      summary: Remove Chat Moderator
+      description: Removes a chat moderator
+      operationId: youtube.liveChatModerators.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter identifies the chat moderator to remove
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Moderator
+    get:
+      summary: Get Chat Moderators
+      description: Lists moderators for a live chat
+      operationId: youtube.liveChatModerators.list
+      parameters:
+      - in: query
+        name: liveChatId
+        description: The liveChatId parameter specifies the YouTube live chat for
+          which the API should return moderators
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies the liveChatModerator resource parts
+          that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Moderator
+    post:
+      summary: Add Chat Moderator
+      description: Adds a new moderator for the chat
+      operationId: youtube.liveChatModerators.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Moderator
+  /liveStreams:
+    delete:
+      summary: Delete Video Stream
+      description: Deletes a video stream
+      operationId: youtube.liveStreams.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube live stream ID for the
+          resource that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video Stream
+    get:
+      summary: Get Video Streams
+      description: Returns a list of video streams that match the API request parameters
+      operationId: youtube.liveStreams.list
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of YouTube
+          stream IDs that identify the streams being retrieved
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: mine
+        description: The mine parameter can be used to instruct the API to only return
+          streams owned by the authenticated user
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more liveStream resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video Stream
+    post:
+      summary: Update Video Stream
+      description: Creates a video stream
+      operationId: youtube.liveStreams.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video Stream
+    put:
+      summary: Update Video Stream
+      description: Updates a video stream
+      operationId: youtube.liveStreams.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video Stream
+  /playlistItems:
+    delete:
+      summary: Delete Playlist Item
+      description: Deletes a playlist item
+      operationId: youtube.playlistItems.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube playlist item ID for the
+          playlist item that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist Item
+    get:
+      summary: Get Playlist Items
+      description: Returns a collection of playlist items that match the API request
+        parameters
+      operationId: youtube.playlistItems.list
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of one or more
+          unique playlist item IDs
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more playlistItem resource properties that the API response will include
+      - in: query
+        name: playlistId
+        description: The playlistId parameter specifies the unique ID of the playlist
+          for which you want to retrieve playlist items
+      - in: query
+        name: videoId
+        description: The videoId parameter specifies that the request should return
+          only the playlist items that contain the specified video
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist Item
+    post:
+      summary: Add Playlist Item
+      description: Adds a resource to a playlist
+      operationId: youtube.playlistItems.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist Item
+    put:
+      summary: Update Playlist Item
+      description: Modifies a playlist item
+      operationId: youtube.playlistItems.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist Item
+  /playlists:
+    delete:
+      summary: Delete Playlist
+      description: Deletes a playlist
+      operationId: youtube.playlists.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube playlist ID for the playlist
+          that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist
+    get:
+      summary: Get Playlists
+      description: Returns a collection of playlists that match the API request parameters
+      operationId: youtube.playlists.list
+      parameters:
+      - in: query
+        name: channelId
+        description: This value indicates that the API should only return the specified
+          channel's playlists
+      - in: query
+        name: hl
+        description: The hl parameter should be used for filter out the properties
+          that are not in the given language
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          playlist ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: mine
+        description: Set this parameter's value to true to instruct the API to only
+          return playlists owned by the authenticated user
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more playlist resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist
+    post:
+      summary: Create Playlist
+      description: Creates a playlist
+      operationId: youtube.playlists.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist
+    put:
+      summary: Update Playlist
+      description: Modifies a playlist
+      operationId: youtube.playlists.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Playlist
+  /search:
+    get:
+      summary: Search
+      description: Returns a collection of search results that match the query parameters
+        specified in the API request
+      operationId: youtube.search.list
+      parameters:
+      - in: query
+        name: channelId
+        description: The channelId parameter indicates that the API response should
+          only contain resources created by the channel
+      - in: query
+        name: channelType
+        description: The channelType parameter lets you restrict a search to a particular
+          type of channel
+      - in: query
+        name: eventType
+        description: The eventType parameter restricts a search to broadcast events
+      - in: query
+        name: forContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: forDeveloper
+        description: The forDeveloper parameter restricts the search to only retrieve
+          videos uploaded via the developer's application or website
+      - in: query
+        name: forMine
+        description: The forMine parameter restricts the search to only retrieve videos
+          owned by the authenticated user
+      - in: query
+        name: location
+        description: The location parameter, in conjunction with the locationRadius
+          parameter, defines a circular geographic area and also restricts a search
+          to videos that specify, in their metadata, a geographic location that falls
+          within that area
+      - in: query
+        name: locationRadius
+        description: The locationRadius parameter, in conjunction with the location
+          parameter, defines a circular geographic area
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: order
+        description: The order parameter specifies the method that will be used to
+          order resources in the API response
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more search resource properties that the API response will include
+      - in: query
+        name: publishedAfter
+        description: The publishedAfter parameter indicates that the API response
+          should only contain resources created after the specified time
+      - in: query
+        name: publishedBefore
+        description: The publishedBefore parameter indicates that the API response
+          should only contain resources created before the specified time
+      - in: query
+        name: q
+        description: The q parameter specifies the query term to search for
+      - in: query
+        name: regionCode
+        description: The regionCode parameter instructs the API to return search results
+          for the specified country
+      - in: query
+        name: relatedToVideoId
+        description: The relatedToVideoId parameter retrieves a list of videos that
+          are related to the video that the parameter value identifies
+      - in: query
+        name: relevanceLanguage
+        description: The relevanceLanguage parameter instructs the API to return search
+          results that are most relevant to the specified language
+      - in: query
+        name: safeSearch
+        description: The safeSearch parameter indicates whether the search results
+          should include restricted content as well as standard content
+      - in: query
+        name: topicId
+        description: The topicId parameter indicates that the API response should
+          only contain resources associated with the specified topic
+      - in: query
+        name: type
+        description: The type parameter restricts a search query to only retrieve
+          a particular type of resource
+      - in: query
+        name: videoCaption
+        description: The videoCaption parameter indicates whether the API should filter
+          video search results based on whether they have captions
+      - in: query
+        name: videoCategoryId
+        description: The videoCategoryId parameter filters video search results based
+          on their category
+      - in: query
+        name: videoDefinition
+        description: The videoDefinition parameter lets you restrict a search to only
+          include either high definition (HD) or standard definition (SD) videos
+      - in: query
+        name: videoDimension
+        description: The videoDimension parameter lets you restrict a search to only
+          retrieve 2D or 3D videos
+      - in: query
+        name: videoDuration
+        description: The videoDuration parameter filters video search results based
+          on their duration
+      - in: query
+        name: videoEmbeddable
+        description: The videoEmbeddable parameter lets you to restrict a search to
+          only videos that can be embedded into a webpage
+      - in: query
+        name: videoLicense
+        description: The videoLicense parameter filters search results to only include
+          videos with a particular license
+      - in: query
+        name: videoSyndicated
+        description: The videoSyndicated parameter lets you to restrict a search to
+          only videos that can be played outside youtube
+      - in: query
+        name: videoType
+        description: The videoType parameter lets you restrict a search to a particular
+          type of videos
+      responses:
+        200:
+          description: OK
+      tags:
+      - Search
+  /sponsors:
+    get:
+      summary: Get Sponsors
+      description: Lists sponsors for a channel
+      operationId: youtube.sponsors.list
+      parameters:
+      - in: query
+        name: filter
+        description: The filter parameter specifies which channel sponsors to return
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies the sponsor resource parts that
+          the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Sponsor
+  /subscriptions:
+    delete:
+      summary: Delete Subscription
+      description: Deletes a subscription
+      operationId: youtube.subscriptions.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube subscription ID for the
+          resource that is being deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+    get:
+      summary: Get Subscription
+      description: Returns subscription resources that match the API request criteria
+      operationId: youtube.subscriptions.list
+      parameters:
+      - in: query
+        name: channelId
+        description: The channelId parameter specifies a YouTube channel ID
+      - in: query
+        name: forChannelId
+        description: The forChannelId parameter specifies a comma-separated list of
+          channel IDs
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          subscription ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: mine
+        description: Set this parameter's value to true to retrieve a feed of the
+          authenticated user's subscriptions
+      - in: query
+        name: myRecentSubscribers
+        description: Set this parameter's value to true to retrieve a feed of the
+          subscribers of the authenticated user in reverse chronological order (newest
+          first)
+      - in: query
+        name: mySubscribers
+        description: Set this parameter's value to true to retrieve a feed of the
+          subscribers of the authenticated user in no particular order
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: order
+        description: The order parameter specifies the method that will be used to
+          sort resources in the API response
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more subscription resource properties that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+    post:
+      summary: Add Subscription
+      description: Adds a subscription for the authenticated user's channel
+      operationId: youtube.subscriptions.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subscription
+  /superChatEvents:
+    get:
+      summary: Get Super Chat Events
+      description: Lists Super Chat events for a channel
+      operationId: youtube.superChatEvents.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter instructs the API to retrieve localized resource
+          metadata for a specific application language that the YouTube website supports
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies the superChatEvent resource parts
+          that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Chat Event
+  /thumbnails/set:
+    post:
+      summary: Upload Thumbnail
+      description: Uploads a custom video thumbnail to YouTube and sets it for a video
+      operationId: youtube.thumbnails.set
+      parameters:
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: videoId
+        description: The videoId parameter specifies a YouTube video ID for which
+          the custom video thumbnail is being provided
+      responses:
+        200:
+          description: OK
+      tags:
+      - Thumbnail
+  /videoAbuseReportReasons:
+    get:
+      summary: Report Abuse
+      description: Returns a list of abuse reasons that can be used for reporting
+        abusive videos
+      operationId: youtube.videoAbuseReportReasons.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter specifies the language that should be used for
+          text values in the API response
+      - in: query
+        name: part
+        description: The part parameter specifies the videoCategory resource parts
+          that the API response will include
+      responses:
+        200:
+          description: OK
+      tags:
+      - Abuse
+  /videoCategories:
+    get:
+      summary: Get Categories
+      description: Returns a list of categories that can be associated with YouTube
+        videos
+      operationId: youtube.videoCategories.list
+      parameters:
+      - in: query
+        name: hl
+        description: The hl parameter specifies the language that should be used for
+          text values in the API response
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of video category
+          IDs for the resources that you are retrieving
+      - in: query
+        name: part
+        description: The part parameter specifies the videoCategory resource properties
+          that the API response will include
+      - in: query
+        name: regionCode
+        description: The regionCode parameter instructs the API to return the list
+          of video categories available in the specified country
+      responses:
+        200:
+          description: OK
+      tags:
+      - Category
+  /videos:
+    delete:
+      summary: Delete Video
+      description: Deletes a YouTube video
+      operationId: youtube.videos.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube video ID for the resource
+          that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video
+    get:
+      summary: Get Videos
+      description: Returns a list of videos that match the API request parameters
+      operationId: youtube.videos.list
+      parameters:
+      - in: query
+        name: chart
+        description: The chart parameter identifies the chart that you want to retrieve
+      - in: query
+        name: hl
+        description: The hl parameter instructs the API to retrieve localized resource
+          metadata for a specific application language that the YouTube website supports
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          video ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: locale
+        description: DEPRECATED
+      - in: query
+        name: maxHeight
+        description: The maxHeight parameter specifies a maximum height of the embedded
+          player
+      - in: query
+        name: maxResults
+        description: The maxResults parameter specifies the maximum number of items
+          that should be returned in the result set
+      - in: query
+        name: maxWidth
+        description: The maxWidth parameter specifies a maximum width of the embedded
+          player
+      - in: query
+        name: myRating
+        description: Set this parameter's value to like or dislike to instruct the
+          API to only return videos liked or disliked by the authenticated user
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      - in: query
+        name: part
+        description: The part parameter specifies a comma-separated list of one or
+          more video resource properties that the API response will include
+      - in: query
+        name: regionCode
+        description: The regionCode parameter instructs the API to select a video
+          chart available in the specified region
+      - in: query
+        name: videoCategoryId
+        description: The videoCategoryId parameter identifies the video category for
+          which the chart should be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video
+    post:
+      summary: Upload Video
+      description: Uploads a video to YouTube and optionally sets the video's metadata
+      operationId: youtube.videos.insert
+      parameters:
+      - in: query
+        name: autoLevels
+        description: The autoLevels parameter indicates whether YouTube should automatically
+          enhance the video's lighting and color
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: notifySubscribers
+        description: The notifySubscribers parameter indicates whether YouTube should
+          send a notification about the new video to users who subscribe to the video's
+          channel
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: onBehalfOfContentOwnerChannel
+        description: This parameter can only be used in a properly authorized request
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      - in: query
+        name: stabilize
+        description: The stabilize parameter indicates whether YouTube should adjust
+          the video to remove shaky camera motions
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video
+    put:
+      summary: Update Video
+      description: Updates a video's metadata
+      operationId: youtube.videos.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: part
+        description: The part parameter serves two purposes in this operation
+      responses:
+        200:
+          description: OK
+      tags:
+      - Video
+  /videos/getRating:
+    get:
+      summary: Get Rating
+      description: Retrieves the ratings that the authorized user gave to a list of
+        specified videos
+      operationId: youtube.videos.getRating
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          video ID(s) for the resource(s) for which you are retrieving rating data
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Rating
+  /videos/rate:
+    post:
+      summary: Rate Video
+      description: Add a like or dislike rating to a video or remove a rating from
+        a video
+      operationId: youtube.videos.rate
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube video ID of the video
+          that is being rated or having its rating removed
+      - in: query
+        name: rating
+        description: Specifies the rating to record
+      responses:
+        200:
+          description: OK
+      tags:
+      - Rating
+  /videos/reportAbuse:
+    post:
+      summary: Report Abuse
+      description: Report abuse for a video
+      operationId: youtube.videos.reportAbuse
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Abuse
+  /watermarks/set:
+    post:
+      summary: Set Watermark
+      description: Uploads a watermark image to YouTube and sets it for a channel
+      operationId: youtube.watermarks.set
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: channelId
+        description: The channelId parameter specifies the YouTube channel ID for
+          which the watermark is being provided
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Watermark
+  /watermarks/unset:
+    post:
+      summary: Unset Watermark
+      description: Deletes a channel's watermark image
+      operationId: youtube.watermarks.unset
+      parameters:
+      - in: query
+        name: channelId
+        description: The channelId parameter specifies the YouTube channel ID for
+          which the watermark is being unset
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Watermark
+definitions:
+  AccessPolicy:
+    properties:
+      allowed:
+        description: This is a default description.
+        type: post
+      exception:
+        description: This is a default description.
+        type: post
+  Activity:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  ActivityContentDetails:
+    properties: []
+  ActivityContentDetailsBulletin:
+    properties: []
+  ActivityContentDetailsChannelItem:
+    properties: []
+  ActivityContentDetailsComment:
+    properties: []
+  ActivityContentDetailsFavorite:
+    properties: []
+  ActivityContentDetailsLike:
+    properties: []
+  ActivityContentDetailsPlaylistItem:
+    properties:
+      playlistId:
+        description: This is a default description.
+        type: post
+      playlistItemId:
+        description: This is a default description.
+        type: post
+  ActivityContentDetailsPromotedItem:
+    properties:
+      adTag:
+        description: This is a default description.
+        type: post
+      clickTrackingUrl:
+        description: This is a default description.
+        type: post
+      creativeViewUrl:
+        description: This is a default description.
+        type: post
+      ctaType:
+        description: This is a default description.
+        type: post
+      customCtaButtonText:
+        description: This is a default description.
+        type: post
+      descriptionText:
+        description: This is a default description.
+        type: post
+      destinationUrl:
+        description: This is a default description.
+        type: post
+      forecastingUrl:
+        description: This is a default description.
+        type: post
+      impressionUrl:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+  ActivityContentDetailsRecommendation:
+    properties:
+      reason:
+        description: This is a default description.
+        type: post
+  ActivityContentDetailsSocial:
+    properties:
+      author:
+        description: This is a default description.
+        type: post
+      imageUrl:
+        description: This is a default description.
+        type: post
+      referenceUrl:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  ActivityContentDetailsSubscription:
+    properties: []
+  ActivityContentDetailsUpload:
+    properties:
+      videoId:
+        description: This is a default description.
+        type: post
+  ActivityListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  ActivitySnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelTitle:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      groupId:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  Caption:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  CaptionListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  CaptionSnippet:
+    properties:
+      audioTrackType:
+        description: This is a default description.
+        type: post
+      failureReason:
+        description: This is a default description.
+        type: post
+      isAutoSynced:
+        description: This is a default description.
+        type: post
+      isCC:
+        description: This is a default description.
+        type: post
+      isDraft:
+        description: This is a default description.
+        type: post
+      isEasyReader:
+        description: This is a default description.
+        type: post
+      isLarge:
+        description: This is a default description.
+        type: post
+      language:
+        description: This is a default description.
+        type: post
+      lastUpdated:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+      trackKind:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+  CdnSettings:
+    properties:
+      format:
+        description: This is a default description.
+        type: post
+      frameRate:
+        description: This is a default description.
+        type: post
+      ingestionType:
+        description: This is a default description.
+        type: post
+      resolution:
+        description: This is a default description.
+        type: post
+  Channel:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      localizations:
+        description: This is a default description.
+        type: post
+  ChannelAuditDetails:
+    properties:
+      communityGuidelinesGoodStanding:
+        description: This is a default description.
+        type: post
+      contentIdClaimsGoodStanding:
+        description: This is a default description.
+        type: post
+      copyrightStrikesGoodStanding:
+        description: This is a default description.
+        type: post
+      overallGoodStanding:
+        description: This is a default description.
+        type: post
+  ChannelBannerResource:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      url:
+        description: This is a default description.
+        type: post
+  ChannelBrandingSettings:
+    properties:
+      hints:
+        description: This is a default description.
+        type: post
+  ChannelContentDetails:
+    properties:
+      relatedPlaylists:
+        description: This is a default description.
+        type: post
+  ChannelContentOwnerDetails:
+    properties:
+      contentOwner:
+        description: This is a default description.
+        type: post
+      timeLinked:
+        description: This is a default description.
+        type: post
+  ChannelConversionPing:
+    properties:
+      context:
+        description: This is a default description.
+        type: post
+      conversionUrl:
+        description: This is a default description.
+        type: post
+  ChannelConversionPings:
+    properties:
+      pings:
+        description: This is a default description.
+        type: post
+  ChannelListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  ChannelLocalization:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  ChannelProfileDetails:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelUrl:
+        description: This is a default description.
+        type: post
+      displayName:
+        description: This is a default description.
+        type: post
+      profileImageUrl:
+        description: This is a default description.
+        type: post
+  ChannelSection:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      localizations:
+        description: This is a default description.
+        type: post
+  ChannelSectionContentDetails:
+    properties:
+      channels:
+        description: This is a default description.
+        type: post
+      playlists:
+        description: This is a default description.
+        type: post
+  ChannelSectionListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  ChannelSectionLocalization:
+    properties:
+      title:
+        description: This is a default description.
+        type: post
+  ChannelSectionSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+      position:
+        description: This is a default description.
+        type: post
+      style:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  ChannelSectionTargeting:
+    properties:
+      countries:
+        description: This is a default description.
+        type: post
+      languages:
+        description: This is a default description.
+        type: post
+      regions:
+        description: This is a default description.
+        type: post
+  ChannelSettings:
+    properties:
+      country:
+        description: This is a default description.
+        type: post
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+      defaultTab:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      featuredChannelsTitle:
+        description: This is a default description.
+        type: post
+      featuredChannelsUrls:
+        description: This is a default description.
+        type: post
+      keywords:
+        description: This is a default description.
+        type: post
+      moderateComments:
+        description: This is a default description.
+        type: post
+      profileColor:
+        description: This is a default description.
+        type: post
+      showBrowseView:
+        description: This is a default description.
+        type: post
+      showRelatedChannels:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+      trackingAnalyticsAccountId:
+        description: This is a default description.
+        type: post
+      unsubscribedTrailer:
+        description: This is a default description.
+        type: post
+  ChannelSnippet:
+    properties:
+      country:
+        description: This is a default description.
+        type: post
+      customUrl:
+        description: This is a default description.
+        type: post
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  ChannelStatistics:
+    properties:
+      commentCount:
+        description: This is a default description.
+        type: post
+      hiddenSubscriberCount:
+        description: This is a default description.
+        type: post
+      subscriberCount:
+        description: This is a default description.
+        type: post
+      videoCount:
+        description: This is a default description.
+        type: post
+      viewCount:
+        description: This is a default description.
+        type: post
+  ChannelStatus:
+    properties:
+      isLinked:
+        description: This is a default description.
+        type: post
+      longUploadsStatus:
+        description: This is a default description.
+        type: post
+      privacyStatus:
+        description: This is a default description.
+        type: post
+  ChannelTopicDetails:
+    properties:
+      topicCategories:
+        description: This is a default description.
+        type: post
+      topicIds:
+        description: This is a default description.
+        type: post
+  Comment:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  CommentListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  CommentSnippet:
+    properties:
+      authorChannelUrl:
+        description: This is a default description.
+        type: post
+      authorDisplayName:
+        description: This is a default description.
+        type: post
+      authorProfileImageUrl:
+        description: This is a default description.
+        type: post
+      canRate:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      likeCount:
+        description: This is a default description.
+        type: post
+      moderationStatus:
+        description: This is a default description.
+        type: post
+      parentId:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      textDisplay:
+        description: This is a default description.
+        type: post
+      textOriginal:
+        description: This is a default description.
+        type: post
+      updatedAt:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+      viewerRating:
+        description: This is a default description.
+        type: post
+  CommentThread:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  CommentThreadListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  CommentThreadReplies:
+    properties:
+      comments:
+        description: This is a default description.
+        type: post
+  CommentThreadSnippet:
+    properties:
+      canReply:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      isPublic:
+        description: This is a default description.
+        type: post
+      totalReplyCount:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+  ContentRating:
+    properties:
+      acbRating:
+        description: This is a default description.
+        type: post
+      agcomRating:
+        description: This is a default description.
+        type: post
+      anatelRating:
+        description: This is a default description.
+        type: post
+      bbfcRating:
+        description: This is a default description.
+        type: post
+      bfvcRating:
+        description: This is a default description.
+        type: post
+      bmukkRating:
+        description: This is a default description.
+        type: post
+      catvRating:
+        description: This is a default description.
+        type: post
+      catvfrRating:
+        description: This is a default description.
+        type: post
+      cbfcRating:
+        description: This is a default description.
+        type: post
+      cccRating:
+        description: This is a default description.
+        type: post
+      cceRating:
+        description: This is a default description.
+        type: post
+      chfilmRating:
+        description: This is a default description.
+        type: post
+      chvrsRating:
+        description: This is a default description.
+        type: post
+      cicfRating:
+        description: This is a default description.
+        type: post
+      cnaRating:
+        description: This is a default description.
+        type: post
+      cncRating:
+        description: This is a default description.
+        type: post
+      csaRating:
+        description: This is a default description.
+        type: post
+      cscfRating:
+        description: This is a default description.
+        type: post
+      czfilmRating:
+        description: This is a default description.
+        type: post
+      djctqRating:
+        description: This is a default description.
+        type: post
+      djctqRatingReasons:
+        description: This is a default description.
+        type: post
+      ecbmctRating:
+        description: This is a default description.
+        type: post
+      eefilmRating:
+        description: This is a default description.
+        type: post
+      egfilmRating:
+        description: This is a default description.
+        type: post
+      eirinRating:
+        description: This is a default description.
+        type: post
+      fcbmRating:
+        description: This is a default description.
+        type: post
+      fcoRating:
+        description: This is a default description.
+        type: post
+      fmocRating:
+        description: This is a default description.
+        type: post
+      fpbRating:
+        description: This is a default description.
+        type: post
+      fpbRatingReasons:
+        description: This is a default description.
+        type: post
+      fskRating:
+        description: This is a default description.
+        type: post
+      grfilmRating:
+        description: This is a default description.
+        type: post
+      icaaRating:
+        description: This is a default description.
+        type: post
+      ifcoRating:
+        description: This is a default description.
+        type: post
+      ilfilmRating:
+        description: This is a default description.
+        type: post
+      incaaRating:
+        description: This is a default description.
+        type: post
+      kfcbRating:
+        description: This is a default description.
+        type: post
+      kijkwijzerRating:
+        description: This is a default description.
+        type: post
+      kmrbRating:
+        description: This is a default description.
+        type: post
+      lsfRating:
+        description: This is a default description.
+        type: post
+      mccaaRating:
+        description: This is a default description.
+        type: post
+      mccypRating:
+        description: This is a default description.
+        type: post
+      mcstRating:
+        description: This is a default description.
+        type: post
+      mdaRating:
+        description: This is a default description.
+        type: post
+      medietilsynetRating:
+        description: This is a default description.
+        type: post
+      mekuRating:
+        description: This is a default description.
+        type: post
+      mibacRating:
+        description: This is a default description.
+        type: post
+      mocRating:
+        description: This is a default description.
+        type: post
+      moctwRating:
+        description: This is a default description.
+        type: post
+      mpaaRating:
+        description: This is a default description.
+        type: post
+      mtrcbRating:
+        description: This is a default description.
+        type: post
+      nbcRating:
+        description: This is a default description.
+        type: post
+      nbcplRating:
+        description: This is a default description.
+        type: post
+      nfrcRating:
+        description: This is a default description.
+        type: post
+      nfvcbRating:
+        description: This is a default description.
+        type: post
+      nkclvRating:
+        description: This is a default description.
+        type: post
+      oflcRating:
+        description: This is a default description.
+        type: post
+      pefilmRating:
+        description: This is a default description.
+        type: post
+      rcnofRating:
+        description: This is a default description.
+        type: post
+      resorteviolenciaRating:
+        description: This is a default description.
+        type: post
+      rtcRating:
+        description: This is a default description.
+        type: post
+      rteRating:
+        description: This is a default description.
+        type: post
+      russiaRating:
+        description: This is a default description.
+        type: post
+      skfilmRating:
+        description: This is a default description.
+        type: post
+      smaisRating:
+        description: This is a default description.
+        type: post
+      smsaRating:
+        description: This is a default description.
+        type: post
+      tvpgRating:
+        description: This is a default description.
+        type: post
+      ytRating:
+        description: This is a default description.
+        type: post
+  FanFundingEvent:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  FanFundingEventListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  FanFundingEventSnippet:
+    properties:
+      amountMicros:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      commentText:
+        description: This is a default description.
+        type: post
+      createdAt:
+        description: This is a default description.
+        type: post
+      currency:
+        description: This is a default description.
+        type: post
+      displayString:
+        description: This is a default description.
+        type: post
+  GeoPoint:
+    properties:
+      altitude:
+        description: This is a default description.
+        type: post
+      latitude:
+        description: This is a default description.
+        type: post
+      longitude:
+        description: This is a default description.
+        type: post
+  GuideCategory:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  GuideCategoryListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  GuideCategorySnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  I18nLanguage:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  I18nLanguageListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  I18nLanguageSnippet:
+    properties:
+      hl:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  I18nRegion:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  I18nRegionListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  I18nRegionSnippet:
+    properties:
+      gl:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  ImageSettings:
+    properties:
+      bannerExternalUrl:
+        description: This is a default description.
+        type: post
+      bannerImageUrl:
+        description: This is a default description.
+        type: post
+      bannerMobileExtraHdImageUrl:
+        description: This is a default description.
+        type: post
+      bannerMobileHdImageUrl:
+        description: This is a default description.
+        type: post
+      bannerMobileImageUrl:
+        description: This is a default description.
+        type: post
+      bannerMobileLowImageUrl:
+        description: This is a default description.
+        type: post
+      bannerMobileMediumHdImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTabletExtraHdImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTabletHdImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTabletImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTabletLowImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTvHighImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTvImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTvLowImageUrl:
+        description: This is a default description.
+        type: post
+      bannerTvMediumImageUrl:
+        description: This is a default description.
+        type: post
+      trackingImageUrl:
+        description: This is a default description.
+        type: post
+      watchIconImageUrl:
+        description: This is a default description.
+        type: post
+  IngestionInfo:
+    properties:
+      backupIngestionAddress:
+        description: This is a default description.
+        type: post
+      ingestionAddress:
+        description: This is a default description.
+        type: post
+      streamName:
+        description: This is a default description.
+        type: post
+  InvideoBranding:
+    properties:
+      imageBytes:
+        description: This is a default description.
+        type: post
+      imageUrl:
+        description: This is a default description.
+        type: post
+      targetChannelId:
+        description: This is a default description.
+        type: post
+  InvideoPosition:
+    properties:
+      cornerPosition:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  InvideoPromotion:
+    properties:
+      items:
+        description: This is a default description.
+        type: post
+      useSmartTiming:
+        description: This is a default description.
+        type: post
+  InvideoTiming:
+    properties:
+      durationMs:
+        description: This is a default description.
+        type: post
+      offsetMs:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  LanguageTag:
+    properties:
+      value:
+        description: This is a default description.
+        type: post
+  LiveBroadcast:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  LiveBroadcastContentDetails:
+    properties:
+      boundStreamId:
+        description: This is a default description.
+        type: post
+      boundStreamLastUpdateTimeMs:
+        description: This is a default description.
+        type: post
+      closedCaptionsType:
+        description: This is a default description.
+        type: post
+      enableClosedCaptions:
+        description: This is a default description.
+        type: post
+      enableContentEncryption:
+        description: This is a default description.
+        type: post
+      enableDvr:
+        description: This is a default description.
+        type: post
+      enableEmbed:
+        description: This is a default description.
+        type: post
+      enableLowLatency:
+        description: This is a default description.
+        type: post
+      projection:
+        description: This is a default description.
+        type: post
+      recordFromStart:
+        description: This is a default description.
+        type: post
+      startWithSlate:
+        description: This is a default description.
+        type: post
+  LiveBroadcastListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  LiveBroadcastSnippet:
+    properties:
+      actualEndTime:
+        description: This is a default description.
+        type: post
+      actualStartTime:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      isDefaultBroadcast:
+        description: This is a default description.
+        type: post
+      liveChatId:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      scheduledEndTime:
+        description: This is a default description.
+        type: post
+      scheduledStartTime:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  LiveBroadcastStatistics:
+    properties:
+      concurrentViewers:
+        description: This is a default description.
+        type: post
+      totalChatCount:
+        description: This is a default description.
+        type: post
+  LiveBroadcastStatus:
+    properties:
+      lifeCycleStatus:
+        description: This is a default description.
+        type: post
+      liveBroadcastPriority:
+        description: This is a default description.
+        type: post
+      privacyStatus:
+        description: This is a default description.
+        type: post
+      recordingStatus:
+        description: This is a default description.
+        type: post
+  LiveBroadcastTopic:
+    properties:
+      type:
+        description: This is a default description.
+        type: post
+      unmatched:
+        description: This is a default description.
+        type: post
+  LiveBroadcastTopicDetails:
+    properties:
+      topics:
+        description: This is a default description.
+        type: post
+  LiveBroadcastTopicSnippet:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+      releaseDate:
+        description: This is a default description.
+        type: post
+  LiveChatBan:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  LiveChatBanSnippet:
+    properties:
+      banDurationSeconds:
+        description: This is a default description.
+        type: post
+      liveChatId:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  LiveChatFanFundingEventDetails:
+    properties:
+      amountDisplayString:
+        description: This is a default description.
+        type: post
+      amountMicros:
+        description: This is a default description.
+        type: post
+      currency:
+        description: This is a default description.
+        type: post
+      userComment:
+        description: This is a default description.
+        type: post
+  LiveChatMessage:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  LiveChatMessageAuthorDetails:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelUrl:
+        description: This is a default description.
+        type: post
+      displayName:
+        description: This is a default description.
+        type: post
+      isChatModerator:
+        description: This is a default description.
+        type: post
+      isChatOwner:
+        description: This is a default description.
+        type: post
+      isChatSponsor:
+        description: This is a default description.
+        type: post
+      isVerified:
+        description: This is a default description.
+        type: post
+      profileImageUrl:
+        description: This is a default description.
+        type: post
+  LiveChatMessageDeletedDetails:
+    properties:
+      deletedMessageId:
+        description: This is a default description.
+        type: post
+  LiveChatMessageListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      offlineAt:
+        description: This is a default description.
+        type: post
+      pollingIntervalMillis:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  LiveChatMessageRetractedDetails:
+    properties:
+      retractedMessageId:
+        description: This is a default description.
+        type: post
+  LiveChatMessageSnippet:
+    properties:
+      authorChannelId:
+        description: This is a default description.
+        type: post
+      displayMessage:
+        description: This is a default description.
+        type: post
+      hasDisplayContent:
+        description: This is a default description.
+        type: post
+      liveChatId:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  LiveChatModerator:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  LiveChatModeratorListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  LiveChatModeratorSnippet:
+    properties:
+      liveChatId:
+        description: This is a default description.
+        type: post
+  LiveChatPollClosedDetails:
+    properties:
+      pollId:
+        description: This is a default description.
+        type: post
+  LiveChatPollEditedDetails:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      prompt:
+        description: This is a default description.
+        type: post
+  LiveChatPollItem:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      itemId:
+        description: This is a default description.
+        type: post
+  LiveChatPollOpenedDetails:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      prompt:
+        description: This is a default description.
+        type: post
+  LiveChatPollVotedDetails:
+    properties:
+      itemId:
+        description: This is a default description.
+        type: post
+      pollId:
+        description: This is a default description.
+        type: post
+  LiveChatSuperChatDetails:
+    properties:
+      amountDisplayString:
+        description: This is a default description.
+        type: post
+      amountMicros:
+        description: This is a default description.
+        type: post
+      currency:
+        description: This is a default description.
+        type: post
+      tier:
+        description: This is a default description.
+        type: post
+      userComment:
+        description: This is a default description.
+        type: post
+  LiveChatTextMessageDetails:
+    properties:
+      messageText:
+        description: This is a default description.
+        type: post
+  LiveChatUserBannedMessageDetails:
+    properties:
+      banDurationSeconds:
+        description: This is a default description.
+        type: post
+      banType:
+        description: This is a default description.
+        type: post
+  LiveStream:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  LiveStreamConfigurationIssue:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      reason:
+        description: This is a default description.
+        type: post
+      severity:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  LiveStreamContentDetails:
+    properties:
+      closedCaptionsIngestionUrl:
+        description: This is a default description.
+        type: post
+      isReusable:
+        description: This is a default description.
+        type: post
+  LiveStreamHealthStatus:
+    properties:
+      configurationIssues:
+        description: This is a default description.
+        type: post
+      lastUpdateTimeSeconds:
+        description: This is a default description.
+        type: post
+      status:
+        description: This is a default description.
+        type: post
+  LiveStreamListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  LiveStreamSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      isDefaultStream:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  LiveStreamStatus:
+    properties:
+      streamStatus:
+        description: This is a default description.
+        type: post
+  LocalizedProperty:
+    properties:
+      default:
+        description: This is a default description.
+        type: post
+      localized:
+        description: This is a default description.
+        type: post
+  LocalizedString:
+    properties:
+      language:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  MonitorStreamInfo:
+    properties:
+      broadcastStreamDelayMs:
+        description: This is a default description.
+        type: post
+      embedHtml:
+        description: This is a default description.
+        type: post
+      enableMonitorStream:
+        description: This is a default description.
+        type: post
+  PageInfo:
+    properties:
+      resultsPerPage:
+        description: This is a default description.
+        type: post
+      totalResults:
+        description: This is a default description.
+        type: post
+  Playlist:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      localizations:
+        description: This is a default description.
+        type: post
+  PlaylistContentDetails:
+    properties:
+      itemCount:
+        description: This is a default description.
+        type: post
+  PlaylistItem:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  PlaylistItemContentDetails:
+    properties:
+      endAt:
+        description: This is a default description.
+        type: post
+      note:
+        description: This is a default description.
+        type: post
+      startAt:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+      videoPublishedAt:
+        description: This is a default description.
+        type: post
+  PlaylistItemListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  PlaylistItemSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelTitle:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      playlistId:
+        description: This is a default description.
+        type: post
+      position:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  PlaylistItemStatus:
+    properties:
+      privacyStatus:
+        description: This is a default description.
+        type: post
+  PlaylistListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  PlaylistLocalization:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  PlaylistPlayer:
+    properties:
+      embedHtml:
+        description: This is a default description.
+        type: post
+  PlaylistSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelTitle:
+        description: This is a default description.
+        type: post
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      tags:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  PlaylistStatus:
+    properties:
+      privacyStatus:
+        description: This is a default description.
+        type: post
+  PromotedItem:
+    properties:
+      customMessage:
+        description: This is a default description.
+        type: post
+      promotedByContentOwner:
+        description: This is a default description.
+        type: post
+  PromotedItemId:
+    properties:
+      recentlyUploadedBy:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+      websiteUrl:
+        description: This is a default description.
+        type: post
+  PropertyValue:
+    properties:
+      property:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  ResourceId:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      playlistId:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+  SearchListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      regionCode:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  SearchResult:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  SearchResultSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelTitle:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      liveBroadcastContent:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  Sponsor:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  SponsorListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  SponsorSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      sponsorSince:
+        description: This is a default description.
+        type: post
+  Subscription:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  SubscriptionContentDetails:
+    properties:
+      activityType:
+        description: This is a default description.
+        type: post
+      newItemCount:
+        description: This is a default description.
+        type: post
+      totalItemCount:
+        description: This is a default description.
+        type: post
+  SubscriptionListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  SubscriptionSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      channelTitle:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  SubscriptionSubscriberSnippet:
+    properties:
+      channelId:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  SuperChatEvent:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  SuperChatEventListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  SuperChatEventSnippet:
+    properties:
+      amountMicros:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      commentText:
+        description: This is a default description.
+        type: post
+      createdAt:
+        description: This is a default description.
+        type: post
+      currency:
+        description: This is a default description.
+        type: post
+      displayString:
+        description: This is a default description.
+        type: post
+      messageType:
+        description: This is a default description.
+        type: post
+  Thumbnail:
+    properties:
+      height:
+        description: This is a default description.
+        type: post
+      url:
+        description: This is a default description.
+        type: post
+      width:
+        description: This is a default description.
+        type: post
+  ThumbnailDetails:
+    properties: []
+  ThumbnailSetResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  Video:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      localizations:
+        description: This is a default description.
+        type: post
+  VideoAbuseReport:
+    properties:
+      comments:
+        description: This is a default description.
+        type: post
+      language:
+        description: This is a default description.
+        type: post
+      reasonId:
+        description: This is a default description.
+        type: post
+      secondaryReasonId:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+  VideoAbuseReportReason:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  VideoAbuseReportReasonListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  VideoAbuseReportReasonSnippet:
+    properties:
+      label:
+        description: This is a default description.
+        type: post
+      secondaryReasons:
+        description: This is a default description.
+        type: post
+  VideoAbuseReportSecondaryReason:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      label:
+        description: This is a default description.
+        type: post
+  VideoAgeGating:
+    properties:
+      alcoholContent:
+        description: This is a default description.
+        type: post
+      restricted:
+        description: This is a default description.
+        type: post
+      videoGameRating:
+        description: This is a default description.
+        type: post
+  VideoCategory:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+  VideoCategoryListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  VideoCategorySnippet:
+    properties:
+      assignable:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  VideoContentDetails:
+    properties:
+      caption:
+        description: This is a default description.
+        type: post
+      definition:
+        description: This is a default description.
+        type: post
+      dimension:
+        description: This is a default description.
+        type: post
+      duration:
+        description: This is a default description.
+        type: post
+      hasCustomThumbnail:
+        description: This is a default description.
+        type: post
+      licensedContent:
+        description: This is a default description.
+        type: post
+      projection:
+        description: This is a default description.
+        type: post
+  VideoContentDetailsRegionRestriction:
+    properties:
+      allowed:
+        description: This is a default description.
+        type: post
+      blocked:
+        description: This is a default description.
+        type: post
+  VideoFileDetails:
+    properties:
+      audioStreams:
+        description: This is a default description.
+        type: post
+      bitrateBps:
+        description: This is a default description.
+        type: post
+      container:
+        description: This is a default description.
+        type: post
+      creationTime:
+        description: This is a default description.
+        type: post
+      durationMs:
+        description: This is a default description.
+        type: post
+      fileName:
+        description: This is a default description.
+        type: post
+      fileSize:
+        description: This is a default description.
+        type: post
+      fileType:
+        description: This is a default description.
+        type: post
+      videoStreams:
+        description: This is a default description.
+        type: post
+  VideoFileDetailsAudioStream:
+    properties:
+      bitrateBps:
+        description: This is a default description.
+        type: post
+      channelCount:
+        description: This is a default description.
+        type: post
+      codec:
+        description: This is a default description.
+        type: post
+      vendor:
+        description: This is a default description.
+        type: post
+  VideoFileDetailsVideoStream:
+    properties:
+      aspectRatio:
+        description: This is a default description.
+        type: post
+      bitrateBps:
+        description: This is a default description.
+        type: post
+      codec:
+        description: This is a default description.
+        type: post
+      frameRateFps:
+        description: This is a default description.
+        type: post
+      heightPixels:
+        description: This is a default description.
+        type: post
+      rotation:
+        description: This is a default description.
+        type: post
+      vendor:
+        description: This is a default description.
+        type: post
+      widthPixels:
+        description: This is a default description.
+        type: post
+  VideoGetRatingResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  VideoListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: post
+      eventId:
+        description: This is a default description.
+        type: post
+      items:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      prevPageToken:
+        description: This is a default description.
+        type: post
+      visitorId:
+        description: This is a default description.
+        type: post
+  VideoLiveStreamingDetails:
+    properties:
+      activeLiveChatId:
+        description: This is a default description.
+        type: post
+      actualEndTime:
+        description: This is a default description.
+        type: post
+      actualStartTime:
+        description: This is a default description.
+        type: post
+      concurrentViewers:
+        description: This is a default description.
+        type: post
+      scheduledEndTime:
+        description: This is a default description.
+        type: post
+      scheduledStartTime:
+        description: This is a default description.
+        type: post
+  VideoLocalization:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  VideoMonetizationDetails:
+    properties: []
+  VideoPlayer:
+    properties:
+      embedHeight:
+        description: This is a default description.
+        type: post
+      embedHtml:
+        description: This is a default description.
+        type: post
+      embedWidth:
+        description: This is a default description.
+        type: post
+  VideoProcessingDetails:
+    properties:
+      editorSuggestionsAvailability:
+        description: This is a default description.
+        type: post
+      fileDetailsAvailability:
+        description: This is a default description.
+        type: post
+      processingFailureReason:
+        description: This is a default description.
+        type: post
+      processingIssuesAvailability:
+        description: This is a default description.
+        type: post
+      processingStatus:
+        description: This is a default description.
+        type: post
+      tagSuggestionsAvailability:
+        description: This is a default description.
+        type: post
+      thumbnailsAvailability:
+        description: This is a default description.
+        type: post
+  VideoProcessingDetailsProcessingProgress:
+    properties:
+      partsProcessed:
+        description: This is a default description.
+        type: post
+      partsTotal:
+        description: This is a default description.
+        type: post
+      timeLeftMs:
+        description: This is a default description.
+        type: post
+  VideoProjectDetails:
+    properties:
+      tags:
+        description: This is a default description.
+        type: post
+  VideoRating:
+    properties:
+      rating:
+        description: This is a default description.
+        type: post
+      videoId:
+        description: This is a default description.
+        type: post
+  VideoRecordingDetails:
+    properties:
+      locationDescription:
+        description: This is a default description.
+        type: post
+      recordingDate:
+        description: This is a default description.
+        type: post
+  VideoSnippet:
+    properties:
+      categoryId:
+        description: This is a default description.
+        type: post
+      channelId:
+        description: This is a default description.
+        type: post
+      channelTitle:
+        description: This is a default description.
+        type: post
+      defaultAudioLanguage:
+        description: This is a default description.
+        type: post
+      defaultLanguage:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      liveBroadcastContent:
+        description: This is a default description.
+        type: post
+      publishedAt:
+        description: This is a default description.
+        type: post
+      tags:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  VideoStatistics:
+    properties:
+      commentCount:
+        description: This is a default description.
+        type: post
+      dislikeCount:
+        description: This is a default description.
+        type: post
+      favoriteCount:
+        description: This is a default description.
+        type: post
+      likeCount:
+        description: This is a default description.
+        type: post
+      viewCount:
+        description: This is a default description.
+        type: post
+  VideoStatus:
+    properties:
+      embeddable:
+        description: This is a default description.
+        type: post
+      failureReason:
+        description: This is a default description.
+        type: post
+      license:
+        description: This is a default description.
+        type: post
+      privacyStatus:
+        description: This is a default description.
+        type: post
+      publicStatsViewable:
+        description: This is a default description.
+        type: post
+      publishAt:
+        description: This is a default description.
+        type: post
+      rejectionReason:
+        description: This is a default description.
+        type: post
+      uploadStatus:
+        description: This is a default description.
+        type: post
+  VideoSuggestions:
+    properties:
+      editorSuggestions:
+        description: This is a default description.
+        type: post
+      processingErrors:
+        description: This is a default description.
+        type: post
+      processingHints:
+        description: This is a default description.
+        type: post
+      processingWarnings:
+        description: This is a default description.
+        type: post
+      tagSuggestions:
+        description: This is a default description.
+        type: post
+  VideoSuggestionsTagSuggestion:
+    properties:
+      categoryRestricts:
+        description: This is a default description.
+        type: post
+      tag:
+        description: This is a default description.
+        type: post
+  VideoTopicDetails:
+    properties:
+      relevantTopicIds:
+        description: This is a default description.
+        type: post
+      topicCategories:
+        description: This is a default description.
+        type: post
+      topicIds:
+        description: This is a default description.
+        type: post
+  WatchSettings:
+    properties:
+      backgroundColor:
+        description: This is a default description.
+        type: post
+      featuredPlaylistId:
+        description: This is a default description.
+        type: post
+      textColor:
+        description: This is a default description.
+        type: post
