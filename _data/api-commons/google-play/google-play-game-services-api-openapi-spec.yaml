@@ -1,0 +1,2703 @@
+swagger: "2.0"
+info:
+  title: Google Play Game Services
+  description: The API for Google Play Game Services.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: www.googleapis.com
+basePath: /games/v1
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /achievements:
+    get:
+      summary: Get Achievements
+      description: Lists all the achievement definitions for your application
+      operationId: games.achievementDefinitions.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of achievement resources to return in the
+          response, used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Achievement
+  /achievements/updateMultiple:
+    post:
+      summary: Update Multiple Achievements
+      description: Updates multiple achievements for the currently authenticated player
+      operationId: games.achievements.updateMultiple
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Achievement
+  /achievements/{achievementId}/increment:
+    post:
+      summary: Increment Step Of Achievement
+      description: Increments the steps of the achievement with the given ID for the
+        currently authenticated player
+      operationId: games.achievements.increment
+      parameters:
+      - in: path
+        name: achievementId
+        description: The ID of the achievement used by this method
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: requestId
+        description: A randomly generated numeric ID for each request specified by
+          the caller
+      - in: query
+        name: stepsToIncrement
+        description: The number of steps to increment
+      responses:
+        200:
+          description: OK
+      tags:
+      - Achievement
+  /achievements/{achievementId}/reveal:
+    post:
+      summary: Set State of Achievement
+      description: Sets the state of the achievement with the given ID to REVEALED
+        for the currently authenticated player
+      operationId: games.achievements.reveal
+      parameters:
+      - in: path
+        name: achievementId
+        description: The ID of the achievement used by this method
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Achievement
+  /achievements/{achievementId}/setStepsAtLeast:
+    post:
+      summary: Set Steps for Achievements
+      description: Sets the steps for the currently authenticated player towards unlocking
+        an achievement
+      operationId: games.achievements.setStepsAtLeast
+      parameters:
+      - in: path
+        name: achievementId
+        description: The ID of the achievement used by this method
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: steps
+        description: The minimum value to set the steps to
+      responses:
+        200:
+          description: OK
+      tags:
+      - Achievement
+  /achievements/{achievementId}/unlock:
+    post:
+      summary: Unlock Achievement
+      description: Unlocks this achievement for the currently authenticated player
+      operationId: games.achievements.unlock
+      parameters:
+      - in: path
+        name: achievementId
+        description: The ID of the achievement used by this method
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Achievement
+  /applications/played:
+    post:
+      summary: Set Played
+      description: Indicate that the the currently authenticated user is playing your
+        application
+      operationId: games.applications.played
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /applications/{applicationId}:
+    get:
+      summary: Get Application
+      description: Retrieves the metadata of the application with the given ID
+      operationId: games.applications.get
+      parameters:
+      - in: path
+        name: applicationId
+        description: The application ID from the Google Play developer console
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: platformType
+        description: Restrict application details returned to the specific platform
+      responses:
+        200:
+          description: OK
+      tags:
+      - Application
+  /applications/{applicationId}/verify:
+    get:
+      summary: Verify Token
+      description: Verifies the auth token provided with this request is for the application
+        with the specified ID, and returns the ID of the player it was granted for
+      operationId: games.applications.verify
+      parameters:
+      - in: path
+        name: applicationId
+        description: The application ID from the Google Play developer console
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+  /eventDefinitions:
+    get:
+      summary: Get Event Definitions
+      description: Returns a list of the event definitions in this application
+      operationId: games.events.listDefinitions
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of event definitions to return in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Event
+  /events:
+    get:
+      summary: Get Events
+      description: Returns a list showing the current progress on events in this application
+        for the currently authenticated user
+      operationId: games.events.listByPlayer
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of events to return in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Event
+    post:
+      summary: Create Event
+      description: Records a batch of changes to the number of times events have occurred
+        for the currently authenticated user of this application
+      operationId: games.events.record
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      responses:
+        200:
+          description: OK
+      tags:
+      - Event
+  /leaderboards:
+    get:
+      summary: Get Leader Boards
+      description: Lists all the leaderboard metadata for your application
+      operationId: games.leaderboards.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of leaderboards to return in the response
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Leader Board
+  /leaderboards/scores:
+    post:
+      summary: Create Leader Board
+      description: Submits multiple scores to leaderboards
+      operationId: games.scores.submitMultiple
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      responses:
+        200:
+          description: OK
+      tags:
+      - Leader Board
+  /leaderboards/{leaderboardId}:
+    get:
+      summary: Get Leader Board
+      description: Retrieves the metadata of the leaderboard with the given ID
+      operationId: games.leaderboards.get
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: leaderboardId
+        description: The ID of the leaderboard
+      responses:
+        200:
+          description: OK
+      tags:
+      - Leader Board
+  /leaderboards/{leaderboardId}/scores:
+    post:
+      summary: Update Leader Board Score
+      description: Submits a score to the specified leaderboard
+      operationId: games.scores.submit
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: leaderboardId
+        description: The ID of the leaderboard
+      - in: query
+        name: score
+        description: The score you're submitting
+      - in: query
+        name: scoreTag
+        description: Additional information about the score you're submitting
+      responses:
+        200:
+          description: OK
+      tags:
+      - Leader Board
+  /leaderboards/{leaderboardId}/scores/{collection}:
+    get:
+      summary: Get Leader Board Scores
+      description: Lists the scores in a leaderboard, starting from the top
+      operationId: games.scores.list
+      parameters:
+      - in: path
+        name: collection
+        description: The collection of scores you're requesting
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: leaderboardId
+        description: The ID of the leaderboard
+      - in: query
+        name: maxResults
+        description: The maximum number of leaderboard scores to return in the response
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: query
+        name: timeSpan
+        description: The time span for the scores and ranks you're requesting
+      responses:
+        200:
+          description: OK
+      tags:
+      - Leader Board
+  /leaderboards/{leaderboardId}/window/{collection}:
+    get:
+      summary: Get Leader Board Window
+      description: Lists the scores in a leaderboard around (and including) a player's
+        score
+      operationId: games.scores.listWindow
+      parameters:
+      - in: path
+        name: collection
+        description: The collection of scores you're requesting
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: leaderboardId
+        description: The ID of the leaderboard
+      - in: query
+        name: maxResults
+        description: The maximum number of leaderboard scores to return in the response
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: query
+        name: resultsAbove
+        description: The preferred number of scores to return above the player's score
+      - in: query
+        name: returnTopIfAbsent
+        description: True if the top scores should be returned when the player is
+          not in the leaderboard
+      - in: query
+        name: timeSpan
+        description: The time span for the scores and ranks you're requesting
+      responses:
+        200:
+          description: OK
+      tags:
+      - Leader Board
+  /metagameConfig:
+    get:
+      summary: Get Metagame Confirmation
+      description: Return the metagame configuration data for the calling application
+      operationId: games.metagame.getMetagameConfig
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Game
+  /players/me/players/{collection}:
+    get:
+      summary: Get PLayers
+      description: Get the collection of players for the currently authenticated user
+      operationId: games.players.list
+      parameters:
+      - in: path
+        name: collection
+        description: Collection of players being retrieved
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of player resources to return in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Player
+  /players/{playerId}:
+    get:
+      summary: Get Player
+      description: Retrieves the Player resource with the given ID
+      operationId: games.players.get
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: playerId
+        description: A player ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Player
+  /players/{playerId}/achievements:
+    get:
+      summary: Get Player Achievements
+      description: Lists the progress for all your application's achievements for
+        the currently authenticated player
+      operationId: games.achievements.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of achievement resources to return in the
+          response, used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: path
+        name: playerId
+        description: A player ID
+      - in: query
+        name: state
+        description: Tells the server to return only achievements with the specified
+          state
+      responses:
+        200:
+          description: OK
+      tags:
+      - Player
+  /players/{playerId}/categories/{collection}:
+    get:
+      summary: Get Player Categories
+      description: List play data aggregated per category for the player corresponding
+        to playerId
+      operationId: games.metagame.listCategoriesByPlayer
+      parameters:
+      - in: path
+        name: collection
+        description: The collection of categories for which data will be returned
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of category resources to return in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: path
+        name: playerId
+        description: A player ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Player
+  /players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}:
+    get:
+      summary: Get Player Leaderboard Scores
+      description: Get high scores, and optionally ranks, in leaderboards for the
+        currently authenticated player
+      operationId: games.scores.get
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: includeRankType
+        description: The types of ranks to return
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: leaderboardId
+        description: The ID of the leaderboard
+      - in: query
+        name: maxResults
+        description: The maximum number of leaderboard scores to return in the response
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: path
+        name: playerId
+        description: A player ID
+      - in: path
+        name: timeSpan
+        description: The time span for the scores and ranks you're requesting
+      responses:
+        200:
+          description: OK
+      tags:
+      - Player
+  /players/{playerId}/quests:
+    get:
+      summary: Get Guests
+      description: Get a list of quests for your application and the currently authenticated
+        player
+      operationId: games.quests.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of quest resources to return in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: path
+        name: playerId
+        description: A player ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guest
+  /players/{playerId}/snapshots:
+    get:
+      summary: Get Player Snapshots
+      description: Retrieves a list of snapshots created by your application for the
+        player corresponding to the player ID
+      operationId: games.snapshots.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of snapshot resources to return in the response,
+          used for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      - in: path
+        name: playerId
+        description: A player ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Player
+  /pushtokens:
+    put:
+      summary: Register Push Token
+      description: Registers a push token for the current user and application
+      operationId: games.pushtokens.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+  /pushtokens/remove:
+    post:
+      summary: Remove Push Token
+      description: Removes a push token for the current user and application
+      operationId: games.pushtokens.remove
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Token
+  /quests/{questId}/accept:
+    post:
+      summary: Accept Quest
+      description: Indicates that the currently authorized user will participate in
+        the quest
+      operationId: games.quests.accept
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: questId
+        description: The ID of the quest
+      responses:
+        200:
+          description: OK
+      tags:
+      - Quest
+  /quests/{questId}/milestones/{milestoneId}/claim:
+    put:
+      summary: Claim Quest Milestone
+      description: Report that a reward for the milestone corresponding to milestoneId
+        for the quest corresponding to questId has been claimed by the currently authorized
+        user
+      operationId: games.questMilestones.claim
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: path
+        name: milestoneId
+        description: The ID of the milestone
+      - in: path
+        name: questId
+        description: The ID of the quest
+      - in: query
+        name: requestId
+        description: A numeric ID to ensure that the request is handled correctly
+          across retries
+      responses:
+        200:
+          description: OK
+      tags:
+      - Milestone
+  /revisions/check:
+    get:
+      summary: Check Revision
+      description: Checks whether the games client is out of date
+      operationId: games.revisions.check
+      parameters:
+      - in: query
+        name: clientRevision
+        description: The revision of the client SDK used by your application
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      responses:
+        200:
+          description: OK
+      tags:
+      - Revision
+  /rooms:
+    get:
+      summary: Get Rooms
+      description: Returns invitations to join rooms
+      operationId: games.rooms.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxResults
+        description: The maximum number of rooms to return in the response, used for
+          paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/create:
+    post:
+      summary: Create Room
+      description: Create a room
+      operationId: games.rooms.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/{roomId}:
+    get:
+      summary: Get Room
+      description: Get the data for a room
+      operationId: games.rooms.get
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: roomId
+        description: The ID of the room
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/{roomId}/decline:
+    post:
+      summary: Decline Room
+      description: Decline an invitation to join a room
+      operationId: games.rooms.decline
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: roomId
+        description: The ID of the room
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/{roomId}/dismiss:
+    post:
+      summary: Dismiss Room
+      description: Dismiss an invitation to join a room
+      operationId: games.rooms.dismiss
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: path
+        name: roomId
+        description: The ID of the room
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/{roomId}/join:
+    post:
+      summary: Join Room
+      description: Join a room
+      operationId: games.rooms.join
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: roomId
+        description: The ID of the room
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/{roomId}/leave:
+    post:
+      summary: Leave Room
+      description: Leave a room
+      operationId: games.rooms.leave
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: roomId
+        description: The ID of the room
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /rooms/{roomId}/reportstatus:
+    post:
+      summary: Report Room Status
+      description: Updates sent by a client reporting the status of peers in a room
+      operationId: games.rooms.reportStatus
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: roomId
+        description: The ID of the room
+      responses:
+        200:
+          description: OK
+      tags:
+      - Room
+  /snapshots/{snapshotId}:
+    get:
+      summary: Get Snapshot
+      description: Retrieves the metadata for a given snapshot ID
+      operationId: games.snapshots.get
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: snapshotId
+        description: The ID of the snapshot
+      responses:
+        200:
+          description: OK
+      tags:
+      - Snapshot
+  /turnbasedmatches:
+    get:
+      summary: Return Turn-Based Match
+      description: Returns turn-based matches the player is or was involved in
+      operationId: games.turnBasedMatches.list
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: includeMatchData
+        description: True if match data should be returned in the response
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxCompletedMatches
+        description: The maximum number of completed or canceled matches to return
+          in the response
+      - in: query
+        name: maxResults
+        description: The maximum number of matches to return in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/create:
+    post:
+      summary: Create Turn-Based Match
+      description: Create a turn-based match
+      operationId: games.turnBasedMatches.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/sync:
+    get:
+      summary: Sync Turn-Based Match
+      description: Returns turn-based matches the player is or was involved in that
+        changed since the last sync call, with the least recent changes coming first
+      operationId: games.turnBasedMatches.sync
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: includeMatchData
+        description: True if match data should be returned in the response
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: query
+        name: maxCompletedMatches
+        description: The maximum number of completed or canceled matches to return
+          in the response
+      - in: query
+        name: maxResults
+        description: The maximum number of matches to return in the response, used
+          for paging
+      - in: query
+        name: pageToken
+        description: The token returned by the previous request
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}:
+    get:
+      summary: Get Turn-Based Match
+      description: Get the data for a turn-based match
+      operationId: games.turnBasedMatches.get
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: includeMatchData
+        description: Get match data along with metadata
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/cancel:
+    put:
+      summary: Update Turn-Based Match
+      description: Cancel a turn-based match
+      operationId: games.turnBasedMatches.cancel
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/decline:
+    put:
+      summary: Decline Turn-Based Match
+      description: Decline an invitation to play a turn-based match
+      operationId: games.turnBasedMatches.decline
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/dismiss:
+    put:
+      summary: Dismiss Turn-Based Match
+      description: Dismiss a turn-based match from the match list
+      operationId: games.turnBasedMatches.dismiss
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/finish:
+    put:
+      summary: Finish Turn-Based Match
+      description: Finish a turn-based match
+      operationId: games.turnBasedMatches.finish
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/join:
+    put:
+      summary: Join Turn-Based Match
+      description: Join a turn-based match
+      operationId: games.turnBasedMatches.join
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/leave:
+    put:
+      summary: Leave Turn-Based Match
+      description: Leave a turn-based match when it is not the current player's turn,
+        without canceling the match
+      operationId: games.turnBasedMatches.leave
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/leaveTurn:
+    put:
+      summary: ReLeave Turnturn Turn-Based Match
+      description: Leave a turn-based match during the current player's turn, without
+        canceling the match
+      operationId: games.turnBasedMatches.leaveTurn
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      - in: query
+        name: matchVersion
+        description: The version of the match being updated
+      - in: query
+        name: pendingParticipantId
+        description: The ID of another participant who should take their turn next
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/rematch:
+    post:
+      summary: Rematch Turn-Based Match
+      description: Create a rematch of a match that was previously completed, with
+        the same participants
+      operationId: games.turnBasedMatches.rematch
+      parameters:
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      - in: query
+        name: requestId
+        description: A randomly generated numeric ID for each request specified by
+          the caller
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+  /turnbasedmatches/{matchId}/turn:
+    put:
+      summary: Turn Turn-Based Match
+      description: Commit the results of a player turn
+      operationId: games.turnBasedMatches.takeTurn
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: consistencyToken
+        description: The last-seen mutation timestamp
+      - in: query
+        name: language
+        description: The preferred language to use for strings returned by this method
+      - in: path
+        name: matchId
+        description: The ID of the match
+      responses:
+        200:
+          description: OK
+      tags:
+      - Match
+definitions:
+  AchievementDefinition:
+    properties:
+      achievementType:
+        description: This is a default description.
+        type: put
+      description:
+        description: This is a default description.
+        type: put
+      experiencePoints:
+        description: This is a default description.
+        type: put
+      formattedTotalSteps:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      initialState:
+        description: This is a default description.
+        type: put
+      isRevealedIconUrlDefault:
+        description: This is a default description.
+        type: put
+      isUnlockedIconUrlDefault:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      revealedIconUrl:
+        description: This is a default description.
+        type: put
+      totalSteps:
+        description: This is a default description.
+        type: put
+      unlockedIconUrl:
+        description: This is a default description.
+        type: put
+  AchievementDefinitionsListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  AchievementIncrementResponse:
+    properties:
+      currentSteps:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      newlyUnlocked:
+        description: This is a default description.
+        type: put
+  AchievementRevealResponse:
+    properties:
+      currentState:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  AchievementSetStepsAtLeastResponse:
+    properties:
+      currentSteps:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      newlyUnlocked:
+        description: This is a default description.
+        type: put
+  AchievementUnlockResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      newlyUnlocked:
+        description: This is a default description.
+        type: put
+  AchievementUpdateMultipleRequest:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      updates:
+        description: This is a default description.
+        type: put
+  AchievementUpdateMultipleResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      updatedAchievements:
+        description: This is a default description.
+        type: put
+  AchievementUpdateRequest:
+    properties:
+      achievementId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      updateType:
+        description: This is a default description.
+        type: put
+  AchievementUpdateResponse:
+    properties:
+      achievementId:
+        description: This is a default description.
+        type: put
+      currentState:
+        description: This is a default description.
+        type: put
+      currentSteps:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      newlyUnlocked:
+        description: This is a default description.
+        type: put
+      updateOccurred:
+        description: This is a default description.
+        type: put
+  AggregateStats:
+    properties:
+      count:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      max:
+        description: This is a default description.
+        type: put
+      min:
+        description: This is a default description.
+        type: put
+      sum:
+        description: This is a default description.
+        type: put
+  AnonymousPlayer:
+    properties:
+      avatarImageUrl:
+        description: This is a default description.
+        type: put
+      displayName:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  Application:
+    properties:
+      achievement_count:
+        description: This is a default description.
+        type: put
+      assets:
+        description: This is a default description.
+        type: put
+      author:
+        description: This is a default description.
+        type: put
+      description:
+        description: This is a default description.
+        type: put
+      enabledFeatures:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      instances:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      lastUpdatedTimestamp:
+        description: This is a default description.
+        type: put
+      leaderboard_count:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      themeColor:
+        description: This is a default description.
+        type: put
+  ApplicationCategory:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      primary:
+        description: This is a default description.
+        type: put
+      secondary:
+        description: This is a default description.
+        type: put
+  ApplicationVerifyResponse:
+    properties:
+      alternate_player_id:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      player_id:
+        description: This is a default description.
+        type: put
+  Category:
+    properties:
+      category:
+        description: This is a default description.
+        type: put
+      experiencePoints:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  CategoryListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  EventBatchRecordFailure:
+    properties:
+      failureCause:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  EventChild:
+    properties:
+      childId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  EventDefinition:
+    properties:
+      childEvents:
+        description: This is a default description.
+        type: put
+      description:
+        description: This is a default description.
+        type: put
+      displayName:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      imageUrl:
+        description: This is a default description.
+        type: put
+      isDefaultImageUrl:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      visibility:
+        description: This is a default description.
+        type: put
+  EventDefinitionListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  EventPeriodRange:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      periodEndMillis:
+        description: This is a default description.
+        type: put
+      periodStartMillis:
+        description: This is a default description.
+        type: put
+  EventPeriodUpdate:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      updates:
+        description: This is a default description.
+        type: put
+  EventRecordFailure:
+    properties:
+      eventId:
+        description: This is a default description.
+        type: put
+      failureCause:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  EventRecordRequest:
+    properties:
+      currentTimeMillis:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      requestId:
+        description: This is a default description.
+        type: put
+      timePeriods:
+        description: This is a default description.
+        type: put
+  EventUpdateRequest:
+    properties:
+      definitionId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      updateCount:
+        description: This is a default description.
+        type: put
+  EventUpdateResponse:
+    properties:
+      batchFailures:
+        description: This is a default description.
+        type: put
+      eventFailures:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      playerEvents:
+        description: This is a default description.
+        type: put
+  GamesAchievementIncrement:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      requestId:
+        description: This is a default description.
+        type: put
+      steps:
+        description: This is a default description.
+        type: put
+  GamesAchievementSetStepsAtLeast:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      steps:
+        description: This is a default description.
+        type: put
+  ImageAsset:
+    properties:
+      height:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      url:
+        description: This is a default description.
+        type: put
+      width:
+        description: This is a default description.
+        type: put
+  Instance:
+    properties:
+      acquisitionUri:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      platformType:
+        description: This is a default description.
+        type: put
+      realtimePlay:
+        description: This is a default description.
+        type: put
+      turnBasedPlay:
+        description: This is a default description.
+        type: put
+  InstanceAndroidDetails:
+    properties:
+      enablePiracyCheck:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      packageName:
+        description: This is a default description.
+        type: put
+      preferred:
+        description: This is a default description.
+        type: put
+  InstanceIosDetails:
+    properties:
+      bundleIdentifier:
+        description: This is a default description.
+        type: put
+      itunesAppId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      preferredForIpad:
+        description: This is a default description.
+        type: put
+      preferredForIphone:
+        description: This is a default description.
+        type: put
+      supportIpad:
+        description: This is a default description.
+        type: put
+      supportIphone:
+        description: This is a default description.
+        type: put
+  InstanceWebDetails:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      launchUrl:
+        description: This is a default description.
+        type: put
+      preferred:
+        description: This is a default description.
+        type: put
+  Leaderboard:
+    properties:
+      iconUrl:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      isIconUrlDefault:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      order:
+        description: This is a default description.
+        type: put
+  LeaderboardEntry:
+    properties:
+      formattedScore:
+        description: This is a default description.
+        type: put
+      formattedScoreRank:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      scoreRank:
+        description: This is a default description.
+        type: put
+      scoreTag:
+        description: This is a default description.
+        type: put
+      scoreValue:
+        description: This is a default description.
+        type: put
+      timeSpan:
+        description: This is a default description.
+        type: put
+      writeTimestampMillis:
+        description: This is a default description.
+        type: put
+  LeaderboardListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  LeaderboardScoreRank:
+    properties:
+      formattedNumScores:
+        description: This is a default description.
+        type: put
+      formattedRank:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      numScores:
+        description: This is a default description.
+        type: put
+      rank:
+        description: This is a default description.
+        type: put
+  LeaderboardScores:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+      numScores:
+        description: This is a default description.
+        type: put
+      prevPageToken:
+        description: This is a default description.
+        type: put
+  MetagameConfig:
+    properties:
+      currentVersion:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      playerLevels:
+        description: This is a default description.
+        type: put
+  NetworkDiagnostics:
+    properties:
+      androidNetworkSubtype:
+        description: This is a default description.
+        type: put
+      androidNetworkType:
+        description: This is a default description.
+        type: put
+      iosNetworkType:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      networkOperatorCode:
+        description: This is a default description.
+        type: put
+      networkOperatorName:
+        description: This is a default description.
+        type: put
+      registrationLatencyMillis:
+        description: This is a default description.
+        type: put
+  ParticipantResult:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      participantId:
+        description: This is a default description.
+        type: put
+      placing:
+        description: This is a default description.
+        type: put
+      result:
+        description: This is a default description.
+        type: put
+  PeerChannelDiagnostics:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      numMessagesLost:
+        description: This is a default description.
+        type: put
+      numMessagesReceived:
+        description: This is a default description.
+        type: put
+      numMessagesSent:
+        description: This is a default description.
+        type: put
+      numSendFailures:
+        description: This is a default description.
+        type: put
+  PeerSessionDiagnostics:
+    properties:
+      connectedTimestampMillis:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      participantId:
+        description: This is a default description.
+        type: put
+  Played:
+    properties:
+      autoMatched:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      timeMillis:
+        description: This is a default description.
+        type: put
+  Player:
+    properties:
+      avatarImageUrl:
+        description: This is a default description.
+        type: put
+      bannerUrlLandscape:
+        description: This is a default description.
+        type: put
+      bannerUrlPortrait:
+        description: This is a default description.
+        type: put
+      displayName:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      originalPlayerId:
+        description: This is a default description.
+        type: put
+      playerId:
+        description: This is a default description.
+        type: put
+      title:
+        description: This is a default description.
+        type: put
+  PlayerAchievement:
+    properties:
+      achievementState:
+        description: This is a default description.
+        type: put
+      currentSteps:
+        description: This is a default description.
+        type: put
+      experiencePoints:
+        description: This is a default description.
+        type: put
+      formattedCurrentStepsString:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      lastUpdatedTimestamp:
+        description: This is a default description.
+        type: put
+  PlayerAchievementListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  PlayerEvent:
+    properties:
+      definitionId:
+        description: This is a default description.
+        type: put
+      formattedNumEvents:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      numEvents:
+        description: This is a default description.
+        type: put
+      playerId:
+        description: This is a default description.
+        type: put
+  PlayerEventListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  PlayerExperienceInfo:
+    properties:
+      currentExperiencePoints:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      lastLevelUpTimestampMillis:
+        description: This is a default description.
+        type: put
+  PlayerLeaderboardScore:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      leaderboard_id:
+        description: This is a default description.
+        type: put
+      scoreString:
+        description: This is a default description.
+        type: put
+      scoreTag:
+        description: This is a default description.
+        type: put
+      scoreValue:
+        description: This is a default description.
+        type: put
+      timeSpan:
+        description: This is a default description.
+        type: put
+      writeTimestamp:
+        description: This is a default description.
+        type: put
+  PlayerLeaderboardScoreListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  PlayerLevel:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      level:
+        description: This is a default description.
+        type: put
+      maxExperiencePoints:
+        description: This is a default description.
+        type: put
+      minExperiencePoints:
+        description: This is a default description.
+        type: put
+  PlayerListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  PlayerScore:
+    properties:
+      formattedScore:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      score:
+        description: This is a default description.
+        type: put
+      scoreTag:
+        description: This is a default description.
+        type: put
+      timeSpan:
+        description: This is a default description.
+        type: put
+  PlayerScoreListResponse:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      submittedScores:
+        description: This is a default description.
+        type: put
+  PlayerScoreResponse:
+    properties:
+      beatenScoreTimeSpans:
+        description: This is a default description.
+        type: put
+      formattedScore:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      leaderboardId:
+        description: This is a default description.
+        type: put
+      scoreTag:
+        description: This is a default description.
+        type: put
+      unbeatenScores:
+        description: This is a default description.
+        type: put
+  PlayerScoreSubmissionList:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      scores:
+        description: This is a default description.
+        type: put
+  ProfileSettings:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      profileVisible:
+        description: This is a default description.
+        type: put
+  PushToken:
+    properties:
+      clientRevision:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      language:
+        description: This is a default description.
+        type: put
+  PushTokenId:
+    properties:
+      ios:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  Quest:
+    properties:
+      acceptedTimestampMillis:
+        description: This is a default description.
+        type: put
+      applicationId:
+        description: This is a default description.
+        type: put
+      bannerUrl:
+        description: This is a default description.
+        type: put
+      description:
+        description: This is a default description.
+        type: put
+      endTimestampMillis:
+        description: This is a default description.
+        type: put
+      iconUrl:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      isDefaultBannerUrl:
+        description: This is a default description.
+        type: put
+      isDefaultIconUrl:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      lastUpdatedTimestampMillis:
+        description: This is a default description.
+        type: put
+      milestones:
+        description: This is a default description.
+        type: put
+      name:
+        description: This is a default description.
+        type: put
+      notifyTimestampMillis:
+        description: This is a default description.
+        type: put
+      startTimestampMillis:
+        description: This is a default description.
+        type: put
+      state:
+        description: This is a default description.
+        type: put
+  QuestContribution:
+    properties:
+      formattedValue:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      value:
+        description: This is a default description.
+        type: put
+  QuestCriterion:
+    properties:
+      eventId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  QuestListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  QuestMilestone:
+    properties:
+      completionRewardData:
+        description: This is a default description.
+        type: put
+      criteria:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      state:
+        description: This is a default description.
+        type: put
+  RevisionCheckResponse:
+    properties:
+      apiVersion:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      revisionStatus:
+        description: This is a default description.
+        type: put
+  Room:
+    properties:
+      applicationId:
+        description: This is a default description.
+        type: put
+      description:
+        description: This is a default description.
+        type: put
+      inviterId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      participants:
+        description: This is a default description.
+        type: put
+      roomId:
+        description: This is a default description.
+        type: put
+      roomStatusVersion:
+        description: This is a default description.
+        type: put
+      status:
+        description: This is a default description.
+        type: put
+      variant:
+        description: This is a default description.
+        type: put
+  RoomAutoMatchStatus:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      waitEstimateSeconds:
+        description: This is a default description.
+        type: put
+  RoomAutoMatchingCriteria:
+    properties:
+      exclusiveBitmask:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      maxAutoMatchingPlayers:
+        description: This is a default description.
+        type: put
+      minAutoMatchingPlayers:
+        description: This is a default description.
+        type: put
+  RoomClientAddress:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      xmppAddress:
+        description: This is a default description.
+        type: put
+  RoomCreateRequest:
+    properties:
+      capabilities:
+        description: This is a default description.
+        type: put
+      invitedPlayerIds:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      requestId:
+        description: This is a default description.
+        type: put
+      variant:
+        description: This is a default description.
+        type: put
+  RoomJoinRequest:
+    properties:
+      capabilities:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  RoomLeaveDiagnostics:
+    properties:
+      androidNetworkSubtype:
+        description: This is a default description.
+        type: put
+      androidNetworkType:
+        description: This is a default description.
+        type: put
+      iosNetworkType:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      networkOperatorCode:
+        description: This is a default description.
+        type: put
+      networkOperatorName:
+        description: This is a default description.
+        type: put
+      peerSession:
+        description: This is a default description.
+        type: put
+      socketsUsed:
+        description: This is a default description.
+        type: put
+  RoomLeaveRequest:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      reason:
+        description: This is a default description.
+        type: put
+  RoomList:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  RoomModification:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      modifiedTimestampMillis:
+        description: This is a default description.
+        type: put
+      participantId:
+        description: This is a default description.
+        type: put
+  RoomP2PStatus:
+    properties:
+      connectionSetupLatencyMillis:
+        description: This is a default description.
+        type: put
+      error:
+        description: This is a default description.
+        type: put
+      error_reason:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      participantId:
+        description: This is a default description.
+        type: put
+      status:
+        description: This is a default description.
+        type: put
+      unreliableRoundtripLatencyMillis:
+        description: This is a default description.
+        type: put
+  RoomP2PStatuses:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      updates:
+        description: This is a default description.
+        type: put
+  RoomParticipant:
+    properties:
+      autoMatched:
+        description: This is a default description.
+        type: put
+      capabilities:
+        description: This is a default description.
+        type: put
+      connected:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      leaveReason:
+        description: This is a default description.
+        type: put
+      status:
+        description: This is a default description.
+        type: put
+  RoomStatus:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      participants:
+        description: This is a default description.
+        type: put
+      roomId:
+        description: This is a default description.
+        type: put
+      status:
+        description: This is a default description.
+        type: put
+      statusVersion:
+        description: This is a default description.
+        type: put
+  ScoreSubmission:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      leaderboardId:
+        description: This is a default description.
+        type: put
+      score:
+        description: This is a default description.
+        type: put
+      scoreTag:
+        description: This is a default description.
+        type: put
+      signature:
+        description: This is a default description.
+        type: put
+  Snapshot:
+    properties:
+      description:
+        description: This is a default description.
+        type: put
+      driveId:
+        description: This is a default description.
+        type: put
+      durationMillis:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      lastModifiedMillis:
+        description: This is a default description.
+        type: put
+      progressValue:
+        description: This is a default description.
+        type: put
+      title:
+        description: This is a default description.
+        type: put
+      type:
+        description: This is a default description.
+        type: put
+      uniqueName:
+        description: This is a default description.
+        type: put
+  SnapshotImage:
+    properties:
+      height:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      mime_type:
+        description: This is a default description.
+        type: put
+      url:
+        description: This is a default description.
+        type: put
+      width:
+        description: This is a default description.
+        type: put
+  SnapshotListResponse:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  TurnBasedAutoMatchingCriteria:
+    properties:
+      exclusiveBitmask:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      maxAutoMatchingPlayers:
+        description: This is a default description.
+        type: put
+      minAutoMatchingPlayers:
+        description: This is a default description.
+        type: put
+  TurnBasedMatch:
+    properties:
+      applicationId:
+        description: This is a default description.
+        type: put
+      description:
+        description: This is a default description.
+        type: put
+      inviterId:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      matchId:
+        description: This is a default description.
+        type: put
+      matchNumber:
+        description: This is a default description.
+        type: put
+      matchVersion:
+        description: This is a default description.
+        type: put
+      participants:
+        description: This is a default description.
+        type: put
+      pendingParticipantId:
+        description: This is a default description.
+        type: put
+      rematchId:
+        description: This is a default description.
+        type: put
+      results:
+        description: This is a default description.
+        type: put
+      status:
+        description: This is a default description.
+        type: put
+      userMatchStatus:
+        description: This is a default description.
+        type: put
+      variant:
+        description: This is a default description.
+        type: put
+      withParticipantId:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchCreateRequest:
+    properties:
+      invitedPlayerIds:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      requestId:
+        description: This is a default description.
+        type: put
+      variant:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchData:
+    properties:
+      data:
+        description: This is a default description.
+        type: put
+      dataAvailable:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchDataRequest:
+    properties:
+      data:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchList:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchModification:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      modifiedTimestampMillis:
+        description: This is a default description.
+        type: put
+      participantId:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchParticipant:
+    properties:
+      autoMatched:
+        description: This is a default description.
+        type: put
+      id:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      status:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchRematch:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchResults:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      matchVersion:
+        description: This is a default description.
+        type: put
+      results:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchSync:
+    properties:
+      items:
+        description: This is a default description.
+        type: put
+      kind:
+        description: This is a default description.
+        type: put
+      moreAvailable:
+        description: This is a default description.
+        type: put
+      nextPageToken:
+        description: This is a default description.
+        type: put
+  TurnBasedMatchTurn:
+    properties:
+      kind:
+        description: This is a default description.
+        type: put
+      matchVersion:
+        description: This is a default description.
+        type: put
+      pendingParticipantId:
+        description: This is a default description.
+        type: put
+      results:
+        description: This is a default description.
+        type: put
