@@ -1,0 +1,594 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Google Cloud Container Builder",
+		"description": "Builds container images in the cloud.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "cloudbuild.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/projects/{projectId}/builds": {
+			"get": {
+				"summary": "Get Builds",
+				"description": "Lists previously requested builds",
+				"operationId": "cloudbuild.projects.builds.list",
+				"parameters": [{
+					"in": "query",
+					"name": "filter",
+					"description": "The raw filter text to constrain the results"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "Number of results to return in the list"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "Token to provide to skip to a particular spot in the list"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Build"]
+			},
+			"post": {
+				"summary": "Starts Build",
+				"description": "Starts a build with the specified configuration",
+				"operationId": "cloudbuild.projects.builds.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Build"]
+			}
+		},
+		"/v1/projects/{projectId}/builds/{id}": {
+			"get": {
+				"summary": "Get Build",
+				"description": "Returns information about a previously requested build",
+				"operationId": "cloudbuild.projects.builds.get",
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"description": "ID of the build"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Build"]
+			}
+		},
+		"/v1/projects/{projectId}/builds/{id}:cancel": {
+			"post": {
+				"summary": "Cancel Build",
+				"description": "Cancels a requested build in progress",
+				"operationId": "cloudbuild.projects.builds.cancel",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "id",
+					"description": "ID of the build"
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Build"]
+			}
+		},
+		"/v1/projects/{projectId}/triggers": {
+			"get": {
+				"summary": "Get Build Triggers",
+				"description": "Lists existing BuildTrigger",
+				"operationId": "cloudbuild.projects.triggers.list",
+				"parameters": [{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project for which to list BuildTriggers"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Trigger"]
+			},
+			"post": {
+				"summary": "Create Build Trigger",
+				"description": "Creates a new BuildTrigger",
+				"operationId": "cloudbuild.projects.triggers.create",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project for which to configure automatic builds"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Trigger"]
+			}
+		},
+		"/v1/projects/{projectId}/triggers/{triggerId}": {
+			"delete": {
+				"summary": "Delete Build Trigger",
+				"description": "Deletes an BuildTrigger by its project ID and trigger ID",
+				"operationId": "cloudbuild.projects.triggers.delete",
+				"parameters": [{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project that owns the trigger"
+				},
+				{
+					"in": "path",
+					"name": "triggerId",
+					"description": "ID of the BuildTrigger to delete"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Trigger"]
+			},
+			"get": {
+				"summary": "Get Build Trigger",
+				"description": "Gets information about a BuildTrigger",
+				"operationId": "cloudbuild.projects.triggers.get",
+				"parameters": [{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project that owns the trigger"
+				},
+				{
+					"in": "path",
+					"name": "triggerId",
+					"description": "ID of the BuildTrigger to get"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Trigger"]
+			},
+			"patch": {
+				"summary": "Update Build Trigger",
+				"description": "Updates an BuildTrigger by its project ID and trigger ID",
+				"operationId": "cloudbuild.projects.triggers.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectId",
+					"description": "ID of the project that owns the trigger"
+				},
+				{
+					"in": "path",
+					"name": "triggerId",
+					"description": "ID of the BuildTrigger to update"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Trigger"]
+			}
+		},
+		"/v1/{name}": {
+			"get": {
+				"summary": "Get Operation State",
+				"description": "Gets the latest state of a long-running operation",
+				"operationId": "cloudbuild.operations.get",
+				"parameters": [{
+					"in": "path",
+					"name": "name",
+					"description": "The name of the operation resource"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Operation"]
+			}
+		},
+		"/v1/{name}:cancel": {
+			"post": {
+				"summary": "Cancel Operation",
+				"description": "Starts asynchronous cancellation on a long-running operation",
+				"operationId": "cloudbuild.operations.cancel",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The name of the operation resource to be cancelled"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Operation"]
+			}
+		}
+	},
+	"definitions": {
+		"Build": {
+			"properties": {
+				"buildTriggerId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"createTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"finishTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"images": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"logUrl": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"logsBucket": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"status": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"statusDetail": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"steps": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"substitutions": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"timeout": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"BuildOperationMetadata": {
+			"properties": []
+		},
+		"BuildOptions": {
+			"properties": {
+				"requestedVerifyOption": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"sourceProvenanceHash": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"BuildStep": {
+			"properties": {
+				"args": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"dir": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"entrypoint": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"env": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"waitFor": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"BuildTrigger": {
+			"properties": {
+				"createTime": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"disabled": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"filename": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"id": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"substitutions": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"BuiltImage": {
+			"properties": {
+				"digest": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"CancelBuildRequest": {
+			"properties": []
+		},
+		"CancelOperationRequest": {
+			"properties": []
+		},
+		"Empty": {
+			"properties": []
+		},
+		"FileHashes": {
+			"properties": {
+				"fileHash": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Hash": {
+			"properties": {
+				"type": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"value": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListBuildTriggersResponse": {
+			"properties": {
+				"triggers": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListBuildsResponse": {
+			"properties": {
+				"builds": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"ListOperationsResponse": {
+			"properties": {
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"operations": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Operation": {
+			"properties": {
+				"done": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"metadata": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"response": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"RepoSource": {
+			"properties": {
+				"branchName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"commitSha": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"projectId": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"repoName": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"tagName": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Results": {
+			"properties": {
+				"buildStepImages": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"images": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Source": {
+			"properties": []
+		},
+		"SourceProvenance": {
+			"properties": {
+				"fileHashes": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"Status": {
+			"properties": {
+				"code": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"details": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"message": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		},
+		"StorageSource": {
+			"properties": {
+				"bucket": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"generation": {
+					"description": "This is a default description.",
+					"type": "post"
+				},
+				"object": {
+					"description": "This is a default description.",
+					"type": "post"
+				}
+			}
+		}
+	}
+}
