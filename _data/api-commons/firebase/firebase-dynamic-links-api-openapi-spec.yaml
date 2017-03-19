@@ -1,0 +1,158 @@
+swagger: "2.0"
+info:
+  title: Firebase Dynamic Links
+  description: Firebase Dynamic Links API enables third party developers to programmatically
+    create and manage Dynamic Links.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: firebasedynamiclinks.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/shortLinks:
+    post:
+      summary: Create Link
+      description: Creates a short Dynamic Link given either a valid long Dynamic
+        Link orndetails such as Dynamic Link domain, Android and iOS app information
+      operationId: firebasedynamiclinks.shortLinks.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Shortened Link
+definitions:
+  AnalyticsInfo:
+    properties: []
+  AndroidInfo:
+    properties:
+      androidFallbackLink:
+        description: This is a default description.
+        type: post
+      androidLink:
+        description: This is a default description.
+        type: post
+      androidMinPackageVersionCode:
+        description: This is a default description.
+        type: post
+      androidPackageName:
+        description: This is a default description.
+        type: post
+  CreateShortDynamicLinkRequest:
+    properties:
+      longDynamicLink:
+        description: This is a default description.
+        type: post
+  CreateShortDynamicLinkResponse:
+    properties:
+      previewLink:
+        description: This is a default description.
+        type: post
+      shortLink:
+        description: This is a default description.
+        type: post
+      warning:
+        description: This is a default description.
+        type: post
+  DynamicLinkInfo:
+    properties:
+      dynamicLinkDomain:
+        description: This is a default description.
+        type: post
+      link:
+        description: This is a default description.
+        type: post
+  DynamicLinkWarning:
+    properties:
+      warningCode:
+        description: This is a default description.
+        type: post
+      warningMessage:
+        description: This is a default description.
+        type: post
+  GooglePlayAnalytics:
+    properties:
+      gclid:
+        description: This is a default description.
+        type: post
+      utmCampaign:
+        description: This is a default description.
+        type: post
+      utmContent:
+        description: This is a default description.
+        type: post
+      utmMedium:
+        description: This is a default description.
+        type: post
+      utmSource:
+        description: This is a default description.
+        type: post
+      utmTerm:
+        description: This is a default description.
+        type: post
+  ITunesConnectAnalytics:
+    properties:
+      at:
+        description: This is a default description.
+        type: post
+      ct:
+        description: This is a default description.
+        type: post
+      mt:
+        description: This is a default description.
+        type: post
+      pt:
+        description: This is a default description.
+        type: post
+  IosInfo:
+    properties:
+      iosAppStoreId:
+        description: This is a default description.
+        type: post
+      iosBundleId:
+        description: This is a default description.
+        type: post
+      iosCustomScheme:
+        description: This is a default description.
+        type: post
+      iosFallbackLink:
+        description: This is a default description.
+        type: post
+      iosIpadBundleId:
+        description: This is a default description.
+        type: post
+      iosIpadFallbackLink:
+        description: This is a default description.
+        type: post
+  NavigationInfo:
+    properties:
+      enableForcedRedirect:
+        description: This is a default description.
+        type: post
+  SocialMetaTagInfo:
+    properties:
+      socialDescription:
+        description: This is a default description.
+        type: post
+      socialImageLink:
+        description: This is a default description.
+        type: post
+      socialTitle:
+        description: This is a default description.
+        type: post
+  Suffix:
+    properties:
+      option:
+        description: This is a default description.
+        type: post
