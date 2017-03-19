@@ -14,7 +14,7 @@ title: Google
 
 {% assign apijson = index[0] %}
 {% assign contents = site.data.api-commons %}
-
+HERE: {{ index.include }}
 {% for api in index.include %}
 
   {% assign path = api.url  | replace: 'https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/','' %}
