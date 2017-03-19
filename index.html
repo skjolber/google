@@ -46,57 +46,105 @@ title: Google
           <!-- APIs.yaml -->
           <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
 
-          {% assign blog_url = '' %}
-          {% assign blogrss_url = '' %}
-          {% assign portal_url = '' %}
-          {% assign gitub_url = '' %}
-          {% assign twitter_url = '' %}
-          {% assign website_url = '' %}
+            {% assign blog_url = '' %}
+            {% assign blogrss_url = '' %}
+            {% assign portal_url = '' %}
+            {% assign gitub_url = '' %}
+            {% assign twitter_url = '' %}
+            {% assign website_url = '' %}
 
-          {% for common in apijson.x-common %}
+            {% for common in apijson.x-common %}
 
-            {% if common.type == 'x-getting-started' %}
-              {% assign getting_started_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-authentication-overview' %}
-              {% assign authentication_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-faq' %}
-              {% assign faq_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-login' %}
-              {% assign login_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-selfservice-registration' %}
-              {% assign signup_url = common.url %}
-            {% endif %}
+              {% if common.type == 'x-portal' %}
+                {% assign portal_url = common.url %}
+              {% endif %}
 
-            {% if common.type == 'x-documentation' %}
-              {% assign documentation_url = common.url %}
-            {% endif %}
+              {% if common.type == 'x-website' %}
+                {% assign website_url = common.url %}
+              {% endif %}
 
-            {% if common.type == 'x-code-page' %}
-              {% assign code_page_url = common.url %}
-            {% endif %}
+              {% if portal_url == empty %}
+                {% assign portal_url = website_url %}
+              {% endif %}
 
-            {% if common.type == 'x-road-map' %}
-              {% assign road_map_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-issues' %}
-              {% assign issue_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-change-log' %}
-              {% assign change_log_url = common.url %}
-            {% endif %}
-            {% if common.type == 'x-status' %}
-              {% assign status_dashboard_url = common.url %}
-            {% endif %}
+              {% if common.type == 'x-getting-started' %}
+                {% assign getting_started_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-authentication-overview' %}
+                {% assign authentication_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-faq' %}
+                {% assign faq_url = common.url %}
+              {% endif %}
 
-            {% if common.type == 'x-support' %}
-              {% assign support_url = common.url %}
-            {% endif %}
+              {% if common.type == 'x-login' %}
+                {% assign login_url = common.url %}
+              {% endif %}
 
-          {% endfor %}
+              {% if common.type == 'x-selfservice-registration' %}
+                {% assign signup_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-documentation' %}
+                {% assign documentation_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-code-page' %}
+                {% assign code_page_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-road-map' %}
+                {% assign road_map_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-issues' %}
+                {% assign issue_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-change-log' %}
+                {% assign change_log_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-status' %}
+                {% assign status_dashboard_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-support' %}
+                {% assign support_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-blog' %}
+                {% assign blog_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-blog-rss' %}
+                {% assign blogrss_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-twitter' %}
+                {% assign twitter_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-github' %}
+                {% assign gitub_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-signup' %}
+                {% assign gitub_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-dedicated-plans--pricing-page' %}
+                {% assign plan_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-rate-limit' %}
+                {% assign rate_limit_url = common.url %}
+              {% endif %}
+
+              {% if common.type == 'x-terms-of-service-page' %}
+                {% assign terms_of_service_url = common.url %}
+              {% endif %}
+              {% if common.type == 'x-privacy-policy-page' %}
+                {% assign privacy_policy_url = common.url %}
+              {% endif %}
+
+            {% endfor %}
 
             <tr>
               <td>
@@ -104,6 +152,79 @@ title: Google
                 <h3>{{ api_name }} (<a href="{{ api_json_url }}">APIs.json</a>)<h3>
                 <p><img src="{{ api_image }}" width="75" style="padding: 10px;" align="left" /></p>
                 <p style="font-size: 11px;">{{ api_description }}<p>
+
+                  <table width="100%" border="0" style="padding-top: 10px;">
+                    <tr>
+                      <td align="center" colspan="3" style="margin-left: 25px; margin-right: 25px;">
+                        <ul style="list-style: none; display: inline;">
+                          {% if portal_url != '' %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ portal_url }}" target="_blank" title="Portal">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-portal-developers.jpg" width="32" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+                          {% if blog_url != '' && blog_url != empty && blog_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ blog_url }}" target="_blank" title="Blog">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-blog-icon.png" width="27" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+                          {% if blogrss_url != '' && blogrss_url != empty && blogrss_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ blogrss_url }}" target="_blank" title="Blog RSS">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="27" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+                          {% if twitter_url != '' && twitter_url != empty && twitter_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ twitter_url }}" target="_blank" title="Twitter">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-twitter-icon.png" width="44" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+                          {% if gitub_url != '' && gitub_url != empty && gitub_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ gitub_url }}" target="_blank" title="Github">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-icon.png" width="52" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+                          {% if signup_url != '' && signup_url != empty && signup_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ signup_url }}" target="_blank" title="Signup">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/building-blocks/x-signup.png" width="45" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+                          {% if issue_url != '' && issue_url != empty && issue_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ issue_url }}" target="_blank" title="Issues">
+                                <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-bug.png" width="38" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+                          {% if terms_of_service_url != '' && terms_of_service_url != empty && terms_of_service_url != null %}
+                            <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                              <a href="{{ terms_of_service_url }}" target="_blank" title="Terms of Service">
+                                <img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/building-blocks/bw-terms-conditions.png" width="33" align="center" />
+                              </a>
+                            </li>
+                          {% endif %}
+
+
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
 
                 <table width="100%" border="0" style="padding-top: 10px;">
                   <tr>
