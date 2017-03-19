@@ -1,0 +1,538 @@
+swagger: "2.0"
+info:
+  title: YouTube Reporting
+  description: Schedules reporting jobs containing your YouTube Analytics data and
+    downloads the resulting bulk data reports in the form of CSV files.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: youtubereporting.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /groupItems:
+    delete:
+      summary: Remove Group Item
+      description: Removes an item from a group
+      operationId: youtubeAnalytics.groupItems.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube group item ID for the
+          group that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+    get:
+      summary: Get Group Items
+      description: Returns a collection of group items that match the API request
+        parameters
+      operationId: youtubeAnalytics.groupItems.list
+      parameters:
+      - in: query
+        name: groupId
+        description: The id parameter specifies the unique ID of the group for which
+          you want to retrieve group items
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+    post:
+      summary: Create Group Item
+      description: Creates a group item
+      operationId: youtubeAnalytics.groupItems.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+  /groups:
+    delete:
+      summary: Delete Group
+      description: Deletes a group
+      operationId: youtubeAnalytics.groups.delete
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies the YouTube group ID for the group
+          that is being deleted
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+    get:
+      summary: Get Groups
+      description: Returns a collection of groups that match the API request parameters
+      operationId: youtubeAnalytics.groups.list
+      parameters:
+      - in: query
+        name: id
+        description: The id parameter specifies a comma-separated list of the YouTube
+          group ID(s) for the resource(s) that are being retrieved
+      - in: query
+        name: mine
+        description: Set this parameter's value to true to instruct the API to only
+          return groups owned by the authenticated user
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      - in: query
+        name: pageToken
+        description: The pageToken parameter identifies a specific page in the result
+          set that should be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+    post:
+      summary: Create Group
+      description: Creates a group
+      operationId: youtubeAnalytics.groups.insert
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+    put:
+      summary: Modify Group
+      description: Modifies a group
+      operationId: youtubeAnalytics.groups.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: 'Note: This parameter is intended exclusively for YouTube content
+          partners'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Group
+  /reports:
+    get:
+      summary: Get Reports
+      description: Retrieve your YouTube Analytics reports
+      operationId: youtubeAnalytics.reports.query
+      parameters:
+      - in: query
+        name: currency
+        description: The currency to which financial metrics should be converted
+      - in: query
+        name: dimensions
+        description: A comma-separated list of YouTube Analytics dimensions, such
+          as views or ageGroup,gender
+      - in: query
+        name: end-date
+        description: The end date for fetching YouTube Analytics data
+      - in: query
+        name: filters
+        description: A list of filters that should be applied when retrieving YouTube
+          Analytics data
+      - in: query
+        name: ids
+        description: Identifies the YouTube channel or content owner for which you
+          are retrieving YouTube Analytics data
+      - in: query
+        name: include-historical-channel-data
+        description: If set to true historical data (i
+      - in: query
+        name: max-results
+        description: The maximum number of rows to include in the response
+      - in: query
+        name: metrics
+        description: A comma-separated list of YouTube Analytics metrics, such as
+          views or likes,dislikes
+      - in: query
+        name: sort
+        description: A comma-separated list of dimensions or metrics that determine
+          the sort order for YouTube Analytics data
+      - in: query
+        name: start-date
+        description: The start date for fetching YouTube Analytics data
+      - in: query
+        name: start-index
+        description: An index of the first entity to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /v1/jobs:
+    get:
+      summary: Get Jobs
+      description: Lists jobs
+      operationId: youtubereporting.jobs.list
+      parameters:
+      - in: query
+        name: includeSystemManaged
+        description: If set to true, also system-managed jobs will be returned; otherwise
+          onlynuser-created jobs will be returned
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      - in: query
+        name: pageSize
+        description: Requested page size
+      - in: query
+        name: pageToken
+        description: A token identifying a page of results the server should return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+    post:
+      summary: Create Jobs
+      description: Creates a job and returns it
+      operationId: youtubereporting.jobs.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+  /v1/jobs/{jobId}:
+    delete:
+      summary: Delete Jobs
+      description: Deletes a job
+      operationId: youtubereporting.jobs.delete
+      parameters:
+      - in: path
+        name: jobId
+        description: The ID of the job to delete
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+    get:
+      summary: Get Job
+      description: Gets a job
+      operationId: youtubereporting.jobs.get
+      parameters:
+      - in: path
+        name: jobId
+        description: The ID of the job to retrieve
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+  /v1/jobs/{jobId}/reports:
+    get:
+      summary: Get Job Reports
+      description: Lists reports created by a specific job
+      operationId: youtubereporting.jobs.reports.list
+      parameters:
+      - in: query
+        name: createdAfter
+        description: If set, only reports created after the specified date/time are
+          returned
+      - in: path
+        name: jobId
+        description: The ID of the job
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      - in: query
+        name: pageSize
+        description: Requested page size
+      - in: query
+        name: pageToken
+        description: A token identifying a page of results the server should return
+      - in: query
+        name: startTimeAtOrAfter
+        description: If set, only reports whose start time is greater than or equal
+          thenspecified date/time are returned
+      - in: query
+        name: startTimeBefore
+        description: If set, only reports whose start time is smaller than the specifiedndate/time
+          are returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /v1/jobs/{jobId}/reports/{reportId}:
+    get:
+      summary: Get Job Report
+      description: Gets the metadata of a specific report
+      operationId: youtubereporting.jobs.reports.get
+      parameters:
+      - in: path
+        name: jobId
+        description: The ID of the job
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      - in: path
+        name: reportId
+        description: The ID of the report to retrieve
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+  /v1/media/{resourceName}:
+    get:
+      summary: Get Media
+      description: Method for media download
+      operationId: youtubereporting.media.download
+      parameters:
+      - in: path
+        name: resourceName
+        description: Name of the media that is being downloaded
+      responses:
+        200:
+          description: OK
+      tags:
+      - Media
+  /v1/reportTypes:
+    get:
+      summary: Get Report Types
+      description: Lists report types
+      operationId: youtubereporting.reportTypes.list
+      parameters:
+      - in: query
+        name: includeSystemManaged
+        description: If set to true, also system-managed report types will be returned;notherwise
+          only the report types that can be used to create new reportingnjobs will
+          be returned
+      - in: query
+        name: onBehalfOfContentOwner
+        description: The content owner's external ID on which behalf the user is acting
+          on
+      - in: query
+        name: pageSize
+        description: Requested page size
+      - in: query
+        name: pageToken
+        description: A token identifying a page of results the server should return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Report
+definitions:
+  Group:
+    properties:
+      contentDetails:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      snippet:
+        description: This is a default description.
+        type: parameters
+  GroupItem:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      groupId:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      resource:
+        description: This is a default description.
+        type: parameters
+  GroupItemListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  GroupListResponse:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ResultTable:
+    properties:
+      columnHeaders:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      rows:
+        description: This is a default description.
+        type: parameters
+  Empty:
+    properties: []
+  Job:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: parameters
+      expireTime:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      reportTypeId:
+        description: This is a default description.
+        type: parameters
+      systemManaged:
+        description: This is a default description.
+        type: parameters
+  ListJobsResponse:
+    properties:
+      jobs:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListReportTypesResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      reportTypes:
+        description: This is a default description.
+        type: parameters
+  ListReportsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      reports:
+        description: This is a default description.
+        type: parameters
+  Media:
+    properties:
+      resourceName:
+        description: This is a default description.
+        type: parameters
+  Report:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: parameters
+      downloadUrl:
+        description: This is a default description.
+        type: parameters
+      endTime:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      jobExpireTime:
+        description: This is a default description.
+        type: parameters
+      jobId:
+        description: This is a default description.
+        type: parameters
+      startTime:
+        description: This is a default description.
+        type: parameters
+  ReportType:
+    properties:
+      deprecateTime:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      systemManaged:
+        description: This is a default description.
+        type: parameters
