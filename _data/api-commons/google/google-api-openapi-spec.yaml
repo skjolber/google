@@ -1,0 +1,519 @@
+swagger: "2.0"
+info:
+  title: Google+
+  description: Builds on top of the Google+ platform.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: www.googleapis.com
+basePath: /plus/v1
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /activities:
+    get:
+      summary: Get Activities
+      description: Search public activities
+      operationId: plus.activities.search
+      parameters:
+      - in: query
+        name: language
+        description: Specify the preferred language to search with
+      - in: query
+        name: maxResults
+        description: The maximum number of activities to include in the response,
+          which is used for paging
+      - in: query
+        name: orderBy
+        description: Specifies how to order search results
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: query
+        name: query
+        description: Full-text search query string
+      responses:
+        200:
+          description: OK
+      tags:
+      - Activity
+  /activities/{activityId}:
+    get:
+      summary: Get Activity
+      description: Get an activity
+      operationId: plus.activities.get
+      parameters:
+      - in: path
+        name: activityId
+        description: The ID of the activity to get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Activity
+  /activities/{activityId}/comments:
+    get:
+      summary: Get Activity Comments
+      description: List all of the comments for an activity
+      operationId: plus.comments.list
+      parameters:
+      - in: path
+        name: activityId
+        description: The ID of the activity to get comments for
+      - in: query
+        name: maxResults
+        description: The maximum number of comments to include in the response, which
+          is used for paging
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: query
+        name: sortOrder
+        description: The order in which to sort the list of comments
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+  /activities/{activityId}/people/{collection}:
+    get:
+      summary: Get Activity People
+      description: List all of the people in the specified collection for a particular
+        activity
+      operationId: plus.people.listByActivity
+      parameters:
+      - in: path
+        name: activityId
+        description: The ID of the activity to get the list of people for
+      - in: path
+        name: collection
+        description: The collection of people to list
+      - in: query
+        name: maxResults
+        description: The maximum number of people to include in the response, which
+          is used for paging
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      responses:
+        200:
+          description: OK
+      tags:
+      - Person
+  /comments/{commentId}:
+    get:
+      summary: Get Comments
+      description: Get a comment
+      operationId: plus.comments.get
+      parameters:
+      - in: path
+        name: commentId
+        description: The ID of the comment to get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Comment
+  /people:
+    get:
+      summary: Get People
+      description: Search all public profiles
+      operationId: plus.people.search
+      parameters:
+      - in: query
+        name: language
+        description: Specify the preferred language to search with
+      - in: query
+        name: maxResults
+        description: The maximum number of people to include in the response, which
+          is used for paging
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: query
+        name: query
+        description: Specify a query string for full text search of public text in
+          all profiles
+      responses:
+        200:
+          description: OK
+      tags:
+      - Person
+  /people/{userId}:
+    get:
+      summary: Get Person
+      description: Get a person's profile
+      operationId: plus.people.get
+      parameters:
+      - in: path
+        name: userId
+        description: The ID of the person to get the profile for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Person
+  /people/{userId}/activities/{collection}:
+    get:
+      summary: Get Colelction Activities
+      description: List all of the activities in the specified collection for a particular
+        user
+      operationId: plus.activities.list
+      parameters:
+      - in: path
+        name: collection
+        description: The collection of activities to list
+      - in: query
+        name: maxResults
+        description: The maximum number of activities to include in the response,
+          which is used for paging
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: path
+        name: userId
+        description: The ID of the user to get activities for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Activity
+  /people/{userId}/people/{collection}:
+    get:
+      summary: Get Collection of People
+      description: List all of the people in the specified collection
+      operationId: plus.people.list
+      parameters:
+      - in: path
+        name: collection
+        description: The collection of people to list
+      - in: query
+        name: maxResults
+        description: The maximum number of people to include in the response, which
+          is used for paging
+      - in: query
+        name: orderBy
+        description: The order to return people in
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: path
+        name: userId
+        description: Get the collection of people for the person identified
+      responses:
+        200:
+          description: OK
+      tags:
+      - Person
+definitions:
+  Acl:
+    properties:
+      description:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+  Activity:
+    properties:
+      actor:
+        description: This is a default description.
+        type: parameters
+      address:
+        description: This is a default description.
+        type: parameters
+      annotation:
+        description: This is a default description.
+        type: parameters
+      crosspostSource:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      geocode:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      object:
+        description: This is a default description.
+        type: parameters
+      placeId:
+        description: This is a default description.
+        type: parameters
+      placeName:
+        description: This is a default description.
+        type: parameters
+      provider:
+        description: This is a default description.
+        type: parameters
+      published:
+        description: This is a default description.
+        type: parameters
+      radius:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+      verb:
+        description: This is a default description.
+        type: parameters
+  ActivityFeed:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextLink:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+  Comment:
+    properties:
+      actor:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      inReplyTo:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      object:
+        description: This is a default description.
+        type: parameters
+      plusoners:
+        description: This is a default description.
+        type: parameters
+      published:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+      verb:
+        description: This is a default description.
+        type: parameters
+  CommentFeed:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextLink:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      updated:
+        description: This is a default description.
+        type: parameters
+  PeopleFeed:
+    properties:
+      etag:
+        description: This is a default description.
+        type: parameters
+      items:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      selfLink:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      totalItems:
+        description: This is a default description.
+        type: parameters
+  Person:
+    properties:
+      aboutMe:
+        description: This is a default description.
+        type: parameters
+      ageRange:
+        description: This is a default description.
+        type: parameters
+      birthday:
+        description: This is a default description.
+        type: parameters
+      braggingRights:
+        description: This is a default description.
+        type: parameters
+      circledByCount:
+        description: This is a default description.
+        type: parameters
+      cover:
+        description: This is a default description.
+        type: parameters
+      currentLocation:
+        description: This is a default description.
+        type: parameters
+      displayName:
+        description: This is a default description.
+        type: parameters
+      domain:
+        description: This is a default description.
+        type: parameters
+      emails:
+        description: This is a default description.
+        type: parameters
+      etag:
+        description: This is a default description.
+        type: parameters
+      gender:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      image:
+        description: This is a default description.
+        type: parameters
+      isPlusUser:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      language:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      nickname:
+        description: This is a default description.
+        type: parameters
+      objectType:
+        description: This is a default description.
+        type: parameters
+      occupation:
+        description: This is a default description.
+        type: parameters
+      organizations:
+        description: This is a default description.
+        type: parameters
+      placesLived:
+        description: This is a default description.
+        type: parameters
+      plusOneCount:
+        description: This is a default description.
+        type: parameters
+      relationshipStatus:
+        description: This is a default description.
+        type: parameters
+      skills:
+        description: This is a default description.
+        type: parameters
+      tagline:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+      urls:
+        description: This is a default description.
+        type: parameters
+      verified:
+        description: This is a default description.
+        type: parameters
+  Place:
+    properties:
+      address:
+        description: This is a default description.
+        type: parameters
+      displayName:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      kind:
+        description: This is a default description.
+        type: parameters
+      position:
+        description: This is a default description.
+        type: parameters
+  PlusAclentryResource:
+    properties:
+      displayName:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      type:
+        description: This is a default description.
+        type: parameters
