@@ -10,7 +10,18 @@ created: "2017-03-18"
 modified: "2017-03-18"
 url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-analytics/apis.yaml
 specificationVersion: "0.14"
-apis: []
+apis:
+- name: Google Analytics API
+  description: Google Analytics gives you the digital analytics tools you need to
+    analyze data from all touchpoints in one place, for a deeper understanding of
+    the customer experience
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/logo_lockup_analytics_icon_vertical_black_2x.png
+  humanURL: https://www.google.com/analytics/#?modal_active=none
+  baseURL: https://www.google.com/analytics/#?modal_active=none
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-analytics/google-analytics-api-openapi-spec.yaml
 x-common:
 - type: x-website
   url: https://www.google.com/analytics/#?modal_active=none
