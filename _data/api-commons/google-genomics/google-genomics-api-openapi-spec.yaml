@@ -1,0 +1,1879 @@
+swagger: "2.0"
+info:
+  title: Genomics
+  description: Upload, process, query, and search Genomics data in the cloud.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: genomics.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/annotations:
+    post:
+      summary: Create Annotation
+      description: Creates a new annotation
+      operationId: genomics.annotations.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation
+  /v1/annotations/search:
+    post:
+      summary: Search Annotations
+      description: Searches for annotations that match the given criteria
+      operationId: genomics.annotations.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation
+  /v1/annotations/{annotationId}:
+    delete:
+      summary: Delete Annotation
+      description: Deletes an annotation
+      operationId: genomics.annotations.delete
+      parameters:
+      - in: path
+        name: annotationId
+        description: The ID of the annotation to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation
+    get:
+      summary: Get Annotation
+      description: Gets an annotation
+      operationId: genomics.annotations.get
+      parameters:
+      - in: path
+        name: annotationId
+        description: The ID of the annotation to be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation
+    put:
+      summary: Update Annotation
+      description: Updates an annotation
+      operationId: genomics.annotations.update
+      parameters:
+      - in: path
+        name: annotationId
+        description: The ID of the annotation to be updated
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation
+  /v1/annotations:batchCreate:
+    post:
+      summary: Create Batch Annotation
+      description: Creates one or more new annotations atomically
+      operationId: genomics.annotations.batchCreate
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation
+  /v1/annotationsets:
+    post:
+      summary: Create Annotation Set
+      description: Creates a new annotation set
+      operationId: genomics.annotationsets.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation Set
+  /v1/annotationsets/search:
+    post:
+      summary: Search Annotation Sets
+      description: Searches for annotation sets that match the given criteria
+      operationId: genomics.annotationsets.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation Set
+  /v1/annotationsets/{annotationSetId}:
+    delete:
+      summary: Delete Annotation Set
+      description: Deletes an annotation set
+      operationId: genomics.annotationsets.delete
+      parameters:
+      - in: path
+        name: annotationSetId
+        description: The ID of the annotation set to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation Set
+    get:
+      summary: Get Annotation Set
+      description: Gets an annotation set
+      operationId: genomics.annotationsets.get
+      parameters:
+      - in: path
+        name: annotationSetId
+        description: The ID of the annotation set to be retrieved
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation Set
+    put:
+      summary: Update Annotation Set
+      description: Updates an annotation set
+      operationId: genomics.annotationsets.update
+      parameters:
+      - in: path
+        name: annotationSetId
+        description: The ID of the annotation set to be updated
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Annotation Set
+  /v1/callsets:
+    post:
+      summary: Create Call Set
+      description: Creates a new call set
+      operationId: genomics.callsets.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Call Set
+  /v1/callsets/search:
+    post:
+      summary: Search Call Sets
+      description: Gets a list of call sets matching the criteria
+      operationId: genomics.callsets.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Call Set
+  /v1/callsets/{callSetId}:
+    delete:
+      summary: Delete Call Set
+      description: Deletes a call set
+      operationId: genomics.callsets.delete
+      parameters:
+      - in: path
+        name: callSetId
+        description: The ID of the call set to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Call Set
+    get:
+      summary: Get Call Set
+      description: Gets a call set by ID
+      operationId: genomics.callsets.get
+      parameters:
+      - in: path
+        name: callSetId
+        description: The ID of the call set
+      responses:
+        200:
+          description: OK
+      tags:
+      - Call Set
+    patch:
+      summary: Update Call Set
+      description: Updates a call set
+      operationId: genomics.callsets.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: callSetId
+        description: The ID of the call set to be updated
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Call Set
+  /v1/datasets:
+    get:
+      summary: Get Datasets
+      description: Lists datasets within a project
+      operationId: genomics.datasets.list
+      parameters:
+      - in: query
+        name: pageSize
+        description: The maximum number of results to return in a single page
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: query
+        name: projectId
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dataset
+    post:
+      summary: Create Dataset
+      description: Creates a new dataset
+      operationId: genomics.datasets.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dataset
+  /v1/datasets/{datasetId}:
+    delete:
+      summary: Delete Dataset
+      description: Deletes a dataset and all of its contents (all read group sets,nreference
+        sets, variant sets, call sets, annotation sets, etc
+      operationId: genomics.datasets.delete
+      parameters:
+      - in: path
+        name: datasetId
+        description: The ID of the dataset to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dataset
+    get:
+      summary: Get Dataset
+      description: Gets a dataset by ID
+      operationId: genomics.datasets.get
+      parameters:
+      - in: path
+        name: datasetId
+        description: The ID of the dataset
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dataset
+    patch:
+      summary: Update Dataset
+      description: Updates a dataset
+      operationId: genomics.datasets.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: datasetId
+        description: The ID of the dataset to be updated
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dataset
+  /v1/datasets/{datasetId}:undelete:
+    post:
+      summary: Restore Dataset
+      description: Undeletes a dataset by restoring a dataset which was deleted via
+        this API
+      operationId: genomics.datasets.undelete
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: datasetId
+        description: The ID of the dataset to be undeleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Dataset
+  /v1/readgroupsets/search:
+    post:
+      summary: Search Read Group Sets
+      description: Searches for read group sets matching the criteria
+      operationId: genomics.readgroupsets.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+  /v1/readgroupsets/{readGroupSetId}:
+    delete:
+      summary: Delete Read Group Set
+      description: Deletes a read group set
+      operationId: genomics.readgroupsets.delete
+      parameters:
+      - in: path
+        name: readGroupSetId
+        description: The ID of the read group set to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+    get:
+      summary: Get Read Group Set
+      description: Gets a read group set by ID
+      operationId: genomics.readgroupsets.get
+      parameters:
+      - in: path
+        name: readGroupSetId
+        description: The ID of the read group set
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+    patch:
+      summary: Update Read Group Set
+      description: Updates a read group set
+      operationId: genomics.readgroupsets.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: readGroupSetId
+        description: The ID of the read group set to be updated
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+  /v1/readgroupsets/{readGroupSetId}/coveragebuckets:
+    get:
+      summary: Get Coverage Buckets for Read Group Set
+      description: Lists fixed width coverage buckets for a read group set, each of
+        whichncorrespond to a range of a reference sequence
+      operationId: genomics.readgroupsets.coveragebuckets.list
+      parameters:
+      - in: query
+        name: end
+        description: The end position of the range on the reference, 0-based exclusive
+      - in: query
+        name: pageSize
+        description: The maximum number of results to return in a single page
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: path
+        name: readGroupSetId
+        description: Required
+      - in: query
+        name: referenceName
+        description: The name of the reference to query, within the reference set
+          associatednwith this query
+      - in: query
+        name: start
+        description: The start position of the range on the reference, 0-based inclusive
+      - in: query
+        name: targetBucketWidth
+        description: The desired width of each reported coverage bucket in base pairs
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+  /v1/readgroupsets/{readGroupSetId}:export:
+    post:
+      summary: Export Read Group Set
+      description: Exports a read group set to a BAM file in Google Cloud Storage
+      operationId: genomics.readgroupsets.export
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: readGroupSetId
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+  /v1/readgroupsets:import:
+    post:
+      summary: Create Read Group Set
+      description: Creates read group sets by asynchronously importing the providedninformation
+      operationId: genomics.readgroupsets.import
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Read Group Set
+  /v1/reads/search:
+    post:
+      summary: Search Reads
+      description: Gets a list of reads for one or more read group sets
+      operationId: genomics.reads.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Reads
+  /v1/references/search:
+    post:
+      summary: Search References
+      description: Searches for references which match the given criteria
+      operationId: genomics.references.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Reference
+  /v1/references/{referenceId}:
+    get:
+      summary: Get Reference
+      description: Gets a reference
+      operationId: genomics.references.get
+      parameters:
+      - in: path
+        name: referenceId
+        description: The ID of the reference
+      responses:
+        200:
+          description: OK
+      tags:
+      - Reference
+  /v1/references/{referenceId}/bases:
+    get:
+      summary: Get Reference Base
+      description: Lists the bases in a reference, optionally restricted to a range
+      operationId: genomics.references.bases.list
+      parameters:
+      - in: query
+        name: end
+        description: The end position (0-based, exclusive) of this query
+      - in: query
+        name: pageSize
+        description: The maximum number of bases to return in a single page
+      - in: query
+        name: pageToken
+        description: The continuation token, which is used to page through large result
+          sets
+      - in: path
+        name: referenceId
+        description: The ID of the reference
+      - in: query
+        name: start
+        description: The start position (0-based) of this query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Reference
+  /v1/referencesets/search:
+    post:
+      summary: Search Reference Set
+      description: Searches for reference sets which match the given criteria
+      operationId: genomics.referencesets.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Reference Set
+  /v1/referencesets/{referenceSetId}:
+    get:
+      summary: Get Reference Set
+      description: Gets a reference set
+      operationId: genomics.referencesets.get
+      parameters:
+      - in: path
+        name: referenceSetId
+        description: The ID of the reference set
+      responses:
+        200:
+          description: OK
+      tags:
+      - Reference Set
+  /v1/variants:
+    post:
+      summary: Create Variant
+      description: Creates a new variant
+      operationId: genomics.variants.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+  /v1/variants/search:
+    post:
+      summary: Get Variants
+      description: Gets a list of variants matching the criteria
+      operationId: genomics.variants.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+  /v1/variants/{variantId}:
+    delete:
+      summary: Delete Variant
+      description: Deletes a variant
+      operationId: genomics.variants.delete
+      parameters:
+      - in: path
+        name: variantId
+        description: The ID of the variant to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+    get:
+      summary: Get Variant
+      description: Gets a variant by ID
+      operationId: genomics.variants.get
+      parameters:
+      - in: path
+        name: variantId
+        description: The ID of the variant
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+    patch:
+      summary: Update Variant
+      description: Updates a variant
+      operationId: genomics.variants.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      - in: path
+        name: variantId
+        description: The ID of the variant to be updated
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+  /v1/variants:import:
+    post:
+      summary: Create Variant
+      description: Creates variant data by asynchronously importing the provided information
+      operationId: genomics.variants.import
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+  /v1/variants:merge:
+    post:
+      summary: Merge Variants
+      description: Merges the given variants with existing variants
+      operationId: genomics.variants.merge
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant
+  /v1/variantsets:
+    post:
+      summary: Create Variant Set
+      description: Creates a new variant set
+      operationId: genomics.variantsets.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant Set
+  /v1/variantsets/search:
+    post:
+      summary: Get Variant Sets
+      description: Returns a list of all variant sets matching search criteria
+      operationId: genomics.variantsets.search
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant Set
+  /v1/variantsets/{variantSetId}:
+    delete:
+      summary: Delete Variant Set
+      description: Deletes a variant set including all variants, call sets, and calls
+        within
+      operationId: genomics.variantsets.delete
+      parameters:
+      - in: path
+        name: variantSetId
+        description: The ID of the variant set to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant Set
+    get:
+      summary: Get Variant Set
+      description: Gets a variant set by ID
+      operationId: genomics.variantsets.get
+      parameters:
+      - in: path
+        name: variantSetId
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant Set
+    patch:
+      summary: Update Variant Set
+      description: Updates a variant set using patch semantics
+      operationId: genomics.variantsets.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: updateMask
+        description: An optional mask specifying which fields to update
+      - in: path
+        name: variantSetId
+        description: The ID of the variant to be updated (must already exist)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant Set
+  /v1/variantsets/{variantSetId}:export:
+    post:
+      summary: Export Variant Set
+      description: Exports variant set data to an external destination
+      operationId: genomics.variantsets.export
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: variantSetId
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Variant Set
+  /v1/{name}:
+    get:
+      summary: Get Operation
+      description: Gets the latest state of a long-running operation
+      operationId: genomics.operations.get
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:cancel:
+    post:
+      summary: Cancel Operation
+      description: Starts asynchronous cancellation on a long-running operation
+      operationId: genomics.operations.cancel
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The name of the operation resource to be cancelled
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{resource}:getIamPolicy:
+    post:
+      summary: Get IAM Policy
+      description: Gets the access control policy for the dataset
+      operationId: genomics.datasets.getIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which policy is being specified'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{resource}:setIamPolicy:
+    post:
+      summary: Set IAM Policy
+      description: Sets the access control policy on the specified dataset
+      operationId: genomics.datasets.setIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which policy is being specified'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{resource}:testIamPermissions:
+    post:
+      summary: Test IAM Permissions
+      description: Returns permissions that a caller has on the specified resource
+      operationId: genomics.datasets.testIamPermissions
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which policy is being specified'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+definitions:
+  Annotation:
+    properties:
+      annotationSetId:
+        description: This is a default description.
+        type: post
+      end:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      referenceId:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      reverseStrand:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  AnnotationSet:
+    properties:
+      datasetId:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+      sourceUri:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  BatchCreateAnnotationsRequest:
+    properties:
+      annotations:
+        description: This is a default description.
+        type: post
+      requestId:
+        description: This is a default description.
+        type: post
+  BatchCreateAnnotationsResponse:
+    properties:
+      entries:
+        description: This is a default description.
+        type: post
+  Binding:
+    properties:
+      members:
+        description: This is a default description.
+        type: post
+      role:
+        description: This is a default description.
+        type: post
+  CallSet:
+    properties:
+      created:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      sampleId:
+        description: This is a default description.
+        type: post
+      variantSetIds:
+        description: This is a default description.
+        type: post
+  CancelOperationRequest:
+    properties: []
+  CigarUnit:
+    properties:
+      operation:
+        description: This is a default description.
+        type: post
+      operationLength:
+        description: This is a default description.
+        type: post
+      referenceSequence:
+        description: This is a default description.
+        type: post
+  ClinicalCondition:
+    properties:
+      conceptId:
+        description: This is a default description.
+        type: post
+      externalIds:
+        description: This is a default description.
+        type: post
+      names:
+        description: This is a default description.
+        type: post
+      omimId:
+        description: This is a default description.
+        type: post
+  CodingSequence:
+    properties:
+      end:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+  ComputeEngine:
+    properties:
+      diskNames:
+        description: This is a default description.
+        type: post
+      instanceName:
+        description: This is a default description.
+        type: post
+      machineType:
+        description: This is a default description.
+        type: post
+      zone:
+        description: This is a default description.
+        type: post
+  CoverageBucket:
+    properties:
+      meanCoverage:
+        description: This is a default description.
+        type: post
+  Dataset:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+  Empty:
+    properties: []
+  Entry:
+    properties: []
+  Exon:
+    properties:
+      end:
+        description: This is a default description.
+        type: post
+      frame:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+  Experiment:
+    properties:
+      instrumentModel:
+        description: This is a default description.
+        type: post
+      libraryId:
+        description: This is a default description.
+        type: post
+      platformUnit:
+        description: This is a default description.
+        type: post
+      sequencingCenter:
+        description: This is a default description.
+        type: post
+  ExportReadGroupSetRequest:
+    properties:
+      exportUri:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+      referenceNames:
+        description: This is a default description.
+        type: post
+  ExportVariantSetRequest:
+    properties:
+      bigqueryDataset:
+        description: This is a default description.
+        type: post
+      bigqueryTable:
+        description: This is a default description.
+        type: post
+      callSetIds:
+        description: This is a default description.
+        type: post
+      format:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+  ExternalId:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      sourceName:
+        description: This is a default description.
+        type: post
+  GetIamPolicyRequest:
+    properties: []
+  ImportReadGroupSetsRequest:
+    properties:
+      datasetId:
+        description: This is a default description.
+        type: post
+      partitionStrategy:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+      sourceUris:
+        description: This is a default description.
+        type: post
+  ImportReadGroupSetsResponse:
+    properties:
+      readGroupSetIds:
+        description: This is a default description.
+        type: post
+  ImportVariantsRequest:
+    properties:
+      format:
+        description: This is a default description.
+        type: post
+      infoMergeConfig:
+        description: This is a default description.
+        type: post
+      normalizeReferenceNames:
+        description: This is a default description.
+        type: post
+      sourceUris:
+        description: This is a default description.
+        type: post
+      variantSetId:
+        description: This is a default description.
+        type: post
+  ImportVariantsResponse:
+    properties:
+      callSetIds:
+        description: This is a default description.
+        type: post
+  LinearAlignment:
+    properties:
+      cigar:
+        description: This is a default description.
+        type: post
+      mappingQuality:
+        description: This is a default description.
+        type: post
+  ListBasesResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      offset:
+        description: This is a default description.
+        type: post
+      sequence:
+        description: This is a default description.
+        type: post
+  ListCoverageBucketsResponse:
+    properties:
+      bucketWidth:
+        description: This is a default description.
+        type: post
+      coverageBuckets:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListDatasetsResponse:
+    properties:
+      datasets:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListOperationsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      operations:
+        description: This is a default description.
+        type: post
+  MergeVariantsRequest:
+    properties:
+      infoMergeConfig:
+        description: This is a default description.
+        type: post
+      variantSetId:
+        description: This is a default description.
+        type: post
+      variants:
+        description: This is a default description.
+        type: post
+  Operation:
+    properties:
+      done:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      response:
+        description: This is a default description.
+        type: post
+  OperationEvent:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+  OperationMetadata:
+    properties:
+      clientId:
+        description: This is a default description.
+        type: post
+      createTime:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      events:
+        description: This is a default description.
+        type: post
+      labels:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+      request:
+        description: This is a default description.
+        type: post
+      runtimeMetadata:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+  Policy:
+    properties:
+      bindings:
+        description: This is a default description.
+        type: post
+      etag:
+        description: This is a default description.
+        type: post
+      version:
+        description: This is a default description.
+        type: post
+  Position:
+    properties:
+      position:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      reverseStrand:
+        description: This is a default description.
+        type: post
+  Program:
+    properties:
+      commandLine:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      prevProgramId:
+        description: This is a default description.
+        type: post
+      version:
+        description: This is a default description.
+        type: post
+  Range:
+    properties:
+      end:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+  Read:
+    properties:
+      alignedQuality:
+        description: This is a default description.
+        type: post
+      alignedSequence:
+        description: This is a default description.
+        type: post
+      duplicateFragment:
+        description: This is a default description.
+        type: post
+      failedVendorQualityChecks:
+        description: This is a default description.
+        type: post
+      fragmentLength:
+        description: This is a default description.
+        type: post
+      fragmentName:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      numberReads:
+        description: This is a default description.
+        type: post
+      properPlacement:
+        description: This is a default description.
+        type: post
+      readGroupId:
+        description: This is a default description.
+        type: post
+      readGroupSetId:
+        description: This is a default description.
+        type: post
+      readNumber:
+        description: This is a default description.
+        type: post
+      secondaryAlignment:
+        description: This is a default description.
+        type: post
+      supplementaryAlignment:
+        description: This is a default description.
+        type: post
+  ReadGroup:
+    properties:
+      datasetId:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      predictedInsertSize:
+        description: This is a default description.
+        type: post
+      programs:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+      sampleId:
+        description: This is a default description.
+        type: post
+  ReadGroupSet:
+    properties:
+      datasetId:
+        description: This is a default description.
+        type: post
+      filename:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      readGroups:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+  Reference:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      length:
+        description: This is a default description.
+        type: post
+      md5checksum:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      ncbiTaxonId:
+        description: This is a default description.
+        type: post
+      sourceAccessions:
+        description: This is a default description.
+        type: post
+      sourceUri:
+        description: This is a default description.
+        type: post
+  ReferenceBound:
+    properties:
+      referenceName:
+        description: This is a default description.
+        type: post
+      upperBound:
+        description: This is a default description.
+        type: post
+  ReferenceSet:
+    properties:
+      assemblyId:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      md5checksum:
+        description: This is a default description.
+        type: post
+      ncbiTaxonId:
+        description: This is a default description.
+        type: post
+      referenceIds:
+        description: This is a default description.
+        type: post
+      sourceAccessions:
+        description: This is a default description.
+        type: post
+      sourceUri:
+        description: This is a default description.
+        type: post
+  RuntimeMetadata:
+    properties: []
+  SearchAnnotationSetsRequest:
+    properties:
+      datasetIds:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+      types:
+        description: This is a default description.
+        type: post
+  SearchAnnotationSetsResponse:
+    properties:
+      annotationSets:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  SearchAnnotationsRequest:
+    properties:
+      annotationSetIds:
+        description: This is a default description.
+        type: post
+      end:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+      referenceId:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+  SearchAnnotationsResponse:
+    properties:
+      annotations:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  SearchCallSetsRequest:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+      variantSetIds:
+        description: This is a default description.
+        type: post
+  SearchCallSetsResponse:
+    properties:
+      callSets:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  SearchReadGroupSetsRequest:
+    properties:
+      datasetIds:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+  SearchReadGroupSetsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      readGroupSets:
+        description: This is a default description.
+        type: post
+  SearchReadsRequest:
+    properties:
+      end:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+      readGroupIds:
+        description: This is a default description.
+        type: post
+      readGroupSetIds:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+  SearchReadsResponse:
+    properties:
+      alignments:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  SearchReferenceSetsRequest:
+    properties:
+      accessions:
+        description: This is a default description.
+        type: post
+      assemblyId:
+        description: This is a default description.
+        type: post
+      md5checksums:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+  SearchReferenceSetsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      referenceSets:
+        description: This is a default description.
+        type: post
+  SearchReferencesRequest:
+    properties:
+      accessions:
+        description: This is a default description.
+        type: post
+      md5checksums:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+  SearchReferencesResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      references:
+        description: This is a default description.
+        type: post
+  SearchVariantSetsRequest:
+    properties:
+      datasetIds:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+  SearchVariantSetsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      variantSets:
+        description: This is a default description.
+        type: post
+  SearchVariantsRequest:
+    properties:
+      callSetIds:
+        description: This is a default description.
+        type: post
+      end:
+        description: This is a default description.
+        type: post
+      maxCalls:
+        description: This is a default description.
+        type: post
+      pageSize:
+        description: This is a default description.
+        type: post
+      pageToken:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+      variantName:
+        description: This is a default description.
+        type: post
+      variantSetIds:
+        description: This is a default description.
+        type: post
+  SearchVariantsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      variants:
+        description: This is a default description.
+        type: post
+  SetIamPolicyRequest:
+    properties: []
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsRequest:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsResponse:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  Transcript:
+    properties:
+      exons:
+        description: This is a default description.
+        type: post
+      geneId:
+        description: This is a default description.
+        type: post
+  UndeleteDatasetRequest:
+    properties: []
+  Variant:
+    properties:
+      alternateBases:
+        description: This is a default description.
+        type: post
+      calls:
+        description: This is a default description.
+        type: post
+      created:
+        description: This is a default description.
+        type: post
+      end:
+        description: This is a default description.
+        type: post
+      filter:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      names:
+        description: This is a default description.
+        type: post
+      quality:
+        description: This is a default description.
+        type: post
+      referenceBases:
+        description: This is a default description.
+        type: post
+      referenceName:
+        description: This is a default description.
+        type: post
+      start:
+        description: This is a default description.
+        type: post
+      variantSetId:
+        description: This is a default description.
+        type: post
+  VariantAnnotation:
+    properties:
+      alternateBases:
+        description: This is a default description.
+        type: post
+      clinicalSignificance:
+        description: This is a default description.
+        type: post
+      conditions:
+        description: This is a default description.
+        type: post
+      effect:
+        description: This is a default description.
+        type: post
+      geneId:
+        description: This is a default description.
+        type: post
+      transcriptIds:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  VariantCall:
+    properties:
+      callSetId:
+        description: This is a default description.
+        type: post
+      callSetName:
+        description: This is a default description.
+        type: post
+      genotype:
+        description: This is a default description.
+        type: post
+      genotypeLikelihood:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      phaseset:
+        description: This is a default description.
+        type: post
+  VariantSet:
+    properties:
+      datasetId:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      referenceBounds:
+        description: This is a default description.
+        type: post
+      referenceSetId:
+        description: This is a default description.
+        type: post
+  VariantSetMetadata:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      id:
+        description: This is a default description.
+        type: post
+      info:
+        description: This is a default description.
+        type: post
+      key:
+        description: This is a default description.
+        type: post
+      number:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
