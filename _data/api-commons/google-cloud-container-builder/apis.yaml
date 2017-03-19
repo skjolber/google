@@ -1,0 +1,35 @@
+name: Google Cloud Container Builder
+description: Google Cloud Container Builder lets you create Docker container images
+  from application source code located in Google Cloud Storage. Container images created
+  by Container Builder are automatically stored in Google Container Registry. You
+  can deploy the container images you create on Google Container Engine, Google Compute
+  Engine, Google App Engine flexible environment or other services where you can run
+  applications from Docker containers.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/container-builder-lead.png
+tags:
+- Google APIs
+- Deployment
+- Containers
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-container-builder/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Cloud Container Builder API
+  description: Google Cloud Container Builder lets you create Docker container images
+    from application source code located in Google Cloud Storage
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/container-builder-lead.png
+  humanURL: https://cloud.google.com/container-builder/
+  baseURL: https://cloud.google.com/container-builder/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-container-builder/google-cloud-container-builder-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://cloud.google.com/container-builder/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
