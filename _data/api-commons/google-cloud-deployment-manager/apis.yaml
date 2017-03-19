@@ -1,0 +1,45 @@
+name: Google Cloud Deployment Manager
+description: Google Cloud Deployment Manager allows you to specify all the resources
+  needed for your application in a declarative format using yaml. You can also use
+  Python or Jinja2 templates to parameterize the configuration and allow reuse of
+  common deployment paradigms such as a load balanced, auto-scaled instance group.
+  Treat your configuration as code and perform repeatable deployments.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/repeatable-deployment-process.png
+tags:
+- Orchestration
+- Google APIs
+- Deployment
+- Cloud
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-deployment-manager/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Cloud Deployment Manager API
+  description: Google Cloud Deployment Manager allows you to specify all the resources
+    needed for your application in a declarative format using yaml
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/repeatable-deployment-process.png
+  humanURL: https://cloud.google.com/deployment-manager/
+  baseURL: https://cloud.google.com/deployment-manager/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-deployment-manager/google-cloud-deployment-manager-api-openapi-spec.yaml
+- name: Google Runtime Configurator API
+  description: Google Cloud Deployment Manager allows you to specify all the resources
+    needed for your application in a declarative format using yaml
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/repeatable-deployment-process.png
+  humanURL: https://cloud.google.com/deployment-manager/
+  baseURL: https://cloud.google.com/deployment-manager/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-deployment-manager/google-runtime-configurator-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://cloud.google.com/deployment-manager/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
