@@ -1,0 +1,434 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Stackdriver Error Reporting",
+		"description": "Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1beta1"
+	},
+	"host": "clouderrorreporting.googleapis.com",
+	"basePath": "/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1beta1/{groupName}": {
+			"get": {
+				"summary": "Get Group",
+				"description": "Get the specified group",
+				"operationId": "clouderrorreporting.projects.groups.get",
+				"parameters": [{
+					"in": "path",
+					"name": "groupName",
+					"description": "[Required] The group resource name"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			}
+		},
+		"/v1beta1/{name}": {
+			"put": {
+				"summary": "Update Group",
+				"description": "Replace the data for the specified group",
+				"operationId": "clouderrorreporting.projects.groups.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "name",
+					"description": "The group resource name"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			}
+		},
+		"/v1beta1/{projectName}/events": {
+			"delete": {
+				"summary": "Delete Events",
+				"description": "Deletes all error events of a given project",
+				"operationId": "clouderrorreporting.projects.deleteEvents",
+				"parameters": [{
+					"in": "path",
+					"name": "projectName",
+					"description": "[Required] The resource name of the Google Cloud Platform project"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Event"]
+			},
+			"get": {
+				"summary": "Get Events",
+				"description": "Lists the specified events",
+				"operationId": "clouderrorreporting.projects.events.list",
+				"parameters": [{
+					"in": "query",
+					"name": "groupId",
+					"description": "[Required] The group for which events shall be returned"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "[Optional] The maximum number of results to return per response"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "[Optional] A `next_page_token` provided by a previous response"
+				},
+				{
+					"in": "path",
+					"name": "projectName",
+					"description": "[Required] The resource name of the Google Cloud Platform project"
+				},
+				{
+					"in": "query",
+					"name": "serviceFilter.resourceType",
+					"description": "[Optional] The exact value to match againstn[`ServiceContext"
+				},
+				{
+					"in": "query",
+					"name": "serviceFilter.service",
+					"description": "[Optional] The exact value to match againstn[`ServiceContext"
+				},
+				{
+					"in": "query",
+					"name": "serviceFilter.version",
+					"description": "[Optional] The exact value to match againstn[`ServiceContext"
+				},
+				{
+					"in": "query",
+					"name": "timeRange.period",
+					"description": "Restricts the query to the specified time range"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Event"]
+			}
+		},
+		"/v1beta1/{projectName}/events:report": {
+			"post": {
+				"summary": "Report Event",
+				"description": "Report an individual error event",
+				"operationId": "clouderrorreporting.projects.events.report",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "projectName",
+					"description": "[Required] The resource name of the Google Cloud Platform project"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Event"]
+			}
+		},
+		"/v1beta1/{projectName}/groupStats": {
+			"get": {
+				"summary": "Get Groups",
+				"description": "Lists the specified groups",
+				"operationId": "clouderrorreporting.projects.groupStats.list",
+				"parameters": [{
+					"in": "query",
+					"name": "alignment",
+					"description": "[Optional] The alignment of the timed counts to be returned"
+				},
+				{
+					"in": "query",
+					"name": "alignmentTime",
+					"description": "[Optional] Time where the timed counts shall be aligned if roundednalignment is chosen"
+				},
+				{
+					"in": "query",
+					"name": "groupId",
+					"description": "[Optional] List all <code>ErrorGroupStats</code> with these IDs"
+				},
+				{
+					"in": "query",
+					"name": "order",
+					"description": "[Optional] The sort order in which the results are returned"
+				},
+				{
+					"in": "query",
+					"name": "pageSize",
+					"description": "[Optional] The maximum number of results to return per response"
+				},
+				{
+					"in": "query",
+					"name": "pageToken",
+					"description": "[Optional] A `next_page_token` provided by a previous response"
+				},
+				{
+					"in": "path",
+					"name": "projectName",
+					"description": "[Required] The resource name of the Google Cloud Platform project"
+				},
+				{
+					"in": "query",
+					"name": "serviceFilter.resourceType",
+					"description": "[Optional] The exact value to match againstn[`ServiceContext"
+				},
+				{
+					"in": "query",
+					"name": "serviceFilter.service",
+					"description": "[Optional] The exact value to match againstn[`ServiceContext"
+				},
+				{
+					"in": "query",
+					"name": "serviceFilter.version",
+					"description": "[Optional] The exact value to match againstn[`ServiceContext"
+				},
+				{
+					"in": "query",
+					"name": "timedCountDuration",
+					"description": "[Optional] The preferred duration for a single returned `TimedCount`"
+				},
+				{
+					"in": "query",
+					"name": "timeRange.period",
+					"description": "Restricts the query to the specified time range"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			}
+		}
+	},
+	"definitions": {
+		"DeleteEventsResponse": {
+			"properties": []
+		},
+		"ErrorContext": {
+			"properties": {
+				"user": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ErrorEvent": {
+			"properties": {
+				"eventTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"message": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ErrorGroup": {
+			"properties": {
+				"groupId": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"trackingIssues": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ErrorGroupStats": {
+			"properties": {
+				"affectedServices": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"affectedUsersCount": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"count": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"firstSeenTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"lastSeenTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"numAffectedServices": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"timedCounts": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"HttpRequestContext": {
+			"properties": {
+				"method": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"referrer": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"remoteIp": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"responseStatusCode": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"url": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"userAgent": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListEventsResponse": {
+			"properties": {
+				"errorEvents": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"timeRangeBegin": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ListGroupStatsResponse": {
+			"properties": {
+				"errorGroupStats": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"nextPageToken": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"timeRangeBegin": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ReportErrorEventResponse": {
+			"properties": []
+		},
+		"ReportedErrorEvent": {
+			"properties": {
+				"eventTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"message": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"ServiceContext": {
+			"properties": {
+				"resourceType": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"service": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"version": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"SourceLocation": {
+			"properties": {
+				"filePath": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"functionName": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"lineNumber": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TimedCount": {
+			"properties": {
+				"count": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"endTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				},
+				"startTime": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		},
+		"TrackingIssue": {
+			"properties": {
+				"url": {
+					"description": "This is a default description.",
+					"type": "parameters"
+				}
+			}
+		}
+	}
+}
