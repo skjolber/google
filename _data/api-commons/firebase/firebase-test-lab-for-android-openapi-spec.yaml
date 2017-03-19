@@ -1,0 +1,932 @@
+swagger: "2.0"
+info:
+  title: Cloud Tool Results
+  description: Reads and publishes results from Firebase Test Lab.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1beta3
+host: www.googleapis.com
+basePath: /toolresults/v1beta3/projects
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /{projectId}/histories:
+    get:
+      summary: List HIstories
+      description: Lists Histories for a given Project
+      operationId: toolresults.projects.histories.list
+      parameters:
+      - in: query
+        name: filterByName
+        description: If set, only return histories with the given name
+      - in: query
+        name: pageSize
+        description: The maximum number of Histories to fetch
+      - in: query
+        name: pageToken
+        description: A continuation token to resume the query at the next item
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - History
+    post:
+      summary: Create History
+      description: Creates a History
+      operationId: toolresults.projects.histories.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: query
+        name: requestId
+        description: A unique request ID for server to detect duplicated requests
+      responses:
+        200:
+          description: OK
+      tags:
+      - History
+  /{projectId}/histories/{historyId}:
+    get:
+      summary: Get History
+      description: Gets a History
+      operationId: toolresults.projects.histories.get
+      parameters:
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - History
+  /{projectId}/histories/{historyId}/executions:
+    get:
+      summary: Get Executions
+      description: Lists Histories for a given Project
+      operationId: toolresults.projects.histories.executions.list
+      parameters:
+      - in: path
+        name: historyId
+        description: A History id
+      - in: query
+        name: pageSize
+        description: The maximum number of Executions to fetch
+      - in: query
+        name: pageToken
+        description: A continuation token to resume the query at the next item
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - History
+    post:
+      summary: Create Execution
+      description: Creates an Execution
+      operationId: toolresults.projects.histories.executions.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: query
+        name: requestId
+        description: A unique request ID for server to detect duplicated requests
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution
+  /{projectId}/histories/{historyId}/executions/{executionId}:
+    get:
+      summary: Get Execution
+      description: Gets an Execution
+      operationId: toolresults.projects.histories.executions.get
+      parameters:
+      - in: path
+        name: executionId
+        description: An Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution
+    patch:
+      summary: Update Execution
+      description: Updates an existing Execution with the supplied partial entity
+      operationId: toolresults.projects.histories.executions.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: Required
+      - in: path
+        name: historyId
+        description: Required
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: query
+        name: requestId
+        description: A unique request ID for server to detect duplicated requests
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps:
+    get:
+      summary: Get Execution Steps
+      description: Lists Steps for a given Execution
+      operationId: toolresults.projects.histories.executions.steps.list
+      parameters:
+      - in: path
+        name: executionId
+        description: A Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: query
+        name: pageSize
+        description: The maximum number of Steps to fetch
+      - in: query
+        name: pageToken
+        description: A continuation token to resume the query at the next item
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution Step
+    post:
+      summary: Create Execution Steps
+      description: Creates a Step
+      operationId: toolresults.projects.histories.executions.steps.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: A Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: query
+        name: requestId
+        description: A unique request ID for server to detect duplicated requests
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution Step
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:
+    get:
+      summary: Get Execution Step
+      description: Gets a Step
+      operationId: toolresults.projects.histories.executions.steps.get
+      parameters:
+      - in: path
+        name: executionId
+        description: A Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: path
+        name: stepId
+        description: A Step id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution Step
+    patch:
+      summary: Update Execution Step
+      description: Updates an existing Step with the supplied partial entity
+      operationId: toolresults.projects.histories.executions.steps.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: A Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: query
+        name: requestId
+        description: A unique request ID for server to detect duplicated requests
+      - in: path
+        name: stepId
+        description: A Step id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Execution Step
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary:
+    get:
+      summary: Get Metrics Summary
+      description: Retrieves a PerfMetricsSummary
+      operationId: toolresults.projects.histories.executions.steps.getPerfMetricsSummary
+      parameters:
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metrics
+    post:
+      summary: Create Metric Summary
+      description: Creates a PerfMetricsSummary resource
+      operationId: toolresults.projects.histories.executions.steps.perfMetricsSummary.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Metrics
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries:
+    get:
+      summary: Get Sample Series
+      description: Lists PerfSampleSeries for a given Step
+      operationId: toolresults.projects.histories.executions.steps.perfSampleSeries.list
+      parameters:
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: query
+        name: filter
+        description: Specify one or more PerfMetricType values such as CPU to filter
+          the result
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Sample Series
+    post:
+      summary: Create Sample Series
+      description: Creates a PerfSampleSeries
+      operationId: toolresults.projects.histories.executions.steps.perfSampleSeries.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Sample Series
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}:
+    get:
+      summary: Get Sample Series
+      description: Gets a PerfSampleSeries
+      operationId: toolresults.projects.histories.executions.steps.perfSampleSeries.get
+      parameters:
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: sampleSeriesId
+        description: A sample series id
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Sample Series
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:
+    get:
+      summary: Get Sample Series
+      description: 'Lists the Performance Samples of a given Sample Series - The list
+        results are sorted by timestamps ascending - The default page size is 500
+        samples; and maximum size allowed 5000 - The response token indicates the
+        last returned PerfSample timestamp - When the results size exceeds the page
+        size, submit a subsequent request including the page token to return the rest
+        of the samples up to the page limitnnMay return any of the following canonical
+        error codes: - OUT_OF_RANGE - The specified request page_token is out of valid
+        range - NOT_FOUND - The containing PerfSampleSeries does not exist'
+      operationId: toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
+      parameters:
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: query
+        name: pageSize
+        description: The default page size is 500 samples, and the maximum size is
+          5000
+      - in: query
+        name: pageToken
+        description: Optional, the next_page_token returned in the previous response
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: sampleSeriesId
+        description: A sample series id
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Sample Series
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate:
+    post:
+      summary: Create Sample
+      description: Creates a batch of PerfSamples - a client can submit multiple batches
+        of Perf Samples through repeated calls to this method in order to split up
+        a large request payload - duplicates and existing timestamp entries will be
+        ignored
+      operationId: toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: A tool results execution ID
+      - in: path
+        name: historyId
+        description: A tool results history ID
+      - in: path
+        name: projectId
+        description: The cloud project
+      - in: path
+        name: sampleSeriesId
+        description: A sample series id
+      - in: path
+        name: stepId
+        description: A tool results step ID
+      responses:
+        200:
+          description: OK
+      tags:
+      - Sample Series
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails:
+    get:
+      summary: Get Thumbnails
+      description: Lists thumbnails of images attached to a step
+      operationId: toolresults.projects.histories.executions.steps.thumbnails.list
+      parameters:
+      - in: path
+        name: executionId
+        description: An Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: query
+        name: pageSize
+        description: The maximum number of thumbnails to fetch
+      - in: query
+        name: pageToken
+        description: A continuation token to resume the query at the next item
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: path
+        name: stepId
+        description: A Step id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Thumbnail
+  /{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles:
+    post:
+      summary: Publish XML Files
+      description: Publish xml files to an existing Step
+      operationId: toolresults.projects.histories.executions.steps.publishXunitXmlFiles
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: executionId
+        description: A Execution id
+      - in: path
+        name: historyId
+        description: A History id
+      - in: path
+        name: projectId
+        description: A Project id
+      - in: path
+        name: stepId
+        description: A Step id
+      responses:
+        200:
+          description: OK
+      tags:
+      - XML File
+  /{projectId}/settings:
+    get:
+      summary: Get Project Settings
+      description: Gets the Tool Results settings for a project
+      operationId: toolresults.projects.getSettings
+      parameters:
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+  /{projectId}:initializeSettings:
+    post:
+      summary: Initialize Settings
+      description: Creates resources for settings which have not yet been set
+      operationId: toolresults.projects.initializeSettings
+      parameters:
+      - in: path
+        name: projectId
+        description: A Project id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Project
+definitions:
+  Any:
+    properties:
+      typeUrl:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  BasicPerfSampleSeries:
+    properties:
+      perfMetricType:
+        description: This is a default description.
+        type: post
+      perfUnit:
+        description: This is a default description.
+        type: post
+      sampleSeriesLabel:
+        description: This is a default description.
+        type: post
+  BatchCreatePerfSamplesRequest:
+    properties:
+      perfSamples:
+        description: This is a default description.
+        type: post
+  BatchCreatePerfSamplesResponse:
+    properties:
+      perfSamples:
+        description: This is a default description.
+        type: post
+  CPUInfo:
+    properties:
+      cpuProcessor:
+        description: This is a default description.
+        type: post
+      cpuSpeedInGhz:
+        description: This is a default description.
+        type: post
+      numberOfCores:
+        description: This is a default description.
+        type: post
+  Duration:
+    properties:
+      nanos:
+        description: This is a default description.
+        type: post
+      seconds:
+        description: This is a default description.
+        type: post
+  Execution:
+    properties:
+      executionId:
+        description: This is a default description.
+        type: post
+      state:
+        description: This is a default description.
+        type: post
+      testExecutionMatrixId:
+        description: This is a default description.
+        type: post
+  FailureDetail:
+    properties:
+      crashed:
+        description: This is a default description.
+        type: post
+      notInstalled:
+        description: This is a default description.
+        type: post
+      otherNativeCrash:
+        description: This is a default description.
+        type: post
+      timedOut:
+        description: This is a default description.
+        type: post
+      unableToCrawl:
+        description: This is a default description.
+        type: post
+  FileReference:
+    properties:
+      fileUri:
+        description: This is a default description.
+        type: post
+  History:
+    properties:
+      displayName:
+        description: This is a default description.
+        type: post
+      historyId:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  Image:
+    properties:
+      stepId:
+        description: This is a default description.
+        type: post
+  InconclusiveDetail:
+    properties:
+      abortedByUser:
+        description: This is a default description.
+        type: post
+      infrastructureFailure:
+        description: This is a default description.
+        type: post
+  ListExecutionsResponse:
+    properties:
+      executions:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListHistoriesResponse:
+    properties:
+      histories:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListPerfSampleSeriesResponse:
+    properties:
+      perfSampleSeries:
+        description: This is a default description.
+        type: post
+  ListPerfSamplesResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      perfSamples:
+        description: This is a default description.
+        type: post
+  ListStepThumbnailsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      thumbnails:
+        description: This is a default description.
+        type: post
+  ListStepsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      steps:
+        description: This is a default description.
+        type: post
+  MemoryInfo:
+    properties:
+      memoryCapInKibibyte:
+        description: This is a default description.
+        type: post
+      memoryTotalInKibibyte:
+        description: This is a default description.
+        type: post
+  Outcome:
+    properties:
+      summary:
+        description: This is a default description.
+        type: post
+  PerfEnvironment:
+    properties: []
+  PerfMetricsSummary:
+    properties:
+      executionId:
+        description: This is a default description.
+        type: post
+      historyId:
+        description: This is a default description.
+        type: post
+      perfMetrics:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+      stepId:
+        description: This is a default description.
+        type: post
+  PerfSample:
+    properties:
+      value:
+        description: This is a default description.
+        type: post
+  PerfSampleSeries:
+    properties:
+      executionId:
+        description: This is a default description.
+        type: post
+      historyId:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+      sampleSeriesId:
+        description: This is a default description.
+        type: post
+      stepId:
+        description: This is a default description.
+        type: post
+  ProjectSettings:
+    properties:
+      defaultBucket:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  PublishXunitXmlFilesRequest:
+    properties:
+      xunitXmlFiles:
+        description: This is a default description.
+        type: post
+  SkippedDetail:
+    properties:
+      incompatibleAppVersion:
+        description: This is a default description.
+        type: post
+      incompatibleArchitecture:
+        description: This is a default description.
+        type: post
+      incompatibleDevice:
+        description: This is a default description.
+        type: post
+  StackTrace:
+    properties:
+      exception:
+        description: This is a default description.
+        type: post
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
+  Step:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      dimensionValue:
+        description: This is a default description.
+        type: post
+      hasImages:
+        description: This is a default description.
+        type: post
+      labels:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      state:
+        description: This is a default description.
+        type: post
+      stepId:
+        description: This is a default description.
+        type: post
+  StepDimensionValueEntry:
+    properties:
+      key:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  StepLabelsEntry:
+    properties:
+      key:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+  SuccessDetail:
+    properties:
+      otherNativeCrash:
+        description: This is a default description.
+        type: post
+  TestCaseReference:
+    properties:
+      className:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      testSuiteName:
+        description: This is a default description.
+        type: post
+  TestExecutionStep:
+    properties:
+      testIssues:
+        description: This is a default description.
+        type: post
+      testSuiteOverviews:
+        description: This is a default description.
+        type: post
+  TestIssue:
+    properties:
+      errorMessage:
+        description: This is a default description.
+        type: post
+  TestSuiteOverview:
+    properties:
+      errorCount:
+        description: This is a default description.
+        type: post
+      failureCount:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      skippedCount:
+        description: This is a default description.
+        type: post
+      totalCount:
+        description: This is a default description.
+        type: post
+  TestTiming:
+    properties: []
+  Thumbnail:
+    properties:
+      contentType:
+        description: This is a default description.
+        type: post
+      data:
+        description: This is a default description.
+        type: post
+      heightPx:
+        description: This is a default description.
+        type: post
+      widthPx:
+        description: This is a default description.
+        type: post
+  Timestamp:
+    properties:
+      nanos:
+        description: This is a default description.
+        type: post
+      seconds:
+        description: This is a default description.
+        type: post
+  ToolExecution:
+    properties:
+      commandLineArguments:
+        description: This is a default description.
+        type: post
+      toolLogs:
+        description: This is a default description.
+        type: post
+      toolOutputs:
+        description: This is a default description.
+        type: post
+  ToolExecutionStep:
+    properties: []
+  ToolExitCode:
+    properties:
+      number:
+        description: This is a default description.
+        type: post
+  ToolOutputReference:
+    properties: []
