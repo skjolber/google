@@ -1,0 +1,42 @@
+name: Google Adsense
+description: AdSense is a free, simple way to make money online by placing ads on
+  your website. Ads are reviewed to ensure theyu2019re high quality and relevant to
+  your content or audience, even when viewed on smartphones and tablets. The result?
+  You can make more money online.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-adsense.png
+tags:
+- Google APIs
+- Advertising
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-adsense/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google AdSense Host API
+  description: AdSense is a free, simple way to make money online by placing ads on
+    your website
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-adsense.png
+  humanURL: https://developers.google.com/adsense/host/
+  baseURL: https://developers.google.com/adsense/host/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-adsense/google-adsense-host-api-openapi-spec.yaml
+- name: Google AdSense Management API
+  description: AdSense is a free, simple way to make money online by placing ads on
+    your website
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-adsense.png
+  humanURL: https://www.google.com/adsense/
+  baseURL: https://developers.google.com/adsense/host/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-adsense/google-adsense-management-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://www.google.com/adsense/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
