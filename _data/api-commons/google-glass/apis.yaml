@@ -1,0 +1,34 @@
+name: Google Glass
+description: Glass is fundamentally different than existing mobile platforms in both
+  design and use. Follow these principles when building Glassware to give users the
+  best experience.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/Screen
+  Shot 2017-03-16 at 11.10.43 PM.png
+tags:
+- Wearables
+- Google APIs
+- Glasses
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-glass/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Glass APIs
+  description: Glass is fundamentally different than existing mobile platforms in
+    both design and use
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/Screen
+    Shot 2017-03-16 at 11.10.43 PM.png
+  humanURL: https://developers.google.com/glass/
+  baseURL: https://developers.google.com/glass/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-glass/google-glass-apis-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://developers.google.com/glass/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
