@@ -25,8 +25,9 @@ paths:
       parameters:
       - in: query
         name: endTime
-        description: Start of the time interval (inclusive) during which the trace
-          data wasncollected from the application
+        description: |-
+          Start of the time interval (inclusive) during which the trace data was
+          collected from the application
       - in: query
         name: filter
         description: An optional filter for the request
@@ -44,8 +45,9 @@ paths:
         description: ID of the Cloud project where the trace data is stored
       - in: query
         name: startTime
-        description: End of the time interval (inclusive) during which the trace data
-          wasncollected from the application
+        description: |-
+          End of the time interval (inclusive) during which the trace data was
+          collected from the application
       - in: query
         name: view
         description: Type of data returned for traces in the list
