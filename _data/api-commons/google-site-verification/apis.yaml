@@ -1,0 +1,35 @@
+name: Google Site Verification
+description: The Google Site Verification API lets you develop applications or services
+  that automate the process of verifying that the authenticated user owns a domain
+  or website. This is important, since some Google services can only be used by site
+  owners.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-site-verification-500x362.png
+tags:
+- Security
+- Links
+- Google APIs
+- DNS
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-site-verification/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Google Site Verification API
+  description: The Google Site Verification API lets you develop applications or services
+    that automate the process of verifying that the authenticated user owns a domain
+    or website
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-site-verification-500x362.png
+  humanURL: https://developers.google.com/site-verification/
+  baseURL: https://developers.google.com/site-verification/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-site-verification/google-site-verification-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://developers.google.com/site-verification/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
