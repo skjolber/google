@@ -1,0 +1,414 @@
+swagger: "2.0"
+info:
+  title: Google Identity and Access Management (IAM)
+  description: Manages identity and access control for Google Cloud Platform resources,
+    including the creation of service accounts, which you can use to authenticate
+    to Google and make API calls.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: iam.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/roles:queryGrantableRoles:
+    post:
+      summary: Query Roles
+      description: Queries roles that can be granted on a particular resource
+      operationId: iam.roles.queryGrantableRoles
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Role
+  /v1/{name}:
+    delete:
+      summary: Delete Service Account Key
+      description: Deletes a ServiceAccountKey
+      operationId: iam.projects.serviceAccounts.keys.delete
+      parameters:
+      - in: path
+        name: name
+        description: The resource name of the service account key in the following
+          format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account Key
+    get:
+      summary: Get Service Account Key
+      description: Gets the ServiceAccountKeynby key id
+      operationId: iam.projects.serviceAccounts.keys.get
+      parameters:
+      - in: path
+        name: name
+        description: The resource name of the service account key in the following
+          format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`
+      - in: query
+        name: publicKeyType
+        description: The output format of the public key requested
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account Key
+    put:
+      summary: Update Service Account Key
+      description: Updates a ServiceAccount
+      operationId: iam.projects.serviceAccounts.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account Key
+  /v1/{name}/keys:
+    get:
+      summary: Get Service Account Keys
+      description: Lists ServiceAccountKeys
+      operationId: iam.projects.serviceAccounts.keys.list
+      parameters:
+      - in: query
+        name: keyTypes
+        description: Filters the types of keys the user wants to include in the listnresponse
+      - in: path
+        name: name
+        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account Key
+    post:
+      summary: Create Service Account Key
+      description: Creates a ServiceAccountKeynand returns it
+      operationId: iam.projects.serviceAccounts.keys.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account Key
+  /v1/{name}/serviceAccounts:
+    get:
+      summary: Get Service Accounts
+      description: Lists ServiceAccounts for a project
+      operationId: iam.projects.serviceAccounts.list
+      parameters:
+      - in: path
+        name: name
+        description: Required
+      - in: query
+        name: pageSize
+        description: Optional limit on the number of service accounts to include in
+          thenresponse
+      - in: query
+        name: pageToken
+        description: Optional pagination token returned in an earliernListServiceAccountsResponse
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account
+    post:
+      summary: Create Service Account
+      description: Creates a ServiceAccountnand returns it
+      operationId: iam.projects.serviceAccounts.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Service Account
+  /v1/{name}:signBlob:
+    post:
+      summary: Sign Blob
+      description: Signs a blob using a service account's system-managed private key
+      operationId: iam.projects.serviceAccounts.signBlob
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+      responses:
+        200:
+          description: OK
+      tags:
+      - Blob
+  /v1/{name}:signJwt:
+    post:
+      summary: Sign JWT
+      description: Signs a JWT using a service account's system-managed private key
+      operationId: iam.projects.serviceAccounts.signJwt
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+      responses:
+        200:
+          description: OK
+      tags:
+      - JWT
+  /v1/{resource}:getIamPolicy:
+    post:
+      summary: Return IAM Access Control Policy
+      description: Returns the IAM access control policy for anServiceAccount
+      operationId: iam.projects.serviceAccounts.getIamPolicy
+      parameters:
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy is being requested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{resource}:setIamPolicy:
+    post:
+      summary: Set IAM Access Control Policy
+      description: Sets the IAM access control policy for anServiceAccount
+      operationId: iam.projects.serviceAccounts.setIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy is being specified'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{resource}:testIamPermissions:
+    post:
+      summary: Tests Permissions
+      description: Tests the specified permissions against the IAM access control
+        policynfor a ServiceAccount
+      operationId: iam.projects.serviceAccounts.testIamPermissions
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The resource for which the policy detail is being
+          requested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Permission
+definitions:
+  AuditData:
+    properties: []
+  Binding:
+    properties:
+      members:
+        description: This is a default description.
+        type: post
+      role:
+        description: This is a default description.
+        type: post
+  BindingDelta:
+    properties:
+      action:
+        description: This is a default description.
+        type: post
+      member:
+        description: This is a default description.
+        type: post
+      role:
+        description: This is a default description.
+        type: post
+  CreateServiceAccountKeyRequest:
+    properties:
+      keyAlgorithm:
+        description: This is a default description.
+        type: post
+      privateKeyType:
+        description: This is a default description.
+        type: post
+  CreateServiceAccountRequest:
+    properties:
+      accountId:
+        description: This is a default description.
+        type: post
+  Empty:
+    properties: []
+  ListServiceAccountKeysResponse:
+    properties:
+      keys:
+        description: This is a default description.
+        type: post
+  ListServiceAccountsResponse:
+    properties:
+      accounts:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  Policy:
+    properties:
+      bindings:
+        description: This is a default description.
+        type: post
+      etag:
+        description: This is a default description.
+        type: post
+      version:
+        description: This is a default description.
+        type: post
+  PolicyDelta:
+    properties:
+      bindingDeltas:
+        description: This is a default description.
+        type: post
+  QueryGrantableRolesRequest:
+    properties:
+      fullResourceName:
+        description: This is a default description.
+        type: post
+  QueryGrantableRolesResponse:
+    properties:
+      roles:
+        description: This is a default description.
+        type: post
+  Role:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      title:
+        description: This is a default description.
+        type: post
+  ServiceAccount:
+    properties:
+      displayName:
+        description: This is a default description.
+        type: post
+      email:
+        description: This is a default description.
+        type: post
+      etag:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      oauth2ClientId:
+        description: This is a default description.
+        type: post
+      projectId:
+        description: This is a default description.
+        type: post
+      uniqueId:
+        description: This is a default description.
+        type: post
+  ServiceAccountKey:
+    properties:
+      keyAlgorithm:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      privateKeyData:
+        description: This is a default description.
+        type: post
+      privateKeyType:
+        description: This is a default description.
+        type: post
+      publicKeyData:
+        description: This is a default description.
+        type: post
+      validAfterTime:
+        description: This is a default description.
+        type: post
+      validBeforeTime:
+        description: This is a default description.
+        type: post
+  SetIamPolicyRequest:
+    properties: []
+  SignBlobRequest:
+    properties:
+      bytesToSign:
+        description: This is a default description.
+        type: post
+  SignBlobResponse:
+    properties:
+      keyId:
+        description: This is a default description.
+        type: post
+      signature:
+        description: This is a default description.
+        type: post
+  SignJwtRequest:
+    properties:
+      payload:
+        description: This is a default description.
+        type: post
+  SignJwtResponse:
+    properties:
+      keyId:
+        description: This is a default description.
+        type: post
+      signedJwt:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsRequest:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsResponse:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
