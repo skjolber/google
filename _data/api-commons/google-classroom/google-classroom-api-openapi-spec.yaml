@@ -1,0 +1,1292 @@
+swagger: "2.0"
+info:
+  title: Google Classroom
+  description: Manages classes, rosters, and invitations in Google Classroom.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: classroom.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/courses:
+    get:
+      summary: Get Courses
+      description: Returns a list of courses that the requesting user is permitted
+        to view,nrestricted to those that match the request
+      operationId: classroom.courses.list
+      parameters:
+      - in: query
+        name: courseStates
+        description: Restricts returned courses to those in one of the specified statesnThe
+          default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call,nindicating
+          that the subsequent page of results should be returned
+      - in: query
+        name: studentId
+        description: Restricts returned courses to those having a student with the
+          specifiednidentifier
+      - in: query
+        name: teacherId
+        description: Restricts returned courses to those having a teacher with the
+          specifiednidentifier
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course
+    post:
+      summary: Create Course
+      description: Creates a course
+      operationId: classroom.courses.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course
+  /v1/courses/{courseId}/aliases:
+    get:
+      summary: Get Aliases
+      description: Returns a list of aliases for a course
+      operationId: classroom.courses.aliases.list
+      parameters:
+      - in: path
+        name: courseId
+        description: The identifier of the course
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call,nindicating
+          that the subsequent page of results should be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Alias
+    post:
+      summary: Create Alias
+      description: Creates an alias for a course
+      operationId: classroom.courses.aliases.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course to alias
+      responses:
+        200:
+          description: OK
+      tags:
+      - Alias
+  /v1/courses/{courseId}/aliases/{alias}:
+    delete:
+      summary: Delete Alias
+      description: Deletes an alias of a course
+      operationId: classroom.courses.aliases.delete
+      parameters:
+      - in: path
+        name: alias
+        description: Alias to delete
+      - in: path
+        name: courseId
+        description: Identifier of the course whose alias should be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Alias
+  /v1/courses/{courseId}/courseWork:
+    get:
+      summary: Get Course Work
+      description: Returns a list of course work that the requester is permitted to
+        view
+      operationId: classroom.courses.courseWork.list
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: query
+        name: courseWorkStates
+        description: Restriction on the work status to return
+      - in: query
+        name: orderBy
+        description: Optional sort ordering for results
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call,nindicating
+          that the subsequent page of results should be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Alias
+    post:
+      summary: Create Course Work
+      description: Creates course work
+      operationId: classroom.courses.courseWork.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course Work
+  /v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions:
+    get:
+      summary: Get Student Submissions
+      description: Returns a list of student submissions that the requester is permitted
+        tonview, factoring in the OAuth scopes of the request
+      operationId: classroom.courses.courseWork.studentSubmissions.list
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifer of the student work to request
+      - in: query
+        name: late
+        description: Requested lateness value
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call,nindicating
+          that the subsequent page of results should be returned
+      - in: query
+        name: states
+        description: Requested submission states
+      - in: query
+        name: userId
+        description: Optional argument to restrict returned student work to those
+          owned by thenstudent with the specified identifier
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student Submission
+  /v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:
+    get:
+      summary: Get Student Submission
+      description: Returns a student submission
+      operationId: classroom.courses.courseWork.studentSubmissions.get
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifier of the course work
+      - in: path
+        name: id
+        description: Identifier of the student submission
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student Submission
+    patch:
+      summary: Update Fields
+      description: Updates one or more fields of a student submission
+      operationId: classroom.courses.courseWork.studentSubmissions.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifier of the course work
+      - in: path
+        name: id
+        description: Identifier of the student submission
+      - in: query
+        name: updateMask
+        description: Mask that identifies which fields on the student submission to
+          update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Field
+  /v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments:
+    post:
+      summary: Modify Attachments
+      description: Modifies attachments of student submission
+      operationId: classroom.courses.courseWork.studentSubmissions.modifyAttachments
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifier of the course work
+      - in: path
+        name: id
+        description: Identifier of the student submission
+      responses:
+        200:
+          description: OK
+      tags:
+      - Attachment
+  /v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim:
+    post:
+      summary: Reclaim Student Submission
+      description: Reclaims a student submission on behalf of the student that owns
+        it
+      operationId: classroom.courses.courseWork.studentSubmissions.reclaim
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifier of the course work
+      - in: path
+        name: id
+        description: Identifier of the student submission
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student Submission
+  /v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return:
+    post:
+      summary: Get Student Submission
+      description: Returns a student submission
+      operationId: classroom.courses.courseWork.studentSubmissions.return
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifier of the course work
+      - in: path
+        name: id
+        description: Identifier of the student submission
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student Submission
+  /v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn:
+    post:
+      summary: Turn in Student Submission
+      description: Turns in a student submission
+      operationId: classroom.courses.courseWork.studentSubmissions.turnIn
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: courseWorkId
+        description: Identifier of the course work
+      - in: path
+        name: id
+        description: Identifier of the student submission
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student Submission
+  /v1/courses/{courseId}/courseWork/{id}:
+    delete:
+      summary: Delete Course Work
+      description: Deletes a course work
+      operationId: classroom.courses.courseWork.delete
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: id
+        description: Identifier of the course work to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course Work
+    get:
+      summary: Get Course Work
+      description: Returns course work
+      operationId: classroom.courses.courseWork.get
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: id
+        description: Identifier of the course work
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course Work
+    patch:
+      summary: Update Fields
+      description: Updates one or more fields of a course work
+      operationId: classroom.courses.courseWork.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: id
+        description: Identifier of the course work
+      - in: query
+        name: updateMask
+        description: Mask that identifies which fields on the course work to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Field
+  /v1/courses/{courseId}/students:
+    get:
+      summary: Get Students
+      description: Returns a list of students of this course that the requesternis
+        permitted to view
+      operationId: classroom.courses.students.list
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call, indicating
+          thatnthe subsequent page of results should be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student
+    post:
+      summary: Add Student
+      description: Adds a user as a student of a course
+      operationId: classroom.courses.students.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course to create the student in
+      - in: query
+        name: enrollmentCode
+        description: Enrollment code of the course to create the student in
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student
+  /v1/courses/{courseId}/students/{userId}:
+    delete:
+      summary: Delete Student
+      description: Deletes a student of a course
+      operationId: classroom.courses.students.delete
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: userId
+        description: Identifier of the student to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student
+    get:
+      summary: Get Student
+      description: Returns a student of a course
+      operationId: classroom.courses.students.get
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: userId
+        description: Identifier of the student to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Student
+  /v1/courses/{courseId}/teachers:
+    get:
+      summary: Get Teachers
+      description: Returns a list of teachers of this course that the requesternis
+        permitted to view
+      operationId: classroom.courses.teachers.list
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call, indicating
+          thatnthe subsequent page of results should be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Teacher
+    post:
+      summary: Create Teacher
+      description: Creates a teacher of a course
+      operationId: classroom.courses.teachers.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      responses:
+        200:
+          description: OK
+      tags:
+      - Teacher
+  /v1/courses/{courseId}/teachers/{userId}:
+    delete:
+      summary: Delete Teacher
+      description: Deletes a teacher of a course
+      operationId: classroom.courses.teachers.delete
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: userId
+        description: Identifier of the teacher to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Teacher
+    get:
+      summary: Get Teacher
+      description: Returns a teacher of a course
+      operationId: classroom.courses.teachers.get
+      parameters:
+      - in: path
+        name: courseId
+        description: Identifier of the course
+      - in: path
+        name: userId
+        description: Identifier of the teacher to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Teacher
+  /v1/courses/{id}:
+    delete:
+      summary: Delete Course
+      description: Deletes a course
+      operationId: classroom.courses.delete
+      parameters:
+      - in: path
+        name: id
+        description: Identifier of the course to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course
+    get:
+      summary: Get Course
+      description: Returns a course
+      operationId: classroom.courses.get
+      parameters:
+      - in: path
+        name: id
+        description: Identifier of the course to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course
+    patch:
+      summary: Update Fields
+      description: Updates one or more fields in a course
+      operationId: classroom.courses.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: id
+        description: Identifier of the course to update
+      - in: query
+        name: updateMask
+        description: Mask that identifies which fields on the course to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Field
+    put:
+      summary: Update Course
+      description: Updates a course
+      operationId: classroom.courses.update
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: id
+        description: Identifier of the course to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Course
+  /v1/invitations:
+    get:
+      summary: Get Invitations
+      description: Returns a list of invitations that the requesting user is permitted
+        tonview, restricted to those that match the list request
+      operationId: classroom.invitations.list
+      parameters:
+      - in: query
+        name: courseId
+        description: Restricts returned invitations to those for a course with the
+          specifiednidentifier
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call, indicatingnthat
+          the subsequent page of results should be returned
+      - in: query
+        name: userId
+        description: Restricts returned invitations to those for a specific user
+      responses:
+        200:
+          description: OK
+      tags:
+      - Invitation
+    post:
+      summary: Create Invitation
+      description: Creates an invitation
+      operationId: classroom.invitations.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Invitation
+  /v1/invitations/{id}:
+    delete:
+      summary: Delete Invitation
+      description: Deletes an invitation
+      operationId: classroom.invitations.delete
+      parameters:
+      - in: path
+        name: id
+        description: Identifier of the invitation to delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Invitation
+    get:
+      summary: Get Invitation
+      description: Returns an invitation
+      operationId: classroom.invitations.get
+      parameters:
+      - in: path
+        name: id
+        description: Identifier of the invitation to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - Invitation
+  /v1/invitations/{id}:accept:
+    post:
+      summary: Accept Invitation
+      description: Accepts an invitation, removing it and adding the invited user
+        to thenteachers or students (as appropriate) of the specified course
+      operationId: classroom.invitations.accept
+      parameters:
+      - in: path
+        name: id
+        description: Identifier of the invitation to accept
+      responses:
+        200:
+          description: OK
+      tags:
+      - Invitation
+  /v1/userProfiles/{studentId}/guardianInvitations:
+    get:
+      summary: Get Guardian Invitations
+      description: Returns a list of guardian invitations that the requesting user
+        isnpermitted to view, filtered by the parameters provided
+      operationId: classroom.userProfiles.guardianInvitations.list
+      parameters:
+      - in: query
+        name: invitedEmailAddress
+        description: If specified, only results with the specified `invited_email_address`nwill
+          be returned
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call,nindicating
+          that the subsequent page of results should be returned
+      - in: query
+        name: states
+        description: If specified, only results with the specified `state` values
+          will benreturned
+      - in: path
+        name: studentId
+        description: The ID of the student whose guardian invitations are to be returned
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian Invitation
+    post:
+      summary: Create Guardian Invitation
+      description: Creates a guardian invitation, and sends an email to the guardian
+        askingnthem to confirm that they are the student's guardian
+      operationId: classroom.userProfiles.guardianInvitations.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: studentId
+        description: ID of the student (in standard format)
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian Invitation
+  /v1/userProfiles/{studentId}/guardianInvitations/{invitationId}:
+    get:
+      summary: Get Guardian Invitation
+      description: Returns a specific guardian invitation
+      operationId: classroom.userProfiles.guardianInvitations.get
+      parameters:
+      - in: path
+        name: invitationId
+        description: The `id` field of the `GuardianInvitation` being requested
+      - in: path
+        name: studentId
+        description: The ID of the student whose guardian invitation is being requested
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian Invitation
+    patch:
+      summary: Update Guardian Invitations
+      description: Modifies a guardian invitation
+      operationId: classroom.userProfiles.guardianInvitations.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: invitationId
+        description: The `id` field of the `GuardianInvitation` to be modified
+      - in: path
+        name: studentId
+        description: The ID of the student whose guardian invitation is to be modified
+      - in: query
+        name: updateMask
+        description: Mask that identifies which fields on the course to update
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian Invitation
+  /v1/userProfiles/{studentId}/guardians:
+    get:
+      summary: Get Guardians
+      description: Returns a list of guardians that the requesting user is permitted
+        tonview, restricted to those that match the request
+      operationId: classroom.userProfiles.guardians.list
+      parameters:
+      - in: query
+        name: invitedEmailAddress
+        description: Filter results by the email address that the original invitation
+          was sentnto, resulting in this guardian link
+      - in: query
+        name: pageSize
+        description: Maximum number of items to return
+      - in: query
+        name: pageToken
+        description: nextPageTokennvalue returned from a previousnlist call,nindicating
+          that the subsequent page of results should be returned
+      - in: path
+        name: studentId
+        description: Filter results by the student who the guardian is linked to
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian
+  /v1/userProfiles/{studentId}/guardians/{guardianId}:
+    delete:
+      summary: Delete Guardian
+      description: Deletes a guardian
+      operationId: classroom.userProfiles.guardians.delete
+      parameters:
+      - in: path
+        name: guardianId
+        description: The `id` field from a `Guardian`
+      - in: path
+        name: studentId
+        description: The student whose guardian is to be deleted
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian
+    get:
+      summary: Get Guardian
+      description: Returns a specific guardian
+      operationId: classroom.userProfiles.guardians.get
+      parameters:
+      - in: path
+        name: guardianId
+        description: The `id` field from a `Guardian`
+      - in: path
+        name: studentId
+        description: The student whose guardian is being requested
+      responses:
+        200:
+          description: OK
+      tags:
+      - Guardian
+  /v1/userProfiles/{userId}:
+    get:
+      summary: Get User
+      description: Returns a user profile
+      operationId: classroom.userProfiles.get
+      parameters:
+      - in: path
+        name: userId
+        description: Identifier of the profile to return
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+definitions:
+  Assignment:
+    properties: []
+  AssignmentSubmission:
+    properties:
+      attachments:
+        description: This is a default description.
+        type: parameters
+  Attachment:
+    properties: []
+  Course:
+    properties:
+      alternateLink:
+        description: This is a default description.
+        type: parameters
+      courseGroupEmail:
+        description: This is a default description.
+        type: parameters
+      courseMaterialSets:
+        description: This is a default description.
+        type: parameters
+      courseState:
+        description: This is a default description.
+        type: parameters
+      creationTime:
+        description: This is a default description.
+        type: parameters
+      description:
+        description: This is a default description.
+        type: parameters
+      descriptionHeading:
+        description: This is a default description.
+        type: parameters
+      enrollmentCode:
+        description: This is a default description.
+        type: parameters
+      guardiansEnabled:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      name:
+        description: This is a default description.
+        type: parameters
+      ownerId:
+        description: This is a default description.
+        type: parameters
+      room:
+        description: This is a default description.
+        type: parameters
+      section:
+        description: This is a default description.
+        type: parameters
+      teacherGroupEmail:
+        description: This is a default description.
+        type: parameters
+      updateTime:
+        description: This is a default description.
+        type: parameters
+  CourseAlias:
+    properties:
+      alias:
+        description: This is a default description.
+        type: parameters
+  CourseMaterial:
+    properties: []
+  CourseMaterialSet:
+    properties:
+      materials:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  CourseWork:
+    properties:
+      alternateLink:
+        description: This is a default description.
+        type: parameters
+      associatedWithDeveloper:
+        description: This is a default description.
+        type: parameters
+      courseId:
+        description: This is a default description.
+        type: parameters
+      creationTime:
+        description: This is a default description.
+        type: parameters
+      description:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      materials:
+        description: This is a default description.
+        type: parameters
+      maxPoints:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      submissionModificationMode:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      updateTime:
+        description: This is a default description.
+        type: parameters
+      workType:
+        description: This is a default description.
+        type: parameters
+  Date:
+    properties:
+      day:
+        description: This is a default description.
+        type: parameters
+      month:
+        description: This is a default description.
+        type: parameters
+      year:
+        description: This is a default description.
+        type: parameters
+  DriveFile:
+    properties:
+      alternateLink:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      thumbnailUrl:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  DriveFolder:
+    properties:
+      alternateLink:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  Empty:
+    properties: []
+  Form:
+    properties:
+      formUrl:
+        description: This is a default description.
+        type: parameters
+      responseUrl:
+        description: This is a default description.
+        type: parameters
+      thumbnailUrl:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+  GlobalPermission:
+    properties:
+      permission:
+        description: This is a default description.
+        type: parameters
+  Guardian:
+    properties:
+      guardianId:
+        description: This is a default description.
+        type: parameters
+      invitedEmailAddress:
+        description: This is a default description.
+        type: parameters
+      studentId:
+        description: This is a default description.
+        type: parameters
+  GuardianInvitation:
+    properties:
+      creationTime:
+        description: This is a default description.
+        type: parameters
+      invitationId:
+        description: This is a default description.
+        type: parameters
+      invitedEmailAddress:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      studentId:
+        description: This is a default description.
+        type: parameters
+  Invitation:
+    properties:
+      courseId:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      role:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  Link:
+    properties:
+      thumbnailUrl:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
+      url:
+        description: This is a default description.
+        type: parameters
+  ListCourseAliasesResponse:
+    properties:
+      aliases:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListCourseWorkResponse:
+    properties:
+      courseWork:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListCoursesResponse:
+    properties:
+      courses:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListGuardianInvitationsResponse:
+    properties:
+      guardianInvitations:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListGuardiansResponse:
+    properties:
+      guardians:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListInvitationsResponse:
+    properties:
+      invitations:
+        description: This is a default description.
+        type: parameters
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+  ListStudentSubmissionsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      studentSubmissions:
+        description: This is a default description.
+        type: parameters
+  ListStudentsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      students:
+        description: This is a default description.
+        type: parameters
+  ListTeachersResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: parameters
+      teachers:
+        description: This is a default description.
+        type: parameters
+  Material:
+    properties: []
+  ModifyAttachmentsRequest:
+    properties:
+      addAttachments:
+        description: This is a default description.
+        type: parameters
+  MultipleChoiceQuestion:
+    properties:
+      choices:
+        description: This is a default description.
+        type: parameters
+  MultipleChoiceSubmission:
+    properties:
+      answer:
+        description: This is a default description.
+        type: parameters
+  Name:
+    properties:
+      familyName:
+        description: This is a default description.
+        type: parameters
+      fullName:
+        description: This is a default description.
+        type: parameters
+      givenName:
+        description: This is a default description.
+        type: parameters
+  ReclaimStudentSubmissionRequest:
+    properties: []
+  ReturnStudentSubmissionRequest:
+    properties: []
+  SharedDriveFile:
+    properties:
+      shareMode:
+        description: This is a default description.
+        type: parameters
+  ShortAnswerSubmission:
+    properties:
+      answer:
+        description: This is a default description.
+        type: parameters
+  Student:
+    properties:
+      courseId:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  StudentSubmission:
+    properties:
+      alternateLink:
+        description: This is a default description.
+        type: parameters
+      assignedGrade:
+        description: This is a default description.
+        type: parameters
+      associatedWithDeveloper:
+        description: This is a default description.
+        type: parameters
+      courseId:
+        description: This is a default description.
+        type: parameters
+      courseWorkId:
+        description: This is a default description.
+        type: parameters
+      courseWorkType:
+        description: This is a default description.
+        type: parameters
+      creationTime:
+        description: This is a default description.
+        type: parameters
+      draftGrade:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      late:
+        description: This is a default description.
+        type: parameters
+      state:
+        description: This is a default description.
+        type: parameters
+      updateTime:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  Teacher:
+    properties:
+      courseId:
+        description: This is a default description.
+        type: parameters
+      userId:
+        description: This is a default description.
+        type: parameters
+  TimeOfDay:
+    properties:
+      hours:
+        description: This is a default description.
+        type: parameters
+      minutes:
+        description: This is a default description.
+        type: parameters
+      nanos:
+        description: This is a default description.
+        type: parameters
+      seconds:
+        description: This is a default description.
+        type: parameters
+  TurnInStudentSubmissionRequest:
+    properties: []
+  UserProfile:
+    properties:
+      emailAddress:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      permissions:
+        description: This is a default description.
+        type: parameters
+      photoUrl:
+        description: This is a default description.
+        type: parameters
+  YouTubeVideo:
+    properties:
+      alternateLink:
+        description: This is a default description.
+        type: parameters
+      id:
+        description: This is a default description.
+        type: parameters
+      thumbnailUrl:
+        description: This is a default description.
+        type: parameters
+      title:
+        description: This is a default description.
+        type: parameters
