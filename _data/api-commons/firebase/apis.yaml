@@ -1,0 +1,61 @@
+name: Firebase
+description: Firebase is a cloud service designed to power real-time, collaborative
+  applications. Developers add the Firebase library to their apps to get access to
+  a shared data structure; any changes they make to that data are automatically synchronized
+  with the Firebase cloud and with other clients within milliseconds.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/firebase-logo.png
+tags:
+- Virtualization
+- Testing
+- Security
+- Real Time
+- Links
+- Google APIs
+- Database
+- Command Line Interface
+- API LIfeycle
+created: "2017-03-18"
+modified: "2017-03-18"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Firebase Dynamic Links API
+  description: Firebase is a cloud service designed to power real-time, collaborative
+    applications
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/firebase-logo.png
+  humanURL: http://apis.how/3crocnvwfb
+  baseURL: http://apis.how/3crocnvwfb
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/firebase-dynamic-links-api-openapi-spec.yaml
+- name: Firebase Rules API
+  description: Firebase is a cloud service designed to power real-time, collaborative
+    applications
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/firebase-logo.png
+  humanURL: http://apis.how/3crocnvwfb
+  baseURL: http://apis.how/3crocnvwfb
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/firebase-rules-api-openapi-spec.yaml
+- name: Firebase Test Lab for Android
+  description: Firebase is a cloud service designed to power real-time, collaborative
+    applications
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/firebase-logo.png
+  humanURL: http://apis.how/3crocnvwfb
+  baseURL: http://apis.how/3crocnvwfb
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/firebase-test-lab-for-android-openapi-spec.yaml
+x-common:
+- type: x-blog
+  url: https://firebase.googleblog.com/
+- type: x-website
+  url: https://firebase.google.com/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
