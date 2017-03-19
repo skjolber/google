@@ -1,0 +1,214 @@
+
+  {
+	"swagger": "2.0",
+	"info": {
+		"title": "Groups Settings",
+		"description": "Lets you manage permission levels and related settings of a group.",
+		"contact": {
+			"name": "Google",
+			"url": "https://google.com"
+		},
+		"version": "v1"
+	},
+	"host": "www.googleapis.com",
+	"basePath": "/groups/v1/groups",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/{groupUniqueId}": {
+			"get": {
+				"summary": "Get Group",
+				"description": "Gets one resource by id",
+				"operationId": "groupsSettings.groups.get",
+				"parameters": [{
+					"in": "path",
+					"name": "groupUniqueId",
+					"description": "The resource ID"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			},
+			"patch": {
+				"summary": "Update Group",
+				"description": "Updates an existing resource",
+				"operationId": "groupsSettings.groups.patch",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "groupUniqueId",
+					"description": "The resource ID"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			},
+			"put": {
+				"summary": "Update Group",
+				"description": "Updates an existing resource",
+				"operationId": "groupsSettings.groups.update",
+				"parameters": [{
+					"in": "body",
+					"name": "body",
+					"schema": {
+						"$ref": "#/definitions/holder"
+					}
+				},
+				{
+					"in": "path",
+					"name": "groupUniqueId",
+					"description": "The resource ID"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": ["Group"]
+			}
+		}
+	},
+	"definitions": {
+		"Groups": {
+			"properties": {
+				"allowExternalMembers": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"allowGoogleCommunication": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"allowWebPosting": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"archiveOnly": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"customFooterText": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"customReplyTo": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"defaultMessageDenyNotificationText": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"description": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"email": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"includeCustomFooter": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"includeInGlobalAddressList": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"isArchived": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"kind": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"maxMessageBytes": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"membersCanPostAsTheGroup": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"messageDisplayFont": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"messageModerationLevel": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"name": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"primaryLanguage": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"replyTo": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"sendMessageDenyNotification": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"showInGroupDirectory": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"spamModerationLevel": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanAdd": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanContactOwner": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanInvite": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanJoin": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanLeaveGroup": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanPostMessage": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanViewGroup": {
+					"description": "This is a default description.",
+					"type": "put"
+				},
+				"whoCanViewMembership": {
+					"description": "This is a default description.",
+					"type": "put"
+				}
+			}
+		}
+	}
+}
