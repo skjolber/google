@@ -3,6 +3,10 @@ layout: page
 title: Google
 ---
 
+<div class="alert alert-danger" role="alert">
+  <center>This is not done yet -- work in progress!</center>
+</div>
+
 <h1>Google</h1>
 <p><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/google-logo.jpg" align="right" width="250" style="padding: 15p;" /></p>
 <p>This is my work to define the APIs offered by Google. This work is all defined used <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI Spec</a>, and indexed using <a href="http://apisjson.org/">APIs.json</a>. You can find an individual APIs.json index for each of the individual servies, as wel as a <a href="https://raw.githubusercontent.com/api-stack/google/master/_data/apis.yaml">complete APIs.json for this entire collection</a>.</p>
@@ -396,7 +400,14 @@ title: Google
 
     $FullCount = $FullCount + 1;
 
-    var loadItAutoComplete = $.getJSON($apisjsonURL, function(apisJSON) {
+    $.ajax({
+         url : "helloworld.txt",
+         dataType: "text",
+         success : function (data) {
+             $(".text").html(data);
+         }
+
+    //var loadItAutoComplete = $.getJSON($apisjsonURL, function(apisJSON) {
 
       $masterName = apisJSON['name'];
 
