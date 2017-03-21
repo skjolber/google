@@ -207,6 +207,12 @@ patent_title: API Definition Patents
 patent_desc: I have been tracking on API related patents for some years, trying to understand how APIs are being referenced in patents, and in some cases the focus of the patent. Here are the patents I've tagged as being DNS related from the companies who are doing interesting things with DNS APIs.
 patent_footer: I tend to process the new patent filings and publications every couple of weeks. When ready I try to publish them along with my research.
 
+# URL to the issues page for this
+support_title: Support
+support_description: If you need any help, have questions, or would like to get involved, please use the following links.
+support_email: info@apievangelist.com
+support_twitter: apievangelist
+
 # doc colors
 get_color: 009900;
 post_color: 0000ff;
