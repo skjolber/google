@@ -13,7 +13,7 @@ layout: none
   "include": [
 		{% for api in site.data.apis.include %}{
       "name": "{{ api.name }}",
-      "url": "{{ api.url }}",
+      "url": "{{ api.url }}"
     }{% if forloop.last %}{% else %},{% endif %}{% endfor %}
 	],
   "maintainers": [
