@@ -1,7 +1,6 @@
 ---
 layout: none
 ---
-
 {
   "name": "{{ site.title }}",
   "description": "{{ site.project_summary }}",
@@ -12,12 +11,10 @@ layout: none
   "SpecificationVersion": "0.14",
   "apis": [],
   "include": [
-		{% for api in site.data.apis.include %}
-    {
+		{% for api in site.data.apis.include %}{
       "name": "{{ api.name }}",
-      "humanURL": "{{ api.url }}",
-    }{% if forloop.last %}{% else %},{% endif %}
-    {% endfor %}
+      "url": "{{ api.url }}",
+    }{% if forloop.last %}{% else %},{% endif %}{% endfor %}
 	],
   "maintainers": [
     {
