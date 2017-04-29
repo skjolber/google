@@ -57,7 +57,7 @@ include:
 - name: Google Cloud Functions
   url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-functions/apis.yaml
 - name: Google Cloud Identity & Access Management (IAM)
-  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity--access-management-iam/apis.yaml
+  url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity-access-management-iam/apis.yaml
 - name: Google Cloud Key Management Service (KMS)
   url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-key-management-service-kms/apis.yaml
 - name: Google Cloud Machine Learning Engine

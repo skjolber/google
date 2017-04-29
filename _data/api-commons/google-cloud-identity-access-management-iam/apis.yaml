@@ -13,7 +13,7 @@ tags:
 - Authentication
 created: "2017-04-29"
 modified: "2017-04-29"
-url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity-u0026-access-management-iam/apis.yaml
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity-access-management-iam/apis.yaml
 specificationVersion: "0.14"
 apis:
 - name: Google Cloud Identity & Access Management API
@@ -26,7 +26,7 @@ apis:
   tags: []
   properties:
   - type: x-openapi-spec
-    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity-u0026-access-management-iam/google-cloud-identity--access-management-api-openapi-spec.yaml
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity-access-management-iam/google-cloud-identity-access-management-api-openapi-spec.yaml
 x-common:
 - type: x-website
   url: https://cloud.google.com/iam/
