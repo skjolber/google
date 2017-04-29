@@ -1,0 +1,609 @@
+agger: "2.0"
+info:
+  title: Google Cloud Machine Learning Engine
+  description: An API to enable creating and using machine learning models.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: ml.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/{name}:
+    delete:
+      summary: Delete Model Version
+      description: Deletes a model version
+      operationId: ml.projects.models.versions.delete
+      parameters:
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Version
+    get:
+      summary: Get Model Version
+      description: Gets information about a model version
+      operationId: ml.projects.models.versions.get
+      parameters:
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Version
+  /v1/{name}/operations:
+    get:
+      summary: Get Operations
+      description: Lists operations that match the specified filter in the request
+      operationId: ml.projects.operations.list
+      parameters:
+      - in: query
+        name: filter
+        description: The standard list filter
+      - in: path
+        name: name
+        description: The name of the operation collection
+      - in: query
+        name: pageSize
+        description: The standard list page size
+      - in: query
+        name: pageToken
+        description: The standard list page token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:cancel:
+    post:
+      summary: Cancel Operation
+      description: Starts asynchronous cancellation on a long-running operation
+      operationId: ml.projects.operations.cancel
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: The name of the operation resource to be cancelled
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:getConfig:
+    get:
+      summary: Get Operation
+      description: Get the service account information associated with your project
+      operationId: ml.projects.getConfig
+      parameters:
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:predict:
+    post:
+      summary: Predict Operation
+      description: Performs prediction on the data in the request
+      operationId: ml.projects.predict
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Operation
+  /v1/{name}:setDefault:
+    post:
+      summary: Set Default Version
+      description: Designates a version to be the default for the model
+      operationId: ml.projects.models.versions.setDefault
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Version
+  /v1/{parent}/jobs:
+    get:
+      summary: List Jobs
+      description: Lists the jobs in the project
+      operationId: ml.projects.jobs.list
+      parameters:
+      - in: query
+        name: filter
+        description: Optional
+      - in: query
+        name: pageSize
+        description: Optional
+      - in: query
+        name: pageToken
+        description: Optional
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+    post:
+      summary: Create Job
+      description: Creates a training or a batch prediction job
+      operationId: ml.projects.jobs.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Job
+  /v1/{parent}/models:
+    get:
+      summary: List Models
+      description: Lists the models in a project
+      operationId: ml.projects.models.list
+      parameters:
+      - in: query
+        name: pageSize
+        description: Optional
+      - in: query
+        name: pageToken
+        description: Optional
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Model
+    post:
+      summary: Create Models
+      description: Creates a model which will later contain one or more versions
+      operationId: ml.projects.models.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Model
+  /v1/{parent}/versions:
+    get:
+      summary: Get Version
+      description: Gets basic information about all the versions of a model
+      operationId: ml.projects.models.versions.list
+      parameters:
+      - in: query
+        name: pageSize
+        description: Optional
+      - in: query
+        name: pageToken
+        description: Optional
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Version
+    post:
+      summary: Create Version
+      description: Creates a new version of a model from a trained TensorFlow model
+      operationId: ml.projects.models.versions.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Version
+definitions:
+  GoogleApi__HttpBody:
+    properties:
+      contentType:
+        description: This is a default description.
+        type: post
+      data:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric:
+    properties:
+      objectiveValue:
+        description: This is a default description.
+        type: post
+      trainingStep:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__CancelJobRequest:
+    properties: []
+  GoogleCloudMlV1__GetConfigResponse:
+    properties:
+      serviceAccount:
+        description: This is a default description.
+        type: post
+      serviceAccountProject:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__HyperparameterOutput:
+    properties:
+      allMetrics:
+        description: This is a default description.
+        type: post
+      hyperparameters:
+        description: This is a default description.
+        type: post
+      trialId:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__HyperparameterSpec:
+    properties:
+      goal:
+        description: This is a default description.
+        type: post
+      hyperparameterMetricTag:
+        description: This is a default description.
+        type: post
+      maxParallelTrials:
+        description: This is a default description.
+        type: post
+      maxTrials:
+        description: This is a default description.
+        type: post
+      params:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__Job:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      errorMessage:
+        description: This is a default description.
+        type: post
+      jobId:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+      state:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__ListJobsResponse:
+    properties:
+      jobs:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__ListModelsResponse:
+    properties:
+      models:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__ListVersionsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      versions:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__ManualScaling:
+    properties:
+      nodes:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__Model:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      onlinePredictionLogging:
+        description: This is a default description.
+        type: post
+      regions:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__OperationMetadata:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      isCancellationRequested:
+        description: This is a default description.
+        type: post
+      modelName:
+        description: This is a default description.
+        type: post
+      operationType:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__ParameterSpec:
+    properties:
+      categoricalValues:
+        description: This is a default description.
+        type: post
+      discreteValues:
+        description: This is a default description.
+        type: post
+      maxValue:
+        description: This is a default description.
+        type: post
+      minValue:
+        description: This is a default description.
+        type: post
+      parameterName:
+        description: This is a default description.
+        type: post
+      scaleType:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__PredictRequest:
+    properties: []
+  GoogleCloudMlV1__PredictionInput:
+    properties:
+      dataFormat:
+        description: This is a default description.
+        type: post
+      inputPaths:
+        description: This is a default description.
+        type: post
+      maxWorkerCount:
+        description: This is a default description.
+        type: post
+      modelName:
+        description: This is a default description.
+        type: post
+      outputPath:
+        description: This is a default description.
+        type: post
+      region:
+        description: This is a default description.
+        type: post
+      runtimeVersion:
+        description: This is a default description.
+        type: post
+      uri:
+        description: This is a default description.
+        type: post
+      versionName:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__PredictionOutput:
+    properties:
+      errorCount:
+        description: This is a default description.
+        type: post
+      nodeHours:
+        description: This is a default description.
+        type: post
+      outputPath:
+        description: This is a default description.
+        type: post
+      predictionCount:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__SetDefaultVersionRequest:
+    properties: []
+  GoogleCloudMlV1__TrainingInput:
+    properties:
+      args:
+        description: This is a default description.
+        type: post
+      jobDir:
+        description: This is a default description.
+        type: post
+      masterType:
+        description: This is a default description.
+        type: post
+      packageUris:
+        description: This is a default description.
+        type: post
+      parameterServerCount:
+        description: This is a default description.
+        type: post
+      parameterServerType:
+        description: This is a default description.
+        type: post
+      pythonModule:
+        description: This is a default description.
+        type: post
+      region:
+        description: This is a default description.
+        type: post
+      runtimeVersion:
+        description: This is a default description.
+        type: post
+      scaleTier:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__TrainingOutput:
+    properties:
+      completedTrialCount:
+        description: This is a default description.
+        type: post
+      consumedMLUnits:
+        description: This is a default description.
+        type: post
+      isHyperparameterTuningJob:
+        description: This is a default description.
+        type: post
+      trials:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1__Version:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      deploymentUri:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      isDefault:
+        description: This is a default description.
+        type: post
+      lastUseTime:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      runtimeVersion:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1beta1__ManualScaling:
+    properties:
+      nodes:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1beta1__OperationMetadata:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      isCancellationRequested:
+        description: This is a default description.
+        type: post
+      modelName:
+        description: This is a default description.
+        type: post
+      operationType:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+  GoogleCloudMlV1beta1__Version:
+    properties:
+      createTime:
+        description: This is a default description.
+        type: post
+      deploymentUri:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      isDefault:
+        description: This is a default description.
+        type: post
+      lastUseTime:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      runtimeVersion:
+        description: This is a default description.
+        type: post
+  GoogleLongrunning__ListOperationsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      operations:
+        description: This is a default description.
+        type: post
+  GoogleLongrunning__Operation:
+    properties:
+      done:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      response:
+        description: This is a default description.
+        type: post
+  GoogleProtobuf__Empty:
+    properties: []
+  GoogleRpc__Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
