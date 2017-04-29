@@ -1,4 +1,4 @@
-swagger: "2.0"
+agger: "2.0"
 info:
   title: Google Identity and Access Management (IAM)
   description: Manages identity and access control for Google Cloud Platform resources,
@@ -40,8 +40,9 @@ paths:
       parameters:
       - in: path
         name: name
-        description: The resource name of the service account key in the following
-          format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`
+        description: |-
+          The resource name of the service account key in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`
       responses:
         200:
           description: OK
@@ -49,13 +50,16 @@ paths:
       - Service Account Key
     get:
       summary: Get Service Account Key
-      description: Gets the ServiceAccountKeynby key id
+      description: |-
+        Gets the ServiceAccountKey
+        by key id
       operationId: iam.projects.serviceAccounts.keys.get
       parameters:
       - in: path
         name: name
-        description: The resource name of the service account key in the following
-          format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`
+        description: |-
+          The resource name of the service account key in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`
       - in: query
         name: publicKeyType
         description: The output format of the public key requested
@@ -75,7 +79,9 @@ paths:
           $ref: '#/definitions/holder'
       - in: path
         name: name
-        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+        description: |-
+          The resource name of the service account in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
       responses:
         200:
           description: OK
@@ -89,10 +95,14 @@ paths:
       parameters:
       - in: query
         name: keyTypes
-        description: Filters the types of keys the user wants to include in the listnresponse
+        description: |-
+          Filters the types of keys the user wants to include in the list
+          response
       - in: path
         name: name
-        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+        description: |-
+          The resource name of the service account in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
       responses:
         200:
           description: OK
@@ -100,7 +110,9 @@ paths:
       - Service Account Key
     post:
       summary: Create Service Account Key
-      description: Creates a ServiceAccountKeynand returns it
+      description: |-
+        Creates a ServiceAccountKey
+        and returns it
       operationId: iam.projects.serviceAccounts.keys.create
       parameters:
       - in: body
@@ -109,7 +121,9 @@ paths:
           $ref: '#/definitions/holder'
       - in: path
         name: name
-        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+        description: |-
+          The resource name of the service account in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
       responses:
         200:
           description: OK
@@ -126,11 +140,14 @@ paths:
         description: Required
       - in: query
         name: pageSize
-        description: Optional limit on the number of service accounts to include in
-          thenresponse
+        description: |-
+          Optional limit on the number of service accounts to include in the
+          response
       - in: query
         name: pageToken
-        description: Optional pagination token returned in an earliernListServiceAccountsResponse
+        description: |-
+          Optional pagination token returned in an earlier
+          ListServiceAccountsResponse
       responses:
         200:
           description: OK
@@ -138,7 +155,9 @@ paths:
       - Service Account
     post:
       summary: Create Service Account
-      description: Creates a ServiceAccountnand returns it
+      description: |-
+        Creates a ServiceAccount
+        and returns it
       operationId: iam.projects.serviceAccounts.create
       parameters:
       - in: body
@@ -165,7 +184,9 @@ paths:
           $ref: '#/definitions/holder'
       - in: path
         name: name
-        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+        description: |-
+          The resource name of the service account in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
       responses:
         200:
           description: OK
@@ -183,7 +204,9 @@ paths:
           $ref: '#/definitions/holder'
       - in: path
         name: name
-        description: The resource name of the service account in the following format:n`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
+        description: |-
+          The resource name of the service account in the following format:
+          `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`
       responses:
         200:
           description: OK
@@ -192,7 +215,9 @@ paths:
   /v1/{resource}:getIamPolicy:
     post:
       summary: Return IAM Access Control Policy
-      description: Returns the IAM access control policy for anServiceAccount
+      description: |-
+        Returns the IAM access control policy for a
+        ServiceAccount
       operationId: iam.projects.serviceAccounts.getIamPolicy
       parameters:
       - in: path
@@ -206,7 +231,9 @@ paths:
   /v1/{resource}:setIamPolicy:
     post:
       summary: Set IAM Access Control Policy
-      description: Sets the IAM access control policy for anServiceAccount
+      description: |-
+        Sets the IAM access control policy for a
+        ServiceAccount
       operationId: iam.projects.serviceAccounts.setIamPolicy
       parameters:
       - in: body
@@ -224,8 +251,9 @@ paths:
   /v1/{resource}:testIamPermissions:
     post:
       summary: Tests Permissions
-      description: Tests the specified permissions against the IAM access control
-        policynfor a ServiceAccount
+      description: |-
+        Tests the specified permissions against the IAM access control policy
+        for a ServiceAccount
       operationId: iam.projects.serviceAccounts.testIamPermissions
       parameters:
       - in: body
