@@ -1,4 +1,4 @@
-swagger: "2.0"
+agger: "2.0"
 info:
   title: Genomics
   description: Upload, process, query, and search Genomics data in the cloud.
@@ -299,8 +299,9 @@ paths:
   /v1/datasets/{datasetId}:
     delete:
       summary: Delete Dataset
-      description: Deletes a dataset and all of its contents (all read group sets,nreference
-        sets, variant sets, call sets, annotation sets, etc
+      description: |-
+        Deletes a dataset and all of its contents (all read group sets,
+        reference sets, variant sets, call sets, annotation sets, etc
       operationId: genomics.datasets.delete
       parameters:
       - in: path
@@ -428,8 +429,9 @@ paths:
   /v1/readgroupsets/{readGroupSetId}/coveragebuckets:
     get:
       summary: Get Coverage Buckets for Read Group Set
-      description: Lists fixed width coverage buckets for a read group set, each of
-        whichncorrespond to a range of a reference sequence
+      description: |-
+        Lists fixed width coverage buckets for a read group set, each of which
+        correspond to a range of a reference sequence
       operationId: genomics.readgroupsets.coveragebuckets.list
       parameters:
       - in: query
@@ -447,8 +449,9 @@ paths:
         description: Required
       - in: query
         name: referenceName
-        description: The name of the reference to query, within the reference set
-          associatednwith this query
+        description: |-
+          The name of the reference to query, within the reference set associated
+          with this query
       - in: query
         name: start
         description: The start position of the range on the reference, 0-based inclusive
@@ -481,7 +484,9 @@ paths:
   /v1/readgroupsets:import:
     post:
       summary: Create Read Group Set
-      description: Creates read group sets by asynchronously importing the providedninformation
+      description: |-
+        Creates read group sets by asynchronously importing the provided
+        information
       operationId: genomics.readgroupsets.import
       parameters:
       - in: body
@@ -1348,21 +1353,6 @@ definitions:
       properPlacement:
         description: This is a default description.
         type: post
-      readGroupId:
-        description: This is a default description.
-        type: post
-      readGroupSetId:
-        description: This is a default description.
-        type: post
-      readNumber:
-        description: This is a default description.
-        type: post
-      secondaryAlignment:
-        description: This is a default description.
-        type: post
-      supplementaryAlignment:
-        description: This is a default description.
-        type: post
   ReadGroup:
     properties:
       datasetId:
@@ -1777,15 +1767,6 @@ definitions:
         description: This is a default description.
         type: post
       referenceBases:
-        description: This is a default description.
-        type: post
-      referenceName:
-        description: This is a default description.
-        type: post
-      start:
-        description: This is a default description.
-        type: post
-      variantSetId:
         description: This is a default description.
         type: post
   VariantAnnotation:
