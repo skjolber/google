@@ -1,0 +1,157 @@
+- apis_json_url: http://google.stack.network/apis.json
+  question: Is the APIs.json valid JSON?
+  reference:
+  - url: http://google.stack.network/apis.json
+    answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/accelerated-mobile-pages-amp-url/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/blogger/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/firebase/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/g-suite/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/gmail/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-adsense/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-analytics/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-api-discovery-service/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-app-engine/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-apps-admin-sdk/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-apps-script-execution/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-beacons/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-biquery/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-books/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-calendar/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-civic-information/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-classroom/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-billing/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-container-builder/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-dataproc/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-datastore/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-deployment-manager/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-dns/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-functions/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-identity-access-management-iam/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-key-management-service-kms/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-machine-learning-engine/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-natural-language/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-prediction/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-pubsub/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-resource-manager/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-source-repositories/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-spanner/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-sql/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-storage/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-user-accounts/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-cloud-vision/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-compute-engine/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-consumer-surveys/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-container-engine/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-content-api-for-shopping/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-custom-search/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-dataflow/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-doubleclick/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-drive/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fit/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fonts/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-fusion-tables/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-genomics/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-glass/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-knowledge-graph-search/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-manufacturer-center/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-oauth2/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-pagespeed-insights/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-partners/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-people/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-play/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-qpx-express/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-safe-browsing/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-search-console/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-service-control/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-service-management/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-sheets/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-site-verification/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-slides/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-spectrum-database/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-speech/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-stackdriver/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tag-manager/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-task-queue/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-tasks/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-translate/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google-url-shortener/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/google/apis.yaml
+      answer: 'yes'
+  - url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/youtube/apis.yaml
+      answer: 'yes'
+  answer: 'yes'
+  ask_date: Sat, 29 Apr 2017 15:35:08 -0700
