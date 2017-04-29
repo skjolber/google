@@ -1,0 +1,31 @@
+name: Gmail
+description: The Gmail API is a RESTful API that can be used to access Gmail mailboxes
+  and send mail. For most web applications (including mobile apps), the Gmail API
+  is the best choice for authorized access to a users Gmail data.
+image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/gmail-icon.png
+tags:
+- Google APIs
+- Email
+created: "2017-04-29"
+modified: "2017-04-29"
+url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/gmail/apis.yaml
+specificationVersion: "0.14"
+apis:
+- name: Gmail API
+  description: The Gmail API is a RESTful API that can be used to access Gmail mailboxes
+    and send mail
+  image: http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/gmail-icon.png
+  humanURL: https://developers.google.com/gmail/api/
+  baseURL: https://developers.google.com/gmail/api/
+  tags: []
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/gmail/gmail-api-openapi-spec.yaml
+x-common:
+- type: x-website
+  url: https://developers.google.com/gmail/api/
+include: []
+maintainers:
+- FN: Kin Lane
+  x-twitter: apievangelist
+  email: info@apievangelist.com
