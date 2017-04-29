@@ -1,0 +1,946 @@
+agger: "2.0"
+info:
+  title: Cloud Spanner
+  description: Cloud Spanner is a managed, mission-critical, globally consistent and
+    scalable relational database service.
+  contact:
+    name: Google
+    url: https://google.com
+  version: v1
+host: spanner.googleapis.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /v1/{database}:
+    delete:
+      summary: Delete Database
+      description: Drops (aka deletes) a Cloud Spanner database
+      operationId: spanner.projects.instances.databases.dropDatabase
+      parameters:
+      - in: path
+        name: database
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Database
+  /v1/{database}/ddl:
+    get:
+      summary: Get Database Schema
+      description: |-
+        Returns the schema of a Cloud Spanner database as a list of formatted
+        DDL statements
+      operationId: spanner.projects.instances.databases.getDdl
+      parameters:
+      - in: path
+        name: database
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Database Schema
+    patch:
+      summary: Update Database Schema
+      description: |-
+        Updates the schema of a Cloud Spanner database by
+        creating/altering/dropping tables, columns, indexes, etc
+      operationId: spanner.projects.instances.databases.updateDdl
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: database
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Database Schema
+  /v1/{database}/sessions:
+    post:
+      summary: Create Session
+      description: Creates a new session
+      operationId: spanner.projects.instances.databases.sessions.create
+      parameters:
+      - in: path
+        name: database
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Session
+  /v1/{name}:
+    delete:
+      summary: End Session
+      description: Ends a session, releasing server resources associated with it
+      operationId: spanner.projects.instances.databases.sessions.delete
+      parameters:
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Session
+    get:
+      summary: Get Session
+      description: Gets a session
+      operationId: spanner.projects.instances.databases.sessions.get
+      parameters:
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Session
+    patch:
+      summary: Update Instance
+      description: |-
+        Updates an instance, and begins allocating or releasing resources
+        as requested
+      operationId: spanner.projects.instances.patch
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: name
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Instance
+  /v1/{name}:cancel:
+    post:
+      summary: Cancel Instance
+      description: Starts asynchronous cancellation on a long-running operation
+      operationId: spanner.projects.instances.databases.operations.cancel
+      parameters:
+      - in: path
+        name: name
+        description: The name of the operation resource to be cancelled
+      responses:
+        200:
+          description: OK
+      tags:
+      - Instance
+  /v1/{parent}/databases:
+    get:
+      summary: Get Databases
+      description: Lists Cloud Spanner databases
+      operationId: spanner.projects.instances.databases.list
+      parameters:
+      - in: query
+        name: pageSize
+        description: Number of databases to be returned in the response
+      - in: query
+        name: pageToken
+        description: |-
+          If non-empty, `page_token` should contain a
+          next_page_token from a
+          previous ListDatabasesResponse
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Database
+    post:
+      summary: Create Database
+      description: Creates a new Cloud Spanner database and starts to prepare it for
+        serving
+      operationId: spanner.projects.instances.databases.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Database
+  /v1/{parent}/instanceConfigs:
+    get:
+      summary: Get Instance Configurations
+      description: Lists the supported instance configurations for a given project
+      operationId: spanner.projects.instanceConfigs.list
+      parameters:
+      - in: query
+        name: pageSize
+        description: Number of instance configurations to be returned in the response
+      - in: query
+        name: pageToken
+        description: |-
+          If non-empty, `page_token` should contain a
+          next_page_token
+          from a previous ListInstanceConfigsResponse
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Instance
+  /v1/{parent}/instances:
+    get:
+      summary: Get Instances
+      description: Lists all instances in the given project
+      operationId: spanner.projects.instances.list
+      parameters:
+      - in: query
+        name: filter
+        description: An expression for filtering the results of the request
+      - in: query
+        name: pageSize
+        description: Number of instances to be returned in the response
+      - in: query
+        name: pageToken
+        description: |-
+          If non-empty, `page_token` should contain a
+          next_page_token from a
+          previous ListInstancesResponse
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Instance
+    post:
+      summary: Create instance
+      description: Creates an instance and begins preparing it to begin serving
+      operationId: spanner.projects.instances.create
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: parent
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Instance
+  /v1/{resource}:getIamPolicy:
+    post:
+      summary: Get IAM Policy
+      description: Gets the access control policy for a database resource
+      operationId: spanner.projects.instances.databases.getIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The Cloud Spanner resource for which the policy is
+          being retrieved'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{resource}:setIamPolicy:
+    post:
+      summary: Set IAM Policy
+      description: Sets the access control policy on a database resource
+      operationId: spanner.projects.instances.databases.setIamPolicy
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The Cloud Spanner resource for which the policy is
+          being set'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{resource}:testIamPermissions:
+    post:
+      summary: Test IAM Permissions
+      description: Returns permissions that the caller has on the specified database
+        resource
+      operationId: spanner.projects.instances.databases.testIamPermissions
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: resource
+        description: 'REQUIRED: The Cloud Spanner resource for which permissions are
+          being tested'
+      responses:
+        200:
+          description: OK
+      tags:
+      - IAM
+  /v1/{session}:beginTransaction:
+    post:
+      summary: Begin Transaction
+      description: Begins a new transaction
+      operationId: spanner.projects.instances.databases.sessions.beginTransaction
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Transaction
+  /v1/{session}:commit:
+    post:
+      summary: Commit Transaction
+      description: Commits a transaction
+      operationId: spanner.projects.instances.databases.sessions.commit
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Transaction
+  /v1/{session}:executeSql:
+    post:
+      summary: Execute SQL
+      description: Executes an SQL query, returning all rows in a single reply
+      operationId: spanner.projects.instances.databases.sessions.executeSql
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - SQL
+  /v1/{session}:executeStreamingSql:
+    post:
+      summary: Execute Streaming SQL
+      description: |-
+        Like ExecuteSql, except returns the result
+        set as a stream
+      operationId: spanner.projects.instances.databases.sessions.executeStreamingSql
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - SQL
+  /v1/{session}:read:
+    post:
+      summary: Read Rows
+      description: |-
+        Reads rows from the database using key lookups and scans, as a
+        simple key/value style alternative to
+        ExecuteSql
+      operationId: spanner.projects.instances.databases.sessions.read
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Row
+  /v1/{session}:rollback:
+    post:
+      summary: Rollback Transaction
+      description: Rolls back a transaction, releasing any locks it holds
+      operationId: spanner.projects.instances.databases.sessions.rollback
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Transaction
+  /v1/{session}:streamingRead:
+    post:
+      summary: Streaming Read
+      description: |-
+        Like Read, except returns the result set as a
+        stream
+      operationId: spanner.projects.instances.databases.sessions.streamingRead
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: session
+        description: Required
+      responses:
+        200:
+          description: OK
+      tags:
+      - Streaming
+definitions:
+  AuditConfig:
+    properties:
+      auditLogConfigs:
+        description: This is a default description.
+        type: post
+      exemptedMembers:
+        description: This is a default description.
+        type: post
+      service:
+        description: This is a default description.
+        type: post
+  AuditLogConfig:
+    properties:
+      exemptedMembers:
+        description: This is a default description.
+        type: post
+      logType:
+        description: This is a default description.
+        type: post
+  BeginTransactionRequest:
+    properties: []
+  Binding:
+    properties:
+      members:
+        description: This is a default description.
+        type: post
+      role:
+        description: This is a default description.
+        type: post
+  ChildLink:
+    properties:
+      childIndex:
+        description: This is a default description.
+        type: post
+      type:
+        description: This is a default description.
+        type: post
+      variable:
+        description: This is a default description.
+        type: post
+  CloudAuditOptions:
+    properties: []
+  CommitRequest:
+    properties:
+      mutations:
+        description: This is a default description.
+        type: post
+      transactionId:
+        description: This is a default description.
+        type: post
+  CommitResponse:
+    properties:
+      commitTimestamp:
+        description: This is a default description.
+        type: post
+  Condition:
+    properties:
+      iam:
+        description: This is a default description.
+        type: post
+      op:
+        description: This is a default description.
+        type: post
+      svc:
+        description: This is a default description.
+        type: post
+      sys:
+        description: This is a default description.
+        type: post
+      value:
+        description: This is a default description.
+        type: post
+      values:
+        description: This is a default description.
+        type: post
+  CounterOptions:
+    properties:
+      field:
+        description: This is a default description.
+        type: post
+      metric:
+        description: This is a default description.
+        type: post
+  CreateDatabaseMetadata:
+    properties:
+      database:
+        description: This is a default description.
+        type: post
+  CreateDatabaseRequest:
+    properties:
+      createStatement:
+        description: This is a default description.
+        type: post
+      extraStatements:
+        description: This is a default description.
+        type: post
+  CreateInstanceMetadata:
+    properties:
+      cancelTime:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+  CreateInstanceRequest:
+    properties:
+      instanceId:
+        description: This is a default description.
+        type: post
+  DataAccessOptions:
+    properties: []
+  Database:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+      state:
+        description: This is a default description.
+        type: post
+  Delete:
+    properties:
+      table:
+        description: This is a default description.
+        type: post
+  Empty:
+    properties: []
+  ExecuteSqlRequest:
+    properties:
+      paramTypes:
+        description: This is a default description.
+        type: post
+      params:
+        description: This is a default description.
+        type: post
+      queryMode:
+        description: This is a default description.
+        type: post
+      resumeToken:
+        description: This is a default description.
+        type: post
+      sql:
+        description: This is a default description.
+        type: post
+  Field:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+  GetDatabaseDdlResponse:
+    properties:
+      statements:
+        description: This is a default description.
+        type: post
+  GetIamPolicyRequest:
+    properties: []
+  Instance:
+    properties:
+      config:
+        description: This is a default description.
+        type: post
+      displayName:
+        description: This is a default description.
+        type: post
+      labels:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      nodeCount:
+        description: This is a default description.
+        type: post
+      state:
+        description: This is a default description.
+        type: post
+  InstanceConfig:
+    properties:
+      displayName:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+  KeyRange:
+    properties:
+      endClosed:
+        description: This is a default description.
+        type: post
+      endOpen:
+        description: This is a default description.
+        type: post
+      startClosed:
+        description: This is a default description.
+        type: post
+      startOpen:
+        description: This is a default description.
+        type: post
+  KeySet:
+    properties:
+      all:
+        description: This is a default description.
+        type: post
+      keys:
+        description: This is a default description.
+        type: post
+      ranges:
+        description: This is a default description.
+        type: post
+  ListDatabasesResponse:
+    properties:
+      databases:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListInstanceConfigsResponse:
+    properties:
+      instanceConfigs:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListInstancesResponse:
+    properties:
+      instances:
+        description: This is a default description.
+        type: post
+      nextPageToken:
+        description: This is a default description.
+        type: post
+  ListOperationsResponse:
+    properties:
+      nextPageToken:
+        description: This is a default description.
+        type: post
+      operations:
+        description: This is a default description.
+        type: post
+  LogConfig:
+    properties: []
+  Mutation:
+    properties: []
+  Operation:
+    properties:
+      done:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+      name:
+        description: This is a default description.
+        type: post
+      response:
+        description: This is a default description.
+        type: post
+  PartialResultSet:
+    properties:
+      chunkedValue:
+        description: This is a default description.
+        type: post
+      resumeToken:
+        description: This is a default description.
+        type: post
+      values:
+        description: This is a default description.
+        type: post
+  PlanNode:
+    properties:
+      childLinks:
+        description: This is a default description.
+        type: post
+      displayName:
+        description: This is a default description.
+        type: post
+      executionStats:
+        description: This is a default description.
+        type: post
+      index:
+        description: This is a default description.
+        type: post
+      kind:
+        description: This is a default description.
+        type: post
+      metadata:
+        description: This is a default description.
+        type: post
+  Policy:
+    properties:
+      auditConfigs:
+        description: This is a default description.
+        type: post
+      bindings:
+        description: This is a default description.
+        type: post
+      etag:
+        description: This is a default description.
+        type: post
+      iamOwned:
+        description: This is a default description.
+        type: post
+      rules:
+        description: This is a default description.
+        type: post
+      version:
+        description: This is a default description.
+        type: post
+  QueryPlan:
+    properties:
+      planNodes:
+        description: This is a default description.
+        type: post
+  ReadOnly:
+    properties:
+      exactStaleness:
+        description: This is a default description.
+        type: post
+      maxStaleness:
+        description: This is a default description.
+        type: post
+      minReadTimestamp:
+        description: This is a default description.
+        type: post
+      readTimestamp:
+        description: This is a default description.
+        type: post
+      returnReadTimestamp:
+        description: This is a default description.
+        type: post
+      strong:
+        description: This is a default description.
+        type: post
+  ReadRequest:
+    properties:
+      columns:
+        description: This is a default description.
+        type: post
+      index:
+        description: This is a default description.
+        type: post
+      limit:
+        description: This is a default description.
+        type: post
+      resumeToken:
+        description: This is a default description.
+        type: post
+      table:
+        description: This is a default description.
+        type: post
+  ReadWrite:
+    properties: []
+  ResultSet:
+    properties:
+      rows:
+        description: This is a default description.
+        type: post
+  ResultSetMetadata:
+    properties: []
+  ResultSetStats:
+    properties:
+      queryStats:
+        description: This is a default description.
+        type: post
+  RollbackRequest:
+    properties:
+      transactionId:
+        description: This is a default description.
+        type: post
+  Rule:
+    properties:
+      action:
+        description: This is a default description.
+        type: post
+      conditions:
+        description: This is a default description.
+        type: post
+      description:
+        description: This is a default description.
+        type: post
+      in:
+        description: This is a default description.
+        type: post
+      logConfig:
+        description: This is a default description.
+        type: post
+      notIn:
+        description: This is a default description.
+        type: post
+      permissions:
+        description: This is a default description.
+        type: post
+  Session:
+    properties:
+      name:
+        description: This is a default description.
+        type: post
+  SetIamPolicyRequest:
+    properties:
+      updateMask:
+        description: This is a default description.
+        type: post
+  ShortRepresentation:
+    properties:
+      description:
+        description: This is a default description.
+        type: post
+      subqueries:
+        description: This is a default description.
+        type: post
+  Status:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+      details:
+        description: This is a default description.
+        type: post
+      message:
+        description: This is a default description.
+        type: post
+  StructType:
+    properties:
+      fields:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsRequest:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  TestIamPermissionsResponse:
+    properties:
+      permissions:
+        description: This is a default description.
+        type: post
+  Transaction:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+      readTimestamp:
+        description: This is a default description.
+        type: post
+  TransactionOptions:
+    properties: []
+  TransactionSelector:
+    properties:
+      id:
+        description: This is a default description.
+        type: post
+  Type:
+    properties:
+      code:
+        description: This is a default description.
+        type: post
+  UpdateDatabaseDdlMetadata:
+    properties:
+      commitTimestamps:
+        description: This is a default description.
+        type: post
+      database:
+        description: This is a default description.
+        type: post
+      statements:
+        description: This is a default description.
+        type: post
+  UpdateDatabaseDdlRequest:
+    properties:
+      operationId:
+        description: This is a default description.
+        type: post
+      statements:
+        description: This is a default description.
+        type: post
+  UpdateInstanceMetadata:
+    properties:
+      cancelTime:
+        description: This is a default description.
+        type: post
+      endTime:
+        description: This is a default description.
+        type: post
+      startTime:
+        description: This is a default description.
+        type: post
+  UpdateInstanceRequest:
+    properties:
+      fieldMask:
+        description: This is a default description.
+        type: post
+  Write:
+    properties:
+      columns:
+        description: This is a default description.
+        type: post
+      table:
+        description: This is a default description.
+        type: post
+      values:
+        description: This is a default description.
+        type: post
