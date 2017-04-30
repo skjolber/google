@@ -1,4 +1,4 @@
-swagger: "2.0"
+swagger: "2.0
 info:
   title: Accelerated Mobile Pages (AMP) URL
   description: This API contains a single method, batchGet. Call this method to retrieve
