@@ -14,6 +14,10 @@ title: Google
 <p>This project is all <a href="https://github.com/api-stack/google">hosted on Github</a>, and if you put to use and improve on any of the definitions, please make sure and contribute back so everyone can benefit from the contributions. Ideally AWS would maintain this, but until that happens, we all need to step up and make sure these valuable serices are defined in a machined readable way.</p>
 <p align="center"><a href="https://apis.guru/openapi-directory/"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/blog/api-guru-banner.png" width="75%" align="center" /></a></p>
 <p>
+
+{% assign service_count = 0 %}
+{% assign path_count = 0 %}
+
 {% assign index = site.data.apis %}
 
 {% assign apijson = index[0] %}
@@ -167,7 +171,7 @@ title: Google
 
             <tr>
               <td>
-                {% increment service_count %}
+                {% assign service_count = service_count | plus: 1 %}
                 <h3>{{ api_name }} (<a href="{{ api_json_url }}">APIs.json</a>)<h3>
                 <p><img src="{{ api_image }}" width="75" style="padding: 10px;" align="left" /></p>
                 <p style="font-size: 11px;">{{ api_description }}<p>
@@ -342,7 +346,7 @@ title: Google
                                         {% assign description = method[1].description %}
 
                                         <li style="font-size: 11px;"><strong>{{ summary }}</strong> - {{ description }}</li>
-                                        {% increment path_count %}
+                                        {% assign path_count = path_count | plus: 1 %}
                                       {% endfor %}
                                     {% endfor %}
 
