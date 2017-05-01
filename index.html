@@ -12,7 +12,6 @@ title: Google
 <p>This is my work to define the APIs offered by Google. This work is all defined used <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI Spec</a>, and indexed using <a href="http://apisjson.org/">APIs.json</a>. You can find an individual APIs.json index for each of the individual servies, as wel as a <a href="https://raw.githubusercontent.com/api-stack/google/master/_data/apis.yaml">complete APIs.json for this entire collection</a>.</p>
 <p>While my intention with this is to eventually define a machine readable definition of all the Microsoft that can be used at run-time, right now I only have the surface area designed. I am working to profile all the headers, parameters, as well as the underlying data model, and error responses. My objective is simply to define what is there, not a 100% complete definition -- if you want to take further, and contribute back, I'd welcome it.</p>
 <p>This project is all <a href="https://github.com/api-stack/google">hosted on Github</a>, and if you put to use and improve on any of the definitions, please make sure and contribute back so everyone can benefit from the contributions. Ideally AWS would maintain this, but until that happens, we all need to step up and make sure these valuable serices are defined in a machined readable way.</p>
-<p>Currently I have X APIs, across 75 services with X unique resources included in my Google API collection. I was able to assemble this quickly by building on the work of the APIs.guru team--I will be working on adding the proper origin data to these files, outlining where I got them.</p>
 <p align="center"><a href="https://apis.guru/openapi-directory/"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/blog/api-guru-banner.png" width="75%" align="center" /></a></p>
 <p>
 {% assign index = site.data.apis %}
@@ -168,7 +167,7 @@ title: Google
 
             <tr>
               <td>
-
+                {% increment service_count %}
                 <h3>{{ api_name }} (<a href="{{ api_json_url }}">APIs.json</a>)<h3>
                 <p><img src="{{ api_image }}" width="75" style="padding: 10px;" align="left" /></p>
                 <p style="font-size: 11px;">{{ api_description }}<p>
@@ -343,7 +342,7 @@ title: Google
                                         {% assign description = method[1].description %}
 
                                         <li style="font-size: 11px;"><strong>{{ summary }}</strong> - {{ description }}</li>
-
+                                        {% increment path_count %}
                                       {% endfor %}
                                     {% endfor %}
 
@@ -373,6 +372,7 @@ title: Google
 
 {% endfor %}
 
+<p align="center">There is a total of {{ service_count }} services, with {{ path_count }} unique paths.</p>
 
 <p>Liquid makes it easy to work with any JSON or YAML in the _data folder, treating this as a data source. Using Liquid I can do almost anything I can do with PHP, Python, Ruby, Node.js, and other server-side languages--the big difference here, is there is no hosting necessary, it all runs on Github. You don't need database backend, or a server to host website--it is all on Github. If your repo and data is public, it doesn't cost you anything to operate--offloading hosting and bandwidth costs to Github for all your open data, and API projects. This is big deal if you are managing a lot of public data. <a href="https://gist.github.com/kinlane/6a14db7b6994f1c6ba42769abb0fc3b0">You can find a gist of this liquid script here</a>.</p>
 
