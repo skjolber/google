@@ -1,0 +1,4 @@
+---
+layout: none
+---
+{% assign yaml_data = site.data.api-commons.google-service-management.google-service-management-api.yaml %}{% include apis_json_2.html %}
