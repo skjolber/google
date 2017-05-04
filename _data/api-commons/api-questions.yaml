@@ -1,7 +1,0 @@
-- apis_json_url: http://facebook.stack.network/apis/facebook/apis.json
-  question: Is the APIs.json valid JSON or YAML?
-  reference:
-    - url: http://facebook.stack.network/apis/facebook/apis.json
-    answer: 'yes'
-    ask_date: Wed, 03 May 2017 14:46:40 -0700
-    answer: 'yes'
