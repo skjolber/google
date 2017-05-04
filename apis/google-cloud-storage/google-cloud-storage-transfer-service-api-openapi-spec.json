@@ -1,0 +1,4 @@
+---
+layout: none
+---
+{% assign yaml_data = site.data.api-commons.google-cloud-storage.google-cloud-storage-transfer-service-api.yaml %}{% include apis_json_2.html %}
