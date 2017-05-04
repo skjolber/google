@@ -1,0 +1,1 @@
+{% assign base_url = site.url | append: "/apis/" %}{% assign yaml_data = yaml_data | replace: site.raw_url, base_url %}{% assign show_json = yaml_data | json | replace: '=>', ':' %}{{ show_json }}
