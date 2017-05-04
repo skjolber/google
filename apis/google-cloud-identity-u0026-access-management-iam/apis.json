@@ -1,4 +1,0 @@
----
-layout: none
----
-{% assign yaml_data = site.data.api-commons.google-cloud-identity-u0026-access-management-iam.apis %}{% include apis_json_2.html %}
