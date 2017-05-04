@@ -1,5 +1,6 @@
 title:        Google
 url:          http://google.stack.network
+raw_url:      https://raw.githubusercontent.com/api-stack/google/master/_data/api-commons/
 logo:         https://kinlane-productions.s3.amazonaws.com/api-evangelist/api-evangelist-logo-400.png
 logo_width:   65
 logo_bottom_padding: 10
