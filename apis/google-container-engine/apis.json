@@ -1,0 +1,4 @@
+---
+layout: none
+---
+{% assign yaml_data = site.data.api-commons.google-container-engine.apis %}{% include apis_json_2.html %}
