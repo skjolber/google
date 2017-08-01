@@ -1,0 +1,53 @@
+---
+layout: page
+title: Channel Types
+---
+
+<h1>Channel Types</h1>
+<p>These are the channel types processed as part of this API stack research project. Each channel refers to a specific area of API operations that is relevant to operations, and has a URL to reference.</p>
+
+{% assign service_count = 0 %}
+{% assign path_count = 0 %}
+{% assign index = site.data.apis %}
+{% assign apijson = index[0] %}
+{% assign contents = site.data.api-commons %}
+{% assign channel_types_string = '' %}
+
+{% for api in index.include %}
+  {% assign path = api.url  | replace: site.raw_url,'' %}
+  {% assign path = path  | replace: '/apis.yaml','' %}
+  {% for api in contents %}
+    {% assign api_name = api[0] %}
+    {% assign folder = api[1] %}
+    {% if api_name == path %}
+      {% for item in folder %}
+        {% assign item_name = item[0] %}
+        {% if item_name == 'apis' %}
+          {% assign apijson = item[1] %}
+          {% for common in apijson.x-common %}
+            {% assign channel_types_string = channel_types_string | append: ',' | append: common.type %}
+          {% endfor %}
+          {% for api in apijson.apis %}
+              {% for property in api.properties %}
+                {% assign channel_types_string = channel_types_string | append: ',' | append: property.type %}
+              {% endfor %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+<ul>
+{% assign channel_types_array = channel_types_string | split: "," %}
+{% assign channel_types = channel_types_array | uniq | sort %}
+{% for type in channel_types %}
+  {% if type != '' %}
+    {% assign type_name = type | replace: 'x-',''  | replace: '-',' ' | replace: '-',' ' | capitalize %}
+    <li><strong>{{ type_name }}</strong> ({{ type }})</li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<br />
+<p>If you are an API provider and would like to see your API here, feel free to submit a link to it in the Github issues, or even fork and submit a pull requests. I'm looking for as much help as I can, to make this as complete as possible source for API definitions as I possibly can.</p>
+<p>Remember, the more open, complete, freely available API definitions there are, the more people will have healthy patterns to follow when crafting their own APIs. If you design APIs, make sure and share your patterns.</p>
